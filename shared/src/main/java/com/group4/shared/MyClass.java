@@ -1,4 +1,4 @@
-package com.example;
+package com.group4.shared;
 
 public class MyClass {
 

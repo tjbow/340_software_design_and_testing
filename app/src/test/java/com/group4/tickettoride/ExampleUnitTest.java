@@ -1,4 +1,4 @@
-package com.example.john.tickettoride;
+package com.group4.tickettoride;
 
 import org.junit.Test;
 
@@ -9,9 +9,11 @@ import static org.junit.Assert.*;
  *
  * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
  */
-public class ExampleUnitTest {
+public class ExampleUnitTest
+{
     @Test
-    public void addition_isCorrect() throws Exception {
+    public void addition_isCorrect() throws Exception
+    {
         assertEquals(4, 2 + 2);
     }
 }
