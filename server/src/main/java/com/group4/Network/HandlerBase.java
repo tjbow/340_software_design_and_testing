@@ -43,10 +43,7 @@ public class HandlerBase implements HttpHandler
             String response = Serializer.serializeResults(results);
 
             //send the result back to the client
-            if(!results.isSuccess())
-                httpExchange.sendResponseHeaders(HttpURLConnection.HTTP_BAD_REQUEST, response.length());
-            else
-                httpExchange.sendResponseHeaders(HttpURLConnection.HTTP_OK, response.length());
+            httpExchange.sendResponseHeaders(HttpURLConnection.HTTP_OK, response.length());
 
             writeString(httpExchange, response);
         }

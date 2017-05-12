@@ -27,6 +27,10 @@ public class ExecCommandHandler
 //            RegisterCommand cmd = new RegisterCommand(requestCommand.getState());
 //            results = cmd.execute();
         }
+        else if(requestCommand.getType().equals("test"))
+        {
+            results = new Results(false, "The test is successful", null, null);
+        }
         //add more else if statements on this line for other command types
         else
         {
