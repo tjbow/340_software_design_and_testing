@@ -1,6 +1,6 @@
 package com.group4.server.Command;
 
-import com.group4.shared.Model.Result;
+import com.group4.shared.Model.Results;
 import com.group4.shared.command.IClientCommand;
 import com.group4.shared.command.IServerCommand;
 import com.group4.shared.command.Server.StartGameCommandData;
@@ -20,7 +20,7 @@ public class StartGameCommand extends StartGameCommandData implements IServerCom
     }
 
     @Override
-    public Result execute() {
+    public Results execute() {
         return null;
     }
 }
