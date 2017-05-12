@@ -1,6 +1,6 @@
-package com.group4.server.command.Server;
+package com.group4.shared.command.Server;
 
-import com.group4.server.command.Command;
+import com.group4.shared.command.Command;
 
 /**
  * Created by beefhead on 5/12/2017.

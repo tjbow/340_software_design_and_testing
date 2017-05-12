@@ -1,4 +1,4 @@
-package com.group4.server.command.Client;
+package com.group4.shared.command.Client;
 
 /**
  * Created by beefhead on 5/12/2017.

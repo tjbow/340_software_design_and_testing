@@ -1,6 +1,6 @@
-package com.group4.server.command.Client;
+package com.group4.shared.command.Client;
 
-import com.group4.server.command.ClientCommand;
+import com.group4.shared.command.ClientCommand;
 
 import java.util.List;
 
