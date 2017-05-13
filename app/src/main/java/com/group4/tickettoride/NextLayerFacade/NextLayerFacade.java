@@ -1,18 +1,25 @@
 package com.group4.tickettoride.NextLayerFacade;
 
 
+import com.group4.shared.Model.User;
+import com.group4.tickettoride.ServerProxy.ServerProxy;
+
 public class NextLayerFacade implements INextLayerFacade {
 
-    public NextLayerFacade(){}
+    private NextLayerFacade(){}
+
+    public static NextLayerFacade SINGLETON = new NextLayerFacade();
 
     @Override
     public void login(String username, String password) {
-        //needs implementation
+        User loggedUser = new User(username, password);
+        ServerProxy.SINGLETON.login(loggedUser);
     }
 
     @Override
     public void register(String username, String password) {
-        //needs implementation
+        User registeredUser = new User(username, password);
+        ServerProxy.SINGLETON.register(registeredUser);
     }
 
     @Override
