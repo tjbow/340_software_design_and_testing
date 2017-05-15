@@ -1,7 +1,10 @@
 package com.group4.server.Network;
 
+import com.google.gson.Gson;
+import com.group4.server.Command.LoginCommand;
 import com.group4.shared.Model.Results;
 import com.group4.shared.command.Command;
+import com.group4.shared.command.IServerCommand;
 
 /**
  * Created by tyler on 5/12/17.
@@ -19,8 +22,8 @@ public class ExecCommandHandler
         Results results = null;
         if(requestCommand.getType().equals("login"))
         {
-//            LoginCommand cmd = Serializer.deserializeCommand(requestBody);
-//            results = cmd.execute();
+            IServerCommand cmd = new Gson().fromJson(requestBody, LoginCommand.class);
+            results = cmd.execute();
         }
         else if(requestCommand.getType().equals("register"))
         {

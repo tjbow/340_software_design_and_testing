@@ -13,7 +13,7 @@ import com.group4.shared.command.Server.LoginCommandData;
 public class LoginCommand extends LoginCommandData implements IServerCommand{
     Results login(){
         IServer serverFacade = null;
-        return serverFacade.register(super.getUser());
+        return serverFacade.login(super.getUser());
     }
 
     @Override
