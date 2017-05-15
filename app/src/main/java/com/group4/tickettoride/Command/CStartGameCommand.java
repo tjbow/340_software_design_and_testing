@@ -1,16 +1,17 @@
 package com.group4.tickettoride.Command;
 
+import com.group4.shared.Model.Results;
 import com.group4.shared.command.Client.CStartGameCommandData;
 import com.group4.shared.command.IClientCommand;
 
 /**
- * Created by beefhead on 5/12/2017.
+ * Created by abgill on 5/12/2017.
  */
 
 public class CStartGameCommand extends CStartGameCommandData implements IClientCommand {
     @Override
-    public void execute() {
-
+    public Results execute() {
+        return null;
     }
 
     boolean startGame(){
