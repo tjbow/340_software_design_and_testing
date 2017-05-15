@@ -9,7 +9,15 @@ import java.util.List;
  */
 
 public interface IClient {
+
+    /**
+     * Return the current game state
+     */
     Game reportGameState();
+
+    /**
+     * Return a list of the current games
+     */
     List<String> getGameList();
     //TODO: ALL: review return types of methods
 }
