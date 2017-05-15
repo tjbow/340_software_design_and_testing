@@ -23,12 +23,12 @@ public class NextLayerFacade implements INextLayerFacade {
     }
 
     @Override
-    public void createGame() {
+    public void createGame(String gameName, int playerCount) {
         //needs implementation
     }
 
     @Override
-    public void joinGame() {
+    public void joinGame(int position) {
         //needs implementation
     }
 }

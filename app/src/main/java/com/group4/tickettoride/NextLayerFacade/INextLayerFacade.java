@@ -7,7 +7,7 @@ package com.group4.tickettoride.NextLayerFacade;
 
     void register (String username, String password);
 
-    void createGame();
+    void createGame(String gameName, int playerCount);
 
-    void joinGame();
+    void joinGame(int position);
 }
