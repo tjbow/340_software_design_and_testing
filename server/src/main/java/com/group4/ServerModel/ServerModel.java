@@ -9,6 +9,7 @@ import com.group4.shared.Model.Game;
 import com.group4.shared.Model.GameList;
 import com.group4.shared.Model.User;
 
+import java.security.SecureRandom;
 import java.util.List;
 import java.util.Map;
 
@@ -29,17 +30,33 @@ public class ServerModel
      */
     public boolean doesUserExist(User user)
     {
-        return false;
+        return users.contains(user);
     }
 
     /**
-     *  Takes an authToken and finds which user it belongs to, then returns that user
+     *  Takes an user and authToken and returns true if a corresponding user and auth token are found
+     *  found in the User authTokens group
      * @param authToken
      * @return
      */
-    public User validateUser(String authToken)
+    public boolean validateUser(User user, String authToken)
     {
-        return null;
+        if(doesUserExist(user))
+        {
+            String trueAuthToken = userAuthTokens.get(user);
+            if(trueAuthToken.compareTo(authToken) == 0) // authTokens match
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        else // user does not exist
+        {
+            return false;
+        }
     }
 
     /**
@@ -49,7 +66,10 @@ public class ServerModel
      */
     public boolean registerUser(User user)
     {
-        return false;
+        users.add(user);
+        //TODO: Tom: add user to database when it exists return true if success
+        // for now just return true
+        return true;
     }
 
     /**
@@ -59,7 +79,9 @@ public class ServerModel
      */
     public String loginUser(User user)
     {
-        return null;
+        String authToken = generateToken();
+        userAuthTokens.put(user, authToken);
+        return authToken;
     }
 
     /**
@@ -68,7 +90,10 @@ public class ServerModel
      */
     public String generateToken()
     {
-        return null;
+        SecureRandom random = new SecureRandom();
+        byte bytes[] = new byte[20];
+        random.nextBytes(bytes);
+        return bytes.toString();
     }
 
     /**
@@ -77,7 +102,7 @@ public class ServerModel
      */
     public void addGame(Game game)
     {
-
+        gameList.getGameList().add(game);
     }
 
     /**
@@ -86,6 +111,22 @@ public class ServerModel
      */
     public GameList getGameList()
     {
-        return null;
+        return gameList;
+    }
+
+    /**
+     * Gets the list of commands that were executed after the index in commandID
+     * @param commandID
+     */
+    public CommandList getCommandsSinceIndex(int commandID)
+    {
+        CommandList returnList = new CommandList();
+        // need to have at least one new command to sublist, if not, just return  the empty lists
+        // we are return all the commands after commandID, thus it is commandID + 1
+        if(commandID + 1 < commandList.commandList.size() - 1)
+        {
+            returnList.commandList = commandList.commandList.subList(commandID + 1, commandList.commandList.size());
+        }
+        return returnList;
     }
 }

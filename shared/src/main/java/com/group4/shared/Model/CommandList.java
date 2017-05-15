@@ -10,5 +10,5 @@ import java.util.List;
 
 public class CommandList
 {
-    List<Command> commandList;
+    public List<Command> commandList;
 }
