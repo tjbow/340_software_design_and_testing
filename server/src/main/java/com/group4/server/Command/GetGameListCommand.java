@@ -1,6 +1,5 @@
 package com.group4.server.Command;
 
-import com.group4.ServerModel.ServerFacade;
 import com.group4.shared.Model.GameList;
 import com.group4.shared.Model.Results;
 import com.group4.shared.Proxy.IClient;
