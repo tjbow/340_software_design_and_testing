@@ -20,8 +20,21 @@ public class ServerModel
 {
     private List<User> users;
     private GameList gameList;
-    private Map<User, String> userAuthTokens;
+    private Map<User, String> userAuthTokens; //TODO: Tom: is this how it was done in 240?
     private CommandList commandList; // holds all commands executed on the server to this point
+
+    private static ServerModel serverModel = new ServerModel();
+
+    private ServerModel() {}
+
+    /**
+     * Return the singleton instance of this class
+     * @return
+     */
+    public static ServerModel getInstance()
+    {
+        return serverModel;
+    }
 
     /**
      * Checks to see if a user is already registered
@@ -121,8 +134,8 @@ public class ServerModel
     public CommandList getCommandsSinceIndex(int commandID)
     {
         CommandList returnList = new CommandList();
-        // need to have at least one new command to sublist, if not, just return  the empty lists
-        // we are return all the commands after commandID, thus it is commandID + 1
+        // need to have at least one new command to sublist, if not, just return  the empty list
+        // we are returning all the commands after commandID, thus it is commandID + 1
         if(commandID + 1 < commandList.commandList.size() - 1)
         {
             returnList.commandList = commandList.commandList.subList(commandID + 1, commandList.commandList.size());
