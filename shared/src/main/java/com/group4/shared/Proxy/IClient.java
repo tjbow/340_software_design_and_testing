@@ -2,7 +2,6 @@ package com.group4.shared.Proxy;
 
 import com.group4.shared.Model.Game;
 import com.group4.shared.Model.GameList;
-import com.group4.shared.Model.Results;
 
 import java.util.List;
 
@@ -15,11 +14,11 @@ public interface IClient {
     /**
      * Return the current game state
      */
-    Results reportGameState();
+    Game reportGameState();
 
     /**
      * Return a list of the current games
      */
-    Results getGameList();
+    GameList getGameList();
     //TODO: ALL: review return types of methods
 }

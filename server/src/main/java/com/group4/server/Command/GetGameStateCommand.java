@@ -1,5 +1,6 @@
 package com.group4.server.Command;
 
+import com.group4.shared.Model.Game;
 import com.group4.shared.Model.Results;
 import com.group4.shared.Proxy.IClient;
 import com.group4.shared.Proxy.IServer;
@@ -12,13 +13,13 @@ import com.group4.shared.command.Server.GetGameStateCommandData;
  */
 
 public class GetGameStateCommand extends GetGameStateCommandData implements IServerCommand{
-    private Results getGameState(){
+    private Game getGameState(){
         IClient serverFacade = null;
         return serverFacade.reportGameState();
     }
 
     @Override
     public Results execute() {
-        return getGameState();
+        return null;
     }
 }
