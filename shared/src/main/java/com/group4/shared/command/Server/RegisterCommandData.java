@@ -1,5 +1,6 @@
 package com.group4.shared.command.Server;
 
+import com.group4.shared.Model.User;
 import com.group4.shared.command.Command;
 
 /**
@@ -7,5 +8,13 @@ import com.group4.shared.command.Command;
  */
 
 public class RegisterCommandData extends Command {
-    //TODO add user
+    User user;
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 }

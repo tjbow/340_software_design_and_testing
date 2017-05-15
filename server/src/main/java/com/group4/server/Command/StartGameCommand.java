@@ -1,6 +1,7 @@
 package com.group4.server.Command;
 
 import com.group4.shared.Model.Results;
+import com.group4.shared.Proxy.IServer;
 import com.group4.shared.command.IClientCommand;
 import com.group4.shared.command.IServerCommand;
 import com.group4.shared.command.Server.StartGameCommandData;
@@ -10,17 +11,13 @@ import com.group4.shared.command.Server.StartGameCommandData;
  */
 
 public class StartGameCommand extends StartGameCommandData implements IServerCommand{
-    public IClientCommand startGame(){
-        return new IClientCommand() {
-            @Override
-            public void execute() {
-
-            }
-        };
+    private Results startGame(){
+        IServer serverFacade = null; //TODO: Drew update with ptr to actual facade when implamented
+        return serverFacade.startGame(super.getGameID());
     }
 
     @Override
     public Results execute() {
-        return null;
+        return startGame();
     }
 }

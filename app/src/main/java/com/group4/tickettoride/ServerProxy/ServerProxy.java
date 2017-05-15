@@ -2,7 +2,7 @@ package com.group4.tickettoride.ServerProxy;
 
 import com.group4.shared.Model.Results;
 import com.group4.shared.Model.User;
-import com.group4.shared.command.ClientCommand;
+import com.group4.shared.Proxy.IServer;
 
 /**
  * Created by Russell Fitzpatrick on 5/13/2017.

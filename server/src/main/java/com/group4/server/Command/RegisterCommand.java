@@ -1,6 +1,7 @@
 package com.group4.server.Command;
 
 import com.group4.shared.Model.Results;
+import com.group4.shared.Proxy.IServer;
 import com.group4.shared.command.IClientCommand;
 import com.group4.shared.command.IServerCommand;
 import com.group4.shared.command.Server.RegisterCommandData;
@@ -10,17 +11,13 @@ import com.group4.shared.command.Server.RegisterCommandData;
  */
 
 public class RegisterCommand extends RegisterCommandData implements IServerCommand{
-    IClientCommand register(){
-        return new IClientCommand() {
-            @Override
-            public void execute() {
-
-            }
-        };
+    private Results register(){
+        IServer serveFacade = null;  //TODO: DREW: update when implamented
+        return serveFacade.register(super.getUser());
     }
 
     @Override
     public Results execute() {
-        return null;
+        return register();
     }
 }

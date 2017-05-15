@@ -1,6 +1,7 @@
 package com.group4.server.Command;
 
 import com.group4.shared.Model.Results;
+import com.group4.shared.Proxy.IServer;
 import com.group4.shared.command.IClientCommand;
 import com.group4.shared.command.IServerCommand;
 import com.group4.shared.command.Server.LoginCommandData;
@@ -10,17 +11,13 @@ import com.group4.shared.command.Server.LoginCommandData;
  */
 
 public class LoginCommand extends LoginCommandData implements IServerCommand{
-    IClientCommand login(){
-        return new IClientCommand() {
-            @Override
-            public void execute() {
-
-            }
-        };
+    Results login(){
+        IServer serverFacade = null;
+        return serverFacade.register(super.getUser());
     }
 
     @Override
     public Results execute() {
-        return null;
+        return login();
     }
 }

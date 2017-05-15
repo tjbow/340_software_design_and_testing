@@ -1,6 +1,7 @@
 package com.group4.server.Command;
 
 import com.group4.shared.Model.Results;
+import com.group4.shared.Proxy.IServer;
 import com.group4.shared.command.IClientCommand;
 import com.group4.shared.command.IServerCommand;
 import com.group4.shared.command.Server.CreateGameCommandData;
@@ -10,17 +11,13 @@ import com.group4.shared.command.Server.CreateGameCommandData;
  */
 
 public class CreateGameCommand  extends CreateGameCommandData implements IServerCommand{
-    public IClientCommand createGame(){
-        return new IClientCommand() {
-            @Override
-            public void execute() {
-
-            }
-        };
+    public Results createGame(){
+        IServer serverFacade = null;
+        return serverFacade.createGame();
     }
 
     @Override
     public Results execute() {
-        return null;
+        return createGame();
     }
 }

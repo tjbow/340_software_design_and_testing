@@ -1,4 +1,4 @@
-package com.group4.tickettoride.ServerProxy;
+package com.group4.shared.Proxy;
 
 import com.group4.shared.Model.Results;
 import com.group4.shared.Model.User;
