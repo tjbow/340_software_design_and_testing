@@ -50,9 +50,17 @@ public class ClientFacade implements IClient,IComandExec
             switch (cmd.getType())
             {
                 case "login":
-                    //do stuff
+                    //call setUser()
+                    //set the authToken
                     break;
                 case "register":
+                    //call setUser()
+                    //set the authToken
+                    break;
+                case "setgamelist":
+                    // set the game list
+                    break;
+                default:
                     //do stuff
                     break;
             }

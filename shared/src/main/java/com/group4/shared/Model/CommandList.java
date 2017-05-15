@@ -1,7 +1,10 @@
 package com.group4.shared.Model;
 
+import com.group4.shared.command.ClientCommand;
 import com.group4.shared.command.Command;
+import com.group4.shared.command.IClientCommand;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -11,4 +14,9 @@ import java.util.List;
 public class CommandList
 {
     public List<Command> commandList;
+
+    public CommandList()
+    {
+        this.commandList = new ArrayList<>();
+    }
 }

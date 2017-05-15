@@ -2,6 +2,7 @@ package com.group4.server.Network;
 
 import com.google.gson.Gson;
 import com.group4.server.Command.CreateGameCommand;
+import com.group4.server.Command.JoinGameCommand;
 import com.group4.server.Command.LoginCommand;
 import com.group4.server.Command.RegisterCommand;
 import com.group4.server.Command.StartGameCommand;
@@ -39,8 +40,8 @@ public class ExecCommandHandler
                 results = createGameCommand.execute();
                 break;
             case "joingame":
-//                JoinGameCommand joinGameCommand = new Gson().fromJson(requestBody, JoinGameCommand.class);
-//                results = joinGameCommand.execute();
+                JoinGameCommand joinGameCommand = new Gson().fromJson(requestBody, JoinGameCommand.class);
+                results = joinGameCommand.execute();
                 break;
             case "startgame":
                 StartGameCommand startGameCommand = new Gson().fromJson(requestBody, StartGameCommand.class);

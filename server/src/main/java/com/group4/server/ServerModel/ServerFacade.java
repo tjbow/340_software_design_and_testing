@@ -1,11 +1,16 @@
 package com.group4.server.ServerModel;
 
+import com.group4.server.Command.LoginCommand;
+import com.group4.shared.Model.CommandList;
 import com.group4.shared.Model.Game;
 import com.group4.shared.Model.GameList;
 import com.group4.shared.Proxy.IClient;
 import com.group4.shared.Proxy.IServer;
 import com.group4.shared.Model.Results;
 import com.group4.shared.Model.User;
+import com.group4.shared.command.Client.CLoginCommandData;
+import com.group4.shared.command.Client.CRegisterCommandData;
+import com.group4.shared.command.Server.LoginCommandData;
 
 import java.util.List;
 
@@ -27,7 +32,15 @@ public class ServerFacade implements IServer, IClient
         if(authToken != null)
         {
             System.out.println("User " + user.getUsername() + " logged in");
-            return new Results(true, authToken, null, null);
+
+            CLoginCommandData loginData = new CLoginCommandData();
+            loginData.setAuthToken(authToken);
+            loginData.setType("login");
+
+            CommandList cmdList = new CommandList();
+            cmdList.commandList.add(loginData);
+
+            return new Results(true, authToken, null, cmdList);
         }
         else
         {
@@ -43,7 +56,15 @@ public class ServerFacade implements IServer, IClient
         if(authToken != null)
         {
             System.out.println("User " + user.getUsername() + " registered");
-            return new Results(true, authToken, null, null);
+
+            CRegisterCommandData registerData = new CRegisterCommandData();
+            registerData.setAuthToken(authToken);
+            registerData.setType("register");
+
+            CommandList cmdList = new CommandList();
+            cmdList.commandList.add(registerData);
+
+            return new Results(true, authToken, null, cmdList);
         }
         else
         {
