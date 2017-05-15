@@ -6,6 +6,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonIOException;
 import com.google.gson.JsonSyntaxException;
 import com.group4.shared.Model.Results;
+import com.group4.tickettoride.ClientModel.ClientFacade;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -33,6 +34,15 @@ public class ClientCommunicator
     private static final String COMMAND_HANDLER_DESIGNATOR = "";
     public static final String AUTHORIZATION_KEY = "authorization";
 
+    /** Sends an object to the server
+     *
+     * @pre The server must be running
+     * @pre The command type must be implemented by the server
+     *
+     * @param urlPath Usually should be "execcommand," unless a non-command pattern is implemented
+     * @param originalObject The command to be sent
+     * @return the results from the server
+     */
     public Results send(String urlPath, Object originalObject)
     {
         //TODO: make sure to replace the IP below with the IP where you are running the server
@@ -45,6 +55,11 @@ public class ClientCommunicator
 
         Results results = (Results) getResult(connection, Results.class);
 
+        // If there is no error, the ClientFacade will be called to process the results.
+        if(results.isSuccess())
+        {
+            ClientFacade.SINGLETON.processResults(results);
+        }
         return results;
     }
 

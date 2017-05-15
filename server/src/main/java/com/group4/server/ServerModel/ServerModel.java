@@ -22,7 +22,7 @@ public class ServerModel
 {
     private List<User> users;
     private GameList gameList;
-    private Map<User, String> userAuthTokens; //TODO: Tom: is this how it was done in 240?
+    private Map<User, String> userAuthTokens; //TODO: Tom: is this how it was done in 240? //This will work for storage in memory, but we'll want a DB later on
     private CommandList commandList; // holds all commands executed on the server to this point
 
     private static ServerModel serverModel = new ServerModel();
