@@ -1,5 +1,6 @@
 package com.group4.server.Command;
 
+import com.group4.server.ServerModel.ServerFacade;
 import com.group4.shared.Model.GameList;
 import com.group4.shared.Model.Results;
 import com.group4.shared.Proxy.IClient;
@@ -15,7 +16,7 @@ import java.util.List;
 
 public class GetGameListCommand extends GetGameListCommandData implements IServerCommand{
     public Results getGameList(){
-        IClient serverFacade = null;
+        IClient serverFacade = new ServerFacade();
         return serverFacade.getGameList();
     }
 
