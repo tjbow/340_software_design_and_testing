@@ -1,10 +1,10 @@
 package com.group4.tickettoride.ClientModel;
 
 import com.group4.shared.Model.GameList;
-import com.group4.shared.Model.PlayerList;
 import com.group4.shared.Model.User;
 
 import java.util.Observable;
+import java.util.Observer;
 
 /**
  * Created by Russell Fitzpatrick on 5/13/2017.
@@ -14,12 +14,14 @@ public class ClientModel extends Observable {
 
     private User user;
     private GameList gameList;
-    private PlayerList playerList;
 
-    public ClientModel(User user, GameList gameList, PlayerList playerList) {
+    public static ClientModel SINGLETON = new ClientModel();
+
+    private ClientModel() {}
+
+    public ClientModel(User user, GameList gameList) {
         this.user = user;
         this.gameList = gameList;
-        this.playerList = playerList;
     }
 
     public User getUser() {
@@ -39,13 +41,13 @@ public class ClientModel extends Observable {
         notifyObservers(gameList);
     }
 
-    public PlayerList getPlayerList() {
-        return playerList;
+    @Override
+    public synchronized void addObserver(Observer o) {
+        super.addObserver(o);
     }
 
-    public void setPlayerList(PlayerList playerList) {
-        this.playerList = playerList;
+    @Override
+    public synchronized void deleteObserver(Observer o) {
+        super.deleteObserver(o);
     }
-
-
 }

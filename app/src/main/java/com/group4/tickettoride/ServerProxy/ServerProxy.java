@@ -16,9 +16,6 @@ public class ServerProxy implements IServer {
 
     @Override
     public Results login(User user) {
-
-
-
         return null;
     }
 
