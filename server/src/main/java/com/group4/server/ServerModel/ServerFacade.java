@@ -65,15 +65,16 @@ public class ServerFacade implements IServer, IClient
     }
 
     @Override
-    public Game reportGameState()
+    public Results reportGameState()
     {
         //TODO: Tom: what is this method supposed to do?
         return null;
     }
 
     @Override
-    public GameList getGameList()
+    public Results getGameList()
     {
-        return serverModel.getGameList();
+        //return serverModel.getGameList();
+        return null;
     }
 }

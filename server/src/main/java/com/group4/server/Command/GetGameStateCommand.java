@@ -13,7 +13,7 @@ import com.group4.shared.command.Server.GetGameStateCommandData;
  */
 
 public class GetGameStateCommand extends GetGameStateCommandData implements IServerCommand{
-    private Game getGameState(){
+    private Results getGameState(){
         IClient serverFacade = null;
         return serverFacade.reportGameState();
     }

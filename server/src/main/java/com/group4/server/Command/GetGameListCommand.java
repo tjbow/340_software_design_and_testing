@@ -14,7 +14,7 @@ import java.util.List;
  */
 
 public class GetGameListCommand extends GetGameListCommandData implements IServerCommand{
-    public GameList getGameList(){
+    public Results getGameList(){
         IClient serverFacade = null;
         return serverFacade.getGameList();
     }

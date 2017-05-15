@@ -16,15 +16,16 @@ public class ClientFacade implements IClient
     ClientModel clientModel; //TODO: Tom: ClientModel needs to be a singleton?
     Poller poller;
     @Override
-    public Game reportGameState()
+    public Results reportGameState()
     {
         return null;
     }
 
     @Override
-    public GameList getGameList()
+    public Results getGameList()
     {
-        return clientModel.getGameList();
+        //return clientModel.getGameList();
+        return null;
     }
 
     /**
