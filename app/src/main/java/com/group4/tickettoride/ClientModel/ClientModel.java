@@ -19,7 +19,7 @@ public class ClientModel extends Observable {
 
     private ClientModel() {}
 
-    public ClientModel(User user, GameList gameList) {
+    private ClientModel(User user, GameList gameList) {
         this.user = user;
         this.gameList = gameList;
     }
