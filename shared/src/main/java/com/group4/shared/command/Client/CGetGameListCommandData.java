@@ -1,5 +1,6 @@
 package com.group4.shared.command.Client;
 
+import com.group4.shared.Model.GameList;
 import com.group4.shared.command.ClientCommand;
 
 import java.util.List;
@@ -9,5 +10,13 @@ import java.util.List;
  */
 
 public class CGetGameListCommandData  extends ClientCommand{
-    private List<String> gameIdList;
+    private GameList gameList;
+
+    public GameList getGameList() {
+        return gameList;
+    }
+
+    public void setGameList(GameList gameList) {
+        this.gameList = gameList;
+    }
 }
