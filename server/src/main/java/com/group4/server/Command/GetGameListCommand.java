@@ -1,6 +1,8 @@
 package com.group4.server.Command;
 
+import com.group4.ServerModel.ServerFacade;
 import com.group4.shared.Model.Results;
+import com.group4.shared.Proxy.IClient;
 import com.group4.shared.command.IClientCommand;
 import com.group4.shared.command.IServerCommand;
 import com.group4.shared.command.Server.GetGameListCommandData;
@@ -10,17 +12,13 @@ import com.group4.shared.command.Server.GetGameListCommandData;
  */
 
 public class GetGameListCommand extends GetGameListCommandData implements IServerCommand{
-    public IClientCommand getGameList(){
-        return new IClientCommand() {
-            @Override
-            public void execute() {
-
-            }
-        };
+    public Results getGameList(){
+        IClient serverFacade = null;
+        return serverFacade.getGameList();
     }
 
     @Override
     public Results execute() {
-        return null;
+        return getGameList();
     }
 }
