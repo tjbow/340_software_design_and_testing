@@ -15,12 +15,14 @@ public class ServerProxy implements IServer {
     public static ServerProxy SINGLETON = new ServerProxy();
 
     @Override
-    public Results login(User user) {
+    public Results login(User user)
+    {
         return null;
     }
 
     @Override
-    public Results register(User user) {
+    public Results register(User user)
+    {
         return null;
     }
 

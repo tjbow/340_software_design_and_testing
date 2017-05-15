@@ -10,6 +10,8 @@ import com.group4.shared.Model.GameList;
 import com.group4.shared.Model.User;
 
 import java.security.SecureRandom;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -25,7 +27,11 @@ public class ServerModel
 
     private static ServerModel serverModel = new ServerModel();
 
-    private ServerModel() {}
+    private ServerModel()
+    {
+        users = new ArrayList<>();
+        userAuthTokens = new HashMap<>();
+    }
 
     /**
      * Return the singleton instance of this class
@@ -41,9 +47,17 @@ public class ServerModel
      * @param user
      * @return
      */
-    public boolean doesUserExist(User user)
+    private boolean doesUserExist(User user)
     {
-        return users.contains(user);
+        for(User user1 : users)
+        {
+            if(user1.getUsername().equals(user.getUsername()))
+            {
+                return true;
+            }
+        }
+        return false;
+        //return users.contains(user);
     }
 
     /**
@@ -73,16 +87,19 @@ public class ServerModel
     }
 
     /**
-     * Returns a boolean indicating success of add to DB
+     * Adds the user to DB and then calls loginUser(User) to log
+     * him in and return an authToken
      * @param user
      * @return
      */
-    public boolean registerUser(User user)
+    public String registerUser(User user)
     {
+        if(doesUserExist(user))
+        {
+            return null;
+        }
         users.add(user);
-        //TODO: Tom: add user to database when it exists return true if success
-        // for now just return true
-        return true;
+        return loginUser(user);
     }
 
     /**
@@ -92,6 +109,10 @@ public class ServerModel
      */
     public String loginUser(User user)
     {
+        if(!doesUserExist(user))
+        {
+            return null;
+        }
         String authToken = generateToken();
         userAuthTokens.put(user, authToken);
         return authToken;

@@ -20,7 +20,6 @@ public class HandlerBase implements HttpHandler
     @Override
     public void handle(HttpExchange httpExchange) throws IOException
     {
-        System.out.println("HandlerBase initiated");
         String query = httpExchange.getRequestURI().getPath();
         if (!query.contains("/execcommand")) // it isn't a command
         {

@@ -13,8 +13,8 @@ import com.group4.shared.command.Server.RegisterCommandData;
 
 public class RegisterCommand extends RegisterCommandData implements IServerCommand{
     private Results register(){
-        IServer serveFacade = new ServerFacade();
-        return serveFacade.register(super.getUser());
+        IServer serverFacade = new ServerFacade();
+        return serverFacade.register(super.getUser());
     }
 
     @Override

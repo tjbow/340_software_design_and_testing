@@ -23,20 +23,33 @@ public class ServerFacade implements IServer, IClient
     @Override
     public Results login(User user)
     {
-        //ServerModel serverModel = ServerModel.getInstance();
         String authToken = serverModel.loginUser(user);
-        //TODO: TOM: what are we returning in these results, just success and authtoken?
-        Results result = new Results(true, authToken, null, null);
-        return result;
+        if(authToken != null)
+        {
+            System.out.println("User " + user.getUsername() + " logged in");
+            return new Results(true, authToken, null, null);
+        }
+        else
+        {
+            System.out.println("User " + user.getUsername() + " attempted to login");
+            return new Results(false, null, "Invalid login credentials", null);
+        }
     }
 
     @Override
     public Results register(User user)
     {
-        serverModel.registerUser(user);
-        //TODO: TOM: what are we returning in these results, just success?
-        Results result = new Results(true, null, null, null);
-        return result;
+        String authToken = serverModel.registerUser(user);
+        if(authToken != null)
+        {
+            System.out.println("User " + user.getUsername() + " registered");
+            return new Results(true, authToken, null, null);
+        }
+        else
+        {
+            System.out.println("User " + user.getUsername() + " failed to register");
+            return new Results(false, null, "That username is taken", null);
+        }
     }
 
     @Override

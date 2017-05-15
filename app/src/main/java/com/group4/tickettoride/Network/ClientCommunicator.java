@@ -36,7 +36,7 @@ public class ClientCommunicator
     public Results send(String urlPath, Object originalObject)
     {
         //TODO: make sure to replace the IP below with the IP where you are running the server
-        URL_PREFIX = "http://" + "10.24.64.162" + ":" + "8080";
+        URL_PREFIX = "http://" + "10.9.18.29" + ":" + "8080";
 
         HttpURLConnection connection =
                 openConnection("/" + urlPath, HTTP_POST, null, true);
@@ -56,8 +56,8 @@ public class ClientCommunicator
             String urlStr = URL_PREFIX + contextIdentifier;
             URL url = new URL(URL_PREFIX + contextIdentifier);
             result = (HttpURLConnection)url.openConnection();
-            result.setConnectTimeout(10000); //timeout set at 10 seconds
-            result.setReadTimeout(10000);
+            result.setConnectTimeout(60000); //timeout set at 10 seconds
+            result.setReadTimeout(60000);
             result.setRequestMethod(requestMethod);
             result.setDoOutput(sendingSomthingToServer);
             result.setRequestProperty(AUTHORIZATION_KEY, authToken);
@@ -69,7 +69,8 @@ public class ClientCommunicator
         }
         catch (SocketTimeoutException e)
         {
-            Log.e("Connection", "Timeout");
+            System.out.println("Connection timeout.");
+            //Log.e("Connection", "Timeout");
         }
         catch (IOException e)
         {
