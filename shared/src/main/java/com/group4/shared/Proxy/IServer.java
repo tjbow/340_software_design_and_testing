@@ -14,5 +14,6 @@ public interface IServer {
     public Results createGame();
     public Results joinGame(int gameId);
     public Results startGame(int gameId);
+    //Todo: public CommandList getCommandsSinceIndex(int commandID);
 
 }

@@ -4,7 +4,6 @@ import com.group4.shared.Model.GameList;
 import com.group4.shared.Model.User;
 
 import java.util.Observable;
-import java.util.Observer;
 
 /**
  * Created by Russell Fitzpatrick on 5/13/2017.
@@ -14,10 +13,7 @@ public class ClientModel extends Observable {
 
     private User user;
     private GameList gameList;
-
-    public static ClientModel SINGLETON = new ClientModel();
-
-    private ClientModel() {}
+    // Todo: int commandIDIndex, last command run
 
     private ClientModel(User user, GameList gameList) {
         this.user = user;
@@ -41,13 +37,9 @@ public class ClientModel extends Observable {
         notifyObservers(gameList);
     }
 
-    @Override
-    public synchronized void addObserver(Observer o) {
-        super.addObserver(o);
-    }
+    /**
+     * Runs the commands in the commandList on the client model
+     */
+    // Todo: public void runCommands(CommandList commandList)
 
-    @Override
-    public synchronized void deleteObserver(Observer o) {
-        super.deleteObserver(o);
-    }
 }
