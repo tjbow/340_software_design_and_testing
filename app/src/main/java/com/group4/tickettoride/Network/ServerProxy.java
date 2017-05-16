@@ -1,9 +1,6 @@
-package com.group4.tickettoride.ServerProxy;
+package com.group4.tickettoride.Network;
 
 import android.os.AsyncTask;
-import android.os.Looper;
-import android.widget.Toast;
-
 import com.group4.shared.Model.Results;
 import com.group4.shared.Model.User;
 import com.group4.shared.Proxy.IServer;
@@ -11,8 +8,6 @@ import com.group4.shared.command.Server.CreateGameCommandData;
 import com.group4.shared.command.Server.JoinGameCommandData;
 import com.group4.shared.command.Server.LoginCommandData;
 import com.group4.shared.command.Server.RegisterCommandData;
-import com.group4.tickettoride.Login_Register.Login_RegisterActivity;
-import com.group4.tickettoride.Network.ClientCommunicator;
 
 /**
  * Created by Russell Fitzpatrick on 5/13/2017.

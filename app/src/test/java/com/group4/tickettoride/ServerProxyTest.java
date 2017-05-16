@@ -3,7 +3,7 @@ package com.group4.tickettoride;
 import com.group4.shared.Model.Player;
 import com.group4.shared.Model.Results;
 import com.group4.shared.Model.User;
-import com.group4.tickettoride.ServerProxy.ServerProxy;
+import com.group4.tickettoride.Network.ServerProxy;
 
 import org.junit.After;
 import org.junit.Before;

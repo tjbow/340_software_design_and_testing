@@ -1,7 +1,7 @@
 package com.group4.tickettoride.NextLayerFacade;
 
 import com.group4.shared.Model.User;
-import com.group4.tickettoride.ServerProxy.ServerProxy;
+import com.group4.tickettoride.Network.ServerProxy;
 
 public class NextLayerFacade implements INextLayerFacade {
 

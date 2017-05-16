@@ -9,6 +9,7 @@ import com.group4.shared.Model.User;
 import com.group4.shared.Proxy.IClient;
 import com.group4.shared.Proxy.IComandExec;
 import com.group4.shared.Proxy.IServer;
+import com.group4.shared.command.Client.CGetGameListCommandData;
 import com.group4.shared.command.Client.CLoginCommandData;
 import com.group4.shared.command.Client.CRegisterCommandData;
 import com.group4.shared.command.ClientCommand;
@@ -51,19 +52,34 @@ public class ClientFacade implements IClient,IComandExec
         CommandList cmdList = results.getCommandList();
         for(Command cmd : cmdList.commandList)
         {
-            //TODO: processResults(): cast the cmd to the appropriate type and complete the following
-            switch (cmd.getType())
+            String type = cmd.getType();
+            switch (type)
             {
                 case "login":
                     //set the authToken
                     //set the user
+                    CLoginCommandData loginData = (CLoginCommandData) cmd;
+                    ClientModel.SINGLETON.setAuthToken(loginData.getAuthToken());
                     break;
                 case "register":
                     //set the authToken
                     //set the user
+                    CRegisterCommandData registerData = (CRegisterCommandData) cmd;
+                    ClientModel.SINGLETON.setAuthToken(registerData.getAuthToken());
                     break;
                 case "getgamelist":
                     // set the game list
+                    CGetGameListCommandData gameListData = (CGetGameListCommandData) cmd;
+                    ClientModel.SINGLETON.setGameList(gameListData.getGameList());
+                    break;
+                case "joingame":
+                    //TODO: @Tom or @Russ: Implement these
+                    //do stuff
+                    //
+                    break;
+                case "creategame":
+                    //do stuff
+                    //
                     break;
                 default:
                     //do stuff
