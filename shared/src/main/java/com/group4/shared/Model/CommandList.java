@@ -15,6 +15,14 @@ public class CommandList
 {
     public List<Command> commandList;
 
+    public List<Command> getCommandList() {
+        return commandList;
+    }
+
+    public void setCommandList(List<Command> commandList) {
+        this.commandList = commandList;
+    }
+
     public CommandList()
     {
         this.commandList = new ArrayList<>();
