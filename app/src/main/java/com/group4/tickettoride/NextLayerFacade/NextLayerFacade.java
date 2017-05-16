@@ -1,6 +1,5 @@
 package com.group4.tickettoride.NextLayerFacade;
 
-
 import com.group4.shared.Model.User;
 import com.group4.tickettoride.ServerProxy.ServerProxy;
 

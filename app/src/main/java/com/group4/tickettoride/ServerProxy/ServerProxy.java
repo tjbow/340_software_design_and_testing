@@ -1,6 +1,9 @@
 package com.group4.tickettoride.ServerProxy;
 
-import com.group4.shared.Model.Player;
+import android.os.AsyncTask;
+import android.os.Looper;
+import android.widget.Toast;
+
 import com.group4.shared.Model.Results;
 import com.group4.shared.Model.User;
 import com.group4.shared.Proxy.IServer;
@@ -8,7 +11,7 @@ import com.group4.shared.command.Server.CreateGameCommandData;
 import com.group4.shared.command.Server.JoinGameCommandData;
 import com.group4.shared.command.Server.LoginCommandData;
 import com.group4.shared.command.Server.RegisterCommandData;
-import com.group4.tickettoride.ClientModel.ClientModel;
+import com.group4.tickettoride.Login_Register.Login_RegisterActivity;
 import com.group4.tickettoride.Network.ClientCommunicator;
 
 /**
@@ -20,8 +23,8 @@ import com.group4.tickettoride.Network.ClientCommunicator;
  *
  */
 
-public class ServerProxy implements IServer {
-
+public class ServerProxy implements IServer
+{
     private ServerProxy(){}
 
     public static ServerProxy SINGLETON = new ServerProxy();
@@ -42,15 +45,9 @@ public class ServerProxy implements IServer {
         cmd.setType("login");
         cmd.setUser(user);
 
-        Results results = new ClientCommunicator().send("execcommand", cmd);
+        threadIt(cmd);
 
-        // if the result is a failure, return the result with the error
-        // message is returned back to the presenter. Else return null.
-        if(!results.isSuccess())
-        {
-            return results;
-        }
-        else return null;
+        return null;
     }
 
     /**
@@ -69,15 +66,9 @@ public class ServerProxy implements IServer {
         cmd.setType("register");
         cmd.setUser(user);
 
-        Results results = new ClientCommunicator().send("execcommand", cmd);
+        threadIt(cmd);
 
-        // if the result is a failure, return the result with the error
-        // message is returned back to the presenter. Else return null.
-        if(!results.isSuccess())
-        {
-            return results;
-        }
-        else return null;
+        return null;
     }
 
     /** Creates a new game on the server.
@@ -86,7 +77,6 @@ public class ServerProxy implements IServer {
      * @param numberOfPlayers The max number of players for the game
      * @return If success: returns null. If failure: returns result object with failure message
      *
-     * When calling this method, check if the result is null. If not null, display an error toast.
      *
      */
     @Override
@@ -97,13 +87,9 @@ public class ServerProxy implements IServer {
         cmd.setGameName(gameName);
         cmd.setNumberOfPlayers(numberOfPlayers);
 
-        Results results = new ClientCommunicator().send("execcommand", cmd);
+        threadIt(cmd);
 
-        if(!results.isSuccess())
-        {
-            return results;
-        }
-        else return null;
+        return null;
     }
 
     @Override
@@ -113,18 +99,45 @@ public class ServerProxy implements IServer {
         cmd.setType("joingame");
         cmd.setGameID(1);
 
-        Results results = new ClientCommunicator().send("execcommand", cmd);
+        threadIt(cmd);
 
-        if(!results.isSuccess())
-        {
-            return results;
-        }
-        else return null;
+        return null;
     }
 
     @Override
     public Results startGame(int gameId)
     {
         return null;
+    }
+
+    private void threadIt(Object o)
+    {
+        NetworkTask task = new NetworkTask();
+        task.execute(o);
+    }
+
+    public class NetworkTask extends AsyncTask<Object, Void, Void>
+    {
+        private Results mResults;
+
+        @Override
+        protected Void doInBackground(Object... objects)
+        {
+            for(Object o : objects)
+            {
+                mResults = new ClientCommunicator().send("execcommand", o);
+            }
+            if(!mResults.isSuccess())
+            {
+                //TODO: TYLER: Get this error toast working
+//                Login_RegisterActivity activity = new Login_RegisterActivity();
+//                activity.displayError(mResults.getErrorInfo());
+            }
+            else
+            {
+                //do nothing - ClientFacade is handling results
+            }
+            return null;
+        }
     }
 }
