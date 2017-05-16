@@ -59,6 +59,12 @@ public class Lobby_List_Adaptor extends RecyclerView.Adapter<Lobby_List_Adaptor.
         switch (color){
             case "red":
                 return Color.parseColor("#ff0000");
+            case "blue":
+                return Color.parseColor("#4b8bf2");
+            case "green":
+                return Color.parseColor("#29a815");
+            case "yellow":
+                return Color.parseColor("#fcf800");
             default:
                 return Color.parseColor("#000000");
         }
