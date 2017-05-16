@@ -43,14 +43,17 @@ public class GameListActivity extends AppCompatActivity implements IGameListActi
         createGameButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO @john: implement
                 //start create game dialog
-                FragmentManager fm = getSupportFragmentManager();
-                CreateGameFragment createGameDialog = new CreateGameFragment();
-                createGameDialog.show(fm, CREATE_GAME_DIALOG);
-
+                showDialog();
             }
         });
+    }
+
+    void showDialog()
+    {
+        FragmentManager manager = getSupportFragmentManager();
+        CreateGameFragment dialog = new CreateGameFragment();
+        dialog.show(manager, CREATE_GAME_DIALOG);
     }
 
 
