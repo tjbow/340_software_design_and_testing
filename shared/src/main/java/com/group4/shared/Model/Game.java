@@ -12,8 +12,9 @@ public class Game {
 
     private Map<String, Player> players;
     private int gameId;
-    private String gameName;
     private int playerCount;
+    private String gameName;
+    private String gameID;
 
     public Game(Map<String, Player> players, int gameId, String gameName, int playerCount) {
         this.players = players;
@@ -67,5 +68,13 @@ public class Game {
 
     public void setPlayerCount(int playerCount) {
         this.playerCount = playerCount;
+    }
+
+    public String getGameID() {
+        return gameID;
+    }
+
+    public void setGameID(String gameID) {
+        this.gameID = gameID;
     }
 }

@@ -1,3 +1,21 @@
 <resources>
     <string name="app_name">TicketToRide</string>
+
+    <string name="ticketToRide">Ticket To Ride</string>
+
+    <string name="username">Username:</string>
+    <string name="password">Password:</string>
+    <string name="login">Login</string>
+    <string name="register">Register</string>
+
+    <string name="create_game">Create Game</string>
+    <string name="cancel">Cancel</string>
+    <string name="gameList_explanation">Tap an existing game to join, or create a new game.</string>
+
+    <string name="empty_username_error">You must enter a username.</string>
+    <string name="empty_password_error">You must enter a password.</string>
+
+    <string name="enter_gameName_prompt">Enter a name for the game:</string>
+    <string name="select_playerCount_prompt">Select the desired number of players:</string>
+
 </resources>
