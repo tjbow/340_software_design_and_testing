@@ -56,21 +56,14 @@ public class ClientFacade implements IClient,IComandExec
             switch (type)
             {
                 case "login":
-                    //set the authToken
-                    //set the user
-                    CLoginCommandData loginData = (CLoginCommandData) cmd;
-                    ClientModel.SINGLETON.setAuthToken(loginData.getAuthToken());
+
                     break;
                 case "register":
-                    //set the authToken
-                    //set the user
-                    CRegisterCommandData registerData = (CRegisterCommandData) cmd;
-                    ClientModel.SINGLETON.setAuthToken(registerData.getAuthToken());
+                    ClientModel.SINGLETON.setAuthToken(results.getData());
                     break;
                 case "getgamelist":
                     // set the game list
-                    CGetGameListCommandData gameListData = (CGetGameListCommandData) cmd;
-                    ClientModel.SINGLETON.setGameList(gameListData.getGameList());
+
                     break;
                 case "joingame":
                     //TODO: @Tom or @Russ: Implement these
