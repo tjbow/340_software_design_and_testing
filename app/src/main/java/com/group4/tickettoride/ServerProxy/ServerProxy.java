@@ -1,8 +1,11 @@
 package com.group4.tickettoride.ServerProxy;
 
+import com.group4.shared.Model.Player;
 import com.group4.shared.Model.Results;
 import com.group4.shared.Model.User;
 import com.group4.shared.Proxy.IServer;
+import com.group4.shared.command.Server.CreateGameCommandData;
+import com.group4.shared.command.Server.JoinGameCommandData;
 import com.group4.shared.command.Server.LoginCommandData;
 import com.group4.shared.command.Server.RegisterCommandData;
 import com.group4.tickettoride.ClientModel.ClientModel;
@@ -27,7 +30,9 @@ public class ServerProxy implements IServer {
      * @pre The user must already be registered with the server
      *
      * @param user The user to be logged in
-     * @return If success: return null. If failure returns result object with failure message
+     * @return If success: returns null. If failure: returns result object with failure message
+     *
+     * When calling this method, check if the result is null. If not null, display an error toast.
      *
      */
     @Override
@@ -52,7 +57,9 @@ public class ServerProxy implements IServer {
      * @pre The username must not already be registered on the server
      *
      * @param user The user to be registered
-     * @return If success: return null. If failure returns result object with failure message
+     * @return If success: returns null. If failure: returns result object with failure message
+     *
+     * When calling this method, check if the result is null. If not null, display an error toast.
      *
      */
     @Override
@@ -73,16 +80,46 @@ public class ServerProxy implements IServer {
         else return null;
     }
 
+    /** Creates a new game on the server.
+     *
+     * @param gameName The name for the game
+     * @param numberOfPlayers The max number of players for the game
+     * @return If success: returns null. If failure: returns result object with failure message
+     *
+     * When calling this method, check if the result is null. If not null, display an error toast.
+     *
+     */
     @Override
-    public Results createGame()
+    public Results createGame(String gameName, int numberOfPlayers)
     {
-        return null;
+        CreateGameCommandData cmd = new CreateGameCommandData();
+        cmd.setType("creategame");
+        cmd.setGameName(gameName);
+        cmd.setNumberOfPlayers(numberOfPlayers);
+
+        Results results = new ClientCommunicator().send("execcommand", cmd);
+
+        if(!results.isSuccess())
+        {
+            return results;
+        }
+        else return null;
     }
 
     @Override
     public Results joinGame(int gameId)
     {
-        return null;
+        JoinGameCommandData cmd = new JoinGameCommandData();
+        cmd.setType("joingame");
+        cmd.setGameID(1);
+
+        Results results = new ClientCommunicator().send("execcommand", cmd);
+
+        if(!results.isSuccess())
+        {
+            return results;
+        }
+        else return null;
     }
 
     @Override

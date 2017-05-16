@@ -1,5 +1,6 @@
 package com.group4.shared.Model;
 
+import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
@@ -19,6 +20,13 @@ public class Game {
         this.gameId = gameId;
         this.gameName = gameName;
         this.playerCount = playerCount;
+    }
+
+    public Game(String gameName, int playerCount)
+    {
+        this.gameName = gameName;
+        this.playerCount = playerCount;
+        this.players = new HashMap<>();
     }
 
     public Map<String, Player> getPlayers() {

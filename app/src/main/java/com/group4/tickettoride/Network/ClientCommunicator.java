@@ -7,6 +7,7 @@ import com.google.gson.JsonIOException;
 import com.google.gson.JsonSyntaxException;
 import com.group4.shared.Model.Results;
 import com.group4.tickettoride.ClientModel.ClientFacade;
+import com.group4.tickettoride.ClientModel.ClientModel;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -32,7 +33,7 @@ public class ClientCommunicator
     private int responseCode;
     private static final String HTTP_POST = "POST";
     private static final String COMMAND_HANDLER_DESIGNATOR = "";
-    public static final String AUTHORIZATION_KEY = "authorization";
+    public static final String AUTHORIZATION_KEY = "Authorization";
 
     /** Sends an object to the server
      *
@@ -48,8 +49,9 @@ public class ClientCommunicator
         //TODO: make sure to replace the IP below with the IP where you are running the server
         URL_PREFIX = "http://" + "10.0.0.100" + ":" + "8080";
 
+
         HttpURLConnection connection =
-                openConnection("/" + urlPath, HTTP_POST, null, true);
+                openConnection("/" + urlPath, HTTP_POST, ClientModel.SINGLETON.getAuthToken(), true);
 
         sendToServer(connection, originalObject);
 

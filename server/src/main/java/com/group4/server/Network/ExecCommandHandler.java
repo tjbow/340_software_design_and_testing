@@ -6,6 +6,7 @@ import com.group4.server.Command.JoinGameCommand;
 import com.group4.server.Command.LoginCommand;
 import com.group4.server.Command.RegisterCommand;
 import com.group4.server.Command.StartGameCommand;
+import com.group4.server.ServerModel.ServerModel;
 import com.group4.shared.Model.Results;
 import com.group4.shared.command.Command;
 import com.group4.shared.command.IClientCommand;
@@ -36,16 +37,25 @@ public class ExecCommandHandler
                 results = registerCommand.execute();
                 break;
             case "creategame":
-                CreateGameCommand createGameCommand = new Gson().fromJson(requestBody, CreateGameCommand.class);
-                results = createGameCommand.execute();
+                //if (ServerModel.getInstance().getTempUser() != null)
+                {
+                    CreateGameCommand createGameCommand = new Gson().fromJson(requestBody, CreateGameCommand.class);
+                    results = createGameCommand.execute();
+                }
                 break;
             case "joingame":
-                JoinGameCommand joinGameCommand = new Gson().fromJson(requestBody, JoinGameCommand.class);
-                results = joinGameCommand.execute();
+                //if (ServerModel.getInstance().getTempUser() != null)
+                {
+                    JoinGameCommand joinGameCommand = new Gson().fromJson(requestBody, JoinGameCommand.class);
+                    results = joinGameCommand.execute();
+                }
                 break;
             case "startgame":
-                StartGameCommand startGameCommand = new Gson().fromJson(requestBody, StartGameCommand.class);
-                results = startGameCommand.execute();
+                //if (ServerModel.getInstance().getTempUser() != null)
+                {
+                    StartGameCommand startGameCommand = new Gson().fromJson(requestBody, StartGameCommand.class);
+                    results = startGameCommand.execute();
+                }
                 break;
             default:
                 results = new Results(false, null, "Command type not yet implemented. Ask Tyler to implement it.", null);

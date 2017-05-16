@@ -1,9 +1,12 @@
 package com.group4.tickettoride;
 
+import com.group4.shared.Model.Player;
 import com.group4.shared.Model.Results;
 import com.group4.shared.Model.User;
 import com.group4.tickettoride.ServerProxy.ServerProxy;
 
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 
 /**
@@ -12,6 +15,27 @@ import org.junit.Test;
 
 public class ServerProxyTest
 {
+    Results mResults;
+
+    @Before
+    public void setUp()
+    {
+        mResults = null;
+    }
+
+    @After
+    public void cleanUp()
+    {
+        if(mResults != null)
+        {
+            System.out.println("Error: " + mResults.getErrorInfo());
+        }
+        else
+        {
+            System.out.println("Success");
+        }
+    }
+
     @Test
     public void testRegister()
     {
@@ -19,17 +43,7 @@ public class ServerProxyTest
         User user = new User("tyler", "pwd");
 
         //call register on the ServerProxy
-        Results results = ServerProxy.SINGLETON.register(user);
-
-        //if the results are not null than there is an error
-        if(results != null)
-        {
-            System.out.println("Error: " + results.getErrorInfo());
-        }
-        else
-        {
-            System.out.println("Success");
-        }
+        mResults = ServerProxy.SINGLETON.register(user);
     }
 
     @Test
@@ -39,17 +53,25 @@ public class ServerProxyTest
         User user = new User("tyler", "pwd");
 
         //call login on the ServerProxy
-        Results results = ServerProxy.SINGLETON.login(user);
+        mResults = ServerProxy.SINGLETON.login(user);
+    }
 
-        //if the results are not null than there is an error
-        if(results != null)
-        {
-            System.out.println("Error: " + results.getErrorInfo());
-        }
-        else
-        {
-            System.out.println("Success");
-        }
+    @Test
+    public void testCreateGame()
+    {
+        String gameName = "TestGame";
+        int numberOfPlayers = 4;
 
+        mResults = ServerProxy.SINGLETON.createGame(gameName, numberOfPlayers);
+    }
+
+    @Test
+    public void testJoinGame()
+    {
+        int gameId = 1;
+        User user = new User("tyler", "pwd");
+        Player player = new Player(user);
+
+        mResults = ServerProxy.SINGLETON.joinGame(gameId);
     }
 }

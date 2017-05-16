@@ -15,7 +15,7 @@ public class ClientModel extends Observable {
     private User user;
     private GameList gameList;
     // Todo: int commandIDIndex, last command run
-    // Todo RUSSELL: authToken
+    private String authToken;
 
     public static ClientModel SINGLETON = new ClientModel();
 
@@ -41,6 +41,16 @@ public class ClientModel extends Observable {
     public void setGameList(GameList gameList) {
         this.gameList = gameList;
         notifyObservers(gameList);
+    }
+
+    public String getAuthToken()
+    {
+        return authToken;
+    }
+
+    public void setAuthToken(String authToken)
+    {
+        this.authToken = authToken;
     }
 
     @Override

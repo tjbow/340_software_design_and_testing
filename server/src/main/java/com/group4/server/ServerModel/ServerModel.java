@@ -22,8 +22,9 @@ public class ServerModel
 {
     private List<User> users;
     private GameList gameList;
-    private Map<User, String> userAuthTokens; //TODO: Tom: is this how it was done in 240? //This will work for storage in memory, but we'll want a DB later on
+    private Map<String, User> userAuthTokens; //TODO: Tom: is this how it was done in 240? //This will work for storage in memory, but we'll want a DB later on
     private CommandList commandList; // holds all commands executed on the server to this point
+    private User tempUser;
 
     private static ServerModel serverModel = new ServerModel();
 
@@ -31,6 +32,7 @@ public class ServerModel
     {
         users = new ArrayList<>();
         userAuthTokens = new HashMap<>();
+        gameList = new GameList(new ArrayList<>());
     }
 
     /**
@@ -60,30 +62,35 @@ public class ServerModel
         //return users.contains(user);
     }
 
-    /**
-     *  Takes an user and authToken and returns true if a corresponding user and auth token are found
-     *  found in the User authTokens group
-     * @param authToken
-     * @return
+    /** Takes an authToken and finds which user it belongs to, then returns that user
+     *
+     * @param authToken The authToken supplied to the server
+     * @return the User to which the authToken is related, or null if no valid authToken
      */
-    public boolean validateUser(User user, String authToken)
+    public User validateUser(String authToken)
     {
-        if(doesUserExist(user))
+        boolean tokenExists = userAuthTokens.containsKey(authToken);
+        if(tokenExists)
         {
-            String trueAuthToken = userAuthTokens.get(user);
-            if(trueAuthToken.compareTo(authToken) == 0) // authTokens match
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return userAuthTokens.get(authToken);
         }
-        else // user does not exist
-        {
-            return false;
-        }
+        else return null;
+//        if(doesUserExist(user))
+//        {
+//            String trueAuthToken = userAuthTokens.get(user);
+//            if(trueAuthToken.compareTo(authToken) == 0) // authTokens match
+//            {
+//                return true;
+//            }
+//            else
+//            {
+//                return false;
+//            }
+//        }
+//        else // user does not exist
+//        {
+//            return false;
+//        }
     }
 
     /**
@@ -114,7 +121,7 @@ public class ServerModel
             return null;
         }
         String authToken = generateToken();
-        userAuthTokens.put(user, authToken);
+        userAuthTokens.put(authToken, user);
         return authToken;
     }
 
@@ -136,6 +143,8 @@ public class ServerModel
      */
     public void addGame(Game game)
     {
+        int gameId = gameList.getGameList().size() + 1;
+        game.setGameId(gameId);
         gameList.getGameList().add(game);
     }
 
@@ -162,5 +171,20 @@ public class ServerModel
             returnList.commandList = commandList.commandList.subList(commandID + 1, commandList.commandList.size());
         }
         return returnList;
+    }
+
+    public User getTempUser()
+    {
+        return tempUser;
+    }
+
+    public void setTempUser(User tempUser)
+    {
+        this.tempUser = tempUser;
+    }
+
+    public void deleteTempUser()
+    {
+        this.tempUser = null;
     }
 }

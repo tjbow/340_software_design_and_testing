@@ -1,5 +1,6 @@
 package com.group4.tickettoride.ClientModel;
 
+import com.google.gson.Gson;
 import com.group4.shared.Model.CommandList;
 import com.group4.shared.Model.Game;
 import com.group4.shared.Model.GameList;
@@ -8,7 +9,11 @@ import com.group4.shared.Model.User;
 import com.group4.shared.Proxy.IClient;
 import com.group4.shared.Proxy.IComandExec;
 import com.group4.shared.Proxy.IServer;
+import com.group4.shared.command.Client.CLoginCommandData;
+import com.group4.shared.command.Client.CRegisterCommandData;
+import com.group4.shared.command.ClientCommand;
 import com.group4.shared.command.Command;
+import com.group4.tickettoride.Command.CRegisterCommand;
 
 /**
  * Created by Tom on 5/15/2017.
@@ -16,7 +21,6 @@ import com.group4.shared.command.Command;
 
 public class ClientFacade implements IClient,IComandExec
 {
-    ClientModel clientModel; //TODO: Tom: ClientModel needs to be a singleton?
     Poller poller;
 
     public static ClientFacade SINGLETON = new ClientFacade();
@@ -47,17 +51,18 @@ public class ClientFacade implements IClient,IComandExec
         CommandList cmdList = results.getCommandList();
         for(Command cmd : cmdList.commandList)
         {
+            //TODO: processResults(): cast the cmd to the appropriate type and complete the following
             switch (cmd.getType())
             {
                 case "login":
-                    //call setUser()
                     //set the authToken
+                    //set the user
                     break;
                 case "register":
-                    //call setUser()
                     //set the authToken
+                    //set the user
                     break;
-                case "setgamelist":
+                case "getgamelist":
                     // set the game list
                     break;
                 default:

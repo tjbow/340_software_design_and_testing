@@ -4,10 +4,14 @@ import com.group4.server.Command.LoginCommand;
 import com.group4.shared.Model.CommandList;
 import com.group4.shared.Model.Game;
 import com.group4.shared.Model.GameList;
+import com.group4.shared.Model.Player;
 import com.group4.shared.Proxy.IClient;
 import com.group4.shared.Proxy.IServer;
 import com.group4.shared.Model.Results;
 import com.group4.shared.Model.User;
+import com.group4.shared.command.Client.CCreateGameCommandData;
+import com.group4.shared.command.Client.CGetGameListCommandData;
+import com.group4.shared.command.Client.CJoinGameCommandData;
 import com.group4.shared.command.Client.CLoginCommandData;
 import com.group4.shared.command.Client.CRegisterCommandData;
 import com.group4.shared.command.Server.LoginCommandData;
@@ -74,22 +78,51 @@ public class ServerFacade implements IServer, IClient
     }
 
     @Override
-    public Results createGame()
+    public Results createGame(String gameName, int numberOfPlayers)
     {
-        //TODO: Tom: we need a parameter of number of players to create a game
-        // does the player who starts the game automatically join it?
-        // if so we need the user/player object to put them in the map
-        // if not we need to get rid of the players map in the constructor for game
-        // because it will always be empty to start
-        // will we ever need to create a game with a map, or just a single player at most?
-        return null;
+        Game game = new Game(gameName, numberOfPlayers);
+        serverModel.addGame(game);
+
+        System.out.println("Game \"" + game.getGameName() + "\" created with " + game.getPlayerCount() + " players.");
+
+        CGetGameListCommandData gameListCommandData = new CGetGameListCommandData();
+        gameListCommandData.setType("getgamelist");
+        gameListCommandData.setGameList(serverModel.getGameList());
+
+        CommandList cmdList = new CommandList();
+        cmdList.commandList.add(gameListCommandData);
+
+        return new Results(true, null, null, cmdList);
     }
 
     @Override
     public Results joinGame(int gameId)
     {
-        // need the player/user object to join them to a game
-        return null;
+        //TODO: TYLER: fix the joinGame functionality in ServerFacade
+        // fix for race conditions and for when the game is already full
+        // fix the use of an authToken to determine which player is attempting to join
+        if(true)
+        {
+            return new Results(false, null, "joinGame not yet functional", null);
+        }
+        Player player = new Player(ServerModel.getInstance().getTempUser());
+        serverModel.getGameList().getGameList().get(gameId).addPlayer(player.getUserName(), player);
+
+        System.out.println("Player " + player.getUserName() + " added to game \""
+                + serverModel.getGameList().getGameList().get(gameId).getGameName());
+
+//        CJoinGameCommandData joinGameCommandData = new CJoinGameCommandData();
+//        joinGameCommandData.setType("joingame");
+//        joinGameCommandData.
+
+        CGetGameListCommandData gameListCommandData = new CGetGameListCommandData();
+        gameListCommandData.setType("getgamelist");
+        gameListCommandData.setGameList(serverModel.getGameList());
+
+        CommandList cmdList = new CommandList();
+        cmdList.commandList.add(gameListCommandData);
+
+        return new Results(true, null, null, cmdList);
     }
 
     @Override

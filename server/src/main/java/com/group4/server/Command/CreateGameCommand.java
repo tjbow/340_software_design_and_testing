@@ -14,7 +14,7 @@ import com.group4.shared.command.Server.CreateGameCommandData;
 public class CreateGameCommand  extends CreateGameCommandData implements IServerCommand{
     public Results createGame(){
         IServer serverFacade = new ServerFacade();
-        return serverFacade.createGame();
+        return serverFacade.createGame(super.getGameName(), super.getNumberOfPlayers());
     }
 
     @Override

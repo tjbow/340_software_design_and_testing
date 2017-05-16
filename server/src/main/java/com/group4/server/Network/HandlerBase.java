@@ -1,6 +1,9 @@
 package com.group4.server.Network;
 
+import com.group4.server.ServerModel.ServerModel;
 import com.group4.shared.Model.Results;
+import com.group4.shared.Model.User;
+import com.sun.net.httpserver.Headers;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 
@@ -34,6 +37,17 @@ public class HandlerBase implements HttpHandler
             //get the request body
             String request = readString(httpExchange.getRequestBody());
 
+            //get the authToken
+            Headers reqHeaders = httpExchange.getRequestHeaders();
+            if (reqHeaders.containsKey("Authorization"))
+            {
+                //TODO: TYLER: Invent a better solution for authToken use
+                //get the authToken
+                String authToken = reqHeaders.getFirst("Authorization");
+                User user = ServerModel.getInstance().validateUser(authToken);
+                if(user != null) ServerModel.getInstance().setTempUser(user);
+            }
+
             //handle the command
             ExecCommandHandler cmdHandler = new ExecCommandHandler();
             Results results = cmdHandler.handleCommand(request);
@@ -45,6 +59,8 @@ public class HandlerBase implements HttpHandler
             httpExchange.sendResponseHeaders(HttpURLConnection.HTTP_OK, response.length());
 
             writeString(httpExchange, response);
+
+            ServerModel.getInstance().deleteTempUser();
         }
     }
 
