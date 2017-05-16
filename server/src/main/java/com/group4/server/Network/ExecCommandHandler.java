@@ -37,30 +37,38 @@ public class ExecCommandHandler
                 results = registerCommand.execute();
                 break;
             case "creategame":
-                //if (ServerModel.getInstance().getTempUser() != null)
+                if (ServerModel.getInstance().getTempUser() != null)
                 {
                     CreateGameCommand createGameCommand = new Gson().fromJson(requestBody, CreateGameCommand.class);
                     results = createGameCommand.execute();
                 }
+                else results = noAuthToken();
                 break;
             case "joingame":
-                //if (ServerModel.getInstance().getTempUser() != null)
+                if (ServerModel.getInstance().getTempUser() != null)
                 {
                     JoinGameCommand joinGameCommand = new Gson().fromJson(requestBody, JoinGameCommand.class);
                     results = joinGameCommand.execute();
                 }
+                else results = noAuthToken();
                 break;
             case "startgame":
-                //if (ServerModel.getInstance().getTempUser() != null)
+                if (ServerModel.getInstance().getTempUser() != null)
                 {
                     StartGameCommand startGameCommand = new Gson().fromJson(requestBody, StartGameCommand.class);
                     results = startGameCommand.execute();
                 }
+                else results = noAuthToken();
                 break;
             default:
                 results = new Results(false, null, "Command type not yet implemented. Ask Tyler to implement it.", null);
                 break;
         }
         return results;
+    }
+
+    private Results noAuthToken()
+    {
+        return new Results(false, null, "User not logged in", null);
     }
 }

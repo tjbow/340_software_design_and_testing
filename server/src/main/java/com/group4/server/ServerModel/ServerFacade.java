@@ -98,18 +98,26 @@ public class ServerFacade implements IServer, IClient
     @Override
     public Results joinGame(int gameId)
     {
-        //TODO: TYLER: fix the joinGame functionality in ServerFacade
-        // fix for race conditions and for when the game is already full
-        // fix the use of an authToken to determine which player is attempting to join
-        if(true)
+//        if(true)
+//        {
+//            return new Results(false, null, "joinGame not yet functional", null);
+//        }
+
+        GameList gameList = serverModel.getGameList();
+        Game game = gameList.getGameList().get(gameId);
+
+        if(game.getCurrentPlayerSize() > game.getPlayerCount())
         {
-            return new Results(false, null, "joinGame not yet functional", null);
+            //don't join
+            return new Results(false, null, "Sorry, this game is full", null);
         }
+
         Player player = new Player(ServerModel.getInstance().getTempUser());
-        serverModel.getGameList().getGameList().get(gameId).addPlayer(player.getUserName(), player);
+
+        game.addPlayer(player.getUserName(), player);
 
         System.out.println("Player " + player.getUserName() + " added to game \""
-                + serverModel.getGameList().getGameList().get(gameId).getGameName());
+                + game.getGameName());
 
 //        CJoinGameCommandData joinGameCommandData = new CJoinGameCommandData();
 //        joinGameCommandData.setType("joingame");
