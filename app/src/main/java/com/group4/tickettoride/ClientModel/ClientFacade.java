@@ -14,6 +14,8 @@ import com.group4.shared.command.Client.CLoginCommandData;
 import com.group4.shared.command.Client.CRegisterCommandData;
 import com.group4.shared.command.ClientCommand;
 import com.group4.shared.command.Command;
+import com.group4.shared.command.IClientCommand;
+import com.group4.tickettoride.Command.CLoginCommand;
 import com.group4.tickettoride.Command.CRegisterCommand;
 
 /**
@@ -49,30 +51,32 @@ public class ClientFacade implements IClient,IComandExec
 
     public void processResults(Results results)
     {
+        if(!results.isSuccess())
+        {
+            String errorMessage = results.getErrorInfo();
+
+            // send errorMessage to the UI from here
+
+            return;
+        }
+        //else:
+
         CommandList cmdList = results.getCommandList();
         for(Command cmd : cmdList.commandList)
         {
             String type = cmd.getType();
+
+            String json = new Gson().toJson(cmd);
+
             switch (type)
             {
                 case "login":
-
+                    CLoginCommand loginCmd = new Gson().fromJson(json, CLoginCommand.class);
+                    loginCmd.execute();
                     break;
                 case "register":
-                    ClientModel.SINGLETON.setAuthToken(results.getData());
-                    break;
-                case "getgamelist":
-                    // set the game list
-
-                    break;
-                case "joingame":
-                    //TODO: @Tom or @Russ: Implement these
-                    //do stuff
-                    //
-                    break;
-                case "creategame":
-                    //do stuff
-                    //
+                    CRegisterCommand registerCommand = new Gson().fromJson(json, CRegisterCommand.class);
+                    registerCommand.execute();
                     break;
                 default:
                     //do stuff

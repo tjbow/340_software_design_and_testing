@@ -35,14 +35,14 @@ public class ServerFacade implements IServer, IClient
         String authToken = serverModel.loginUser(user);
         if(authToken != null)
         {
-            System.out.println("User " + user.getUsername() + " logged in");
-
             CLoginCommandData loginData = new CLoginCommandData();
             loginData.setAuthToken(authToken);
             loginData.setType("login");
 
             CommandList cmdList = new CommandList();
             cmdList.commandList.add(loginData);
+
+            System.out.println("User " + user.getUsername() + " logged in");
 
             return new Results(true, authToken, null, cmdList);
         }
@@ -81,7 +81,7 @@ public class ServerFacade implements IServer, IClient
     public Results createGame(String gameName, int numberOfPlayers)
     {
         Game game = new Game(gameName, numberOfPlayers);
-        serverModel.addGame(game);
+        int gameId = serverModel.addGame(game);
 
         System.out.println("Game \"" + game.getGameName() + "\" created with " + game.getPlayerCount() + " players.");
 
@@ -89,8 +89,14 @@ public class ServerFacade implements IServer, IClient
         gameListCommandData.setType("getgamelist");
         gameListCommandData.setGameList(serverModel.getGameList());
 
+        CJoinGameCommandData joinGameCommandData = new CJoinGameCommandData();
+        joinGameCommandData.setType("joingame");
+        joinGameCommandData.setGameID(gameId);
+
         CommandList cmdList = new CommandList();
+
         cmdList.commandList.add(gameListCommandData);
+        cmdList.commandList.add(joinGameCommandData);
 
         return new Results(true, null, null, cmdList);
     }
@@ -103,32 +109,29 @@ public class ServerFacade implements IServer, IClient
 //            return new Results(false, null, "joinGame not yet functional", null);
 //        }
 
-        GameList gameList = serverModel.getGameList();
-        Game game = gameList.getGameList().get(gameId);
+        Player player = new Player(ServerModel.getInstance().getTempUser());
 
-        if(game.getCurrentPlayerSize() > game.getPlayerCount())
+        boolean success = serverModel.joinGame(gameId, player);
+        if(!success)
         {
-            //don't join
             return new Results(false, null, "Sorry, this game is full", null);
         }
 
-        Player player = new Player(ServerModel.getInstance().getTempUser());
-
-        game.addPlayer(player.getUserName(), player);
-
         System.out.println("Player " + player.getUserName() + " added to game \""
-                + game.getGameName());
-
-//        CJoinGameCommandData joinGameCommandData = new CJoinGameCommandData();
-//        joinGameCommandData.setType("joingame");
-//        joinGameCommandData.
+                + serverModel.getGameList().getGameList().get(gameId).getGameName());
 
         CGetGameListCommandData gameListCommandData = new CGetGameListCommandData();
         gameListCommandData.setType("getgamelist");
         gameListCommandData.setGameList(serverModel.getGameList());
 
+        CJoinGameCommandData joinGameCommandData = new CJoinGameCommandData();
+        joinGameCommandData.setType("joingame");
+        joinGameCommandData.setGameID(gameId);
+
         CommandList cmdList = new CommandList();
+
         cmdList.commandList.add(gameListCommandData);
+        cmdList.commandList.add(joinGameCommandData);
 
         return new Results(true, null, null, cmdList);
     }

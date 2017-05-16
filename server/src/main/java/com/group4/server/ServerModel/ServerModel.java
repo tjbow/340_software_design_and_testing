@@ -7,6 +7,8 @@ package com.group4.server.ServerModel;
 import com.group4.shared.Model.CommandList;
 import com.group4.shared.Model.Game;
 import com.group4.shared.Model.GameList;
+import com.group4.shared.Model.Player;
+import com.group4.shared.Model.Results;
 import com.group4.shared.Model.User;
 
 import java.security.SecureRandom;
@@ -22,7 +24,7 @@ public class ServerModel
 {
     private List<User> users;
     private GameList gameList;
-    private Map<String, User> userAuthTokens; //TODO: Tom: is this how it was done in 240? //This will work for storage in memory, but we'll want a DB later on
+    private Map<String, User> userAuthTokens;
     private CommandList commandList; // holds all commands executed on the server to this point
     private User tempUser;
 
@@ -33,6 +35,7 @@ public class ServerModel
         users = new ArrayList<>();
         userAuthTokens = new HashMap<>();
         gameList = new GameList(new ArrayList<>());
+        commandList = new CommandList();
     }
 
     /**
@@ -47,7 +50,7 @@ public class ServerModel
     /**
      * Checks to see if a user is already registered
      * @param user
-     * @return
+     * @return A boolean indicating if the user is registered
      */
     private boolean doesUserExist(User user)
     {
@@ -59,7 +62,6 @@ public class ServerModel
             }
         }
         return false;
-        //return users.contains(user);
     }
 
     /** Takes an authToken and finds which user it belongs to, then returns that user
@@ -75,22 +77,6 @@ public class ServerModel
             return userAuthTokens.get(authToken);
         }
         else return null;
-//        if(doesUserExist(user))
-//        {
-//            String trueAuthToken = userAuthTokens.get(user);
-//            if(trueAuthToken.compareTo(authToken) == 0) // authTokens match
-//            {
-//                return true;
-//            }
-//            else
-//            {
-//                return false;
-//            }
-//        }
-//        else // user does not exist
-//        {
-//            return false;
-//        }
     }
 
     /**
@@ -129,7 +115,7 @@ public class ServerModel
      * Generates an authorization token
      * @return
      */
-    public String generateToken()
+    private String generateToken()
     {
         SecureRandom random = new SecureRandom();
         byte bytes[] = new byte[20];
@@ -141,11 +127,30 @@ public class ServerModel
      * Adds a game to the game list on the server
      * @param game
      */
-    public void addGame(Game game)
+    protected int addGame(Game game)
     {
         int gameId = gameList.getGameList().size() + 1;
         game.setGameId(gameId);
         gameList.getGameList().add(game);
+
+        Player player = new Player(getTempUser());
+
+        joinGame(gameId, player);
+
+        return gameId;
+    }
+
+    protected boolean joinGame(int gameId, Player player)
+    {
+        Game game = gameList.getGameList().get(gameId);
+
+        if(game.getCurrentPlayerSize() > game.getPlayerCount())
+        {
+            //don't join
+            return false;
+        }
+        game.addPlayer(player.getUserName(), player);
+        return true;
     }
 
     /**

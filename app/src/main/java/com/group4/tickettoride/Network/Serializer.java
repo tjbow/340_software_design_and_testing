@@ -35,9 +35,12 @@ public class Serializer
 
     protected static Results deserializeResults(String response)
     {
-        Gson gson = new Gson();
+//        Gson gson = new Gson();
+//
+//        return gson.fromJson(response, Results.class);
 
-        return gson.fromJson(response, Results.class);
+        treeParse(response);
+        return null;
     }
 
     protected static List<IClientCommand> treeParse(String response){
