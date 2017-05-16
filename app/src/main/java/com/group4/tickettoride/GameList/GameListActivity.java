@@ -128,6 +128,7 @@ public class GameListActivity extends AppCompatActivity implements IGameListActi
     public void setGameList(GameList gameListObj) {
 
         List<Game> games = gameListObj.getGameList();
+
         if (adapter == null)
         {
             adapter = new GameAdapter(games);
@@ -143,5 +144,9 @@ public class GameListActivity extends AppCompatActivity implements IGameListActi
     @Override
     public void getSelectedGame() {
         //TODO @john: implement
+    }
+
+    public IGameListPresenter getPresenter() {
+        return presenter;
     }
 }
