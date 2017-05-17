@@ -14,6 +14,7 @@ public interface IServer {
     public Results createGame(String gameName, int numberOfPlayers);
     public Results joinGame(String gameName);
     public Results startGame(int gameId);
+    public Results getGameList();
     //Todo: public CommandList getCommandsSinceIndex(int commandID);
 
 }

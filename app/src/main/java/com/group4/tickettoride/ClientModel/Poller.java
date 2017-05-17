@@ -27,6 +27,7 @@ public class Poller implements Runnable
      */
     CommandList getNewCommands(int commandID)
     {
+        System.out.println("run once");
         return null;
     }
 
