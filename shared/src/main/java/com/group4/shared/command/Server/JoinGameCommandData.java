@@ -7,13 +7,15 @@ import com.group4.shared.command.Command;
  */
 
 public class JoinGameCommandData extends Command {
-    int gameID;
+    String gameName;
 
-    public int getGameID() {
-        return gameID;
+    public String getGameName()
+    {
+        return gameName;
     }
 
-    public void setGameID(int gameID) {
-        this.gameID = gameID;
+    public void setGameName(String gameName)
+    {
+        this.gameName = gameName;
     }
 }

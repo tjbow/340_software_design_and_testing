@@ -127,29 +127,31 @@ public class ServerModel
      * Adds a game to the game list on the server
      * @param game
      */
-    protected int addGame(Game game)
+    protected void addGame(Game game)
     {
-        int gameId = gameList.getGameList().size() + 1;
-        game.setGameId(gameId);
         gameList.getGameList().add(game);
+
+        System.out.println("Game \"" + game.getGameName() + "\" created by " + getTempUser().getUsername() + " with " + game.getPlayerCount() + " players.");
 
         Player player = new Player(getTempUser());
 
-        joinGame(gameId, player);
-
-        return gameId;
+        joinGame(game.getGameName(), player);
     }
 
-    protected boolean joinGame(int gameId, Player player)
+    protected boolean joinGame(String gameName, Player player)
     {
-        Game game = gameList.getGameList().get(gameId);
+        Game game = gameList.getGameByName(gameName);
 
-        if(game.getCurrentPlayerSize() > game.getPlayerCount())
+        if(game.getCurrentPlayerSize() >= game.getPlayerCount())
         {
             //don't join
+            System.out.println("Player " + player.getUserName() + " attempted to join the game \"" + game.getGameName()
+                    + ",\" but it was full.");
             return false;
         }
         game.addPlayer(player.getUserName(), player);
+        System.out.println("Player \"" + player.getUserName() + "\" joined the game " + game.getGameName()
+                + " (" + game.getCurrentPlayerSize() + "/" + game.getPlayerCount() + " players).");
         return true;
     }
 

@@ -79,11 +79,11 @@ public class ServerProxyNoAsync implements IServer
     }
 
     @Override
-    public Results joinGame(int gameId)
+    public Results joinGame(String gameName)
     {
         JoinGameCommandData cmd = new JoinGameCommandData();
         cmd.setType("joingame");
-        cmd.setGameID(1);
+        cmd.setGameName(gameName);
 
         threadIt(cmd);
 

@@ -12,7 +12,7 @@ public interface IServer {
     public Results login(User user);
     public Results register(User user);
     public Results createGame(String gameName, int numberOfPlayers);
-    public Results joinGame(int gameId);
+    public Results joinGame(String gameName);
     public Results startGame(int gameId);
     //Todo: public CommandList getCommandsSinceIndex(int commandID);
 

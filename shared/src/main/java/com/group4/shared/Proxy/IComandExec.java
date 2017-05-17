@@ -10,7 +10,7 @@ import com.group4.shared.Model.Results;
  */
 
 public interface IComandExec {
-    Results onJoinGame(int gameID);
+    Results onJoinGame(String gameName);
     Results onCreateGame();
     Results onLogin(String authToken);
     Results onRegister(String authToken);

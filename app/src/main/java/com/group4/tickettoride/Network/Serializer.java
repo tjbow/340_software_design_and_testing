@@ -75,7 +75,8 @@ public class Serializer
                         iCommands.add(mapper.treeToValue(next,CJoinGameCommand.class));
                         break;
                     case "getgamelist":
-                        iCommands.add(mapper.treeToValue(next,CGetGameListCommand.class));
+                        ClientCommand clientCommand = new Gson().fromJson(next.toString(), CGetGameListCommand.class);
+                        iCommands.add(clientCommand);
                         break;
                     default:
                         System.out.println("no command");

@@ -81,9 +81,7 @@ public class ServerFacade implements IServer, IClient
     public Results createGame(String gameName, int numberOfPlayers)
     {
         Game game = new Game(gameName, numberOfPlayers);
-        int gameId = serverModel.addGame(game);
-
-        System.out.println("Game \"" + game.getGameName() + "\" created with " + game.getPlayerCount() + " players.");
+        serverModel.addGame(game);
 
         CGetGameListCommandData gameListCommandData = new CGetGameListCommandData();
         gameListCommandData.setType("getgamelist");
@@ -91,7 +89,7 @@ public class ServerFacade implements IServer, IClient
 
         CJoinGameCommandData joinGameCommandData = new CJoinGameCommandData();
         joinGameCommandData.setType("joingame");
-        joinGameCommandData.setGameID(gameId);
+        joinGameCommandData.setGameName(game.getGameName());
 
         CommandList cmdList = new CommandList();
 
@@ -102,18 +100,15 @@ public class ServerFacade implements IServer, IClient
     }
 
     @Override
-    public Results joinGame(int gameId)
+    public Results joinGame(String gameName)
     {
         Player player = new Player(ServerModel.getInstance().getTempUser());
 
-        boolean success = serverModel.joinGame(gameId, player);
+        boolean success = serverModel.joinGame(gameName, player);
         if(!success)
         {
             return new Results(false, null, "Sorry, this game is full", null);
         }
-
-        System.out.println("Player " + player.getUserName() + " added to game \""
-                + serverModel.getGameList().getGameList().get(gameId).getGameName());
 
         CGetGameListCommandData gameListCommandData = new CGetGameListCommandData();
         gameListCommandData.setType("getgamelist");
@@ -121,7 +116,7 @@ public class ServerFacade implements IServer, IClient
 
         CJoinGameCommandData joinGameCommandData = new CJoinGameCommandData();
         joinGameCommandData.setType("joingame");
-        joinGameCommandData.setGameID(gameId);
+        joinGameCommandData.setGameName(gameName);
 
         CommandList cmdList = new CommandList();
 

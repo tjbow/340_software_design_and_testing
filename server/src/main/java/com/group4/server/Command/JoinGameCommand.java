@@ -12,6 +12,6 @@ import com.group4.shared.command.IServerCommand;
 public class JoinGameCommand extends JoinGameCommandData implements IServerCommand {
     @Override
     public Results execute() {
-        return new ServerFacade().joinGame(super.getGameID());
+        return new ServerFacade().joinGame(super.getGameName());
     }
 }

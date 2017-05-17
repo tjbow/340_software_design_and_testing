@@ -75,10 +75,10 @@ public class ServerProxyTest
     @Test
     public void testJoinGame()
     {
-        int gameId = 1;
+        String gameName = "testgame123";
         User user = new User("tyler", "pwd");
         Player player = new Player(user);
 
-        ServerProxyNoAsync.SINGLETON.joinGame(gameId);
+        ServerProxyNoAsync.SINGLETON.joinGame(gameName);
     }
 }
