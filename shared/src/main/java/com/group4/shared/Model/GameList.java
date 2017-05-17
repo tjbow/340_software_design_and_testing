@@ -27,7 +27,7 @@ public class GameList {
         return gameList.get(position);
     }
 
-    // Finds and overrides the game based on the id of the Game given
+    // Overrides the game based on the position of the Game given
     public void setGame(Game game, int position){
         gameList.set(position, game);
     }
@@ -54,7 +54,9 @@ public class GameList {
         return null;
     }
 
-    public void addPlayer(int gameId, int position){
-
+    public void addPlayer(String username, Player player, int position){
+        Game game = gameList.get(position);
+        game.addPlayer(username, player);
+        setGame(game, position);
     }
 }
