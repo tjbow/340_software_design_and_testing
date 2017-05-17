@@ -47,13 +47,6 @@ public class Poller implements Runnable
     private void importGameList()
     {
         Results results = ServerProxy.SINGLETON.getGameList();
-        if(results.isSuccess())
-        {
-            //TODO: Tom: Develop a way of getting the game list out of results
-            // for now use a blank game list
-            GameList gameList = new GameList(new ArrayList<Game>() );
-            ClientFacade.SINGLETON.onGetGameList(gameList);
-        }
     }
 
     @Override
