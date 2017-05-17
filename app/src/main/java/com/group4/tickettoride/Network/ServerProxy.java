@@ -11,6 +11,7 @@ import com.group4.shared.command.Server.GetGameListCommandData;
 import com.group4.shared.command.Server.JoinGameCommandData;
 import com.group4.shared.command.Server.LoginCommandData;
 import com.group4.shared.command.Server.RegisterCommandData;
+import com.group4.tickettoride.ClientModel.ClientFacade;
 import com.group4.tickettoride.ClientModel.ClientModel;
 
 /**
@@ -154,6 +155,12 @@ public class ServerProxy implements IServer
                 //do nothing - ClientFacade is handling results
             }
             return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid)
+        {
+            ClientFacade.SINGLETON.processResults(mResults);
         }
     }
 }

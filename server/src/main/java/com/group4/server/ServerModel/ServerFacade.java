@@ -154,7 +154,7 @@ public class ServerFacade implements IServer, IClient
         cmdList.commandList.add(gameListCommandData);
 
         Results results = new Results(true, null, null, cmdList);
-
+        System.out.println("getGameList() was called.");
         return results;
     }
 

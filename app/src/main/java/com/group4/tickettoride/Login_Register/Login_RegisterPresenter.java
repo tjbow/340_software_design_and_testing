@@ -49,7 +49,7 @@ class Login_RegisterPresenter implements ILogin_RegisterPresenter, Observer {
 
     @Override
     public void update(Observable o, final Object arg) {
-        if (arg.getClass() == boolean.class)
+        if (arg.getClass() == Boolean.class)
         {
             //things worked properly, move on to gameList
             o.deleteObserver(this);
