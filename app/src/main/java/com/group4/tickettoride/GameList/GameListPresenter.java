@@ -27,8 +27,6 @@ public class GameListPresenter implements IGameListPresenter, Observer {
         this.activity = activity;
         ClientModel.SINGLETON.addObserver(this);
 
-
-
     }
 
     //TODO @john: this seems a bit hackish
@@ -55,19 +53,35 @@ public class GameListPresenter implements IGameListPresenter, Observer {
     }
 
     @Override
-    public void update(Observable o, Object arg) {
+    public void update(Observable o, final Object arg) {
         //TODO @john: is this how we want it?
         if (arg.getClass() == GameList.class)
         {
             activity.setGameList( (GameList) arg );
         }
-        else if (arg.getClass() == String.class)
+        else if (arg.getClass() == Boolean.class)
         {
             //start Lobby activity
-            Intent i = LobbyActivity.newIntent(activity, (String) arg);
+            Intent i = new Intent(activity, LobbyActivity.class);
             activity.startActivity(i);
             activity.finish();
         }
+        else if (arg.getClass() == String.class)
+        {
+            //it's an error
+            activity.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    displayError( (String) arg);
+                }
+            });
+
+        }
+    }
+
+    private void displayError(String error)
+    {
+        activity.displayError(error);
     }
 
     public void testRecycler()

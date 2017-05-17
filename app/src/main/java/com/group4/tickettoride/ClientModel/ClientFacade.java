@@ -85,6 +85,9 @@ public class ClientFacade implements IClient,IComandExec
 
         ClientModel.SINGLETON.getGameList().addPlayer(ClientModel.SINGLETON.getUser().getUsername(),
                 ClientModel.SINGLETON.getPlayer(), gameName);
+        ClientModel.SINGLETON.setGame(ClientModel.SINGLETON.getGameList().getGameByName(gameName));
+
+        ClientModel.SINGLETON.sendToObservers(true);
 
         poller.setUpdateGameList(false);
 
@@ -124,13 +127,15 @@ public class ClientFacade implements IClient,IComandExec
 
         ClientModel.SINGLETON.setGameList(gameList);
 
+        ClientModel.SINGLETON.updateGame(gameList);
+
         return null;
     }
 
     @Override
     public Results onReportGameState(Game gameState) {
 
-        ClientModel.SINGLETON.getGameList().setGame(gameState, ClientModel.SINGLETON.getGameList().findGame(gameState.getGameId()));
+        ClientModel.SINGLETON.setGame(gameState);
 
         return null;
     }

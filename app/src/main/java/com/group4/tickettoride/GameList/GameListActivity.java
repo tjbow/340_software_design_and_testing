@@ -2,7 +2,9 @@ package com.group4.tickettoride.GameList;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -12,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.group4.shared.Model.Game;
 import com.group4.shared.Model.GameList;
@@ -87,6 +90,7 @@ public class GameListActivity extends AppCompatActivity implements IGameListActi
             {
                 //the game cannot be joined because it is full or ongoing
                 itemView.setEnabled(false);
+                itemView.setBackgroundColor(ContextCompat.getColor(GameListActivity.this, R.color.colorGray));
             }
         }
 
@@ -152,6 +156,11 @@ public class GameListActivity extends AppCompatActivity implements IGameListActi
         }
 
 
+    }
+
+    public void displayError(String error)
+    {
+        Toast.makeText(this, error, Toast.LENGTH_SHORT).show();
     }
 
     @Override
