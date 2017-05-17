@@ -27,8 +27,9 @@ public class Poller implements Runnable
      */
     private void pollForResults()
     {
+        System.out.println("poller runs");
         importGameList();
-        runNewCommands(ClientModel.SINGLETON.getCommandIDIndex());
+        //runNewCommands(ClientModel.SINGLETON.getCommandIDIndex());
     }
 
     /**

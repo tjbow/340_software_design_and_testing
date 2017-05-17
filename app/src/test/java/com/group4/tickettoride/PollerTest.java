@@ -1,5 +1,6 @@
 package com.group4.tickettoride;
 
+import com.group4.tickettoride.ClientModel.ClientFacade;
 import com.group4.tickettoride.ClientModel.Poller;
 import org.junit.Test;
 
@@ -21,6 +22,13 @@ public class PollerTest
         Thread thread1 = new Thread(poller, "Thread 1");
 
         thread1.start();
+        Thread.sleep(20000);
+    }
+
+    @Test
+    public void testClientFacade() throws InterruptedException
+    {
+        ClientFacade.SINGLETON.reportGameState();
         Thread.sleep(20000);
     }
 }
