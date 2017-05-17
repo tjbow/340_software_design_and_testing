@@ -1,5 +1,6 @@
 package com.group4.tickettoride.ClientModel;
 
+import com.group4.shared.Model.CommandList;
 import com.group4.shared.Model.GameList;
 import com.group4.shared.Model.Player;
 import com.group4.shared.Model.User;
@@ -16,7 +17,7 @@ public class ClientModel extends Observable {
 
     private User user;
     private GameList gameList;
-    // Todo: int commandIDIndex, last command run
+    private int commandIDIndex; // last command run
     private String authToken;
     private Player player;
 
@@ -78,7 +79,21 @@ public class ClientModel extends Observable {
 
     /**
      * Runs the commands in the commandList on the client model
+     *
+     * @param commandList list of new commands to run
      */
-    // Todo: public void runCommands(CommandList commandList)
+    public void runCommands(CommandList commandList)
+    {
+
+    }
+
+    /**
+     * Get the current command index for the model
+     * @return the current command index
+     */
+    public int getCommandIDIndex()
+    {
+        return commandIDIndex;
+    }
 
 }

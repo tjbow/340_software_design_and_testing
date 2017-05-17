@@ -5,7 +5,12 @@ package com.group4.tickettoride.ClientModel;
  */
 
 import com.group4.shared.Model.CommandList;
+import com.group4.shared.Model.Game;
+import com.group4.shared.Model.GameList;
+import com.group4.shared.Model.Results;
+import com.group4.tickettoride.Network.ServerProxy;
 
+import java.util.ArrayList;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -27,8 +32,22 @@ public class Poller implements Runnable
      */
     CommandList getNewCommands(int commandID)
     {
-        System.out.println("run once");
         return null;
+    }
+
+    /**
+     * Gets the game list and updates the client model through the facade
+     */
+    void getGameList()
+    {
+        Results results = ServerProxy.SINGLETON.getGameList();
+        if(results.isSuccess())
+        {
+            //TODO: Tom: Develop a way of getting the game list out of results
+            // for now use a blank game list
+            GameList gameList = new GameList(new ArrayList<Game>() );
+            ClientFacade.SINGLETON.onGetGameList(gameList);
+        }
     }
 
     @Override
