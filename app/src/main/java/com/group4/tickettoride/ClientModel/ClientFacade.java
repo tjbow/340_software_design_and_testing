@@ -42,7 +42,7 @@ public class ClientFacade implements IClient,IComandExec
         return null;
     }
 
-    @Override
+    //@Override
     public Results getGameList()
     {
         //TODO: Tom: We should probably pull getGameList() out of IClient, and this function should

@@ -16,10 +16,4 @@ public interface IClient {
      * Return the current game state
      */
     Results reportGameState();
-
-    /**
-     * Return a list of the current games
-     */
-    Results getGameList();
-
 }

@@ -2,6 +2,7 @@ package com.group4.server.Network;
 
 import com.google.gson.Gson;
 import com.group4.server.Command.CreateGameCommand;
+import com.group4.server.Command.GetGameListCommand;
 import com.group4.server.Command.JoinGameCommand;
 import com.group4.server.Command.LoginCommand;
 import com.group4.server.Command.RegisterCommand;
@@ -59,6 +60,10 @@ public class ExecCommandHandler
                     results = startGameCommand.execute();
                 }
                 else results = noAuthToken();
+                break;
+            case "getgamelist":
+                GetGameListCommand getGameListCommand = new Gson().fromJson(requestBody, GetGameListCommand.class);
+                results = getGameListCommand.execute();
                 break;
             default:
                 results = new Results(false, null, "Command type not yet implemented. Ask Tyler to implement it.", null);
