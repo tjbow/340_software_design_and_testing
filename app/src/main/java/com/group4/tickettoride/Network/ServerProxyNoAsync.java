@@ -4,6 +4,7 @@ import com.group4.shared.Model.Results;
 import com.group4.shared.Model.User;
 import com.group4.shared.Proxy.IServer;
 import com.group4.shared.command.Server.CreateGameCommandData;
+import com.group4.shared.command.Server.GetGameListCommandData;
 import com.group4.shared.command.Server.JoinGameCommandData;
 import com.group4.shared.command.Server.LoginCommandData;
 import com.group4.shared.command.Server.RegisterCommandData;
@@ -99,6 +100,9 @@ public class ServerProxyNoAsync implements IServer
     @Override
     public Results getGameList()
     {
+        GetGameListCommandData cmd = new GetGameListCommandData();
+        cmd.setType("getgamelist");
+        threadIt(cmd);
         return null;
     }
 
