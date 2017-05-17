@@ -22,24 +22,29 @@ public class Poller implements Runnable
 {
     static int PERIOD_SECONDS = 3;
 
-    ClientModel clientModel; //Todo: Tom: Singleton
     /**
-     * Gets the list of commands since the command at commandID
-     * Client model needs to hold an int of current command or keep a list of commands it has executed
-     * IServer needs a getNewCommands method
-     * ServerModel needs to hold a list of all commands
-     * @return
+     * Polls the server checking for new entries in the game list and new commands
      */
-    CommandList getNewCommands(int commandID)
+    private void pollForResults()
     {
-        //Results results = ServerProxy.SINGLETON.getCommandsSinceIndex(commandID);
-        return null;
+        importGameList();
+        runNewCommands(ClientModel.SINGLETON.getCommandIDIndex());
+    }
+
+    /**
+     * Gets and runs the list of commands since the command at commandID
+     * @param commandID the last command executed on the client
+     */
+    private void runNewCommands(int commandID)
+    {
+        Results results = ServerProxy.SINGLETON.getCommandsSinceIndex(commandID);
+        ClientFacade.SINGLETON.processResults(results);
     }
 
     /**
      * Gets the game list and updates the client model through the facade
      */
-    void getGameList()
+    private void importGameList()
     {
         Results results = ServerProxy.SINGLETON.getGameList();
         if(results.isSuccess())
@@ -55,14 +60,12 @@ public class Poller implements Runnable
     public void run()
     {
         ScheduledExecutorService execService = Executors.newScheduledThreadPool(1);
-        //execService.scheduleAtFixedRate(()->{pollServer();}, 0, PERIOD_SECONDS, TimeUnit.SECONDS);
-        // this might need to be callable if we need to return
         execService.scheduleAtFixedRate(new Runnable()
         {
             @Override
             public void run()
             {
-                getNewCommands(0); //Todo: Tom: add clientModel.currentCommand
+                pollForResults(); //Todo: Tom: add clientModel.currentCommand
             }
         }, 0, PERIOD_SECONDS, TimeUnit.SECONDS);
     }

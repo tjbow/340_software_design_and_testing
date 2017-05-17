@@ -13,7 +13,7 @@ import com.group4.tickettoride.ClientModel.ClientFacade;
 public class CGetGameStateCommand extends CGetGameStateCommandData implements IClientCommand {
     @Override
     public Results execute() {
-       return new ClientFacade().onReportGameState(super.getGameState());
+       return ClientFacade.SINGLETON.onReportGameState(super.getGameState());
     }
 
     public void updateModel(){

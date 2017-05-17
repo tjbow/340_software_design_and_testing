@@ -4,6 +4,8 @@ import com.group4.shared.Model.CommandList;
 import com.group4.shared.Model.GameList;
 import com.group4.shared.Model.Player;
 import com.group4.shared.Model.User;
+import com.group4.shared.command.Command;
+import com.group4.shared.command.IClientCommand;
 
 import java.util.Observable;
 import java.util.Observer;
@@ -28,6 +30,7 @@ public class ClientModel extends Observable {
     public ClientModel(User user, GameList gameList) {
         this.user = user;
         this.gameList = gameList;
+        this.commandIDIndex = 0;
     }
 
     public User getUser() {
@@ -82,10 +85,13 @@ public class ClientModel extends Observable {
      *
      * @param commandList list of new commands to run
      */
-    public void runCommands(CommandList commandList)
-    {
-
-    }
+    //public void runCommands(CommandList commandList)
+    //{
+    //for(Command command : commandList.commandList)
+    //    {
+    //        ((IClientCommand) command).execute();
+    //    }
+    //}
 
     /**
      * Get the current command index for the model
@@ -94,6 +100,15 @@ public class ClientModel extends Observable {
     public int getCommandIDIndex()
     {
         return commandIDIndex;
+    }
+
+    /**
+     * Sets the command list index, the index of the last command run
+     * @param commandIDIndex the index of the last command run
+     */
+    public void setCommandIDIndex(int commandIDIndex)
+    {
+        this.commandIDIndex = commandIDIndex;
     }
 
 }

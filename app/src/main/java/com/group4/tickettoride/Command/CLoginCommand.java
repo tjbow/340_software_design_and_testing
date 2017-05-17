@@ -12,7 +12,7 @@ import com.group4.tickettoride.ClientModel.ClientFacade;
 public class CLoginCommand extends CLoginCommandData implements IClientCommand {
     @Override
     public Results execute() {
-        return new ClientFacade().onLogin(super.getAuthToken());
+        return ClientFacade.SINGLETON.onLogin(super.getAuthToken());
     }
 
     boolean login(){

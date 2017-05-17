@@ -96,6 +96,18 @@ public class ServerProxyNoAsync implements IServer
         return null;
     }
 
+    @Override
+    public Results getGameList()
+    {
+        return null;
+    }
+
+    @Override
+    public Results getCommandsSinceIndex(int commandID)
+    {
+        return null;
+    }
+
     private void threadIt(Object o)
     {
         new ClientCommunicator().send("execcommand", o);

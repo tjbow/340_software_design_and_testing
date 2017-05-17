@@ -12,7 +12,7 @@ import com.group4.tickettoride.ClientModel.ClientFacade;
 public class CStartGameCommand extends CStartGameCommandData implements IClientCommand {
     @Override
     public Results execute() {
-        return new ClientFacade().onStartGame();
+        return ClientFacade.SINGLETON.onStartGame();
     }
 
     boolean startGame(){

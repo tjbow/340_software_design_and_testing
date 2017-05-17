@@ -13,6 +13,6 @@ import com.group4.tickettoride.ClientModel.ClientFacade;
 public class CJoinGameCommand extends CJoinGameCommandData implements IClientCommand{
     @Override
     public Results execute() {
-        return new ClientFacade().onJoinGame(super.getGameName());
+        return ClientFacade.SINGLETON.onJoinGame(super.getGameName());
     }
 }

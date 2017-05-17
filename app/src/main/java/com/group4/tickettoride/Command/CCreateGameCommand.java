@@ -14,7 +14,7 @@ import com.group4.tickettoride.ClientModel.ClientFacade;
 public class CCreateGameCommand extends CCreateGameCommandData implements IClientCommand {
     @Override
     public Results execute() {
-        return new ClientFacade().onCreateGame();
+        return ClientFacade.SINGLETON.onCreateGame();
     }
 
     Results createGame(){

@@ -18,13 +18,21 @@ import com.group4.shared.command.IClientCommand;
 import com.group4.tickettoride.Command.CLoginCommand;
 import com.group4.tickettoride.Command.CRegisterCommand;
 
-/**
+/*
  * Created by Tom on 5/15/2017.
  */
 
 public class ClientFacade implements IClient,IComandExec
 {
-    Poller poller;
+    private Poller poller;
+    private Thread pollerThread;
+
+    private ClientFacade()
+    {
+        poller = new Poller();
+        pollerThread = new Thread(poller, "Poller Thread");
+        pollerThread.start();
+    }
 
     public static ClientFacade SINGLETON = new ClientFacade();
 
@@ -37,18 +45,16 @@ public class ClientFacade implements IClient,IComandExec
     @Override
     public Results getGameList()
     {
-        //return clientModel.getGameList();
+        //TODO: Tom: We should probably pull getGameList() out of IClient, and this function should
+        // just return GameList object
+        //return ClientModel.SINGLETON.getGameList();
         return null;
     }
 
     /**
-     * Poll for the most recent set of commands
+     * Processes the results, runs commands if success and displays the error message if failure
+     * @param results contains the command list to be executed or error message to be displayed
      */
-    void pollForUpdates()
-    {
-
-    }
-
     public void processResults(Results results)
     {
         if(!results.isSuccess())
@@ -64,6 +70,7 @@ public class ClientFacade implements IClient,IComandExec
         for(ClientCommand cmd : cmdList.getCommandList())
         {
             ((IClientCommand) cmd).execute();
+            ClientModel.SINGLETON.setCommandIDIndex(cmd.getCommandNumber());
         }
     }
 

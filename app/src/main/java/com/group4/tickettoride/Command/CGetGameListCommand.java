@@ -12,7 +12,7 @@ import com.group4.tickettoride.ClientModel.ClientFacade;
 public class CGetGameListCommand extends CGetGameListCommandData implements IClientCommand {
     @Override
     public Results execute() {
-        return new ClientFacade().onGetGameList(super.getGameList());
+        return ClientFacade.SINGLETON.onGetGameList(super.getGameList());
     }
 
     void updateGamelist(){
