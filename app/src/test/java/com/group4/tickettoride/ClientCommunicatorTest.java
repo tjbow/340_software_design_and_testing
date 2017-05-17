@@ -4,6 +4,7 @@ import com.group4.shared.Model.Results;
 import com.group4.shared.Model.User;
 import com.group4.shared.command.Client.CLoginCommandData;
 import com.group4.shared.command.Command;
+import com.group4.shared.command.Server.CreateGameCommandData;
 import com.group4.shared.command.Server.LoginCommandData;
 import com.group4.shared.command.Server.RegisterCommandData;
 import com.group4.tickettoride.ClientModel.ClientModel;
@@ -61,5 +62,29 @@ public class ClientCommunicatorTest
         System.out.println("Data: " + results.getData());
         System.out.println("Error Info: " + results.getErrorInfo());
         System.out.println("AuthToken from model: " + ClientModel.SINGLETON.getAuthToken());
+    }
+
+    @Test
+    public void testCreateGame()
+    {
+        ClientCommunicator communicator = new ClientCommunicator();
+
+        User user = new User("tyler", "pwd");
+
+        RegisterCommandData registerCommandData = new RegisterCommandData();
+        registerCommandData.setType("register");
+        registerCommandData.setUser(user);
+
+        communicator.send("execcommand", registerCommandData);
+
+        System.out.println("AuthToken from model: " + ClientModel.SINGLETON.getAuthToken());
+
+        CreateGameCommandData createGameCommandData = new CreateGameCommandData();
+        createGameCommandData.setType("creategame");
+        createGameCommandData.setNumberOfPlayers(4);
+        createGameCommandData.setGameName("testgame1");
+
+        Results results = communicator.send("execcommand", createGameCommandData);
+        System.out.println();
     }
 }

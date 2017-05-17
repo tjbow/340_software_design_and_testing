@@ -104,11 +104,6 @@ public class ServerFacade implements IServer, IClient
     @Override
     public Results joinGame(int gameId)
     {
-//        if(true)
-//        {
-//            return new Results(false, null, "joinGame not yet functional", null);
-//        }
-
         Player player = new Player(ServerModel.getInstance().getTempUser());
 
         boolean success = serverModel.joinGame(gameId, player);
@@ -139,6 +134,10 @@ public class ServerFacade implements IServer, IClient
     @Override
     public Results startGame(int gameId)
     {
+        if(true)
+        {
+            return new Results(false, null, "joinGame not yet functional", null);
+        }
         return null;
     }
 
@@ -152,7 +151,15 @@ public class ServerFacade implements IServer, IClient
     @Override
     public Results getGameList()
     {
-        //return serverModel.getGameList();
-        return null;
+        CGetGameListCommandData gameListCommandData = new CGetGameListCommandData();
+        gameListCommandData.setType("getgamelist");
+        gameListCommandData.setGameList(serverModel.getGameList());
+
+        CommandList cmdList = new CommandList();
+        cmdList.commandList.add(gameListCommandData);
+
+        Results results = new Results(true, null, null, cmdList);
+
+        return results;
     }
 }
