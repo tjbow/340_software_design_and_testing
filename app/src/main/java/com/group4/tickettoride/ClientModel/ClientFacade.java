@@ -70,6 +70,13 @@ public class ClientFacade implements IClient,IComandExec
     @Override
     public Results onJoinGame(int gameID) {
 
+        int position = ClientModel.SINGLETON.getGameList().findGame(gameID);
+
+        ClientModel.SINGLETON.setPlayer();
+
+        ClientModel.SINGLETON.getGameList().addPlayer(ClientModel.SINGLETON.getUser().getUsername(),
+                ClientModel.SINGLETON.getPlayer(), position);
+
         return null;
     }
 

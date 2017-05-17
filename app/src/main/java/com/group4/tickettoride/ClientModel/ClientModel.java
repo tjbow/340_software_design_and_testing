@@ -6,6 +6,7 @@ import com.group4.shared.Model.User;
 
 import java.util.Observable;
 import java.util.Observer;
+import java.util.UUID;
 
 /**
  * Created by Russell Fitzpatrick on 5/13/2017.
@@ -42,7 +43,9 @@ public class ClientModel extends Observable {
 
     public void setGameList(GameList gameList) {
         this.gameList = gameList;
+        hasChanged();
         notifyObservers(gameList);
+        clearChanged();
     }
 
     public String getAuthToken()
@@ -59,8 +62,8 @@ public class ClientModel extends Observable {
         return player;
     }
 
-    public void setPlayer(Player player) {
-        this.player = player;
+    public void setPlayer() {
+        this.player = new Player(UUID.randomUUID(), user);
     }
 
     @Override
