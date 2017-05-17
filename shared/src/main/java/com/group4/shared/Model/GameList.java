@@ -1,6 +1,7 @@
 package com.group4.shared.Model;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Russell Fitzpatrick on 5/13/2017.
@@ -11,6 +12,7 @@ public class GameList {
     private List<Game> gameList;
 
     public GameList(List<Game> gameList) {
+
         this.gameList = gameList;
     }
 
@@ -53,10 +55,22 @@ public class GameList {
         }
         return null;
     }
-
-    public void addPlayer(String username, Player player, int position){
-        Game game = gameList.get(position);
+    //TODO @john: added this for gameName support
+    public int getGameIndexByName(String gameName)
+    {
+        for(int i = 0; i < gameList.size(); i++)
+        {
+            if(gameList.get(i).getGameName().equals(gameName))
+            {
+                return i;
+            }
+        }
+        return -1;
+    }
+    //TODO @john: modified this for gameName support
+    public void addPlayer(String username, Player player, String gameName){
+        Game game = getGameByName(gameName);
         game.addPlayer(username, player);
-        setGame(game, position);
+        setGame(game, getGameIndexByName(gameName) );
     }
 }

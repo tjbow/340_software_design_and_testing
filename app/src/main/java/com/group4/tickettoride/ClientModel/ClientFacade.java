@@ -62,6 +62,7 @@ public class ClientFacade implements IClient,IComandExec
             String errorMessage = results.getErrorInfo();
 
             // send errorMessage to the UI from here
+            ClientModel.SINGLETON.sendToObservers(errorMessage);
 
             return;
         }
@@ -77,12 +78,13 @@ public class ClientFacade implements IClient,IComandExec
     @Override
     public Results onJoinGame(String gameName) {
 
-        int position = ClientModel.SINGLETON.getGameList().findGame(gameID);
+        //TODO @john: added this for gameName support
+        //int position = ClientModel.SINGLETON.getGameList().getGameByName());
 
         ClientModel.SINGLETON.setPlayer();
 
         ClientModel.SINGLETON.getGameList().addPlayer(ClientModel.SINGLETON.getUser().getUsername(),
-                ClientModel.SINGLETON.getPlayer(), position);
+                ClientModel.SINGLETON.getPlayer(), gameName);
 
         return null;
     }
@@ -96,7 +98,7 @@ public class ClientFacade implements IClient,IComandExec
     public Results onLogin(String authToken) {
 
         ClientModel.SINGLETON.setAuthToken(authToken);
-
+        ClientModel.SINGLETON.sendToObservers(true);
         return null;
     }
 
@@ -104,7 +106,7 @@ public class ClientFacade implements IClient,IComandExec
     public Results onRegister(String authToken) {
 
         ClientModel.SINGLETON.setAuthToken(authToken);
-
+        ClientModel.SINGLETON.sendToObservers(true);
         return null;
     }
 

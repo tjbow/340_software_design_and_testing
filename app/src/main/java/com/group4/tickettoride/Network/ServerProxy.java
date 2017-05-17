@@ -11,6 +11,7 @@ import com.group4.shared.command.Server.GetGameListCommandData;
 import com.group4.shared.command.Server.JoinGameCommandData;
 import com.group4.shared.command.Server.LoginCommandData;
 import com.group4.shared.command.Server.RegisterCommandData;
+import com.group4.tickettoride.ClientModel.ClientModel;
 
 /**
  * Created by Russell Fitzpatrick on 5/13/2017.
@@ -145,6 +146,8 @@ public class ServerProxy implements IServer
                 //TYLER: Get this error toast working
 //                Login_RegisterActivity activity = new Login_RegisterActivity();
 //                activity.displayError(mResults.getErrorInfo());
+                ClientModel.SINGLETON.sendToObservers(mResults.getErrorInfo());
+
             }
             else
             {

@@ -9,5 +9,5 @@ package com.group4.tickettoride.NextLayerFacade;
 
     void createGame(String gameName, int playerCount);
 
-    void joinGame(int position);
+    void joinGame(String gameName);
 }

@@ -29,8 +29,8 @@ public class NextLayerFacade implements INextLayerFacade {
     }
 
     @Override
-    public void joinGame(int position) {
-        Game game = ClientModel.SINGLETON.getGameList().getGame(position);
-        ServerProxy.SINGLETON.joinGame(game.getGameId());
+    public void joinGame(String gameName) {
+        //Game game = ClientModel.SINGLETON.getGameList().getGame(position);
+        ServerProxy.SINGLETON.joinGame(gameName);
     }
 }

@@ -47,10 +47,11 @@ public class ClientModel extends Observable {
 
     public void setGameList(GameList gameList) {
         this.gameList = gameList;
-        hasChanged();
+        setChanged();
         notifyObservers(gameList);
         clearChanged();
     }
+
 
     public String getAuthToken()
     {
@@ -111,4 +112,10 @@ public class ClientModel extends Observable {
         this.commandIDIndex = commandIDIndex;
     }
 
+    public void sendToObservers(Object arg)
+    {
+        setChanged();
+        notifyObservers(arg);
+        clearChanged();
+    }
 }

@@ -49,10 +49,21 @@ class Login_RegisterPresenter implements ILogin_RegisterPresenter, Observer {
 
     @Override
     public void update(Observable o, Object arg) {
-        o.deleteObserver(this);
+        if (arg.getClass() == boolean.class)
+        {
+            //things worked properly, move on to gameList
+            o.deleteObserver(this);
 
-        Intent i = new Intent(activity, GameListActivity.class);
-        activity.startActivity(i);
-        activity.finish();
+            Intent i = new Intent(activity, GameListActivity.class);
+            activity.startActivity(i);
+            activity.finish();
+        }
+        else if (arg.getClass() == String.class)
+        {
+            //it's an error
+            displayError( (String) arg );
+        }
+
+
     }
 }

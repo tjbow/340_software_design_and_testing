@@ -1,8 +1,11 @@
 package com.group4.tickettoride.Lobby;
 
+import android.content.Intent;
+
 import com.group4.shared.Model.Game;
 import com.group4.shared.Model.GameList;
 import com.group4.shared.Model.Player;
+import com.group4.tickettoride.Game.GameActivity;
 import com.group4.tickettoride.NextLayerFacade.NextLayerFacade;
 
 import java.util.LinkedList;
@@ -16,10 +19,10 @@ import java.util.Observer;
 
 public class LobbyPresenter implements Observer,ILobbyPresenter {
 
-    private ILobbyActivity activity;
+    private LobbyActivity activity;
     private Game game;
 
-    public LobbyPresenter(ILobbyActivity activity)
+    public LobbyPresenter(LobbyActivity activity)
     {
         this.activity = activity;
     }
@@ -61,7 +64,7 @@ public class LobbyPresenter implements Observer,ILobbyPresenter {
         }
         else if (arg.getClass() == String.class)
         {
-
+            activity.startActivity( new Intent(activity, GameActivity.class) );
         }
     }
 

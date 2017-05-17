@@ -19,6 +19,8 @@ public class GameActivity extends AppCompatActivity {
         //TODO @john: add textviews to display game data
         //set presenter
         //set presenter game to game from extra
+
+        //get game from model
     }
 
     public static Intent newIntent(Context packageContext, String gameName)

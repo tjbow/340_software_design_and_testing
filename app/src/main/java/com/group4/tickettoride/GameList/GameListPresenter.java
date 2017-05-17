@@ -40,7 +40,7 @@ public class GameListPresenter implements IGameListPresenter, Observer {
     @Override
     public void joinGame(String gameName) {
         //TODO @john: are we using position or id or name?
-        //NextLayerFacade.SINGLETON.joinGame(gameName);
+        NextLayerFacade.SINGLETON.joinGame(gameName);
 
 
     }
