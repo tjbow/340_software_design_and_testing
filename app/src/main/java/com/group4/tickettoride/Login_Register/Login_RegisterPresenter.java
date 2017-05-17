@@ -15,12 +15,10 @@ import java.util.Observer;
 class Login_RegisterPresenter implements ILogin_RegisterPresenter, Observer {
 
     private Login_RegisterActivity activity;
-    private NextLayerFacade nextLayerFacade;
 
     Login_RegisterPresenter(Login_RegisterActivity loginRegisterActivity)
     {
         this.activity = loginRegisterActivity;
-        nextLayerFacade = NextLayerFacade.SINGLETON;
         ClientModel.SINGLETON.addObserver(this);
     }
 
@@ -30,7 +28,7 @@ class Login_RegisterPresenter implements ILogin_RegisterPresenter, Observer {
         String username = activity.getUsername();
         String password = activity.getPassword();
 
-        nextLayerFacade.login(username, password);
+        NextLayerFacade.SINGLETON.login(username, password);
     }
 
     @Override
@@ -39,7 +37,7 @@ class Login_RegisterPresenter implements ILogin_RegisterPresenter, Observer {
         String username = activity.getUsername();
         String password = activity.getPassword();
 
-        nextLayerFacade.register(username, password);
+        NextLayerFacade.SINGLETON.register(username, password);
     }
 
 
@@ -52,6 +50,7 @@ class Login_RegisterPresenter implements ILogin_RegisterPresenter, Observer {
     @Override
     public void update(Observable o, Object arg) {
         o.deleteObserver(this);
+
         Intent i = new Intent(activity, GameListActivity.class);
         activity.startActivity(i);
         activity.finish();

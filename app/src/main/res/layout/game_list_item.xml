@@ -3,7 +3,8 @@
               android:orientation="horizontal"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
-              android:layout_margin="5dp">
+              android:layout_margin="10dp"
+              android:gravity="center">
 
     <TextView
         android:id="@+id/gameList_listItem_gameName"
@@ -12,7 +13,7 @@
         android:layout_gravity="center_vertical"
         android:layout_weight="0.9"
         android:textColor="@color/colorBlack"
-        android:textSize="20sp"/>
+        android:textSize="18sp"/>
 
     <TextView
         android:id="@+id/gameList_listItem_playerCount"

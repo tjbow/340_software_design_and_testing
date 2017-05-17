@@ -1,4 +1,4 @@
-package com.group4.tickettoride.lobby;
+package com.group4.tickettoride.Lobby;
 
 /**
  * Created by abgill on 5/16/2017.

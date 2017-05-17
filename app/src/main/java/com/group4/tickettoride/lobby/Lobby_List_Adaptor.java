@@ -1,4 +1,4 @@
-package com.group4.tickettoride.lobby;
+package com.group4.tickettoride.Lobby;
 
 import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;

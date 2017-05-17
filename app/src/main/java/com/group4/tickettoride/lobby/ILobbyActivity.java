@@ -1,4 +1,4 @@
-package com.group4.tickettoride.lobby;
+package com.group4.tickettoride.Lobby;
 
 import com.group4.shared.Model.Player;
 

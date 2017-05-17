@@ -44,6 +44,9 @@ public class GameListActivity extends AppCompatActivity implements IGameListActi
             @Override
             public void onClick(View v) {
                 //start create game dialog
+                //TODO @john: remove
+                //((GameListPresenter)presenter).testRecycler();
+                //TODO @john: uncomment
                 showDialog();
             }
         });
@@ -70,20 +73,28 @@ public class GameListActivity extends AppCompatActivity implements IGameListActi
             super(itemView);
 
             itemView.setOnClickListener(this);
-            gameName = (TextView) findViewById(R.id.gameList_listItem_gameName);
-            playerCount = (TextView) findViewById(R.id.gameList_listItem_playerCount);
+            gameName = (TextView) itemView.findViewById(R.id.gameList_listItem_gameName);
+            playerCount = (TextView) itemView.findViewById(R.id.gameList_listItem_playerCount);
+
         }
 
         public void bindGame(Game game)
         {
             this.game = game;
             gameName.setText(game.getGameName());
-            playerCount.setText(game.getPlayers().size() + "/" + game.getPlayerCount());
+            playerCount.setText(game.getCurrentPlayerSize() + "/" + game.getPlayerCount());
+            if (game.getCurrentPlayerSize() >= game.getPlayerCount())
+            {
+                //the game cannot be joined because it is full or ongoing
+                itemView.setEnabled(false);
+            }
         }
 
         @Override
         public void onClick(View v) {
             //call presenter's joinGame()
+            //TODO @john: pass in needed gameInfo
+            presenter.joinGame(game.getGameName());
         }
     }
 
@@ -139,6 +150,8 @@ public class GameListActivity extends AppCompatActivity implements IGameListActi
             adapter.setGames(games);
             adapter.notifyDataSetChanged();
         }
+
+
     }
 
     @Override
