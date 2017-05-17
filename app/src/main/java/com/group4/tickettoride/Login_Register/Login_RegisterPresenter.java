@@ -48,7 +48,7 @@ class Login_RegisterPresenter implements ILogin_RegisterPresenter, Observer {
 
 
     @Override
-    public void update(Observable o, Object arg) {
+    public void update(Observable o, final Object arg) {
         if (arg.getClass() == boolean.class)
         {
             //things worked properly, move on to gameList
@@ -61,7 +61,13 @@ class Login_RegisterPresenter implements ILogin_RegisterPresenter, Observer {
         else if (arg.getClass() == String.class)
         {
             //it's an error
-            displayError( (String) arg );
+            activity.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    displayError( (String) arg);
+                }
+            });
+
         }
 
 
