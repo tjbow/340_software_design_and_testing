@@ -32,7 +32,7 @@ public class Poller implements Runnable
      */
     CommandList getNewCommands(int commandID)
     {
-        //Results results = ServerProxy.SINGLETON.
+        //Results results = ServerProxy.SINGLETON.getCommandsSinceIndex(commandID);
         return null;
     }
 

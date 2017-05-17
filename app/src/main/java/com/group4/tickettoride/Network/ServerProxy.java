@@ -114,7 +114,7 @@ public class ServerProxy implements IServer
     }
 
     @Override
-    public CommandList getCommandsSinceIndex(int commandID)
+    public Results getCommandsSinceIndex(int commandID)
     {
         return null;
     }
