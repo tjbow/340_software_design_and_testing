@@ -1,6 +1,8 @@
 package com.group4.tickettoride.NextLayerFacade;
 
+import com.group4.shared.Model.Game;
 import com.group4.shared.Model.User;
+import com.group4.tickettoride.ClientModel.ClientModel;
 import com.group4.tickettoride.Network.ServerProxy;
 
 public class NextLayerFacade implements INextLayerFacade {
@@ -23,11 +25,12 @@ public class NextLayerFacade implements INextLayerFacade {
 
     @Override
     public void createGame(String gameName, int playerCount) {
-        //needs implementation
+        ServerProxy.SINGLETON.createGame(gameName, playerCount);
     }
 
     @Override
     public void joinGame(int position) {
-        //needs implementation
+        Game game = ClientModel.SINGLETON.getGameList().getGame(position);
+        ServerProxy.SINGLETON.joinGame(game.getGameId());
     }
 }
