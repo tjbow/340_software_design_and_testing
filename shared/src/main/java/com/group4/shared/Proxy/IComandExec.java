@@ -12,8 +12,8 @@ import com.group4.shared.Model.Results;
 public interface IComandExec {
     Results onJoinGame(String gameName);
     Results onCreateGame();
-    Results onLogin(String authToken);
-    Results onRegister(String authToken);
+    Results onLogin(String authToken, String username);
+    Results onRegister(String authToken, String username);
     Results onStartGame();
     Results onGetGameList(GameList gameList);
     Results onReportGameState(Game gameState);

@@ -16,6 +16,6 @@ public class CRegisterCommand extends CRegisterCommandData implements IClientCom
 
     @Override
     public Results execute() {
-        return ClientFacade.SINGLETON.onRegister(super.getAuthToken());
+        return ClientFacade.SINGLETON.onRegister(super.getAuthToken(), super.getUsername());
     }
 }

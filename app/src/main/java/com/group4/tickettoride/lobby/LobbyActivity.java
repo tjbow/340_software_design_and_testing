@@ -43,11 +43,6 @@ public class LobbyActivity extends AppCompatActivity implements ILobbyActivity {
 
         this.presenter = new LobbyPresenter(this);
 
-        String gameName = getIntent().getStringExtra(EXTRA_GAME_ID);
-        //TODO @john: gameName change
-        //game = ClientModel.SINGLETON.getGameList().getGameList().get(gameName);
-        //presenter.setGame(game)
-
 
         startButton = (Button)findViewById(R.id.start_button);
         setStartButtonEnabled(false);

@@ -80,7 +80,7 @@ public class ClientModel extends Observable {
     }
 
     public void updateGame(GameList gameList){
-        if(!this.game.equals(null)){
+        if(this.game != null){
             this.game = getGameList().getGameByName(game.getGameName());
             sendToObservers(game);
         }

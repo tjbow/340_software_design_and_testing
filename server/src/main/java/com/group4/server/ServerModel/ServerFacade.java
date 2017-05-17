@@ -37,6 +37,7 @@ public class ServerFacade implements IServer, IClient
         {
             CLoginCommandData loginData = new CLoginCommandData();
             loginData.setAuthToken(authToken);
+            loginData.setUsername(user.getUsername());
             loginData.setType("login");
 
             CommandList cmdList = new CommandList();

@@ -98,26 +98,25 @@ public class ClientFacade implements IClient,IComandExec
     }
 
     @Override
-    public Results onLogin(String authToken) {
+    public Results onLogin(String authToken, String username) {
 
         ClientModel.SINGLETON.setAuthToken(authToken);
+        ClientModel.SINGLETON.setUser( new User(username) );
         ClientModel.SINGLETON.sendToObservers(true);
-        if(ClientModel.SINGLETON.getUser() != null) // make sure the user logged in successfully
-        {
-            poller.setUpdateGameList(true);
-        }
+        poller.setUpdateGameList(true);
+
         return null;
     }
 
     @Override
-    public Results onRegister(String authToken) {
+    public Results onRegister(String authToken, String username) {
 
         ClientModel.SINGLETON.setAuthToken(authToken);
+        ClientModel.SINGLETON.setUser( new User(username) );
         ClientModel.SINGLETON.sendToObservers(true);
-        if(ClientModel.SINGLETON.getUser() != null) // make sure the user logged in successfully
-        {
-            poller.setUpdateGameList(true);
-        }
+
+        poller.setUpdateGameList(true);
+
         return null;
     }
 

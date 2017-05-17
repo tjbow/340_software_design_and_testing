@@ -68,7 +68,7 @@ public class CreateGameFragment extends DialogFragment implements ICreateGameFra
         dialogBuilder.setTitle(R.string.create_game);
         dialogBuilder.setPositiveButton(R.string.create_game, new DialogInterface.OnClickListener() { //the anon inner class here is a listener for the positive button
             public void onClick(DialogInterface dialog, int whichButton) {
-                Toast.makeText(getActivity(), "create game button was pressed", Toast.LENGTH_SHORT).show();
+
                 //call presenter's createGame()
                 mPresenter.createGame();
 
