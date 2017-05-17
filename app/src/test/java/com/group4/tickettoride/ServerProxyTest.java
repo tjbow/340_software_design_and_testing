@@ -14,6 +14,8 @@ import static org.junit.Assert.*;
 
 /**
  * Created by tyler on 5/15/17.
+ *
+ * ****DEPRECATED*****
  */
 
 public class ServerProxyTest
@@ -46,10 +48,8 @@ public class ServerProxyTest
         User user = new User("tyler", "pwd");
 
         //call register on the ServerProxyNoAsync
-        mResults = ServerProxyNoAsync.SINGLETON.register(user);
+        ServerProxyNoAsync.SINGLETON.register(user);
 
-        assertTrue(mResults.isSuccess());
-        assertNotNull(ClientModel.SINGLETON.getAuthToken());
     }
 
     @Test
@@ -59,10 +59,8 @@ public class ServerProxyTest
         User user = new User("tyler", "pwd");
 
         //call login on the ServerProxyNoAsync
-        mResults = ServerProxyNoAsync.SINGLETON.login(user);
+        ServerProxyNoAsync.SINGLETON.login(user);
 
-        assertTrue(mResults.isSuccess());
-        assertNotNull(ClientModel.SINGLETON.getAuthToken());
     }
 
     @Test
@@ -71,7 +69,7 @@ public class ServerProxyTest
         String gameName = "TestGame";
         int numberOfPlayers = 4;
 
-        mResults = ServerProxyNoAsync.SINGLETON.createGame(gameName, numberOfPlayers);
+        ServerProxyNoAsync.SINGLETON.createGame(gameName, numberOfPlayers);
     }
 
     @Test
@@ -81,6 +79,6 @@ public class ServerProxyTest
         User user = new User("tyler", "pwd");
         Player player = new Player(user);
 
-        mResults = ServerProxyNoAsync.SINGLETON.joinGame(gameId);
+        ServerProxyNoAsync.SINGLETON.joinGame(gameId);
     }
 }

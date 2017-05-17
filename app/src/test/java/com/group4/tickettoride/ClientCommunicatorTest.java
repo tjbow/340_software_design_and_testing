@@ -6,6 +6,7 @@ import com.group4.shared.command.Client.CLoginCommandData;
 import com.group4.shared.command.Command;
 import com.group4.shared.command.Server.LoginCommandData;
 import com.group4.shared.command.Server.RegisterCommandData;
+import com.group4.tickettoride.ClientModel.ClientModel;
 import com.group4.tickettoride.Command.CLoginCommand;
 import com.group4.tickettoride.Network.ClientCommunicator;
 
@@ -25,7 +26,7 @@ public class ClientCommunicatorTest
     {
         ClientCommunicator communicator = new ClientCommunicator();
 
-        User user = new User("tbowzz", "pwd");
+        User user = new User("tyler", "pwd");
 
         RegisterCommandData cmd = new RegisterCommandData();
         cmd.setType("register");
@@ -36,6 +37,7 @@ public class ClientCommunicatorTest
         System.out.println("Result successful: " + results.isSuccess());
         System.out.println("Data: " + results.getData());
         System.out.println("Error Info: " + results.getErrorInfo());
+        System.out.println("AuthToken from model: " + ClientModel.SINGLETON.getAuthToken());
     }
 
     /**
@@ -47,7 +49,7 @@ public class ClientCommunicatorTest
     {
         ClientCommunicator communicator = new ClientCommunicator();
 
-        User user = new User("tbowzz", "pwd");
+        User user = new User("tyler", "pwd");
 
         LoginCommandData cmd = new LoginCommandData();
         cmd.setType("login");
@@ -58,5 +60,6 @@ public class ClientCommunicatorTest
         System.out.println("Result successful: " + results.isSuccess());
         System.out.println("Data: " + results.getData());
         System.out.println("Error Info: " + results.getErrorInfo());
+        System.out.println("AuthToken from model: " + ClientModel.SINGLETON.getAuthToken());
     }
 }

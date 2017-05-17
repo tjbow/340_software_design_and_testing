@@ -10,10 +10,15 @@ import com.group4.shared.Model.CommandList;
 import com.group4.shared.Model.Results;
 import com.group4.shared.Model.User;
 import com.group4.shared.command.Client.CLoginCommandData;
+import com.group4.shared.command.ClientCommand;
 import com.group4.shared.command.Command;
 import com.group4.shared.command.IClientCommand;
 import com.group4.shared.command.Server.LoginCommandData;
+import com.group4.tickettoride.Command.CCreateGameCommand;
+import com.group4.tickettoride.Command.CGetGameListCommand;
+import com.group4.tickettoride.Command.CJoinGameCommand;
 import com.group4.tickettoride.Command.CLoginCommand;
+import com.group4.tickettoride.Command.CRegisterCommand;
 
 import java.io.IOException;
 import java.lang.reflect.Field;
@@ -35,37 +40,58 @@ public class Serializer
 
     protected static Results deserializeResults(String response)
     {
-//        Gson gson = new Gson();
-//
-//        return gson.fromJson(response, Results.class);
-
-        treeParse(response);
-        return null;
+        return treeParse(response);
     }
 
-    protected static List<IClientCommand> treeParse(String response){
+    private static Results treeParse(String response){
         ObjectMapper mapper = new ObjectMapper();
-        List<IClientCommand> iCommands = new ArrayList<>();
+        List<ClientCommand> iCommands = new ArrayList<>();
         mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES,false);
 
+        Results results = null;
         try {
             JsonNode root = mapper.readTree(response.getBytes());
+            JsonNode successNode = root.path("success");
+            JsonNode dataNode = root.path("data");
+            JsonNode errorInfoNode = root.path("errorInfo");
             JsonNode commandLst = root.path("commandList");
             JsonNode commands = commandLst.path("commandList");
             Iterator<JsonNode> itr = commands.iterator();
             while (itr.hasNext()){
                 JsonNode next = itr.next();
                 Command c = mapper.treeToValue(next,Command.class);
-                if(c.getType().equals("login")){
-                    iCommands.add(mapper.treeToValue(next,CLoginCommand.class));
+                switch (c.getType())
+                {
+                    case "login":
+                        iCommands.add(mapper.treeToValue(next,CLoginCommand.class));
+                        break;
+                    case "register":
+                        iCommands.add(mapper.treeToValue(next,CRegisterCommand.class));
+                        break;
+                    case "creategame":
+                        iCommands.add(mapper.treeToValue(next,CCreateGameCommand.class));
+                        break;
+                    case "joingame":
+                        iCommands.add(mapper.treeToValue(next,CJoinGameCommand.class));
+                        break;
+                    case "getgamelist":
+                        iCommands.add(mapper.treeToValue(next,CGetGameListCommand.class));
+                        break;
+                    default:
+                        System.out.println("no command");
+                        break;
                 }
-
             }
 
+            CommandList cmdList = new CommandList();
+            cmdList.setCommandList(iCommands);
 
-        } catch (IOException e) {
+            results = new Results(successNode.asBoolean(), dataNode.asText(), errorInfoNode.asText(), cmdList);
+        }
+        catch (IOException e)
+        {
             e.printStackTrace();
         }
-        return iCommands;
+        return results;
     }
 }

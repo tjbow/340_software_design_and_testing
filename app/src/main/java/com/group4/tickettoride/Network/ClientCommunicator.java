@@ -47,7 +47,7 @@ public class ClientCommunicator
     public Results send(String urlPath, Object originalObject)
     {
         //TODO: make sure to replace the IP below with the IP where you are running the server
-        URL_PREFIX = "http://" + "10.24.64.139" + ":" + "8080";
+        URL_PREFIX = "http://" + "10.0.0.100" + ":" + "8080";
 
 
         HttpURLConnection connection =
@@ -58,10 +58,7 @@ public class ClientCommunicator
         Results results = (Results) getResult(connection, Results.class);
 
         // If there is no error, the ClientFacade will be called to process the results.
-        if(results.isSuccess())
-        {
-            ClientFacade.SINGLETON.processResults(results);
-        }
+        ClientFacade.SINGLETON.processResults(results);
         return results;
     }
 
@@ -146,7 +143,6 @@ public class ClientCommunicator
             else if(connection.getContentLength() != 0)
             {
                 InputStream inputStream = connection.getInputStream();
-                //result = gson.fromJson(inputStreamReader, klass);
 
                 result = Serializer.deserializeResults(streamToString(inputStream));
             }

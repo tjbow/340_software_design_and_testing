@@ -13,13 +13,13 @@ import java.util.List;
 
 public class CommandList
 {
-    public List<Command> commandList;
+    public List<ClientCommand> commandList;
 
-    public List<Command> getCommandList() {
+    public List<ClientCommand> getCommandList() {
         return commandList;
     }
 
-    public void setCommandList(List<Command> commandList) {
+    public void setCommandList(List<ClientCommand> commandList) {
         this.commandList = commandList;
     }
 

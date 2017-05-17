@@ -60,28 +60,10 @@ public class ClientFacade implements IClient,IComandExec
             return;
         }
         //else:
-
         CommandList cmdList = results.getCommandList();
-        for(Command cmd : cmdList.commandList)
+        for(ClientCommand cmd : cmdList.getCommandList())
         {
-            String type = cmd.getType();
-
-            String json = new Gson().toJson(cmd);
-
-            switch (type)
-            {
-                case "login":
-                    CLoginCommand loginCmd = new Gson().fromJson(json, CLoginCommand.class);
-                    loginCmd.execute();
-                    break;
-                case "register":
-                    CRegisterCommand registerCommand = new Gson().fromJson(json, CRegisterCommand.class);
-                    registerCommand.execute();
-                    break;
-                default:
-                    //do stuff
-                    break;
-            }
+            ((IClientCommand) cmd).execute();
         }
     }
 
