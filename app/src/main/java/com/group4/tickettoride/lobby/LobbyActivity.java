@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.group4.shared.Model.Game;
 import com.group4.shared.Model.Player;
@@ -92,10 +93,9 @@ public class LobbyActivity extends AppCompatActivity implements ILobbyActivity {
 
     }
 
-    public static Intent newIntent(Context packageContext, String gameName)
+
+    public void displayError(String error)
     {
-        Intent i = new Intent(packageContext, LobbyActivity.class);
-        i.putExtra(EXTRA_GAME_ID, gameName);
-        return i;
+        Toast.makeText(this, error, Toast.LENGTH_SHORT).show();
     }
 }

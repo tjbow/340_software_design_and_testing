@@ -34,11 +34,11 @@ public class LobbyPresenter implements Observer,ILobbyPresenter {
 
     @Override
     public void update(Observable o, Object arg) {
-        if (arg.getClass() == GameList.class)
+        if (arg.getClass() == Game.class)
         {
             //TODO: @john: gameName change
             //gets the updated version of itself from the gameList
-            //this.game = ((GameList) arg).getGameList().get(game.getGameName());
+            this.game = (Game) arg;
 
             //TODO: @john: please tell me we can fix this
             List<Player> players = new LinkedList<>();
@@ -64,7 +64,13 @@ public class LobbyPresenter implements Observer,ILobbyPresenter {
         }
         else if (arg.getClass() == String.class)
         {
-            activity.startActivity( new Intent(activity, GameActivity.class) );
+            activity.displayError((String) arg);
+        }
+        else if (arg.getClass() == Boolean.class)
+        {
+            Intent i = new Intent(activity, GameActivity.class);
+            activity.startActivity(i);
+            activity.finish();
         }
     }
 
