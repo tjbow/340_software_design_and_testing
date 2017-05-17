@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.group4.shared.Model.CommandList;
 import com.group4.shared.Model.Game;
 import com.group4.shared.Model.GameList;
+import com.group4.shared.Model.Player;
 import com.group4.shared.Model.Results;
 import com.group4.shared.Model.User;
 import com.group4.shared.Proxy.IClient;
@@ -42,15 +43,6 @@ public class ClientFacade implements IClient,IComandExec
         return null;
     }
 
-    //@Override
-    public Results getGameList()
-    {
-        //TODO: Tom: We should probably pull getGameList() out of IClient, and this function should
-        // just return GameList object
-        //return ClientModel.SINGLETON.getGameList();
-        return null;
-    }
-
     /**
      * Processes the results, runs commands if success and displays the error message if failure
      * @param results contains the command list to be executed or error message to be displayed
@@ -78,14 +70,9 @@ public class ClientFacade implements IClient,IComandExec
     @Override
     public Results onJoinGame(String gameName) {
 
-        //TODO @john: added this for gameName support
-        //int position = ClientModel.SINGLETON.getGameList().getGameByName());
+        ClientModel.SINGLETON.setGame(ClientModel.SINGLETON.getGameList().getGameByName(gameName));
 
         ClientModel.SINGLETON.setPlayer();
-
-        ClientModel.SINGLETON.getGameList().addPlayer(ClientModel.SINGLETON.getUser().getUsername(),
-                ClientModel.SINGLETON.getPlayer(), gameName);
-        ClientModel.SINGLETON.setGame(ClientModel.SINGLETON.getGameList().getGameByName(gameName));
 
         ClientModel.SINGLETON.sendToObservers(true);
 

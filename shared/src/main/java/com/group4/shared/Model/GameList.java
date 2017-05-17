@@ -67,10 +67,4 @@ public class GameList {
         }
         return -1;
     }
-    //TODO @john: modified this for gameName support
-    public void addPlayer(String username, Player player, String gameName){
-        Game game = getGameByName(gameName);
-        game.addPlayer(username, player);
-        setGame(game, getGameIndexByName(gameName) );
-    }
 }

@@ -16,11 +16,11 @@ import java.util.List;
  * Created by abgill on 5/16/2017.
  */
 
-public class Lobby_List_Adaptor extends RecyclerView.Adapter<Lobby_List_Adaptor.MyViewHolder> {
+public class Lobby_List_Adapter extends RecyclerView.Adapter<Lobby_List_Adapter.MyViewHolder> {
 
     private List<Player> playerList;
 
-    public Lobby_List_Adaptor(List<Player> playerList) {
+    public Lobby_List_Adapter(List<Player> playerList) {
         this.playerList = playerList;
     }
 
@@ -57,10 +57,10 @@ public class Lobby_List_Adaptor extends RecyclerView.Adapter<Lobby_List_Adaptor.
         //TODO: DREW: pull colors into xml file
 
         switch (color){
-            case "red":
-                return Color.parseColor("#ff0000");
             case "blue":
                 return Color.parseColor("#4b8bf2");
+            case "red":
+                return Color.parseColor("#ff0000");
             case "green":
                 return Color.parseColor("#29a815");
             case "yellow":

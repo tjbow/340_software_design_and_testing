@@ -149,6 +149,26 @@ public class ServerModel
                     + ",\" but it was full.");
             return false;
         }
+        int currentPlayerCount = game.getCurrentPlayerSize();
+        switch (currentPlayerCount)
+        {
+            case 0:
+                player.setColor("blue");
+                break;
+            case 1:
+                player.setColor("red");
+                break;
+            case 2:
+                player.setColor("green");
+                break;
+            case 3:
+                player.setColor("yellow");
+                break;
+            case 4:
+                player.setColor("black");
+                break;
+        }
+
         game.addPlayer(player.getUserName(), player);
         System.out.println("Player \"" + player.getUserName() + "\" joined the game " + game.getGameName()
                 + " (" + game.getCurrentPlayerSize() + "/" + game.getPlayerCount() + " players).");

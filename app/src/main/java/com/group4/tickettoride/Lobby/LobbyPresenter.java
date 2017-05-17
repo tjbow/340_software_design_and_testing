@@ -3,11 +3,9 @@ package com.group4.tickettoride.Lobby;
 import android.content.Intent;
 
 import com.group4.shared.Model.Game;
-import com.group4.shared.Model.GameList;
 import com.group4.shared.Model.Player;
 import com.group4.tickettoride.ClientModel.ClientModel;
 import com.group4.tickettoride.Game.GameActivity;
-import com.group4.tickettoride.NextLayerFacade.NextLayerFacade;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -60,7 +58,6 @@ public class LobbyPresenter implements Observer,ILobbyPresenter {
 
     public void setGameInfo()
     {
-        //TODO: @john: please tell me we can fix this
         List<Player> players = new LinkedList<>();
         for (String key : game.getPlayers().keySet())
         {

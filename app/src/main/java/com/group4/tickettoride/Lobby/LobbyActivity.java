@@ -1,7 +1,5 @@
 package com.group4.tickettoride.Lobby;
 
-import android.content.Context;
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -11,15 +9,11 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.group4.shared.Model.Game;
 import com.group4.shared.Model.Player;
-import com.group4.shared.Model.User;
-import com.group4.tickettoride.ClientModel.ClientModel;
 import com.group4.tickettoride.R;
 
 import java.util.LinkedList;
 import java.util.List;
-import java.util.UUID;
 
 public class LobbyActivity extends AppCompatActivity implements ILobbyActivity {
 
@@ -41,9 +35,6 @@ public class LobbyActivity extends AppCompatActivity implements ILobbyActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lobby);
 
-        this.presenter = new LobbyPresenter(this);
-
-
         startButton = (Button)findViewById(R.id.start_button);
         setStartButtonEnabled(false);
         startButton.setOnClickListener(new View.OnClickListener() {
@@ -57,13 +48,15 @@ public class LobbyActivity extends AppCompatActivity implements ILobbyActivity {
 
         playerListView = (RecyclerView)findViewById(R.id.player_list);
 
-        playerListView.setAdapter(new Lobby_List_Adaptor(new LinkedList<Player>()));
+        playerListView.setAdapter(new Lobby_List_Adapter(new LinkedList<Player>()));
         playerListView.setLayoutManager(new LinearLayoutManager(this));
+
+        this.presenter = new LobbyPresenter(this);
     }
 
     @Override
     public void setPlayerList(List<Player> playerList) {
-        playerListView.setAdapter(new Lobby_List_Adaptor(playerList));
+        playerListView.setAdapter(new Lobby_List_Adapter(playerList));
     }
 
     @Override

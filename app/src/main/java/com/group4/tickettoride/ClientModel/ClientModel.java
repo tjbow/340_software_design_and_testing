@@ -8,6 +8,7 @@ import com.group4.shared.Model.User;
 import com.group4.shared.command.Command;
 import com.group4.shared.command.IClientCommand;
 
+import java.util.Map;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.UUID;
@@ -68,7 +69,17 @@ public class ClientModel extends Observable {
     }
 
     public void setPlayer() {
-        this.player = new Player(UUID.randomUUID(), user);
+        String userName = user.getUsername();
+
+        Map<String, Player> players = game.getPlayers();
+        for(Map.Entry<String, Player> entry : players.entrySet())
+        {
+            if(entry.getKey().equals(userName))
+            {
+                this.player = entry.getValue();
+                return;
+            }
+        }
     }
 
     public Game getGame() {
