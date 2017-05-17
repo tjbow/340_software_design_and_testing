@@ -1,6 +1,8 @@
 package com.group4.tickettoride.Network;
 
 import android.os.AsyncTask;
+
+import com.group4.shared.Model.CommandList;
 import com.group4.shared.Model.Results;
 import com.group4.shared.Model.User;
 import com.group4.shared.Proxy.IServer;
@@ -107,6 +109,12 @@ public class ServerProxy implements IServer
 
     @Override
     public Results getGameList()
+    {
+        return null;
+    }
+
+    @Override
+    public CommandList getCommandsSinceIndex(int commandID)
     {
         return null;
     }

@@ -158,4 +158,10 @@ public class ServerFacade implements IServer, IClient
         return results;
     }
 
+    @Override
+    public CommandList getCommandsSinceIndex(int commandID)
+    {
+        return serverModel.getCommandsSinceIndex(commandID);
+    }
+
 }

@@ -1,5 +1,6 @@
 package com.group4.shared.Proxy;
 
+import com.group4.shared.Model.CommandList;
 import com.group4.shared.Model.Results;
 import com.group4.shared.Model.User;
 
@@ -15,6 +16,6 @@ public interface IServer {
     public Results joinGame(String gameName);
     public Results startGame(int gameId);
     public Results getGameList();
-    //Todo: public CommandList getCommandsSinceIndex(int commandID);
+    public CommandList getCommandsSinceIndex(int commandID);
 
 }
