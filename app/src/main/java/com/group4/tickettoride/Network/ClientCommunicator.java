@@ -49,15 +49,18 @@ public class ClientCommunicator
         //TODO: make sure to replace the IP below with the IP where you are running the server
         URL_PREFIX = "http://" + "10.24.64.178" + ":" + "8080";
 
-
         HttpURLConnection connection =
                 openConnection("/" + urlPath, HTTP_POST, ClientModel.SINGLETON.getAuthToken(), true);
+
+        if(connection == null)
+        {
+            return new Results(false, null, "No Connection to Server", null);
+        }
 
         sendToServer(connection, originalObject);
 
         Results results = (Results) getResult(connection, Results.class);
 
-        // If there is no error, the ClientFacade will be called to process the results.
         return results;
     }
 
@@ -79,15 +82,18 @@ public class ClientCommunicator
         catch (MalformedURLException e)
         {
             e.printStackTrace();
+            return null;
         }
         catch (SocketTimeoutException e)
         {
             System.out.println("Connection timeout.");
-            //Log.e("Connection", "Timeout");
+            Log.e("Connection", " Timeout");
+            return null;
         }
         catch (IOException e)
         {
             e.printStackTrace();
+            return null;
         }
 
         return result;

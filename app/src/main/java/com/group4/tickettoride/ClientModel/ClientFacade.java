@@ -89,8 +89,6 @@ public class ClientFacade implements IClient,IComandExec
 
         ClientModel.SINGLETON.sendToObservers(true);
 
-        poller.setUpdateGameList(false);
-
         return null;
     }
 
@@ -104,7 +102,10 @@ public class ClientFacade implements IClient,IComandExec
 
         ClientModel.SINGLETON.setAuthToken(authToken);
         ClientModel.SINGLETON.sendToObservers(true);
-        poller.setUpdateGameList(true);
+        if(ClientModel.SINGLETON.getUser() != null) // make sure the user logged in successfully
+        {
+            poller.setUpdateGameList(true);
+        }
         return null;
     }
 
@@ -113,12 +114,17 @@ public class ClientFacade implements IClient,IComandExec
 
         ClientModel.SINGLETON.setAuthToken(authToken);
         ClientModel.SINGLETON.sendToObservers(true);
-        poller.setUpdateGameList(true);
+        if(ClientModel.SINGLETON.getUser() != null) // make sure the user logged in successfully
+        {
+            poller.setUpdateGameList(true);
+        }
         return null;
     }
 
     @Override
-    public Results onStartGame() {
+    public Results onStartGame()
+    {
+        poller.setUpdateGameList(false);
         return null;
     }
 
