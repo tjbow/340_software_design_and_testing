@@ -69,6 +69,7 @@ public class ClientFacade implements IClient,IComandExec
 
     @Override
     public Results onJoinGame(int gameID) {
+
         return null;
     }
 
@@ -79,11 +80,17 @@ public class ClientFacade implements IClient,IComandExec
 
     @Override
     public Results onLogin(String authToken) {
+
+        ClientModel.SINGLETON.setAuthToken(authToken);
+
         return null;
     }
 
     @Override
     public Results onRegister(String authToken) {
+
+        ClientModel.SINGLETON.setAuthToken(authToken);
+
         return null;
     }
 
@@ -94,11 +101,17 @@ public class ClientFacade implements IClient,IComandExec
 
     @Override
     public Results onGetGameList(GameList gameList) {
+
+        ClientModel.SINGLETON.setGameList(gameList);
+
         return null;
     }
 
     @Override
     public Results onReportGameState(Game gameState) {
+
+        ClientModel.SINGLETON.getGameList().setGame(gameState, ClientModel.SINGLETON.getGameList().findGame(gameState.getGameId()));
+
         return null;
     }
 }

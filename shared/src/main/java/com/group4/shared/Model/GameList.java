@@ -22,7 +22,27 @@ public class GameList {
         this.gameList = gameList;
     }
 
-    public Game findGame(int id){
-        return gameList.get(id);
+    // Finds the game based on the position in the GameList
+    public Game getGame(int position){
+        return gameList.get(position);
+    }
+
+    // Finds and overrides the game based on the id of the Game given
+    public void setGame(Game game, int position){
+        gameList.set(position, game);
+    }
+
+    public int findGame(int gameId){
+        for(int i = 0; i < gameList.size(); i++){
+            if(gameList.get(i).getGameId() == gameId){
+                return i;
+            }
+        }
+
+        return 0;
+    }
+
+    public void addPlayer(int gameId, int position){
+
     }
 }

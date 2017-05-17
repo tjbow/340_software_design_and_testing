@@ -1,6 +1,7 @@
 package com.group4.tickettoride.ClientModel;
 
 import com.group4.shared.Model.GameList;
+import com.group4.shared.Model.Player;
 import com.group4.shared.Model.User;
 
 import java.util.Observable;
@@ -16,6 +17,7 @@ public class ClientModel extends Observable {
     private GameList gameList;
     // Todo: int commandIDIndex, last command run
     private String authToken;
+    private Player player;
 
     public static ClientModel SINGLETON = new ClientModel();
 
@@ -51,6 +53,14 @@ public class ClientModel extends Observable {
     public void setAuthToken(String authToken)
     {
         this.authToken = authToken;
+    }
+
+    public Player getPlayer() {
+        return player;
+    }
+
+    public void setPlayer(Player player) {
+        this.player = player;
     }
 
     @Override
