@@ -22,6 +22,7 @@ import java.util.concurrent.TimeUnit;
 public class Poller implements Runnable
 {
     static int PERIOD_SECONDS = 3;
+    private boolean updateGameList = false;
 
     /**
      * Polls the server checking for new entries in the game list and new commands
@@ -29,7 +30,10 @@ public class Poller implements Runnable
     private void pollForResults()
     {
         System.out.println("poller runs");
-        importGameList();
+        if(updateGameList)
+        {
+            importGameList();
+        }
         //runNewCommands(ClientModel.SINGLETON.getCommandIDIndex());
     }
 
@@ -49,6 +53,15 @@ public class Poller implements Runnable
     private void importGameList()
     {
         Results results = ServerProxy.SINGLETON.getGameList();
+    }
+
+    /**
+     * Determine whether the poller will update the game list or not
+     * @param update boolean to determine update
+     */
+    public void setUpdateGameList(boolean update)
+    {
+        updateGameList = update;
     }
 
     @Override
