@@ -105,6 +105,12 @@ public class ServerProxy implements IServer
         return null;
     }
 
+    @Override
+    public Results getGameList()
+    {
+        return null;
+    }
+
     private void threadIt(Object o)
     {
         NetworkTask task = new NetworkTask();
