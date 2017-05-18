@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@drawable/paperbackground"
-    tools:context="com.group4.tickettoride.Login_Register.Login_RegisterActivity">
+    tools:context="com.group4.tickettoride.Login_Register.Login_RegisterActivity"
+    android:padding="10dp">
 
 
     <TextView
@@ -20,7 +21,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#a0a0a0a0"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        tools:layout_margin="10dp"
+        android:padding="0dp">
 
 
         <TextView
