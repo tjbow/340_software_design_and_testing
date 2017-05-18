@@ -6,6 +6,7 @@ import com.group4.shared.Model.Game;
 import com.group4.shared.Model.Player;
 import com.group4.tickettoride.ClientModel.ClientModel;
 import com.group4.tickettoride.Game.GameActivity;
+import com.group4.tickettoride.GameList.GameListActivity;
 import com.group4.tickettoride.NextLayerFacade.NextLayerFacade;
 
 import java.util.LinkedList;
@@ -53,6 +54,14 @@ public class LobbyPresenter implements Observer,ILobbyPresenter {
         }
         else if (arg.getClass() == Boolean.class)
         {
+            if(ClientModel.SINGLETON.getGame() == null)
+            {
+                o.deleteObserver(this);
+                Intent i = new Intent(activity, GameListActivity.class);
+                activity.startActivity(i);
+                activity.finish();
+                return;
+            }
             o.deleteObserver(this);
             Intent i = new Intent(activity, GameActivity.class);
             activity.startActivity(i);
