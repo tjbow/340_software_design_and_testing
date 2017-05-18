@@ -20,6 +20,7 @@ public class LobbyActivity extends AppCompatActivity implements ILobbyActivity {
     private RecyclerView playerListView;
     private Button startButton;
     private TextView playerStatusView;
+    private TextView gameNameView;
 
     private String playerStatus;
     private int maxPlayers = 0;
@@ -51,6 +52,8 @@ public class LobbyActivity extends AppCompatActivity implements ILobbyActivity {
         playerListView.setAdapter(new Lobby_List_Adapter(new LinkedList<Player>()));
         playerListView.setLayoutManager(new LinearLayoutManager(this));
 
+        gameNameView = (TextView) findViewById(R.id.game_name);
+
         this.presenter = new LobbyPresenter(this);
     }
 
@@ -79,6 +82,11 @@ public class LobbyActivity extends AppCompatActivity implements ILobbyActivity {
         playerStatus = String.format(playerStatusTemplate,this.currentPlayers,this.maxPlayers);
         playerStatusView.setText(this.playerStatus);
 
+    }
+
+    @Override
+    public void setGameName(String gameName) {
+        gameNameView.setText(gameName);
     }
 
 

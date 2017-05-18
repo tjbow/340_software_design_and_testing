@@ -81,6 +81,7 @@ public class LobbyPresenter implements Observer,ILobbyPresenter {
 
         activity.setCurrentPlayers(game.getCurrentPlayerSize());
         activity.setMaxPlayers(game.getPlayerCount());
+        activity.setGameName(game.getGameName());
 
         //check if the game is full. If it is, enable the start button, else disable it
         if (game.getCurrentPlayerSize() < game.getPlayerCount())

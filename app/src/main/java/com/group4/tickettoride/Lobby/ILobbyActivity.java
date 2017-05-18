@@ -13,4 +13,5 @@ public interface ILobbyActivity {
     void setStartButtonEnabled(boolean isEnabled);
     void setMaxPlayers(int maxPlayers);
     void setCurrentPlayers(int currentPlayers);
+    void setGameName(String gameName);
 }
