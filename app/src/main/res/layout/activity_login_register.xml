@@ -9,6 +9,13 @@
     android:orientation="vertical"
     tools:context="com.group4.tickettoride.Login_Register.Login_RegisterActivity">
 
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="wrap_content"
+        android:layout_height="400px"
+        android:scaleType="fitXY"
+        app:srcCompat="@drawable/ttrlogo1" />
+
     <LinearLayout
         android:layout_width="250dp"
         android:layout_height="wrap_content">
