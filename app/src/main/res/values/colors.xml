@@ -6,4 +6,5 @@
 
     <color name="colorBlack">#000000</color>
     <color name="colorGray">#A4A4A4</color>
+    <color name="colorRed">#FF0000</color>
 </resources>
