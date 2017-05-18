@@ -112,11 +112,7 @@ public class ClientFacade implements IClient,IComandExec
     @Override
     public Results onRegister(String authToken, String username) {
 
-//        ClientModel.SINGLETON.setAuthToken(authToken);
-//        ClientModel.SINGLETON.setUser( new User(username) );
-//        ClientModel.SINGLETON.sendToObservers(true);
-
-        poller.setUpdateGameList(true);
+        onLogin(authToken, username);
 
         return null;
     }
