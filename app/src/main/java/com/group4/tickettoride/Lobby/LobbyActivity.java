@@ -16,6 +16,8 @@ import android.widget.Toast;
 
 import com.group4.shared.Model.Player;
 import com.group4.tickettoride.R;
+import com.joanzapata.iconify.Iconify;
+import com.joanzapata.iconify.fonts.FontAwesomeModule;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -73,6 +75,8 @@ public class LobbyActivity extends AppCompatActivity implements ILobbyActivity {
         setContentView(R.layout.activity_lobby);
         setBackground(this,findViewById(R.id.lobby_main),R.drawable.papersmall);
 
+        Iconify.with(new FontAwesomeModule());
+
 
         decorView = getWindow().getDecorView();
 
@@ -89,7 +93,7 @@ public class LobbyActivity extends AppCompatActivity implements ILobbyActivity {
 
         playerListView = (RecyclerView)findViewById(R.id.player_list);
 
-        playerListView.setAdapter(new Lobby_List_Adapter(new LinkedList<Player>()));
+        playerListView.setAdapter(new Lobby_List_Adapter(this,new LinkedList<Player>()));
         playerListView.setLayoutManager(new LinearLayoutManager(this));
 
         gameNameView = (TextView) findViewById(R.id.game_name);
@@ -106,7 +110,7 @@ public class LobbyActivity extends AppCompatActivity implements ILobbyActivity {
 
     @Override
     public void setPlayerList(List<Player> playerList) {
-        playerListView.setAdapter(new Lobby_List_Adapter(playerList));
+        playerListView.setAdapter(new Lobby_List_Adapter(this, playerList));
     }
 
     @Override

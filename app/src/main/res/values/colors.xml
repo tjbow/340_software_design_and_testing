@@ -6,5 +6,12 @@
 
     <color name="colorBlack">#000000</color>
     <color name="colorGray">#A4A4A4</color>
-    <color name="colorRed">#FF0000</color>
+
+    <color name="colorBlue">#4b8bf2</color>
+    <color name="colorRed">#e43206</color>
+    <color name="colorGreen">#29a815</color>
+    <color name="colorYellow">#fcf800</color>
+
+
+
 </resources>

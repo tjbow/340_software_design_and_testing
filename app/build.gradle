@@ -40,4 +40,6 @@ dependencies {
     compile 'com.fasterxml.jackson.core:jackson-databind:2.9.0.pr3'
     compile 'com.fasterxml.jackson.core:jackson-annotations:2.9.0.pr3'
     testCompile 'junit:junit:4.12'
+    compile 'com.joanzapata.iconify:android-iconify:2.2.2'
+    compile 'com.joanzapata.iconify:android-iconify-fontawesome:2.2.2'
 }

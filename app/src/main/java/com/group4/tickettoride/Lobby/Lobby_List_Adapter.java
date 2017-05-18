@@ -1,14 +1,21 @@
 package com.group4.tickettoride.Lobby;
 
+import android.content.Context;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.group4.shared.Model.Player;
 import com.group4.tickettoride.R;
+import com.joanzapata.iconify.IconDrawable;
+import com.joanzapata.iconify.Iconify;
+import com.joanzapata.iconify.fonts.FontAwesomeIcons;
+import com.joanzapata.iconify.fonts.FontAwesomeModule;
 
 import java.util.List;
 
@@ -19,19 +26,21 @@ import java.util.List;
 public class Lobby_List_Adapter extends RecyclerView.Adapter<Lobby_List_Adapter.MyViewHolder> {
 
     private List<Player> playerList;
+    Context context;
 
-    public Lobby_List_Adapter(List<Player> playerList) {
+    public Lobby_List_Adapter(Context context, List<Player> playerList) {
         this.playerList = playerList;
+        this.context = context;
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView playerName;
-        public View colorSquare;
+        public ImageView trainIcon;
 
         public MyViewHolder(View view) {
             super(view);
             playerName = (TextView) view.findViewById(R.id.player_name);
-            colorSquare = (View)view.findViewById(R.id.color_square);
+            trainIcon =(ImageView) view.findViewById(R.id.train_icon);
         }
     }
 
@@ -48,25 +57,32 @@ public class Lobby_List_Adapter extends RecyclerView.Adapter<Lobby_List_Adapter.
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
+
+
         Player player = playerList.get(position);
         holder.playerName.setText(player.getUserName());
-        holder.colorSquare.setBackgroundColor(getColorId(player.getColor()));
+
+        int color = getColorId(player.getColor());
+        Drawable icon = new IconDrawable(context, FontAwesomeIcons.fa_train).colorRes(color);
+        holder.trainIcon.setImageDrawable(icon);
+
+        //holder.colorSquare.setBackgroundColor(getColorId(player.getColor()));
     }
 
     private int getColorId(String color){
-        //TODO: DREW: pull colors into xml file
+
 
         switch (color){
             case "blue":
-                return Color.parseColor("#4b8bf2");
+                return R.color.colorBlue;
             case "red":
-                return Color.parseColor("#ff0000");
+                return R.color.colorRed;
             case "green":
-                return Color.parseColor("#29a815");
+                return R.color.colorGreen;
             case "yellow":
-                return Color.parseColor("#fcf800");
+                return R.color.colorYellow;
             default:
-                return Color.parseColor("#000000");
+                return R.color.colorBlack;
         }
     }
 
