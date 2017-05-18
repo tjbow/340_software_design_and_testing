@@ -31,7 +31,6 @@ import java.util.concurrent.Future;
 public class ClientFacade implements IClient,IComandExec
 {
     private Poller poller;
-    private Thread pollerThread;
     private ExecutorService threadPoolExecutor;
     private Future pollerTask;
 
@@ -41,14 +40,13 @@ public class ClientFacade implements IClient,IComandExec
 
         poller = new Poller();
         pollerTask = threadPoolExecutor.submit(poller);
+        // Add a shutdown hook to close down the thread when the app shutsdown
         Runtime.getRuntime().addShutdownHook(new Thread(){
             public void run()
             {
                 pollerTask.cancel(true);
             }
         });
-        //pollerThread = new Thread(poller, "Poller Thread");
-        //pollerThread.start();
     }
 
     public static ClientFacade SINGLETON = new ClientFacade();
