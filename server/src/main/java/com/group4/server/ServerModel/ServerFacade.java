@@ -68,11 +68,16 @@ public class ServerFacade implements IServer, IClient
         {
             System.out.println("User " + user.getUsername() + " registered");
 
+            CGetGameListCommandData getGameListCommandData = new CGetGameListCommandData();
+            getGameListCommandData.setType("getgamelist");
+            getGameListCommandData.setGameList(serverModel.getGameList());
+
             CRegisterCommandData registerData = new CRegisterCommandData();
             registerData.setAuthToken(authToken);
             registerData.setType("register");
 
             CommandList cmdList = new CommandList();
+            cmdList.commandList.add(getGameListCommandData);
             cmdList.commandList.add(registerData);
 
             return new Results(true, authToken, null, cmdList);
