@@ -144,9 +144,7 @@ public class ServerProxy implements IServer
             }
             if(!mResults.isSuccess())
             {
-                //TYLER: Get this error toast working
-//                Login_RegisterActivity activity = new Login_RegisterActivity();
-//                activity.displayError(mResults.getErrorInfo());
+
                 ClientModel.SINGLETON.sendToObservers(mResults.getErrorInfo());
 
             }

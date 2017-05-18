@@ -3,6 +3,7 @@ package com.group4.tickettoride.GameList;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -90,7 +91,11 @@ public class GameListActivity extends AppCompatActivity implements IGameListActi
             {
                 //the game cannot be joined because it is full or ongoing
                 itemView.setEnabled(false);
-                itemView.setBackgroundColor(ContextCompat.getColor(GameListActivity.this, R.color.colorGray));
+                //itemView.setBackgroundColor(ContextCompat.getColor(GameListActivity.this, R.color.colorGray));
+                gameName.setTypeface(null, Typeface.ITALIC);
+                gameName.setTextColor(ContextCompat.getColor(GameListActivity.this, R.color.colorGray));
+                playerCount.setTypeface(null, Typeface.ITALIC);
+                playerCount.setTextColor(ContextCompat.getColor(GameListActivity.this, R.color.colorGray));
             }
         }
 

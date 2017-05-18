@@ -6,6 +6,7 @@ import com.group4.shared.Model.Game;
 import com.group4.shared.Model.Player;
 import com.group4.tickettoride.ClientModel.ClientModel;
 import com.group4.tickettoride.Game.GameActivity;
+import com.group4.tickettoride.NextLayerFacade.NextLayerFacade;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -31,6 +32,7 @@ public class LobbyPresenter implements Observer,ILobbyPresenter {
 
     @Override
     public void startGame() {
+        //TODO @john: implement start game
         //NextLayerFacade.SINGLETON.startGame();
     }
 

@@ -21,7 +21,7 @@ import java.util.concurrent.TimeUnit;
  */
 public class Poller implements Runnable
 {
-    static int PERIOD_SECONDS = 3;
+    static int PERIOD_SECONDS = 1;
     private boolean updateGameList = false;
 
     /**
