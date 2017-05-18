@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@drawable/paperbackground"
     tools:context="com.group4.tickettoride.Login_Register.Login_RegisterActivity">
 
 
@@ -19,8 +20,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#a0a0a0"
-        android:layout_weight="1"
         android:orientation="vertical">
+
 
         <TextView
             android:id="@+id/player_status_label"
@@ -31,11 +32,17 @@
         <android.support.v7.widget.RecyclerView
             android:id="@+id/player_list"
             android:layout_width="match_parent"
-            android:layout_height="211dp"
-            android:layout_weight="1"
+            android:layout_height="wrap_content"
+
             android:padding="15dp" />
 
     </LinearLayout>
+    <View
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+    </View>
 
     <Button
         android:id="@+id/start_button"

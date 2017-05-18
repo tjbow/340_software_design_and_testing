@@ -8,6 +8,7 @@
     android:orientation="vertical"
     android:gravity="center"
     tools:context="com.group4.tickettoride.Login_Register.Login_RegisterActivity"
+    android:background="@drawable/paperbackground"
     >
 
     <LinearLayout
