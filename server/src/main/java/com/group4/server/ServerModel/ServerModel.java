@@ -188,6 +188,12 @@ public class ServerModel
         System.out.println(gameName + " has been started by " + getTempUser().getUsername());
     }
 
+    public boolean endGame(String gameName)
+    {
+        Game game = gameList.getGameByName(gameName);
+        return gameList.getGameList().remove(game);
+    }
+
     /**
      * Gets the current list of games on the server
      * @return

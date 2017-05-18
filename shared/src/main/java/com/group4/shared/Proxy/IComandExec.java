@@ -15,6 +15,7 @@ public interface IComandExec {
     Results onLogin(String authToken, String username);
     Results onRegister(String authToken, String username);
     Results onStartGame();
+    Results onEndGame();
     Results onGetGameList(GameList gameList);
     Results onReportGameState(Game gameState);
 }

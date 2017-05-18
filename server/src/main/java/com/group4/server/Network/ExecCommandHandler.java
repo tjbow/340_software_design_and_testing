@@ -2,6 +2,7 @@ package com.group4.server.Network;
 
 import com.google.gson.Gson;
 import com.group4.server.Command.CreateGameCommand;
+import com.group4.server.Command.EndGameCommand;
 import com.group4.server.Command.GetGameListCommand;
 import com.group4.server.Command.JoinGameCommand;
 import com.group4.server.Command.LoginCommand;
@@ -61,6 +62,13 @@ public class ExecCommandHandler
                 }
                 else results = noAuthToken();
                 break;
+            case "endgame":
+                if(ServerModel.getInstance().getTempUser() != null)
+                {
+                    EndGameCommand endGameCommand = new Gson().fromJson(requestBody, EndGameCommand.class);
+                    results = endGameCommand.execute();
+                }
+                else results = noAuthToken();
             case "getgamelist":
                 GetGameListCommand getGameListCommand = new Gson().fromJson(requestBody, GetGameListCommand.class);
                 results = getGameListCommand.execute();

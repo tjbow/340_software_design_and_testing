@@ -76,7 +76,7 @@ public class ClientFacade implements IClient,IComandExec
         CommandList cmdList = results.getCommandList();
         for(ClientCommand cmd : cmdList.getCommandList())
         {
-            if(cmd.getType().equals("startgame"))
+            if(cmd.getType().equals("endgame"))
             {
                 if(true)
                 {
@@ -146,6 +146,14 @@ public class ClientFacade implements IClient,IComandExec
     }
 
     @Override
+    public Results onEndGame()
+    {
+        poller.setUpdateGameList(true);
+        ClientModel.SINGLETON.sendToObservers(true);
+        return null;
+    }
+
+    @Override
     public Results onGetGameList(GameList gameList) {
 
         ClientModel.SINGLETON.setGameList(gameList);
@@ -161,5 +169,10 @@ public class ClientFacade implements IClient,IComandExec
         ClientModel.SINGLETON.setGame(gameState);
 
         return null;
+    }
+
+    public void startPoller()
+    {
+        poller.setUpdateGameList(true);
     }
 }

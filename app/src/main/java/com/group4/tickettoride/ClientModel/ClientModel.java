@@ -1,6 +1,7 @@
 package com.group4.tickettoride.ClientModel;
 
 import com.group4.shared.Model.CommandList;
+import com.group4.shared.Model.GAME_STATUS;
 import com.group4.shared.Model.Game;
 import com.group4.shared.Model.GameList;
 import com.group4.shared.Model.Player;
@@ -34,6 +35,16 @@ public class ClientModel extends Observable {
         this.user = user;
         this.gameList = gameList;
         this.commandIDIndex = 0;
+    }
+
+    public void destructor()
+    {
+        this.user = null;
+        this.gameList = null;
+        this.authToken = null;
+        this.commandIDIndex = 0;
+        this.player = null;
+        this.game = null;
     }
 
     public User getUser() {
@@ -91,10 +102,19 @@ public class ClientModel extends Observable {
         this.game = game;
     }
 
-    public void updateGame(GameList gameList){
-        if(this.game != null){
+    public void updateGame(GameList gameList)
+    {
+        if(this.game != null)
+        {
             this.game = gameList.getGameByName(game.getGameName());
-            sendToObservers(game);
+            if(this.game == null)
+            {
+                sendToObservers(GAME_STATUS.FINISHED);
+            }
+            else
+            {
+                sendToObservers(game);
+            }
         }
     }
 

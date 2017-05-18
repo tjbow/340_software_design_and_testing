@@ -7,6 +7,7 @@ import com.group4.shared.Model.Results;
 import com.group4.shared.Model.User;
 import com.group4.shared.Proxy.IServer;
 import com.group4.shared.command.Server.CreateGameCommandData;
+import com.group4.shared.command.Server.EndGameCommandData;
 import com.group4.shared.command.Server.GetGameListCommandData;
 import com.group4.shared.command.Server.JoinGameCommandData;
 import com.group4.shared.command.Server.LoginCommandData;
@@ -129,7 +130,10 @@ public class ServerProxy implements IServer
     @Override
     public Results endGame(String gameName)
     {
-        //TODO: TYLER: Implement ServerProxy endGame()
+        EndGameCommandData cmd = new EndGameCommandData();
+        cmd.setType("endgame");
+        cmd.setGameName(gameName);
+        threadIt(cmd);
         return null;
     }
 

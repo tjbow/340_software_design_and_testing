@@ -7,6 +7,7 @@ import com.group4.shared.Model.Player;
 import com.group4.tickettoride.ClientModel.ClientModel;
 import com.group4.tickettoride.Game.GameActivity;
 import com.group4.tickettoride.GameList.GameListActivity;
+import com.group4.tickettoride.Login_Register.Login_RegisterActivity;
 import com.group4.tickettoride.NextLayerFacade.NextLayerFacade;
 
 import java.util.LinkedList;
@@ -41,8 +42,10 @@ public class LobbyPresenter implements Observer,ILobbyPresenter {
     @Override
     public void onBackPressed()
     {
-        activity.finish();
+        Intent i = new Intent(activity, Login_RegisterActivity.class);
+        activity.startActivity(i);
         ClientModel.SINGLETON.deleteObserver(this);
+        activity.finish();
     }
 
     @Override
@@ -61,16 +64,17 @@ public class LobbyPresenter implements Observer,ILobbyPresenter {
         }
         else if (arg.getClass() == Boolean.class)
         {
-            if(ClientModel.SINGLETON.getGame() == null)
-            {
-                o.deleteObserver(this);
-                Intent i = new Intent(activity, GameListActivity.class);
-                activity.startActivity(i);
-                activity.finish();
-                return;
-            }
+//            if(ClientModel.SINGLETON.getGame() == null)
+//            {
+//                o.deleteObserver(this);
+//                Intent i = new Intent(activity, GameListActivity.class);
+//                activity.startActivity(i);
+//                activity.finish();
+//                return;
+//            }
             o.deleteObserver(this);
-            Intent i = new Intent(activity, GameActivity.class);
+//            Intent i = new Intent(activity, GameActivity.class);
+            Intent i = GameActivity.newIntent(activity, ClientModel.SINGLETON.getGame().getGameName());
             activity.startActivity(i);
             activity.finish();
         }

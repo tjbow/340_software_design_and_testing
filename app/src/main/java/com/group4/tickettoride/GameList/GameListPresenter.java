@@ -9,6 +9,7 @@ import com.group4.shared.Model.GameList;
 
 import com.group4.tickettoride.ClientModel.ClientModel;
 import com.group4.tickettoride.Lobby.LobbyActivity;
+import com.group4.tickettoride.Login_Register.Login_RegisterActivity;
 import com.group4.tickettoride.NextLayerFacade.NextLayerFacade;
 
 import java.util.ArrayList;
@@ -53,8 +54,10 @@ public class GameListPresenter implements IGameListPresenter, Observer {
     @Override
     public void onBackPressed()
     {
-        activity.finish();
+        Intent i = new Intent(activity, Login_RegisterActivity.class);
+        activity.startActivity(i);
         ClientModel.SINGLETON.deleteObserver(this);
+        activity.finish();
     }
 
     @Override

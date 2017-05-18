@@ -10,6 +10,7 @@ import com.group4.shared.Proxy.IServer;
 import com.group4.shared.Model.Results;
 import com.group4.shared.Model.User;
 import com.group4.shared.command.Client.CCreateGameCommandData;
+import com.group4.shared.command.Client.CEndGameCommandData;
 import com.group4.shared.command.Client.CGetGameListCommandData;
 import com.group4.shared.command.Client.CJoinGameCommandData;
 import com.group4.shared.command.Client.CLoginCommandData;
@@ -188,7 +189,20 @@ public class ServerFacade implements IServer, IClient
     @Override
     public Results endGame(String gameName)
     {
-        return null;
+        boolean success = ServerModel.getInstance().endGame(gameName);
+        if(!success)
+        {
+            return new Results(true, null, "Cannot end game - game does not exist", null);
+        }
+
+        CEndGameCommandData endGameCommandData = new CEndGameCommandData();
+        endGameCommandData.setType("endgame");
+        endGameCommandData.setWasSuccessful(success);
+
+        CommandList cmdList = new CommandList();
+        cmdList.commandList.add(endGameCommandData);
+        System.out.println("The game " + gameName + " was ended.");
+        return new Results(true, null, null, cmdList);
     }
 
     @Override
