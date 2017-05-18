@@ -63,6 +63,13 @@ public class ClientFacade implements IClient,IComandExec
         CommandList cmdList = results.getCommandList();
         for(ClientCommand cmd : cmdList.getCommandList())
         {
+            if(cmd.getType().equals("startgame"))
+            {
+                if(true)
+                {
+                    //do stuff
+                }
+            }
             ((IClientCommand) cmd).execute();
             ClientModel.SINGLETON.setCommandIDIndex(cmd.getCommandNumber());
         }

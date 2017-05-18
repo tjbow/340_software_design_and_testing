@@ -19,6 +19,7 @@ import com.group4.tickettoride.Command.CGetGameListCommand;
 import com.group4.tickettoride.Command.CJoinGameCommand;
 import com.group4.tickettoride.Command.CLoginCommand;
 import com.group4.tickettoride.Command.CRegisterCommand;
+import com.group4.tickettoride.Command.CStartGameCommand;
 
 import java.io.IOException;
 import java.lang.reflect.Field;
@@ -77,6 +78,10 @@ public class Serializer
                     case "getgamelist":
                         ClientCommand clientCommand = new Gson().fromJson(next.toString(), CGetGameListCommand.class);
                         iCommands.add(clientCommand);
+                        break;
+                    case "startgame":
+                        ClientCommand clientCommand1 = new Gson().fromJson(next.toString(), CStartGameCommand.class);
+                        iCommands.add(clientCommand1);
                         break;
                     default:
                         System.out.println("no command");
