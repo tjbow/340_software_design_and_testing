@@ -49,7 +49,7 @@ public class LobbyPresenter implements Observer,ILobbyPresenter {
     }
 
     @Override
-    public void update(Observable o, Object arg) {
+    public void update(Observable o, final Object arg) {
         if (arg.getClass() == Game.class)
         {
             //gets the updated version of itself from the gameList
@@ -65,7 +65,12 @@ public class LobbyPresenter implements Observer,ILobbyPresenter {
         }
         else if (arg.getClass() == String.class)
         {
-            activity.displayError((String) arg);
+            activity.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    displayError( (String) arg);
+                }
+            });
         }
         else if (arg.getClass() == Boolean.class)
         {
@@ -79,6 +84,11 @@ public class LobbyPresenter implements Observer,ILobbyPresenter {
         Intent i = GameActivity.newIntent(activity, ClientModel.SINGLETON.getGame().getGameName());
         activity.startActivity(i);
         activity.finish();
+    }
+
+    private void displayError(String error)
+    {
+        activity.displayError(error);
     }
 
     public void setGameInfo()
