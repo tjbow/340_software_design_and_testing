@@ -39,9 +39,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/gameList_createGameButton"
             android:text="@string/create_game"
-            android:layout_margin="5dp"
-
-            />
+            android:layout_margin="5dp" />
 
 
     </LinearLayout>
