@@ -92,7 +92,7 @@ public class ServerProxyNoAsync implements IServer
     }
 
     @Override
-    public Results startGame(int gameId)
+    public Results startGame(String gameName)
     {
         return null;
     }

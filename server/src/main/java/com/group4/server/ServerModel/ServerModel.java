@@ -5,6 +5,7 @@ package com.group4.server.ServerModel;
  */
 
 import com.group4.shared.Model.CommandList;
+import com.group4.shared.Model.GAME_STATUS;
 import com.group4.shared.Model.Game;
 import com.group4.shared.Model.GameList;
 import com.group4.shared.Model.Player;
@@ -173,6 +174,12 @@ public class ServerModel
         System.out.println("Player \"" + player.getUserName() + "\" joined the game " + game.getGameName()
                 + " (" + game.getCurrentPlayerSize() + "/" + game.getPlayerCount() + " players).");
         return true;
+    }
+
+    public void startGame(String gameName)
+    {
+        gameList.getGameByName(gameName).setStatus(GAME_STATUS.ONGOING);
+        System.out.println(gameName + " has been started by " + getTempUser().getUsername());
     }
 
     /**

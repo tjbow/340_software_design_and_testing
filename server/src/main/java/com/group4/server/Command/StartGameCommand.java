@@ -14,7 +14,7 @@ import com.group4.shared.command.Server.StartGameCommandData;
 public class StartGameCommand extends StartGameCommandData implements IServerCommand{
     private Results startGame(){
         IServer serverFacade = new ServerFacade();
-        return serverFacade.startGame(super.getGameID());
+        return serverFacade.startGame(super.getGameName());
     }
 
     @Override
