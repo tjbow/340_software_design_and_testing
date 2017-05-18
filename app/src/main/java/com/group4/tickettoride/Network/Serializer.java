@@ -15,6 +15,7 @@ import com.group4.shared.command.Command;
 import com.group4.shared.command.IClientCommand;
 import com.group4.shared.command.Server.LoginCommandData;
 import com.group4.tickettoride.Command.CCreateGameCommand;
+import com.group4.tickettoride.Command.CEndGameCommand;
 import com.group4.tickettoride.Command.CGetGameListCommand;
 import com.group4.tickettoride.Command.CJoinGameCommand;
 import com.group4.tickettoride.Command.CLoginCommand;

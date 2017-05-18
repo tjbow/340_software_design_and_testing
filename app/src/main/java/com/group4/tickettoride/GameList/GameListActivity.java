@@ -96,10 +96,6 @@ public class GameListActivity extends AppCompatActivity implements IGameListActi
         createGameButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //start create game dialog
-                //TODO @john: remove
-                //((GameListPresenter)presenter).testRecycler();
-                //TODO @john: uncomment
                 showDialog();
             }
         });
@@ -158,7 +154,6 @@ public class GameListActivity extends AppCompatActivity implements IGameListActi
         @Override
         public void onClick(View v) {
             //call presenter's joinGame()
-            //TODO @john: pass in needed gameInfo
             presenter.joinGame(game.getGameName());
         }
 

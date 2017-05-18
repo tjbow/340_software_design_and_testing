@@ -77,7 +77,7 @@ public class GameListPresenter implements IGameListPresenter, Observer {
 
             activity.setGameList(displayedGameList);
         }
-        else if (arg.getClass() == Boolean.class/* && ClientModel.SINGLETON.getGame() != null*/) //TODO: TYLER this
+        else if (arg.getClass() == Boolean.class)
         {
             o.deleteObserver(this);
             //start Lobby activity

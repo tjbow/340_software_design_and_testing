@@ -52,7 +52,6 @@ public class LobbyPresenter implements Observer,ILobbyPresenter {
     public void update(Observable o, Object arg) {
         if (arg.getClass() == Game.class)
         {
-            //TODO: @john: gameName change
             //gets the updated version of itself from the gameList
             this.game = (Game) arg;
 

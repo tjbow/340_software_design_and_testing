@@ -67,16 +67,4 @@ public class GameList {
         }
         return null;
     }
-    //TODO @john: added this for gameName support
-    public int getGameIndexByName(String gameName)
-    {
-        for(int i = 0; i < gameList.size(); i++)
-        {
-            if(gameList.get(i).getGameName().equals(gameName))
-            {
-                return i;
-            }
-        }
-        return -1;
-    }
 }

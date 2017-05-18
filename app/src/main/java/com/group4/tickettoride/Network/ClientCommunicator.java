@@ -46,10 +46,10 @@ public class ClientCommunicator
      */
     public Results send(String urlPath, Object originalObject)
     {
-        //TODO: make sure to replace the IP below with the IP where you are running the server
-       // URL_PREFIX = "http://" + "10.24.64.135" + ":" + "8080";
+        //Replace the IP below with the IP where you are running the server
+        URL_PREFIX = "http://" + "10.24.64.135" + ":" + "8080";
         //URL_PREFIX = "http://" + "192.168.1.29" + ":" + "8080";
-        URL_PREFIX = "http://" + "10.2.116.82" + ":" + "8080";
+//        URL_PREFIX = "http://" + "10.2.116.82" + ":" + "8080";
 
         HttpURLConnection connection =
                 openConnection("/" + urlPath, HTTP_POST, ClientModel.SINGLETON.getAuthToken(), true);

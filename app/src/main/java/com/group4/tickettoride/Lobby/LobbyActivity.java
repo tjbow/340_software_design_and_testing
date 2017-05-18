@@ -85,7 +85,6 @@ public class LobbyActivity extends AppCompatActivity implements ILobbyActivity {
         startButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO: @john add something fun here
                 presenter.startGame();
             }
         });
