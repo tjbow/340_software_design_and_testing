@@ -78,10 +78,12 @@ class Login_RegisterPresenter implements ILogin_RegisterPresenter, Observer {
             if (status == GAME_STATUS.WAITING)
             {
                 activity.startActivity(new Intent(activity, LobbyActivity.class));
+                activity.finish();
             }
             else if (status == GAME_STATUS.ONGOING)
             {
                 activity.startActivity( new Intent(activity, GameActivity.class));
+                activity.finish();
             }
         }
 
