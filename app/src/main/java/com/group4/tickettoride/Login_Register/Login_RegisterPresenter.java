@@ -4,8 +4,11 @@ package com.group4.tickettoride.Login_Register;
 
 import android.content.Intent;
 
+import com.group4.shared.Model.GAME_STATUS;
 import com.group4.tickettoride.ClientModel.ClientModel;
+import com.group4.tickettoride.Game.GameActivity;
 import com.group4.tickettoride.GameList.GameListActivity;
+import com.group4.tickettoride.Lobby.LobbyActivity;
 import com.group4.tickettoride.NextLayerFacade.NextLayerFacade;
 
 import java.util.Observable;
@@ -68,6 +71,18 @@ class Login_RegisterPresenter implements ILogin_RegisterPresenter, Observer {
                 }
             });
 
+        }
+        else if (arg.getClass() == GAME_STATUS.class)
+        {
+            GAME_STATUS status = (GAME_STATUS) arg;
+            if (status == GAME_STATUS.WAITING)
+            {
+                activity.startActivity(new Intent(activity, LobbyActivity.class));
+            }
+            else if (status == GAME_STATUS.ONGOING)
+            {
+                activity.startActivity( new Intent(activity, GameActivity.class));
+            }
         }
 
 

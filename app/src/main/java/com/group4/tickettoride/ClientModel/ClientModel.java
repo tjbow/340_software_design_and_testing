@@ -50,6 +50,7 @@ public class ClientModel extends Observable {
 
     public void setGameList(GameList gameList) {
         this.gameList = gameList;
+
         sendToObservers(gameList);
     }
 
@@ -92,8 +93,17 @@ public class ClientModel extends Observable {
 
     public void updateGame(GameList gameList){
         if(this.game != null){
-            this.game = getGameList().getGameByName(game.getGameName());
+            this.game = gameList.getGameByName(game.getGameName());
             sendToObservers(game);
+        }
+    }
+
+    public void checkForGame()
+    {
+        if (this.game == null && gameList.getGameByUsername(user.getUsername()) != null)
+        {
+            this.game = gameList.getGameByUsername(user.getUsername());
+            setPlayer();
         }
     }
 

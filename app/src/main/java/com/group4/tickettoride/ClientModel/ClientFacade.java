@@ -2,6 +2,7 @@ package com.group4.tickettoride.ClientModel;
 
 import com.google.gson.Gson;
 import com.group4.shared.Model.CommandList;
+import com.group4.shared.Model.GAME_STATUS;
 import com.group4.shared.Model.Game;
 import com.group4.shared.Model.GameList;
 import com.group4.shared.Model.Player;
@@ -89,8 +90,20 @@ public class ClientFacade implements IClient,IComandExec
 
         ClientModel.SINGLETON.setAuthToken(authToken);
         ClientModel.SINGLETON.setUser( new User(username) );
+        ClientModel.SINGLETON.checkForGame();
 
-        ClientModel.SINGLETON.sendToObservers(true);
+        if (ClientModel.SINGLETON.getGame() != null)
+        {
+            //user is already in a game, send status
+            GAME_STATUS status = ClientModel.SINGLETON.getGame().getStatus();
+            ClientModel.SINGLETON.sendToObservers(status);
+        }
+        else
+        {
+            //user is not in a game, move to next activity
+            ClientModel.SINGLETON.sendToObservers(true);
+        }
+
         poller.setUpdateGameList(true);
 
         return null;
@@ -99,9 +112,9 @@ public class ClientFacade implements IClient,IComandExec
     @Override
     public Results onRegister(String authToken, String username) {
 
-        ClientModel.SINGLETON.setAuthToken(authToken);
-        ClientModel.SINGLETON.setUser( new User(username) );
-        ClientModel.SINGLETON.sendToObservers(true);
+//        ClientModel.SINGLETON.setAuthToken(authToken);
+//        ClientModel.SINGLETON.setUser( new User(username) );
+//        ClientModel.SINGLETON.sendToObservers(true);
 
         poller.setUpdateGameList(true);
 

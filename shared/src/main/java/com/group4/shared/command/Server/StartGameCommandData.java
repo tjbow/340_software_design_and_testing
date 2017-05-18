@@ -7,13 +7,13 @@ import com.group4.shared.command.Command;
  */
 
 public class StartGameCommandData extends Command {
-    private int gameID;
+    private String gameName;
 
-    public int getGameID() {
-        return gameID;
+    public String getGameName() {
+        return gameName;
     }
 
-    public void setGameID(int gameID) {
-        this.gameID = gameID;
+    public void setGameName(String gameName) {
+        this.gameName = gameName;
     }
 }

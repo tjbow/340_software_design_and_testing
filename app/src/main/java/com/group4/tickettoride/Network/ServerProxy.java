@@ -11,6 +11,7 @@ import com.group4.shared.command.Server.GetGameListCommandData;
 import com.group4.shared.command.Server.JoinGameCommandData;
 import com.group4.shared.command.Server.LoginCommandData;
 import com.group4.shared.command.Server.RegisterCommandData;
+import com.group4.shared.command.Server.StartGameCommandData;
 import com.group4.tickettoride.ClientModel.ClientFacade;
 import com.group4.tickettoride.ClientModel.ClientModel;
 
@@ -105,8 +106,14 @@ public class ServerProxy implements IServer
     }
 
     @Override
-    public Results startGame(int gameId)
+    public Results startGame(String gameName)
     {
+        StartGameCommandData cmd = new StartGameCommandData();
+        cmd.setType("startgame");
+        cmd.setGameName(gameName);
+
+        threadIt(cmd);
+
         return null;
     }
 

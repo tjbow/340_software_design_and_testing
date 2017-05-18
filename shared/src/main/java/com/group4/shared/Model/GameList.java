@@ -44,6 +44,18 @@ public class GameList {
         return 0;
     }
 
+    public Game getGameByUsername(String username)
+    {
+        for (Game game : gameList)
+        {
+            if (game.getPlayers().containsKey(username))
+            {
+                return game;
+            }
+        }
+        return null;
+    }
+
     public Game getGameByName(String gameName)
     {
         for(Game game : gameList)
