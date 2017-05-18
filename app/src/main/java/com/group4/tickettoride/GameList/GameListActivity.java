@@ -28,9 +28,32 @@ public class GameListActivity extends AppCompatActivity implements IGameListActi
     private RecyclerView gameList;
     private Button createGameButton;
     private GameAdapter adapter;
+    View decorView;
     private IGameListPresenter presenter;
 
     private static final String CREATE_GAME_DIALOG = "CreateGameDialog";
+
+
+    private void fullScreen() {
+
+            decorView.setSystemUiVisibility(
+                    View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                            | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                            | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                            | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                            | View.SYSTEM_UI_FLAG_FULLSCREEN
+                            | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
+    }
+
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus){
+        super.onWindowFocusChanged(hasFocus);
+        if(hasFocus)
+        fullScreen();
+    }
+
+
+
 
 
     @Override
@@ -38,10 +61,19 @@ public class GameListActivity extends AppCompatActivity implements IGameListActi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_list);
 
+        decorView = getWindow().getDecorView();
+
+
         this.presenter = new GameListPresenter(this);
+        onWindowFocusChanged(hasWindowFocus());
+
+
+        //fullScreen();
 
         gameList = (RecyclerView) findViewById(R.id.gameList_recyclerView);
         gameList.setLayoutManager(new LinearLayoutManager(this));
+
+
 
         createGameButton = (Button) findViewById(R.id.gameList_createGameButton);
         createGameButton.setOnClickListener(new View.OnClickListener() {
@@ -112,6 +144,8 @@ public class GameListActivity extends AppCompatActivity implements IGameListActi
             //TODO @john: pass in needed gameInfo
             presenter.joinGame(game.getGameName());
         }
+
+
     }
 
     private class GameAdapter extends RecyclerView.Adapter<GameHolder> {

@@ -21,6 +21,7 @@ public class LobbyActivity extends AppCompatActivity implements ILobbyActivity {
     private Button startButton;
     private TextView playerStatusView;
     private TextView gameNameView;
+    private View decorView;
 
     private String playerStatus;
     private int maxPlayers = 0;
@@ -31,10 +32,32 @@ public class LobbyActivity extends AppCompatActivity implements ILobbyActivity {
     private static final String EXTRA_GAME_ID = "com.group4.tickettoride.Lobby.game_id";
     private final String playerStatusTemplate = "%d/%d players";
 
+
+    private void fullScreen() {
+
+        decorView.setSystemUiVisibility(
+                View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                        | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                        | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                        | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                        | View.SYSTEM_UI_FLAG_FULLSCREEN
+                        | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
+    }
+
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus){
+        super.onWindowFocusChanged(hasFocus);
+        if(hasFocus)
+            fullScreen();
+    }
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lobby);
+        decorView = getWindow().getDecorView();
 
         startButton = (Button)findViewById(R.id.start_button);
         setStartButtonEnabled(false);
