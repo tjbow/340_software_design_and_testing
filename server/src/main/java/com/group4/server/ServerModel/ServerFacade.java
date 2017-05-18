@@ -35,12 +35,17 @@ public class ServerFacade implements IServer, IClient
         String authToken = serverModel.loginUser(user);
         if(authToken != null)
         {
+            CGetGameListCommandData getGameListCommandData = new CGetGameListCommandData();
+            getGameListCommandData.setType("getgamelist");
+            getGameListCommandData.setGameList(serverModel.getGameList());
+
             CLoginCommandData loginData = new CLoginCommandData();
             loginData.setAuthToken(authToken);
             loginData.setUsername(user.getUsername());
             loginData.setType("login");
 
             CommandList cmdList = new CommandList();
+            cmdList.commandList.add(getGameListCommandData);
             cmdList.commandList.add(loginData);
 
             System.out.println("User " + user.getUsername() + " logged in");
