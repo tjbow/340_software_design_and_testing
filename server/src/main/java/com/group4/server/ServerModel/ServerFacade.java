@@ -14,6 +14,7 @@ import com.group4.shared.command.Client.CGetGameListCommandData;
 import com.group4.shared.command.Client.CJoinGameCommandData;
 import com.group4.shared.command.Client.CLoginCommandData;
 import com.group4.shared.command.Client.CRegisterCommandData;
+import com.group4.shared.command.Client.CStartGameCommandData;
 import com.group4.shared.command.Server.LoginCommandData;
 
 import java.util.List;
@@ -133,13 +134,23 @@ public class ServerFacade implements IServer, IClient
     }
 
     @Override
-    public Results startGame(int gameId)
+    public Results startGame(String gameName)
     {
-        if(true)
-        {
-            return new Results(false, null, "joinGame not yet functional", null);
-        }
-        return null;
+        serverModel.startGame(gameName);
+
+        CGetGameListCommandData gameListCommandData = new CGetGameListCommandData();
+        gameListCommandData.setType("getgamelist");
+        gameListCommandData.setGameList(serverModel.getGameList());
+
+        CStartGameCommandData startGameCommandData = new CStartGameCommandData();
+        startGameCommandData.setType("startgame");
+        startGameCommandData.setWasSuccessful(true);
+
+        CommandList cmdList = new CommandList();
+        cmdList.commandList.add(gameListCommandData);
+        cmdList.commandList.add(startGameCommandData);
+
+        return new Results(true, null, null, cmdList);
     }
 
     @Override
