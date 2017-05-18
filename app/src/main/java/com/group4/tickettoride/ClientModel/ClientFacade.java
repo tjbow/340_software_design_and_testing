@@ -89,6 +89,7 @@ public class ClientFacade implements IClient,IComandExec
 
         ClientModel.SINGLETON.setAuthToken(authToken);
         ClientModel.SINGLETON.setUser( new User(username) );
+
         ClientModel.SINGLETON.sendToObservers(true);
         poller.setUpdateGameList(true);
 

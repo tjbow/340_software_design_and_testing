@@ -15,6 +15,7 @@ public class Game {
     private int playerCount;
     private String gameName;
     private String gameID;
+    private GAME_STATUS status;
 
     public Game(Map<String, Player> players, int gameId, String gameName, int playerCount) {
         this.players = players;
@@ -28,6 +29,7 @@ public class Game {
         this.gameName = gameName;
         this.playerCount = playerCount;
         this.players = new HashMap<>();
+        this.status = GAME_STATUS.WAITING;
     }
 
     public Map<String, Player> getPlayers() {
@@ -76,5 +78,15 @@ public class Game {
 
     public void setGameID(String gameID) {
         this.gameID = gameID;
+    }
+
+    public GAME_STATUS getStatus()
+    {
+        return status;
+    }
+
+    public void setStatus(GAME_STATUS status)
+    {
+        this.status = status;
     }
 }
