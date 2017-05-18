@@ -94,7 +94,11 @@ public class ServerFacade implements IServer, IClient
     public Results createGame(String gameName, int numberOfPlayers)
     {
         Game game = new Game(gameName, numberOfPlayers);
-        serverModel.addGame(game);
+        boolean success = serverModel.addGame(game);
+        if(!success)
+        {
+            return new Results(false, null, "A game with that name already exists.", null);
+        }
 
         CGetGameListCommandData gameListCommandData = new CGetGameListCommandData();
         gameListCommandData.setType("getgamelist");
@@ -153,8 +157,8 @@ public class ServerFacade implements IServer, IClient
         startGameCommandData.setWasSuccessful(true);
 
         CommandList cmdList = new CommandList();
-        cmdList.commandList.add(gameListCommandData);
         cmdList.commandList.add(startGameCommandData);
+        cmdList.commandList.add(gameListCommandData);
 
         return new Results(true, null, null, cmdList);
     }
@@ -180,8 +184,6 @@ public class ServerFacade implements IServer, IClient
         System.out.println("getGameList() was called.");
         return results;
     }
-
-
 
     @Override
     public Results getCommandsSinceIndex(int commandID)

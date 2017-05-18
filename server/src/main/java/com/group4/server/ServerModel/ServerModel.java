@@ -128,8 +128,12 @@ public class ServerModel
      * Adds a game to the game list on the server
      * @param game
      */
-    protected void addGame(Game game)
+    protected boolean addGame(Game game)
     {
+        if(gameList.getGameByName(game.getGameName()) != null)
+        {
+            return false;
+        }
         gameList.getGameList().add(game);
 
         System.out.println("Game \"" + game.getGameName() + "\" created by " + getTempUser().getUsername() + " with " + game.getPlayerCount() + " players.");
@@ -137,6 +141,8 @@ public class ServerModel
         Player player = new Player(getTempUser());
 
         joinGame(game.getGameName(), player);
+
+        return true;
     }
 
     protected boolean joinGame(String gameName, Player player)
