@@ -176,7 +176,10 @@ public class ServerProxy implements IServer
         @Override
         protected void onPostExecute(Void aVoid)
         {
-            ClientFacade.SINGLETON.processResults(mResults);
+            if(mResults != null)
+            {
+                ClientFacade.SINGLETON.processResults(mResults);
+            }
         }
     }
 }
