@@ -160,7 +160,7 @@ public class ServerProxy implements IServer
             {
                 mResults = new ClientCommunicator().send("execcommand", o);
             }
-            if(!mResults.isSuccess())
+            if(mResults != null && !mResults.isSuccess())
             {
 
                 ClientModel.SINGLETON.sendToObservers(mResults.getErrorInfo());
