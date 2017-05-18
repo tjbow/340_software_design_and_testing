@@ -100,10 +100,14 @@ public class ClientModel extends Observable {
 
     public void checkForGame()
     {
-        if (this.game == null && gameList.getGameByUsername(user.getUsername()) != null)
+        if (/*this.game == null && */gameList.getGameByUsername(user.getUsername()) != null)
         {
             this.game = gameList.getGameByUsername(user.getUsername());
             setPlayer();
+        }
+        else
+        {
+            this.game = null;
         }
     }
 
