@@ -2,6 +2,7 @@ package com.group4.tickettoride.Lobby;
 
 import android.content.Intent;
 
+import com.group4.shared.Model.GAME_STATUS;
 import com.group4.shared.Model.Game;
 import com.group4.shared.Model.Player;
 import com.group4.tickettoride.ClientModel.ClientModel;
@@ -35,7 +36,6 @@ public class LobbyPresenter implements Observer,ILobbyPresenter {
 
     @Override
     public void startGame() {
-        //TODO @john: implement start game
         NextLayerFacade.SINGLETON.startGame(game.getGameName());
     }
 
@@ -55,6 +55,12 @@ public class LobbyPresenter implements Observer,ILobbyPresenter {
             //TODO: @john: gameName change
             //gets the updated version of itself from the gameList
             this.game = (Game) arg;
+
+            if(this.game.getStatus() == GAME_STATUS.ONGOING)
+            {
+                startGameActivity(o);
+            }
+
             setGameInfo();
 
         }
@@ -64,20 +70,16 @@ public class LobbyPresenter implements Observer,ILobbyPresenter {
         }
         else if (arg.getClass() == Boolean.class)
         {
-//            if(ClientModel.SINGLETON.getGame() == null)
-//            {
-//                o.deleteObserver(this);
-//                Intent i = new Intent(activity, GameListActivity.class);
-//                activity.startActivity(i);
-//                activity.finish();
-//                return;
-//            }
-            o.deleteObserver(this);
-//            Intent i = new Intent(activity, GameActivity.class);
-            Intent i = GameActivity.newIntent(activity, ClientModel.SINGLETON.getGame().getGameName());
-            activity.startActivity(i);
-            activity.finish();
+            startGameActivity(o);
         }
+    }
+
+    private void startGameActivity(Observable o)
+    {
+        o.deleteObserver(this);
+        Intent i = GameActivity.newIntent(activity, ClientModel.SINGLETON.getGame().getGameName());
+        activity.startActivity(i);
+        activity.finish();
     }
 
     public void setGameInfo()
