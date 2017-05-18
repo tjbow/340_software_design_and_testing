@@ -20,6 +20,10 @@ import com.group4.shared.command.IClientCommand;
 import com.group4.tickettoride.Command.CLoginCommand;
 import com.group4.tickettoride.Command.CRegisterCommand;
 
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+
 /*
  * Created by Tom on 5/15/2017.
  */
@@ -28,12 +32,23 @@ public class ClientFacade implements IClient,IComandExec
 {
     private Poller poller;
     private Thread pollerThread;
+    private ExecutorService threadPoolExecutor;
+    private Future pollerTask;
 
     private ClientFacade()
     {
+        threadPoolExecutor = Executors.newSingleThreadExecutor();
+
         poller = new Poller();
-        pollerThread = new Thread(poller, "Poller Thread");
-        pollerThread.start();
+        pollerTask = threadPoolExecutor.submit(poller);
+        Runtime.getRuntime().addShutdownHook(new Thread(){
+            public void run()
+            {
+                pollerTask.cancel(true);
+            }
+        });
+        //pollerThread = new Thread(poller, "Poller Thread");
+        //pollerThread.start();
     }
 
     public static ClientFacade SINGLETON = new ClientFacade();
