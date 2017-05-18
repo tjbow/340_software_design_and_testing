@@ -6,4 +6,6 @@ public interface IGameListPresenter {
     void joinGame(String gameName);
 
     void createGame();
+
+    void onBackPressed();
 }

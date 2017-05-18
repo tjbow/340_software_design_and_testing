@@ -39,6 +39,13 @@ public class LobbyPresenter implements Observer,ILobbyPresenter {
     }
 
     @Override
+    public void onBackPressed()
+    {
+        activity.finish();
+        ClientModel.SINGLETON.deleteObserver(this);
+    }
+
+    @Override
     public void update(Observable o, Object arg) {
         if (arg.getClass() == Game.class)
         {

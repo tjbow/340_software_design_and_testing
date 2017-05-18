@@ -58,6 +58,13 @@ public class LobbyActivity extends AppCompatActivity implements ILobbyActivity {
     }
 
     @Override
+    public void onBackPressed()
+    {
+//        super.onBackPressed();
+        presenter.onBackPressed();
+    }
+
+    @Override
     public void setPlayerList(List<Player> playerList) {
         playerListView.setAdapter(new Lobby_List_Adapter(playerList));
     }

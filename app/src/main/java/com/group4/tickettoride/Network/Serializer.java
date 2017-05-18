@@ -83,6 +83,10 @@ public class Serializer
                         ClientCommand clientCommand1 = new Gson().fromJson(next.toString(), CStartGameCommand.class);
                         iCommands.add(clientCommand1);
                         break;
+                    case "endgame":
+                        //TODO: TYLER: Implement the serializer for an endgame command
+//                        ClientCommand clientCommand2 = new Gson().fromJson(next.toString(), CEndGameCommand.class);
+//                        iCommands.add(clientCommand2);
                     default:
                         System.out.println("no command");
                         break;

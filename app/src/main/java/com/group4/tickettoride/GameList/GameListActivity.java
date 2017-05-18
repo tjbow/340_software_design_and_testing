@@ -56,6 +56,13 @@ public class GameListActivity extends AppCompatActivity implements IGameListActi
         });
     }
 
+    @Override
+    public void onBackPressed()
+    {
+//        super.onBackPressed();
+        presenter.onBackPressed();
+    }
+
     void showDialog()
     {
         FragmentManager manager = getSupportFragmentManager();

@@ -6,4 +6,6 @@ package com.group4.tickettoride.Lobby;
 
 public interface ILobbyPresenter {
     void startGame();
+
+    void onBackPressed();
 }

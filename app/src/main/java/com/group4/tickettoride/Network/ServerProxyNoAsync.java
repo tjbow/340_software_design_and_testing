@@ -107,6 +107,12 @@ public class ServerProxyNoAsync implements IServer
     }
 
     @Override
+    public Results endGame(String gameName)
+    {
+        return null;
+    }
+
+    @Override
     public Results getCommandsSinceIndex(int commandID)
     {
         return null;

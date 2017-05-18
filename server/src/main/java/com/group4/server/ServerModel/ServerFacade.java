@@ -186,6 +186,12 @@ public class ServerFacade implements IServer, IClient
     }
 
     @Override
+    public Results endGame(String gameName)
+    {
+        return null;
+    }
+
+    @Override
     public Results getCommandsSinceIndex(int commandID)
     {
         Results results = new Results(true, null, null, serverModel.getCommandsSinceIndex(commandID));

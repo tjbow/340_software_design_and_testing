@@ -17,5 +17,6 @@ public interface IServer {
     public Results startGame(String gameName);
     public Results getGameList();
     public Results getCommandsSinceIndex(int commandID);
+    public Results endGame(String gameName);
 
 }

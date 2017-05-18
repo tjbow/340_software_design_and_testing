@@ -11,5 +11,7 @@ package com.group4.tickettoride.NextLayerFacade;
 
     void joinGame(String gameName);
 
-     void startGame(String gameName);
+    void startGame(String gameName);
+
+    void endGame(String gameName);
 }

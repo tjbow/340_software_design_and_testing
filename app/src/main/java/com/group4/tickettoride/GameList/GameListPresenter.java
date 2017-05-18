@@ -51,6 +51,13 @@ public class GameListPresenter implements IGameListPresenter, Observer {
     }
 
     @Override
+    public void onBackPressed()
+    {
+        activity.finish();
+        ClientModel.SINGLETON.deleteObserver(this);
+    }
+
+    @Override
     public void update(Observable o, final Object arg) {
         if (arg.getClass() == GameList.class)
         {
@@ -67,7 +74,7 @@ public class GameListPresenter implements IGameListPresenter, Observer {
 
             activity.setGameList(displayedGameList);
         }
-        else if (arg.getClass() == Boolean.class && ClientModel.SINGLETON.getGame() != null) //TODO: TYLER this
+        else if (arg.getClass() == Boolean.class/* && ClientModel.SINGLETON.getGame() != null*/) //TODO: TYLER this
         {
             o.deleteObserver(this);
             //start Lobby activity

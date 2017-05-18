@@ -44,6 +44,7 @@ class Login_RegisterPresenter implements ILogin_RegisterPresenter, Observer {
     }
 
 
+
     @Override
     public void displayError(String error) {
         activity.displayError(error);

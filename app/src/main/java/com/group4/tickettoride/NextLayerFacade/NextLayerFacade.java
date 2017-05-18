@@ -38,4 +38,10 @@ public class NextLayerFacade implements INextLayerFacade {
     public void startGame(String gameName) {
         ServerProxy.SINGLETON.startGame(gameName);
     }
+
+    @Override
+    public void endGame(String gameName)
+    {
+        ServerProxy.SINGLETON.endGame(gameName);
+    }
 }

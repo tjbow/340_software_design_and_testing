@@ -127,6 +127,13 @@ public class ServerProxy implements IServer
     }
 
     @Override
+    public Results endGame(String gameName)
+    {
+        //TODO: TYLER: Implement ServerProxy endGame()
+        return null;
+    }
+
+    @Override
     public Results getCommandsSinceIndex(int commandID)
     {
         return null;
