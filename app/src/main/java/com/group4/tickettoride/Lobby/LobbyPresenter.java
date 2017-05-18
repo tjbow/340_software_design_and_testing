@@ -33,7 +33,7 @@ public class LobbyPresenter implements Observer,ILobbyPresenter {
     @Override
     public void startGame() {
         //TODO @john: implement start game
-        //NextLayerFacade.SINGLETON.startGame();
+        NextLayerFacade.SINGLETON.startGame(game.getGameName());
     }
 
     @Override
