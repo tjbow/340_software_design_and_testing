@@ -69,6 +69,7 @@ public class GameListPresenter implements IGameListPresenter, Observer {
         }
         else if (arg.getClass() == Boolean.class)
         {
+            o.deleteObserver(this);
             //start Lobby activity
             Intent i = new Intent(activity, LobbyActivity.class);
             activity.startActivity(i);
@@ -92,13 +93,5 @@ public class GameListPresenter implements IGameListPresenter, Observer {
         activity.displayError(error);
     }
 
-    public void testRecycler()
-    {
-        Game game1 = new Game("Test Game", 2);
-        List<Game> games = new ArrayList<>();
-        games.add(game1);
-        GameList gameList = new GameList(games);
 
-        this.activity.setGameList(gameList);
-    }
 }

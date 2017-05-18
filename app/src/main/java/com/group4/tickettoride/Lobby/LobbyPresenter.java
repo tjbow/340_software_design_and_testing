@@ -27,6 +27,7 @@ public class LobbyPresenter implements Observer,ILobbyPresenter {
 
         this.activity = activity;
         game = ClientModel.SINGLETON.getGame();
+        ClientModel.SINGLETON.addObserver(this);
         setGameInfo();
     }
 
@@ -52,6 +53,7 @@ public class LobbyPresenter implements Observer,ILobbyPresenter {
         }
         else if (arg.getClass() == Boolean.class)
         {
+            o.deleteObserver(this);
             Intent i = new Intent(activity, GameActivity.class);
             activity.startActivity(i);
             activity.finish();
