@@ -75,6 +75,7 @@ public class ServerFacade implements IServer, IClient
             CRegisterCommandData registerData = new CRegisterCommandData();
             registerData.setAuthToken(authToken);
             registerData.setType("register");
+            registerData.setUsername(user.getUsername());
 
             CommandList cmdList = new CommandList();
             cmdList.commandList.add(getGameListCommandData);
