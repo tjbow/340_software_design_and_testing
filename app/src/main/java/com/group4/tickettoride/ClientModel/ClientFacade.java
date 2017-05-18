@@ -125,6 +125,7 @@ public class ClientFacade implements IClient,IComandExec
     public Results onStartGame()
     {
         poller.setUpdateGameList(false);
+        ClientModel.SINGLETON.sendToObservers(true);
         return null;
     }
 
