@@ -3,6 +3,7 @@ package com.group4.tickettoride.GameList;
 
 import android.content.Intent;
 
+import com.group4.shared.Model.GAME_STATUS;
 import com.group4.shared.Model.Game;
 import com.group4.shared.Model.GameList;
 
@@ -51,10 +52,20 @@ public class GameListPresenter implements IGameListPresenter, Observer {
 
     @Override
     public void update(Observable o, final Object arg) {
-        //TODO @john: is this how we want it?
         if (arg.getClass() == GameList.class)
         {
-            activity.setGameList( (GameList) arg );
+            GameList gameList = (GameList) arg;
+            GameList displayedGameList = new GameList(new ArrayList<Game>());
+
+            for(Game game : gameList.getGameList())
+            {
+                if(!game.getStatus().equals(GAME_STATUS.ONGOING))
+                {
+                    displayedGameList.getGameList().add(game);
+                }
+            }
+
+            activity.setGameList(displayedGameList);
         }
         else if (arg.getClass() == Boolean.class)
         {
