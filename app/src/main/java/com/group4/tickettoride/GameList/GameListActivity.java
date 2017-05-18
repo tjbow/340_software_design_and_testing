@@ -2,8 +2,12 @@ package com.group4.tickettoride.GameList;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.graphics.drawable.BitmapDrawable;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -34,6 +38,15 @@ public class GameListActivity extends AppCompatActivity implements IGameListActi
     private static final String CREATE_GAME_DIALOG = "CreateGameDialog";
 
 
+    public void setBackground(Context context, View view, int drawableId){
+        Bitmap bitmap = BitmapFactory.decodeResource(context.getResources(), drawableId);
+        int width = Resources.getSystem().getDisplayMetrics().widthPixels;
+        int height = Resources.getSystem().getDisplayMetrics().heightPixels;
+        bitmap = Bitmap.createScaledBitmap(bitmap, width, height, true);
+        BitmapDrawable bitmapDrawable = new BitmapDrawable(context.getResources(), bitmap);
+        view.setBackground(bitmapDrawable);
+    }
+
     private void fullScreen() {
 
             decorView.setSystemUiVisibility(
@@ -60,6 +73,10 @@ public class GameListActivity extends AppCompatActivity implements IGameListActi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_list);
+
+        setBackground(this, findViewById(R.id.game_list_main), R.drawable.papersmall);
+
+
 
         decorView = getWindow().getDecorView();
 

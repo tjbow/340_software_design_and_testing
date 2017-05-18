@@ -2,10 +2,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main_laayout"
+    android:id="@+id/login_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/paperbackground"
     android:gravity="center"
     android:orientation="vertical"
     tools:context="com.group4.tickettoride.Login_Register.Login_RegisterActivity">

@@ -5,10 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/paperbackground"
+    android:id="@+id/lobby_main"
     tools:context="com.group4.tickettoride.Login_Register.Login_RegisterActivity"
     android:padding="10dp">
-
+    <!--android:background="@drawable/paperbackground"-->
 
     <TextView
         android:id="@+id/game_name"

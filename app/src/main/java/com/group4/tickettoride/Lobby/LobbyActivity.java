@@ -1,5 +1,10 @@
 package com.group4.tickettoride.Lobby;
 
+import android.content.Context;
+import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -32,6 +37,15 @@ public class LobbyActivity extends AppCompatActivity implements ILobbyActivity {
     private static final String EXTRA_GAME_ID = "com.group4.tickettoride.Lobby.game_id";
     private final String playerStatusTemplate = "%d/%d players";
 
+    public void setBackground(Context context, View view, int drawableId){
+        Bitmap bitmap = BitmapFactory.decodeResource(context.getResources(), drawableId);
+        int width = Resources.getSystem().getDisplayMetrics().widthPixels;
+        int height = Resources.getSystem().getDisplayMetrics().heightPixels;
+        bitmap = Bitmap.createScaledBitmap(bitmap, width, height, true);
+        BitmapDrawable bitmapDrawable = new BitmapDrawable(context.getResources(), bitmap);
+        view.setBackground(bitmapDrawable);
+    }
+
 
     private void fullScreen() {
 
@@ -57,6 +71,9 @@ public class LobbyActivity extends AppCompatActivity implements ILobbyActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lobby);
+        setBackground(this,findViewById(R.id.lobby_main),R.drawable.papersmall);
+
+
         decorView = getWindow().getDecorView();
 
         startButton = (Button)findViewById(R.id.start_button);
