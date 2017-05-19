@@ -18,4 +18,7 @@
     <string name="enter_gameName_prompt">Enter a name for the game:</string>
     <string name="select_playerCount_prompt">Select the desired number of players:</string>
 
+    <string name="waiting_message">Waiting for remaining players...</string>
+    <string name="ready_message">Let\'s go!</string>
+
 </resources>

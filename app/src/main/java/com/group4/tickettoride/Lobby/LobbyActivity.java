@@ -31,6 +31,7 @@ public class LobbyActivity extends AppCompatActivity implements ILobbyActivity {
     private TextView playerStatusView;
     private TextView gameNameView;
     private View decorView;
+    private TextView lobbyStatus;
 
     private String playerStatus;
     private int maxPlayers = 0;
@@ -84,6 +85,8 @@ public class LobbyActivity extends AppCompatActivity implements ILobbyActivity {
 
         decorView = getWindow().getDecorView();
 
+        lobbyStatus = (TextView) findViewById(R.id.lobby_status);
+
         startButton = (Button)findViewById(R.id.start_button);
         setStartButtonEnabled(false);
         startButton.setOnClickListener(new View.OnClickListener() {
@@ -118,6 +121,14 @@ public class LobbyActivity extends AppCompatActivity implements ILobbyActivity {
 
     @Override
     public void setStartButtonEnabled(boolean isEnabled) {
+        if (isEnabled)
+        {
+            lobbyStatus.setText(R.string.ready_message);
+        }
+        else
+        {
+            lobbyStatus.setText(R.string.waiting_message);
+        }
         startButton.setEnabled(isEnabled);
         startButton.setClickable(isEnabled);
     }
