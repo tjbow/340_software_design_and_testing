@@ -75,7 +75,7 @@ public class GameActivity extends AppCompatActivity implements IGameActivity {
 
     private String setPlayersText()
     {
-        StringBuilder players = new StringBuilder();
+        StringBuilder players = new StringBuilder("Players: ");
 
         Map<String, Player> currPlayers = game.getPlayers();
 

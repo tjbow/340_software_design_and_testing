@@ -66,10 +66,6 @@ public class GameListActivity extends AppCompatActivity implements IGameListActi
         fullScreen();
     }
 
-
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,21 +73,16 @@ public class GameListActivity extends AppCompatActivity implements IGameListActi
 
         setBackground(this, findViewById(R.id.game_list_main), R.drawable.papersmall);
 
-
-
         decorView = getWindow().getDecorView();
 
 
         this.presenter = new GameListPresenter(this);
         onWindowFocusChanged(hasWindowFocus());
 
-
         //fullScreen();
 
         gameList = (RecyclerView) findViewById(R.id.gameList_recyclerView);
         gameList.setLayoutManager(new LinearLayoutManager(this));
-
-
 
         createGameButton = (Button) findViewById(R.id.gameList_createGameButton);
         createGameButton.setOnClickListener(new View.OnClickListener() {
@@ -132,7 +123,6 @@ public class GameListActivity extends AppCompatActivity implements IGameListActi
             itemView.setOnClickListener(this);
             gameName = (TextView) itemView.findViewById(R.id.gameList_listItem_gameName);
             playerCount = (TextView) itemView.findViewById(R.id.gameList_listItem_playerCount);
-
         }
 
         public void bindGame(Game game)
@@ -148,17 +138,20 @@ public class GameListActivity extends AppCompatActivity implements IGameListActi
                 playerCount.setTypeface(null, Typeface.ITALIC);
                 playerCount.setTextColor(ContextCompat.getColor(GameListActivity.this, R.color.colorDarkGray));
             }
+            else //the game is not full
+            {
+                gameName.setTypeface(null, Typeface.NORMAL);
+                gameName.setTextColor(ContextCompat.getColor(GameListActivity.this, R.color.colorBlack));
+                playerCount.setTypeface(null, Typeface.NORMAL);
+                playerCount.setTextColor(ContextCompat.getColor(GameListActivity.this, R.color.colorBlack));
+            }
         }
 
         @Override
         public void onClick(View v) {
-
             //call presenter's joinGame()
             presenter.joinGame(game.getGameName());
-
         }
-
-
     }
 
     private class GameAdapter extends RecyclerView.Adapter<GameHolder> {
@@ -193,7 +186,6 @@ public class GameListActivity extends AppCompatActivity implements IGameListActi
         {
             this.games = games;
         }
-
     }
     //------------------- END RECYCLERVIEW -----------------------
 
@@ -213,8 +205,6 @@ public class GameListActivity extends AppCompatActivity implements IGameListActi
             adapter.setGames(games);
             adapter.notifyDataSetChanged();
         }
-
-
     }
 
     public void displayError(String error)
