@@ -36,6 +36,7 @@ public class GameListActivity extends AppCompatActivity implements IGameListActi
     private IGameListPresenter presenter;
 
     private static final String CREATE_GAME_DIALOG = "CreateGameDialog";
+    private final String FULL_GAME_ERROR = "Sorry, this game is full.";
 
 
     public void setBackground(Context context, View view, int drawableId){
@@ -142,19 +143,19 @@ public class GameListActivity extends AppCompatActivity implements IGameListActi
             if (game.getCurrentPlayerSize() >= game.getPlayerCount())
             {
                 //the game cannot be joined because it is full or ongoing
-                itemView.setEnabled(false);
-                //itemView.setBackgroundColor(ContextCompat.getColor(GameListActivity.this, R.color.colorGray));
                 gameName.setTypeface(null, Typeface.ITALIC);
-                gameName.setTextColor(ContextCompat.getColor(GameListActivity.this, R.color.colorGray));
+                gameName.setTextColor(ContextCompat.getColor(GameListActivity.this, R.color.colorDarkGray));
                 playerCount.setTypeface(null, Typeface.ITALIC);
-                playerCount.setTextColor(ContextCompat.getColor(GameListActivity.this, R.color.colorGray));
+                playerCount.setTextColor(ContextCompat.getColor(GameListActivity.this, R.color.colorDarkGray));
             }
         }
 
         @Override
         public void onClick(View v) {
+
             //call presenter's joinGame()
             presenter.joinGame(game.getGameName());
+
         }
 
 

@@ -51,7 +51,7 @@
             android:layout_height="wrap_content"
             android:inputType="textPassword"
             android:maxLength="20"
-            android:textColor="@color/colorBlack" />
+            android:textColor="@color/colorBlack"/>
 
     </LinearLayout>
 

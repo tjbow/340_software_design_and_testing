@@ -15,6 +15,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Game Name"
+        android:layout_gravity="center"
+        android:textSize="30sp"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
     <LinearLayout
@@ -40,12 +42,15 @@
             android:padding="15dp" />
 
     </LinearLayout>
-    <View
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_weight="1">
 
-    </View>
+    <ImageView
+
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        app:srcCompat="@drawable/moving_train">
+
+    </ImageView>
 
     <Button
         android:id="@+id/start_button"
