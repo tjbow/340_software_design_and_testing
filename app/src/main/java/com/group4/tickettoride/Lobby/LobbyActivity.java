@@ -22,8 +22,6 @@ import com.joanzapata.iconify.fonts.FontAwesomeModule;
 import java.util.LinkedList;
 import java.util.List;
 
-import pl.droidsonroids.gif.GifImageView;
-
 public class LobbyActivity extends AppCompatActivity implements ILobbyActivity {
 
     private RecyclerView playerListView;
@@ -79,8 +77,6 @@ public class LobbyActivity extends AppCompatActivity implements ILobbyActivity {
         setBackground(this,findViewById(R.id.lobby_main),R.drawable.papersmall);
 
         Iconify.with(new FontAwesomeModule());
-
-        GifImageView gifImageView;
 
 
         decorView = getWindow().getDecorView();
