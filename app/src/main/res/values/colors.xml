@@ -8,6 +8,7 @@
     <color name="colorGray">#A4A4A4</color>
     <color name="colorDarkGray">#773b3b3b</color>
     <color name="colorWhite">#FFFFFF</color>
+    <color name="colorTransWhite">#89ffffff</color>
 
     <color name="colorBlue">#4b8bf2</color>
     <color name="colorRed">#e43206</color>

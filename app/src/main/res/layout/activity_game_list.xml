@@ -27,7 +27,7 @@
         android:id="@+id/gameList_recyclerView"
         android:layout_weight="0.75"
         android:layout_margin="5dp"
-        android:background="#a0a0a0a0"
+        android:background="@color/colorTransWhite"
         />
 
     <LinearLayout
