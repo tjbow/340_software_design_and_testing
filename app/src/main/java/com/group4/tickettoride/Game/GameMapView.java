@@ -4,10 +4,7 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.Path;
 
-import android.graphics.Point;
-import android.graphics.RectF;
 import android.support.annotation.Nullable;
 
 import android.util.AttributeSet;
@@ -36,7 +33,7 @@ public class GameMapView extends View {
     private void drawRoute(Canvas canvas){
         //Just hardcoding in some values for now
         points.add(new Pt(300,300));
-        points.add(new Pt(500, 450 ));
+        points.add(new Pt(450, 300 ));
 
         canvas.drawLine(points.get(0).x,points.get(0).y,points.get(1).x,points.get(1).y,paint);
 
@@ -93,19 +90,37 @@ public class GameMapView extends View {
      * @return true if tapPt is between the two points
      */
     private boolean isRoute(Pt pt1, Pt pt2, Pt tapPt){
-        //Todo: Drew: fix vertical and horizontal lines
+
+        final int threshold = 50;  // max distance from the line
+
+//        pt1 = new Pt(1,2);  // just a little testing
+//        pt2 = new Pt(3,2);
+//        tapPt = new Pt(2,4);
 
         float slope = (pt1.y - pt2.y)/(pt1.x-pt2.x)*-1;
 
-        if(Math.min(pt1.y,pt2.y) > tapPt.y || Math.max(pt1.y,pt2.y) < tapPt.y){
+        double numerator = ((pt2.y - pt1.y)*tapPt.x) - ((pt2.x - pt1.x)*tapPt.y) + (pt2.x * pt1.y) - (pt2.y * pt1.x);
+        numerator = Math.abs(numerator);
+
+        double denominator = (Math.pow(pt2.y -pt1.y,2) + Math.pow(pt2.x - pt1.x,2));
+        denominator = Math.sqrt(denominator);
+
+        double dist = numerator/denominator;
+
+
+        if(dist > threshold){
             return false;
         }
 
-        float yCord = (slope*(tapPt.x - pt1.x) - pt1.y)*-1;
 
-        //Todo: Drew: replace with non constant value that scales up with the slope
-        final float threshold = 100; // How close the user has to be to the center of the line
-        return Math.abs(tapPt.y - yCord) <= threshold;
+        //Making sure we don't register a click off the end of the line
+        float xMax = Math.max(pt1.x,pt2.x) + threshold;
+        float xMin = Math.min(pt1.x,pt2.x) - threshold;
+        float yMax = Math.max(pt1.y,pt2.y) + threshold;
+        float yMin = Math.min(pt1.y,pt2.y) - threshold;
+
+        return !(tapPt.x > xMax || tapPt.x < xMin || tapPt.y > yMax || tapPt.y < yMin);
+
     }
 
 
