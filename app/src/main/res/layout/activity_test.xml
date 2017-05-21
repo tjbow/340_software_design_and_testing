@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context="com.group4.tickettoride.Game.testActivity">
     <com.group4.tickettoride.Game.GameMapView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_width="1426px"
+        android:layout_height="880px" />
 
 </android.support.constraint.ConstraintLayout>
