@@ -5,5 +5,5 @@ package com.group4.shared.Model;
  */
 
 public enum ROUTE_COLOR {
-    RED,GREEN,BLACK,ORANGE
+    RED,GREEN,BLACK,ORANGE,YELLOW,GRAY,WHITE,PURPLE
 }

@@ -9,6 +9,9 @@
     <color name="colorDarkGray">#773b3b3b</color>
     <color name="colorWhite">#FFFFFF</color>
     <color name="colorTransWhite">#89ffffff</color>
+    <color name="colorOrange">#e67f25</color>
+    <color name="colorPurple">#960dbf</color>
+
 
     <color name="colorBlue">#4b8bf2</color>
     <color name="colorRed">#e43206</color>
