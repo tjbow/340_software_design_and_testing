@@ -33,6 +33,8 @@ public class GameMapView extends View {
     private List<RouteSegment> routeSegments = new ArrayList<>();
     private Map<String,City> cities = new HashMap<>();
 
+    private final float RADIUS = 25;
+
     public GameMapView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
 
@@ -55,7 +57,7 @@ public class GameMapView extends View {
 
         routeSegments.add(r2);
 
-        City city = new City(60,80);
+        City city = new City(60,80);  //hardcoding in a city
         cities.put("city",city);
 
         paint.setFlags(Paint.ANTI_ALIAS_FLAG);
@@ -87,6 +89,12 @@ public class GameMapView extends View {
         }
     }
 
+    private double getDistance(Pt pt1, Pt pt2){
+        double dist = Math.pow(pt2.x - pt2.y,2) + Math.pow(pt2.y - pt1.y,2);
+        dist = Math.sqrt(dist);
+        return dist;
+    }
+
     private void drawCities(Canvas canvas){
         float width = getWidth();
         float height = getHeight();
@@ -99,7 +107,7 @@ public class GameMapView extends View {
 
             paint.setColor(Color.BLACK);
 
-            final float RADIUS = 25;
+
 
             canvas.drawCircle(x,y,RADIUS,paint);
         }
@@ -149,17 +157,21 @@ public class GameMapView extends View {
         float x = event.getX();
         float y = event.getY();
 
-//        Pt pt1 = points.get(0);
-//        Pt pt2 = points.get(1);
         Pt tapPt = new Pt(event.getX(),event.getY());
 
-        //Todo: Drew: set city as Dead zone to avoid clicking conflicts
+
+        for(City c : cities.values()){
+            Pt center = new Pt(c.getxConstraint()/100 * getWidth(),c.getyConstraint()/100 *getHeight());
+            if(getDistance(center,tapPt) < RADIUS){  //if touching city do nothing
+                return super.onTouchEvent(event);
+            }
+        }
 
         for(RouteSegment r : routeSegments) {
             Pt pt1 = new Pt(r.getX1Constraint()/100 * getWidth(),r.getY1Constraint()/100 *getHeight());
             Pt pt2 = new Pt(r.getX2Constraint()/100 * getWidth(),r.getY2Constraint()/100 *getHeight());
 
-            if (isRouteSegment(pt1, pt2, tapPt)) {  //Place inside of a for loop when we actually work on map
+            if (isRouteSegment(pt1, pt2, tapPt)) { 
                 tap = !tap;
                 invalidate();
             }
@@ -190,7 +202,7 @@ public class GameMapView extends View {
      */
     private boolean isRouteSegment(Pt pt1, Pt pt2, Pt tapPt){
 
-        final int threshold = 50;  // max distance from the line
+        final int THRESHOLD = 50;  // max distance from the line
 
 
         float slope = (pt1.y - pt2.y)/(pt1.x-pt2.x)*-1;
@@ -206,15 +218,15 @@ public class GameMapView extends View {
 
         double dist = numerator/denominator;
 
-        if(dist > threshold){
+        if(dist > THRESHOLD){
             return false;
         }
 
         //Making sure we don't register a click off the end of the line segment
-        float xMax = Math.max(pt1.x,pt2.x) + threshold;
-        float xMin = Math.min(pt1.x,pt2.x) - threshold;
-        float yMax = Math.max(pt1.y,pt2.y) + threshold;
-        float yMin = Math.min(pt1.y,pt2.y) - threshold;
+        float xMax = Math.max(pt1.x,pt2.x) + THRESHOLD;
+        float xMin = Math.min(pt1.x,pt2.x) - THRESHOLD;
+        float yMax = Math.max(pt1.y,pt2.y) + THRESHOLD;
+        float yMin = Math.min(pt1.y,pt2.y) - THRESHOLD;
 
         return !(tapPt.x > xMax || tapPt.x < xMin || tapPt.y > yMax || tapPt.y < yMin);
     }
