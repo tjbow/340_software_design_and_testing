@@ -1,16 +1,21 @@
 package com.group4.tickettoride.Game;
 
 import android.content.Context;
+import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 
+import android.graphics.RectF;
 import android.support.annotation.Nullable;
 
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 
+import com.group4.shared.Model.Route;
 import com.group4.tickettoride.R;
 
 import java.util.ArrayList;
@@ -24,28 +29,50 @@ public class GameMapView extends View {
     Paint paint = new Paint(); // holds styling information for what gets drawn on the canvas
     boolean tap = false;  //if true display text
     List<Pt> points = new ArrayList<>();  //we will replace this with a better data structure
+    List<Route> routes = new ArrayList<>();
 
     public GameMapView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
-        setBackgroundResource(R.drawable.map_res);
+
+        Route r = new Route(); //hard coding in route information
+        r.setX1Constraint(50);
+        r.setX2Constraint(60);
+        r.setY1Constraint(70);
+        r.setY2Constraint(80);
+
+        routes.add(r);
+
+        setBackgroundResource(R.drawable.unitedstates_map);
     }
 
-    private void drawRoute(Canvas canvas){
-        //Just hardcoding in some values for now
-        points.add(new Pt(300,300));
-        points.add(new Pt(450, 300 ));
+    public void setRoutes(List<Route> routes){
 
-        canvas.drawLine(points.get(0).x,points.get(0).y,points.get(1).x,points.get(1).y,paint);
+        this.routes = routes;
+        invalidate();
+    }
 
+    private void drawRoutes(Canvas canvas){
+
+        float width = getWidth();
+        float height = getHeight();
+
+        for(Route r : routes){
+            float x1 = r.getX1Constraint()/100 * width;
+            float y1 = r.getY1Constraint()/100 * height;
+            float x2 = r.getX2Constraint()/100 * width;
+            float y2 = r.getY2Constraint()/100 * height;
+            canvas.drawLine(x1,y1,x2,y2,paint);
+        }
     }
 
     @Override
     public void onDraw(Canvas canvas) {
         super.onDraw(canvas);
+
         paint.setColor(Color.BLACK);
         paint.setStrokeWidth(15);
         paint.setTextSize(50);
-        drawRoute(canvas);
+        drawRoutes(canvas);
         if(tap){
             canvas.drawText("You touched the line",30f,30f,paint);
         }
@@ -58,13 +85,18 @@ public class GameMapView extends View {
         float x = event.getX();
         float y = event.getY();
 
-        Pt pt1 = points.get(0);
-        Pt pt2 = points.get(1);
+//        Pt pt1 = points.get(0);
+//        Pt pt2 = points.get(1);
         Pt tapPt = new Pt(event.getX(),event.getY());
 
-        if(isRoute(pt1,pt2,tapPt)){  //Place inside of a for loop when we actually work on map
-            tap = !tap;
-            invalidate();
+        for(Route r : routes) {
+            Pt pt1 = new Pt(r.getX1Constraint()/100 * getWidth(),r.getY1Constraint()/100 *getHeight());
+            Pt pt2 = new Pt(r.getX2Constraint()/100 * getWidth(),r.getY2Constraint()/100 *getHeight());
+
+            if (isRoute(pt1, pt2, tapPt)) {  //Place inside of a for loop when we actually work on map
+                tap = !tap;
+                invalidate();
+            }
         }
 
         return super.onTouchEvent(event);
@@ -107,11 +139,9 @@ public class GameMapView extends View {
 
         double dist = numerator/denominator;
 
-
         if(dist > threshold){
             return false;
         }
-
 
         //Making sure we don't register a click off the end of the line
         float xMax = Math.max(pt1.x,pt2.x) + threshold;
@@ -120,7 +150,6 @@ public class GameMapView extends View {
         float yMin = Math.min(pt1.y,pt2.y) - threshold;
 
         return !(tapPt.x > xMax || tapPt.x < xMin || tapPt.y > yMax || tapPt.y < yMin);
-
     }
 
 
