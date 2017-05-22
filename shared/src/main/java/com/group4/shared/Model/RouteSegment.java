@@ -4,7 +4,7 @@ package com.group4.shared.Model;
  * Created by Andrew Gill on 5/21/2017.
  */
 
-public class Route {
+public class RouteSegment {
 
     String routeId;
     boolean claimed;

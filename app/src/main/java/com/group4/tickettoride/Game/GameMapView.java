@@ -12,51 +12,69 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 
+import com.group4.shared.Model.City;
 import com.group4.shared.Model.ROUTE_COLOR;
-import com.group4.shared.Model.Route;
+import com.group4.shared.Model.RouteSegment;
 import com.group4.tickettoride.R;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Andrew Gill on 5/20/2017.
  */
 
 public class GameMapView extends View {
-    Paint paint = new Paint(); // holds styling information for what gets drawn on the canvas
+    private Paint paint = new Paint(); // holds styling information for what gets drawn on the canvas
     boolean tap = false;  //if true display text.  Used only for demonstration purposes
 
-    List<Route> routes = new ArrayList<>();
+    private List<RouteSegment> routeSegments = new ArrayList<>();
+    private Map<String,City> cities = new HashMap<>();
 
     public GameMapView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
 
-        Route r = new Route(); //hard coding in route information
+        RouteSegment r = new RouteSegment(); //hard coding in RouteSegment information
         r.setX1Constraint(50);
         r.setX2Constraint(60);
         r.setY1Constraint(70);
         r.setY2Constraint(80);
         r.setLength(3);
         r.setRouteColor(ROUTE_COLOR.RED);
+        routeSegments.add(r);
 
-        routes.add(r);
+        RouteSegment r2 = new RouteSegment(); //hard coding in RouteSegment information
+        r2.setX1Constraint(80);
+        r2.setX2Constraint(60);
+        r2.setY1Constraint(20);
+        r2.setY2Constraint(80);
+        r2.setLength(3);
+        r2.setRouteColor(ROUTE_COLOR.GREEN);
+
+        routeSegments.add(r2);
+
+        City city = new City(60,80);
+        cities.put("city",city);
+
+        paint.setFlags(Paint.ANTI_ALIAS_FLAG);
 
         setBackgroundResource(R.drawable.unitedstates_map);  //set map as background
     }
 
-    public void setRoutes(List<Route> routes){
+    public void setRouteSegments(List<RouteSegment> RouteSegments){
 
-        this.routes = routes;
+        this.routeSegments = RouteSegments;
         invalidate();
     }
 
-    private void drawRoutes(Canvas canvas){
+    private void drawRouteSegments(Canvas canvas){
 
         float width = getWidth();
         float height = getHeight();
 
-        for(Route r : routes){
+        for(RouteSegment r : routeSegments){
             //translating from constraint to pixel value
             float x1 = r.getX1Constraint()/100 * width;
             float y1 = r.getY1Constraint()/100 * height;
@@ -69,7 +87,25 @@ public class GameMapView extends View {
         }
     }
 
-    private int getColor(Route r){
+    private void drawCities(Canvas canvas){
+        float width = getWidth();
+        float height = getHeight();
+
+        for(City c : cities.values()){
+            //translating from constraint to pixel value
+            float x = c.getxConstraint()/100 * width;
+            float y = c.getyConstraint()/100 * height;
+
+
+            paint.setColor(Color.BLACK);
+
+            final float RADIUS = 25;
+
+            canvas.drawCircle(x,y,RADIUS,paint);
+        }
+    }
+
+    private int getColor(RouteSegment r){
         switch (r.getRouteColor()){
             case RED:
                 return ContextCompat.getColor(getContext(),R.color.colorRed);
@@ -99,7 +135,8 @@ public class GameMapView extends View {
         paint.setColor(Color.BLACK);
         paint.setStrokeWidth(15);
         paint.setTextSize(50);
-        drawRoutes(canvas);
+        drawRouteSegments(canvas);
+        drawCities(canvas);
         if(tap){
             canvas.drawText("You touched the line",30f,30f,paint);
         }
@@ -118,11 +155,11 @@ public class GameMapView extends View {
 
         //Todo: Drew: set city as Dead zone to avoid clicking conflicts
 
-        for(Route r : routes) {
+        for(RouteSegment r : routeSegments) {
             Pt pt1 = new Pt(r.getX1Constraint()/100 * getWidth(),r.getY1Constraint()/100 *getHeight());
             Pt pt2 = new Pt(r.getX2Constraint()/100 * getWidth(),r.getY2Constraint()/100 *getHeight());
 
-            if (isRoute(pt1, pt2, tapPt)) {  //Place inside of a for loop when we actually work on map
+            if (isRouteSegment(pt1, pt2, tapPt)) {  //Place inside of a for loop when we actually work on map
                 tap = !tap;
                 invalidate();
             }
@@ -151,7 +188,7 @@ public class GameMapView extends View {
      * @param tapPt contains the cordanates of where the user taped
      * @return true if tapPt is between the two points
      */
-    private boolean isRoute(Pt pt1, Pt pt2, Pt tapPt){
+    private boolean isRouteSegment(Pt pt1, Pt pt2, Pt tapPt){
 
         final int threshold = 50;  // max distance from the line
 
