@@ -139,7 +139,7 @@ public class GameMapView extends View {
     @Override
     public void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-
+//
         paint.setColor(Color.BLACK);
         paint.setStrokeWidth(15);
         paint.setTextSize(50);
@@ -148,6 +148,30 @@ public class GameMapView extends View {
         if(tap){
             canvas.drawText("You touched the line",30f,30f,paint);
         }
+
+//        float x1 = 200;
+//        float y1 = 200;
+//        float x2 = 500;
+//        float y2 = 500;
+//
+//        float angleDeg = 45;
+//        double angle = Math.PI * angleDeg / 180;
+//
+//        canvas.drawCircle(x1,y1,10,paint);
+//        canvas.drawCircle(x2,y2,10,paint);
+//
+//        canvas.save();
+//        canvas.rotate(angleDeg);
+//
+//        float newY1 =(float)( y1 * Math.cos(angle) -( x1 *Math.sin(angle)));
+//        float newX1 = (float)(y1*Math.sin(angle) + (x1*Math.cos(angle)));
+//
+//        float newY2 = (float)(y2 * Math.cos(angle) -( x2 *Math.sin(angle)));
+//        float newX2 =(float)( y2*Math.sin(angle) + (x2*Math.cos(angle)));
+//
+//        canvas.drawRect(newX1,newY1+40,newX2,newY2 -40,paint);
+
+
 
     }
 
