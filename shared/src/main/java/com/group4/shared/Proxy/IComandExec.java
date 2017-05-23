@@ -1,6 +1,7 @@
 package com.group4.shared.Proxy;
 
 import com.group4.shared.Model.City;
+import com.group4.shared.Model.CommandList;
 import com.group4.shared.Model.Game;
 import com.group4.shared.Model.GameList;
 import com.group4.shared.Model.Message;

@@ -1,5 +1,7 @@
 package com.group4.tickettoride.Network;
 
+import com.group4.shared.Model.DestinationCard;
+import com.group4.shared.Model.Message;
 import com.group4.shared.Model.Results;
 import com.group4.shared.Model.User;
 import com.group4.shared.Proxy.IServer;
@@ -8,12 +10,15 @@ import com.group4.shared.command.Server.GetGameListCommandData;
 import com.group4.shared.command.Server.JoinGameCommandData;
 import com.group4.shared.command.Server.LoginCommandData;
 import com.group4.shared.command.Server.RegisterCommandData;
+import com.group4.shared.command.Server.SendChatCommandData;
+
+import java.util.List;
 
 /**
  * Created by tyler on 5/16/17.
  */
 
-public class ServerProxyNoAsync
+public class ServerProxyNoAsync implements IServer
 {
     private ServerProxyNoAsync()
     {
@@ -101,6 +106,34 @@ public class ServerProxyNoAsync
     }
 
     public Results endGame(String gameName)
+    {
+        return null;
+    }
+
+    @Override
+    public Results sendChat(Message message)
+    {
+        SendChatCommandData cmd = new SendChatCommandData();
+        cmd.setType("sendchat");
+        cmd.setMessage(message);
+        threadIt(cmd);
+        return null;
+    }
+
+    @Override
+    public Results getPendingCommands(User user, int lastCmdExecuted)
+    {
+        return null;
+    }
+
+    @Override
+    public Results drawDestinationCards(String userName, List<DestinationCard> selectedCards)
+    {
+        return null;
+    }
+
+    @Override
+    public Results returnDestinationCard(List<DestinationCard> returnedCard)
     {
         return null;
     }

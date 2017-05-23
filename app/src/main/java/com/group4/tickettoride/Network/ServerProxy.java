@@ -9,11 +9,15 @@ import com.group4.shared.Model.Results;
 import com.group4.shared.Model.User;
 import com.group4.shared.Proxy.IServer;
 import com.group4.shared.command.Server.CreateGameCommandData;
+import com.group4.shared.command.Server.DrawDestCardsCommandData;
 import com.group4.shared.command.Server.EndGameCommandData;
 import com.group4.shared.command.Server.GetGameListCommandData;
+import com.group4.shared.command.Server.GetPendingCommandsData;
 import com.group4.shared.command.Server.JoinGameCommandData;
 import com.group4.shared.command.Server.LoginCommandData;
 import com.group4.shared.command.Server.RegisterCommandData;
+import com.group4.shared.command.Server.ReturnDestCardCommandData;
+import com.group4.shared.command.Server.SendChatCommandData;
 import com.group4.shared.command.Server.StartGameCommandData;
 import com.group4.tickettoride.ClientModel.ClientFacade;
 import com.group4.tickettoride.ClientModel.ClientModel;
@@ -144,42 +148,42 @@ public class ServerProxy implements IServer
     @Override
     public Results sendChat(Message message)
     {
-//        SendChatCommand cmd = new SendChatCommand();
-//        cmd.setType("sendchat");
-//        cmd.setMessage(message);
-//        threadIt(cmd);
+        SendChatCommandData cmd = new SendChatCommandData();
+        cmd.setType("sendchat");
+        cmd.setMessage(message);
+        threadIt(cmd);
         return null;
     }
 
     @Override
     public Results getPendingCommands(User user, int lastCmdExecuted)
     {
-//        GetPendingCommands cmd = new GetPendingCommands();
-//        cmd.setType("getpending");
-//        cmd.setUser(user);
-//        cmd.setLastCmdExecuted();
-//        threadIt(cmd);
+        GetPendingCommandsData cmd = new GetPendingCommandsData();
+        cmd.setType("getpending");
+        cmd.setUser(user);
+        cmd.setLastCmdExecuted(lastCmdExecuted);
+        threadIt(cmd);
         return null;
     }
 
     @Override
     public Results drawDestinationCards(String userName, List<DestinationCard> selectedCards)
     {
-//        DrawDestCardsCommand cmd = new DrawDestCardsCommand();
-//        cmd.setType("drawdestcards");
-//        cmd.setUserName(userName);
-//        cmd.setSelectedCards(selectedCards);
-//        threadIt(cmd);
+        DrawDestCardsCommandData cmd = new DrawDestCardsCommandData();
+        cmd.setType("drawdestcards");
+        cmd.setUserName(userName);
+        cmd.setSelectedCards(selectedCards);
+        threadIt(cmd);
         return null;
     }
 
     @Override
     public Results returnDestinationCard(List<DestinationCard> returnedCard)
     {
-//        ReturnDestCardCommand cmd = new DrawDestCardCommand();
-//        cmd.setType("returndestcard");
-//        cmd.setReturnedCard(returnedCard);
-//        threadIt(cmd);
+        ReturnDestCardCommandData cmd = new ReturnDestCardCommandData();
+        cmd.setType("returndestcard");
+        cmd.setReturnedCard(returnedCard);
+        threadIt(cmd);
         return null;
     }
 
@@ -188,6 +192,16 @@ public class ServerProxy implements IServer
         NetworkTask task = new NetworkTask();
         task.execute(o);
     }
+
+//    /** FOR USE IN UNIT TESTING ONLY
+//     *
+//     * @param o
+//     */
+//    private void threadIt(Object o)
+//    {
+//        Results results = new ClientCommunicator().send("execcommand", o);
+//        ClientFacade.SINGLETON.processResults(results);
+//    }
 
     public class NetworkTask extends AsyncTask<Object, Void, Void>
     {

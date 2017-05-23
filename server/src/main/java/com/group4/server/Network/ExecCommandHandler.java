@@ -2,11 +2,15 @@ package com.group4.server.Network;
 
 import com.google.gson.Gson;
 import com.group4.server.Command.CreateGameCommand;
+import com.group4.server.Command.DrawDestCardsCommand;
 import com.group4.server.Command.EndGameCommand;
 import com.group4.server.Command.GetGameListCommand;
+import com.group4.server.Command.GetPendingCommands;
 import com.group4.server.Command.JoinGameCommand;
 import com.group4.server.Command.LoginCommand;
 import com.group4.server.Command.RegisterCommand;
+import com.group4.server.Command.ReturnDestCardCommand;
+import com.group4.server.Command.SendChatCommand;
 import com.group4.server.Command.StartGameCommand;
 import com.group4.server.ServerModel.ServerModel;
 import com.group4.shared.Model.Results;
@@ -69,25 +73,42 @@ public class ExecCommandHandler
                     results = endGameCommand.execute();
                 }
                 else results = noAuthToken();
+                break;
             case "getgamelist":
                 GetGameListCommand getGameListCommand = new Gson().fromJson(requestBody, GetGameListCommand.class);
                 results = getGameListCommand.execute();
                 break;
             case "sendchat":
-//                SendChatCommand sendChatCommand = new Gson().fromJson(requestBody, SendChatCommand.class);
-//                results = sendChatCommand.execute();
+                if(ServerModel.getInstance().getTempUser() != null)
+                {
+                    SendChatCommand sendChatCommand = new Gson().fromJson(requestBody, SendChatCommand.class);
+                    results = sendChatCommand.execute();
+                }
+                else results = noAuthToken();
                 break;
             case "getpending":
-//                GetPendingCommands getPendingCommands = new Gson().fromJson(requestBody, GetPendingCommands.class);
-//                results = getPendingCommands.execute();
+                if(ServerModel.getInstance().getTempUser() != null)
+                {
+                    GetPendingCommands getPendingCommands = new Gson().fromJson(requestBody, GetPendingCommands.class);
+                    results = getPendingCommands.execute();
+                }
+                else results = noAuthToken();
                 break;
             case "drawdestcards":
-//                DrawDestCardsCommand drawDestCardsCommand = new Gson().fromJson(requestBody, DrawDestCardsCommand.class);
-//                results = drawDestCardsCommand.execute();
+                if(ServerModel.getInstance().getTempUser() != null)
+                {
+                    DrawDestCardsCommand drawDestCardsCommand = new Gson().fromJson(requestBody, DrawDestCardsCommand.class);
+                    results = drawDestCardsCommand.execute();
+                }
+                else results = noAuthToken();
                 break;
             case "returndestcard":
-//                ReturnDestCardCommand returnDestCardCommand = new Gson().fromJson(requestBody, ReturnDestCarCommand.class);
-//                results = returnDestCardCommand.execute();
+                if(ServerModel.getInstance().getTempUser() != null)
+                {
+                    ReturnDestCardCommand returnDestCardCommand = new Gson().fromJson(requestBody, ReturnDestCardCommand.class);
+                    results = returnDestCardCommand.execute();
+                }
+                else results = noAuthToken();
                 break;
             default:
                 results = new Results(false, null, "Command type not yet implemented. Ask Tyler to implement it.", null);

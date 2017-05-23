@@ -1,7 +1,9 @@
 package com.group4.shared.Model;
 
+import com.group4.shared.command.ClientCommand;
 import com.group4.shared.command.Command;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -19,9 +21,9 @@ public class Game
     private String gameName;
     private GAME_STATUS status;
 
-    List<Message> turnHistory;
-    List<Message> chatHistory;
-    CommandList commandList;
+    private List<Message> turnHistory;
+    private List<Message> chatHistory;
+    private CommandList commandList;
 
     public Game(String gameName, int playerCount)
     {
@@ -29,6 +31,9 @@ public class Game
         this.playerCount = playerCount;
         this.players = new HashMap<>();
         this.status = GAME_STATUS.WAITING;
+
+        this.chatHistory = new ArrayList<>();
+        this.turnHistory = new ArrayList<>();
         this.commandList = new CommandList();
     }
 
@@ -78,6 +83,8 @@ public class Game
     }
 
 //    GAMEPLAY
+
+//    TURN HISTORY
     public List<Message> getTurnHistory()
     {
         return turnHistory;
@@ -88,6 +95,12 @@ public class Game
         this.turnHistory = turnHistory;
     }
 
+    public boolean addTurn(Message turn)
+    {
+        return turnHistory.add(turn);
+    }
+
+//    CHAT HISTORY
     public List<Message> getChatHistory()
     {
         return chatHistory;
@@ -98,6 +111,12 @@ public class Game
         this.chatHistory = chatHistory;
     }
 
+    public boolean addMessage(Message message)
+    {
+        return chatHistory.add(message);
+    }
+
+//    COMMAND LIST
     public CommandList getCommandList()
     {
         return commandList;
@@ -106,6 +125,11 @@ public class Game
     public void setCommandList(CommandList commandList)
     {
         this.commandList = commandList;
+    }
+
+    public boolean addCommand(ClientCommand command)
+    {
+        return commandList.add(command);
     }
 
     /*---------------Deprecated-------------------------------*/

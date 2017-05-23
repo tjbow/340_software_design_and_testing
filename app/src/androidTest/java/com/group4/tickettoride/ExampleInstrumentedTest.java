@@ -4,6 +4,10 @@ import android.content.Context;
 import android.support.test.InstrumentationRegistry;
 import android.support.test.runner.AndroidJUnit4;
 
+import com.group4.shared.Model.Message;
+import com.group4.tickettoride.Network.ServerProxy;
+import com.group4.tickettoride.Network.ServerProxyNoAsync;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 

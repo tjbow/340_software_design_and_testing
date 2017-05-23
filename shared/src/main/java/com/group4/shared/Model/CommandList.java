@@ -37,4 +37,14 @@ public class CommandList
     {
         return commandList.size();
     }
+
+    public CommandList getCommandListAfterIndex(int lastCommandExecuted)
+    {
+        CommandList returningList = new CommandList();
+        for(int i = lastCommandExecuted; i < commandList.size(); i++)
+        {
+            returningList.add(commandList.get(i));
+        }
+        return returningList;
+    }
 }

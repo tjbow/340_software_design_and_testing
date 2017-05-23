@@ -41,10 +41,9 @@ public class ClientFacade implements IClient,IComandExec
     private ClientFacade()
     {
         threadPoolExecutor = Executors.newSingleThreadExecutor();
-
         poller = new Poller();
         pollerTask = threadPoolExecutor.submit(poller);
-        // Add a shutdown hook to close down the thread when the app shutsdown
+//         Add a shutdown hook to close down the thread when the app shutsdown
         Runtime.getRuntime().addShutdownHook(new Thread(){
             public void run()
             {
@@ -80,13 +79,6 @@ public class ClientFacade implements IClient,IComandExec
         CommandList cmdList = results.getCommandList();
         for(ClientCommand cmd : cmdList.getCommandList())
         {
-            if(cmd.getType().equals("endgame"))
-            {
-                if(true)
-                {
-                    //do stuff
-                }
-            }
             ((IClientCommand) cmd).execute();
             ClientModel.SINGLETON.setCommandIDIndex(cmd.getCommandNumber());
         }

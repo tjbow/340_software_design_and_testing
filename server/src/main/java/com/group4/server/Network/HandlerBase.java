@@ -1,5 +1,6 @@
 package com.group4.server.Network;
 
+import com.google.gson.Gson;
 import com.group4.server.ServerModel.ServerModel;
 import com.group4.shared.Model.Results;
 import com.group4.shared.Model.User;
@@ -9,8 +10,11 @@ import com.sun.net.httpserver.HttpHandler;
 
 import java.io.BufferedOutputStream;
 import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.util.Scanner;
 

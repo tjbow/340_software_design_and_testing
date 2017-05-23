@@ -18,6 +18,8 @@ import com.group4.shared.command.Client.CJoinGameCommandData;
 import com.group4.shared.command.Client.CLoginCommandData;
 import com.group4.shared.command.Client.CRegisterCommandData;
 import com.group4.shared.command.Client.CStartGameCommandData;
+import com.group4.shared.command.Client.CUpdateChatCommandData;
+import com.group4.shared.command.ClientCommand;
 import com.group4.shared.command.Server.LoginCommandData;
 
 import java.util.List;
@@ -210,27 +212,49 @@ public class ServerFacade implements IServer, IClient
     @Override
     public Results sendChat(Message message)
     {
-        return null;
+        Game game = serverModel.getGameList().getGameByUsername(message.getUserName());
+
+        if(game == null) return new Results(false, null, "Chat cannot be sent - Game does not exist", null);
+
+        game.addMessage(message);
+
+        CUpdateChatCommandData updateChatCommandData = new CUpdateChatCommandData();
+        updateChatCommandData.setType("updatechat");
+        updateChatCommandData.setMessageList(game.getChatHistory());
+
+        game.addCommand(updateChatCommandData);
+
+        CommandList cmdList = new CommandList();
+        cmdList.add(updateChatCommandData);
+
+        System.out.println("Player " + message.getUserName() +
+                " in game " + game.getGameName() +
+                " chatted the message \"" + message.getMessage() + "\"");
+
+        return new Results(true, "Chat Sent", null, cmdList);
     }
 
     @Override
     public Results getPendingCommands(User user, int lastCmdExecuted)
     {
         //get the game the user is in
+        Game game = serverModel.getGameList().getGameByUsername(user.getUsername());
 
-        return null;
+        CommandList playerCommandList = game.getCommandList().getCommandListAfterIndex(lastCmdExecuted);
+
+        return new Results(true, "Pending Commands", null, playerCommandList);
     }
 
     @Override
     public Results drawDestinationCards(String userName, List<DestinationCard> selectedCards)
     {
-        return null;
+        return new Results(false, null, "not yet implemented", null);
     }
 
     @Override
     public Results returnDestinationCard(List<DestinationCard> returnedCard)
     {
-        return null;
+        return new Results(false, null, "not yet implemented", null);
     }
 
 //    @Override
