@@ -21,6 +21,9 @@ import com.group4.tickettoride.Command.CJoinGameCommand;
 import com.group4.tickettoride.Command.CLoginCommand;
 import com.group4.tickettoride.Command.CRegisterCommand;
 import com.group4.tickettoride.Command.CStartGameCommand;
+import com.group4.tickettoride.Command.CUpdateChatCommand;
+import com.group4.tickettoride.Command.CUpdatePlayersCommand;
+import com.group4.tickettoride.Command.CUpdateTurnHistoryCommand;
 
 import java.io.IOException;
 import java.lang.reflect.Field;
@@ -85,28 +88,27 @@ public class Serializer
                         iCommands.add(startGameCommand);
                         break;
                     case "endgame":
-                        //TODO: TYLER: Implement the serializer for new commands
-//                        ClientCommand endGameCommand = new Gson().fromJson(next.toString(), CEndGameCommand.class);
-//                        iCommands.add(endGameCommand);
-//                        break;
+                        ClientCommand endGameCommand = new Gson().fromJson(next.toString(), CEndGameCommand.class);
+                        iCommands.add(endGameCommand);
+                        break;
                     case "updatechat":
-//                        ClientCommand updateChatCommand = new Gson().fromJson(next.toString(), CUpdateChatCommand.class);
-//                        iCommands.add(updateChatCommand);
-//                        break;
+                        ClientCommand updateChatCommand = new Gson().fromJson(next.toString(), CUpdateChatCommand.class);
+                        iCommands.add(updateChatCommand);
+                        break;
                     case "updateturn":
-//                        ClientCommand updateTurnCommand = new Gson().fromJson(next.toString(), CUpdateTurnHistoryCommand.class);
-//                        iCommands.add(updateTurnCommand);
-//                        break;
+                        ClientCommand updateTurnCommand = new Gson().fromJson(next.toString(), CUpdateTurnHistoryCommand.class);
+                        iCommands.add(updateTurnCommand);
+                        break;
                     case "updateplayers":
-//                        ClientCommand updatePlayersCommand = new Gson().fromJson(next.toString(), CUpdatePlayersCommand.class);
-//                        iCommands.add(updatePlayersCommand);
-//                        break;
+                        ClientCommand updatePlayersCommand = new Gson().fromJson(next.toString(), CUpdatePlayersCommand.class);
+                        iCommands.add(updatePlayersCommand);
+                        break;
                     case "updateplayerhand":
 //                        ClientCommand updatePlayerHandCommand = new Gson().fromJson(next.toString(), CUpdatePlayerHandCommand.class);
 //                        iCommands.add(updatePlayerHandCommand);
 //                        break;
                     default:
-                        System.out.println("no command");
+                        System.out.println("no command found (serializer)");
                         break;
                 }
             }

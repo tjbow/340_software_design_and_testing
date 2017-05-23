@@ -19,6 +19,7 @@ import com.group4.shared.command.Client.CLoginCommandData;
 import com.group4.shared.command.Client.CRegisterCommandData;
 import com.group4.shared.command.Client.CStartGameCommandData;
 import com.group4.shared.command.Client.CUpdateChatCommandData;
+import com.group4.shared.command.Client.CUpdatePlayersCommandData;
 import com.group4.shared.command.ClientCommand;
 import com.group4.shared.command.Server.LoginCommandData;
 
@@ -240,6 +241,7 @@ public class ServerFacade implements IServer, IClient
         //get the game the user is in
         Game game = serverModel.getGameList().getGameByUsername(user.getUsername());
 
+        //get the commandlist based on the index passed
         CommandList playerCommandList = game.getCommandList().getCommandListAfterIndex(lastCmdExecuted);
 
         return new Results(true, "Pending Commands", null, playerCommandList);
@@ -248,20 +250,30 @@ public class ServerFacade implements IServer, IClient
     @Override
     public Results drawDestinationCards(String userName, List<DestinationCard> selectedCards)
     {
+        Game game = serverModel.getGameList().getGameByUsername(userName);
+
+//        get the player and add selectedCards to his destination card deck
+
+//        CUpdatePlayersCommandData updatePlayersCommandData = new CUpdatePlayersCommandData();
+//        updatePlayersCommandData.setType("updateplayers");
+//        updatePlayersCommandData.setPlayerData();
+
+//        game.addCommand(updatePlayersCommandData);
+
+//        CommandList cmdList = new CommandList();
+//        cmdList.add(updatePlayersCommandData);
+
+        System.out.println("Player " + userName +
+                " selected " + selectedCards.size() + " destination cards.");
+
         return new Results(false, null, "not yet implemented", null);
     }
 
     @Override
     public Results returnDestinationCard(List<DestinationCard> returnedCard)
     {
-        return new Results(false, null, "not yet implemented", null);
+//        take the card within returnedCard and insert it into the game dest card deck
+
+        return new Results(false, null, "returnDestinationCard not yet implemented on server", null);
     }
-
-//    @Override
-//    public Results getCommandsSinceIndex(int commandID)
-//    {
-//        Results results = new Results(true, null, null, serverModel.getCommandsSinceIndex(commandID));
-//        return results;
-//    }
-
 }
