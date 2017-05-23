@@ -149,14 +149,15 @@ public class GameMapView extends View {
             canvas.drawText("You touched the line",30f,30f,paint);
         }
 
-        float x2 = 500;
-        float y2 = 200;
-        float x1 = 800;
-        float y1 =700;
+        for(RouteSegment r : routeSegments) {
+            Pt pt1 = new Pt(r.getX1Constraint()/100 * getWidth(),r.getY1Constraint()/100 *getHeight());
+            Pt pt2 = new Pt(r.getX2Constraint()/100 * getWidth(),r.getY2Constraint()/100 *getHeight());
 
-        float slope = (y2-y1)/(x2-x1);
 
-        drawAngledRectangle(new Pt(x1,y1), new Pt(x2,y2),getAngle(slope),8,canvas);
+            float slope = (pt2.y - pt1.y) / (pt2.x - pt1.x);
+
+            drawAngledRectangle(pt2, pt1, getAngle(slope), 8, canvas);
+        }
 
     }
 
@@ -180,8 +181,8 @@ public class GameMapView extends View {
         float y2 = end.y;
         float x2 = end.x;
 
-        canvas.drawCircle(x1,y1,16,paint);
-        canvas.drawCircle(x2,y2,16,paint);
+//        canvas.drawCircle(x1,y1,16,paint);
+//        canvas.drawCircle(x2,y2,16,paint);
 
         canvas.save();
         canvas.rotate(angleDeg);
@@ -194,8 +195,6 @@ public class GameMapView extends View {
 
         //final float RECTANGLE_SCALER = getHeight() / 100;
         final float RECTANGLE_SCALER = Math.max(getHeight(),getWidth()) / Math.min(getHeight(),getWidth()) *10;
-
-
 
         paint.setColor(Color.BLACK);
 
@@ -210,6 +209,7 @@ public class GameMapView extends View {
             canvas.drawRect(currentX + 5,newY1+RECTANGLE_SCALER -5,currentX +( (newX2-newX1) /carCount) -spaceDist -5 ,newY2 - RECTANGLE_SCALER +5 ,paint);
             currentX = currentX +( (newX2-newX1) /carCount)  + spaceDist;
         }
+        canvas.restore();  //Important!!! rotates canvas back to original position
 
     }
 
