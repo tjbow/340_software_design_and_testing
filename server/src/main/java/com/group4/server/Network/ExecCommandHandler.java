@@ -73,6 +73,22 @@ public class ExecCommandHandler
                 GetGameListCommand getGameListCommand = new Gson().fromJson(requestBody, GetGameListCommand.class);
                 results = getGameListCommand.execute();
                 break;
+            case "sendchat":
+//                SendChatCommand sendChatCommand = new Gson().fromJson(requestBody, SendChatCommand.class);
+//                results = sendChatCommand.execute();
+                break;
+            case "getpending":
+//                GetPendingCommands getPendingCommands = new Gson().fromJson(requestBody, GetPendingCommands.class);
+//                results = getPendingCommands.execute();
+                break;
+            case "drawdestcards":
+//                DrawDestCardsCommand drawDestCardsCommand = new Gson().fromJson(requestBody, DrawDestCardsCommand.class);
+//                results = drawDestCardsCommand.execute();
+                break;
+            case "returndestcard":
+//                ReturnDestCardCommand returnDestCardCommand = new Gson().fromJson(requestBody, ReturnDestCarCommand.class);
+//                results = returnDestCardCommand.execute();
+                break;
             default:
                 results = new Results(false, null, "Command type not yet implemented. Ask Tyler to implement it.", null);
                 break;

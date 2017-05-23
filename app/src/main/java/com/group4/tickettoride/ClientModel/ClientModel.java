@@ -102,6 +102,7 @@ public class ClientModel extends Observable {
         this.game = game;
     }
 
+    //TODO: TYLER: Fix endgame scenario
     public void updateGame(GameList gameList)
     {
         if(this.game != null)

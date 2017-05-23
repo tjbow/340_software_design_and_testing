@@ -13,7 +13,7 @@ import java.util.List;
 
 public class CommandList
 {
-    public List<ClientCommand> commandList;
+    private List<ClientCommand> commandList;
 
     public List<ClientCommand> getCommandList() {
         return commandList;
@@ -26,5 +26,15 @@ public class CommandList
     public CommandList()
     {
         this.commandList = new ArrayList<>();
+    }
+
+    public boolean add(ClientCommand cmd)
+    {
+        return commandList.add(cmd);
+    }
+
+    public int size()
+    {
+        return commandList.size();
     }
 }

@@ -43,7 +43,8 @@ public class Poller implements Runnable
      */
     private void runNewCommands(int commandID)
     {
-        Results results = ServerProxy.SINGLETON.getCommandsSinceIndex(commandID);
+//        Results results = ServerProxy.SINGLETON.getCommandsSinceIndex(commandID);
+        Results results = ServerProxy.SINGLETON.getPendingCommands(ClientModel.SINGLETON.getUser(), commandID);
         ClientFacade.SINGLETON.processResults(results);
     }
 

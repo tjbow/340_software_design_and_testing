@@ -2,8 +2,10 @@ package com.group4.server.ServerModel;
 
 import com.group4.server.Command.LoginCommand;
 import com.group4.shared.Model.CommandList;
+import com.group4.shared.Model.DestinationCard;
 import com.group4.shared.Model.Game;
 import com.group4.shared.Model.GameList;
+import com.group4.shared.Model.Message;
 import com.group4.shared.Model.Player;
 import com.group4.shared.Proxy.IClient;
 import com.group4.shared.Proxy.IServer;
@@ -47,8 +49,8 @@ public class ServerFacade implements IServer, IClient
             loginData.setType("login");
 
             CommandList cmdList = new CommandList();
-            cmdList.commandList.add(getGameListCommandData);
-            cmdList.commandList.add(loginData);
+            cmdList.add(getGameListCommandData);
+            cmdList.add(loginData);
 
             System.out.println("User " + user.getUsername() + " logged in");
 
@@ -79,8 +81,8 @@ public class ServerFacade implements IServer, IClient
             registerData.setUsername(user.getUsername());
 
             CommandList cmdList = new CommandList();
-            cmdList.commandList.add(getGameListCommandData);
-            cmdList.commandList.add(registerData);
+            cmdList.add(getGameListCommandData);
+            cmdList.add(registerData);
 
             return new Results(true, authToken, null, cmdList);
         }
@@ -111,8 +113,8 @@ public class ServerFacade implements IServer, IClient
 
         CommandList cmdList = new CommandList();
 
-        cmdList.commandList.add(gameListCommandData);
-        cmdList.commandList.add(joinGameCommandData);
+        cmdList.add(gameListCommandData);
+        cmdList.add(joinGameCommandData);
 
         return new Results(true, null, null, cmdList);
     }
@@ -120,7 +122,7 @@ public class ServerFacade implements IServer, IClient
     @Override
     public Results joinGame(String gameName)
     {
-        Player player = new Player(ServerModel.getInstance().getTempUser());
+        Player player = new Player(serverModel.getTempUser());
 
         boolean success = serverModel.joinGame(gameName, player);
         if(!success)
@@ -138,8 +140,8 @@ public class ServerFacade implements IServer, IClient
 
         CommandList cmdList = new CommandList();
 
-        cmdList.commandList.add(gameListCommandData);
-        cmdList.commandList.add(joinGameCommandData);
+        cmdList.add(gameListCommandData);
+        cmdList.add(joinGameCommandData);
 
         return new Results(true, null, null, cmdList);
     }
@@ -158,8 +160,8 @@ public class ServerFacade implements IServer, IClient
         startGameCommandData.setWasSuccessful(true);
 
         CommandList cmdList = new CommandList();
-        cmdList.commandList.add(startGameCommandData);
-        cmdList.commandList.add(gameListCommandData);
+        cmdList.add(startGameCommandData);
+        cmdList.add(gameListCommandData);
 
         return new Results(true, null, null, cmdList);
     }
@@ -167,7 +169,6 @@ public class ServerFacade implements IServer, IClient
     @Override
     public Results reportGameState()
     {
-        //TODO: Tom: what is this method supposed to do?
         return null;
     }
 
@@ -179,7 +180,7 @@ public class ServerFacade implements IServer, IClient
         gameListCommandData.setGameList(serverModel.getGameList());
 
         CommandList cmdList = new CommandList();
-        cmdList.commandList.add(gameListCommandData);
+        cmdList.add(gameListCommandData);
 
         Results results = new Results(true, null, null, cmdList);
         //System.out.println("getGameList() was called.");
@@ -189,7 +190,8 @@ public class ServerFacade implements IServer, IClient
     @Override
     public Results endGame(String gameName)
     {
-        boolean success = ServerModel.getInstance().endGame(gameName);
+        //TODO: TYLER: Update to use commandList to end the game for all players
+        boolean success = serverModel.endGame(gameName);
         if(!success)
         {
             return new Results(true, null, "Cannot end game - game does not exist", null);
@@ -200,16 +202,42 @@ public class ServerFacade implements IServer, IClient
         endGameCommandData.setWasSuccessful(success);
 
         CommandList cmdList = new CommandList();
-        cmdList.commandList.add(endGameCommandData);
+        cmdList.add(endGameCommandData);
         System.out.println("The game " + gameName + " was ended.");
         return new Results(true, null, null, cmdList);
     }
 
     @Override
-    public Results getCommandsSinceIndex(int commandID)
+    public Results sendChat(Message message)
     {
-        Results results = new Results(true, null, null, serverModel.getCommandsSinceIndex(commandID));
-        return results;
+        return null;
     }
+
+    @Override
+    public Results getPendingCommands(User user, int lastCmdExecuted)
+    {
+        //get the game the user is in
+
+        return null;
+    }
+
+    @Override
+    public Results drawDestinationCards(String userName, List<DestinationCard> selectedCards)
+    {
+        return null;
+    }
+
+    @Override
+    public Results returnDestinationCard(List<DestinationCard> returnedCard)
+    {
+        return null;
+    }
+
+//    @Override
+//    public Results getCommandsSinceIndex(int commandID)
+//    {
+//        Results results = new Results(true, null, null, serverModel.getCommandsSinceIndex(commandID));
+//        return results;
+//    }
 
 }

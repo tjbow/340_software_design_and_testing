@@ -1,12 +1,15 @@
 package com.group4.tickettoride.ClientModel;
 
 import com.google.gson.Gson;
+import com.group4.shared.Model.City;
 import com.group4.shared.Model.CommandList;
 import com.group4.shared.Model.GAME_STATUS;
 import com.group4.shared.Model.Game;
 import com.group4.shared.Model.GameList;
+import com.group4.shared.Model.Message;
 import com.group4.shared.Model.Player;
 import com.group4.shared.Model.Results;
+import com.group4.shared.Model.RouteList;
 import com.group4.shared.Model.User;
 import com.group4.shared.Proxy.IClient;
 import com.group4.shared.Proxy.IComandExec;
@@ -20,6 +23,7 @@ import com.group4.shared.command.IClientCommand;
 import com.group4.tickettoride.Command.CLoginCommand;
 import com.group4.tickettoride.Command.CRegisterCommand;
 
+import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
@@ -168,6 +172,30 @@ public class ClientFacade implements IClient,IComandExec
 
         ClientModel.SINGLETON.setGame(gameState);
 
+        return null;
+    }
+
+    @Override
+    public Results onUpdateChat(List<Message> messageList)
+    {
+        return null;
+    }
+
+    @Override
+    public Results onUpdateTurnHistory(List<Message> turnHistory)
+    {
+        return null;
+    }
+
+    @Override
+    public Results onUpdatePlayers(List<Player> playerData)
+    {
+        return null;
+    }
+
+    @Override
+    public Results onUpdateMapData(RouteList routeSegments, List<City> cities)
+    {
         return null;
     }
 

@@ -26,7 +26,7 @@ public class ServerModel
     private List<User> users;
     private GameList gameList;
     private Map<String, User> userAuthTokens;
-    private CommandList commandList; // holds all commands executed on the server to this point
+//    private CommandList commandList; // holds all commands executed on the server to this point
     private User tempUser;
 
     private static ServerModel serverModel = new ServerModel();
@@ -36,7 +36,7 @@ public class ServerModel
         users = new ArrayList<>();
         userAuthTokens = new HashMap<>();
         gameList = new GameList(new ArrayList<>());
-        commandList = new CommandList();
+//        commandList = new CommandList();
     }
 
     /**
@@ -134,7 +134,7 @@ public class ServerModel
         {
             return false;
         }
-        gameList.getGameList().add(game);
+        gameList.add(game);
 
         System.out.println("Game \"" + game.getGameName() + "\" created by " + getTempUser().getUsername() + " with " + game.getPlayerCount() + " players.");
 
@@ -191,7 +191,7 @@ public class ServerModel
     public boolean endGame(String gameName)
     {
         Game game = gameList.getGameByName(gameName);
-        return gameList.getGameList().remove(game);
+        return gameList.remove(game);
     }
 
     /**
@@ -203,22 +203,7 @@ public class ServerModel
         return gameList;
     }
 
-    /**
-     * Gets the list of commands that were executed after the index in commandID
-     * @param commandID
-     */
-    public CommandList getCommandsSinceIndex(int commandID)
-    {
-        CommandList returnList = new CommandList();
-        // need to have at least one new command to sublist, if not, just return  the empty list
-        // we are returning all the commands after commandID, thus it is commandID + 1
-        if(commandID + 1 < commandList.commandList.size() - 1)
-        {
-            returnList.commandList = commandList.commandList.subList(commandID + 1, commandList.commandList.size());
-        }
-        return returnList;
-    }
-
+//    AUTHTOKEN METHODS
     public User getTempUser()
     {
         return tempUser;
@@ -233,4 +218,22 @@ public class ServerModel
     {
         this.tempUser = null;
     }
+
+//    DEPRECATED
+//
+//    /**
+//     * Gets the list of commands that were executed after the index in commandID
+//     * @param commandID
+//     */
+//    public CommandList getCommandsSinceIndex(int commandID)
+//    {
+//        CommandList returnList = new CommandList();
+//        // need to have at least one new command to sublist, if not, just return  the empty list
+//        // we are returning all the commands after commandID, thus it is commandID + 1
+//        if(commandID + 1 < commandList.size() - 1)
+//        {
+//            returnList.setCommandList(commandList.getCommandList().subList(commandID + 1, commandList.size()));
+//        }
+//        return returnList;
+//    }
 }

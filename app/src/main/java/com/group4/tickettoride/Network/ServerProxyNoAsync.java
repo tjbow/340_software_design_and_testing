@@ -13,7 +13,7 @@ import com.group4.shared.command.Server.RegisterCommandData;
  * Created by tyler on 5/16/17.
  */
 
-public class ServerProxyNoAsync implements IServer
+public class ServerProxyNoAsync
 {
     private ServerProxyNoAsync()
     {
@@ -28,7 +28,6 @@ public class ServerProxyNoAsync implements IServer
      * When calling this method, check if the result is null. If not null, display an error toast.
      * @pre The user must already be registered with the server
      */
-    @Override
     public Results login(User user)
     {
         LoginCommandData cmd = new LoginCommandData();
@@ -47,7 +46,6 @@ public class ServerProxyNoAsync implements IServer
      * When calling this method, check if the result is null. If not null, display an error toast.
      * @pre The username must not already be registered on the server
      */
-    @Override
     public Results register(User user)
     {
         RegisterCommandData cmd = new RegisterCommandData();
@@ -66,7 +64,6 @@ public class ServerProxyNoAsync implements IServer
      * @param numberOfPlayers The max number of players for the game
      * @return If success: returns null. If failure: returns result object with failure message
      */
-    @Override
     public Results createGame(String gameName, int numberOfPlayers)
     {
         CreateGameCommandData cmd = new CreateGameCommandData();
@@ -79,7 +76,6 @@ public class ServerProxyNoAsync implements IServer
         return null;
     }
 
-    @Override
     public Results joinGame(String gameName)
     {
         JoinGameCommandData cmd = new JoinGameCommandData();
@@ -91,13 +87,11 @@ public class ServerProxyNoAsync implements IServer
         return null;
     }
 
-    @Override
     public Results startGame(String gameName)
     {
         return null;
     }
 
-    @Override
     public Results getGameList()
     {
         GetGameListCommandData cmd = new GetGameListCommandData();
@@ -106,13 +100,11 @@ public class ServerProxyNoAsync implements IServer
         return null;
     }
 
-    @Override
     public Results endGame(String gameName)
     {
         return null;
     }
 
-    @Override
     public Results getCommandsSinceIndex(int commandID)
     {
         return null;

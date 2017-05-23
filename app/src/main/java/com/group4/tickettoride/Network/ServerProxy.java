@@ -3,6 +3,8 @@ package com.group4.tickettoride.Network;
 import android.os.AsyncTask;
 
 import com.group4.shared.Model.CommandList;
+import com.group4.shared.Model.DestinationCard;
+import com.group4.shared.Model.Message;
 import com.group4.shared.Model.Results;
 import com.group4.shared.Model.User;
 import com.group4.shared.Proxy.IServer;
@@ -15,6 +17,8 @@ import com.group4.shared.command.Server.RegisterCommandData;
 import com.group4.shared.command.Server.StartGameCommandData;
 import com.group4.tickettoride.ClientModel.ClientFacade;
 import com.group4.tickettoride.ClientModel.ClientModel;
+
+import java.util.List;
 
 /**
  * Created by Russell Fitzpatrick on 5/13/2017.
@@ -138,8 +142,44 @@ public class ServerProxy implements IServer
     }
 
     @Override
-    public Results getCommandsSinceIndex(int commandID)
+    public Results sendChat(Message message)
     {
+//        SendChatCommand cmd = new SendChatCommand();
+//        cmd.setType("sendchat");
+//        cmd.setMessage(message);
+//        threadIt(cmd);
+        return null;
+    }
+
+    @Override
+    public Results getPendingCommands(User user, int lastCmdExecuted)
+    {
+//        GetPendingCommands cmd = new GetPendingCommands();
+//        cmd.setType("getpending");
+//        cmd.setUser(user);
+//        cmd.setLastCmdExecuted();
+//        threadIt(cmd);
+        return null;
+    }
+
+    @Override
+    public Results drawDestinationCards(String userName, List<DestinationCard> selectedCards)
+    {
+//        DrawDestCardsCommand cmd = new DrawDestCardsCommand();
+//        cmd.setType("drawdestcards");
+//        cmd.setUserName(userName);
+//        cmd.setSelectedCards(selectedCards);
+//        threadIt(cmd);
+        return null;
+    }
+
+    @Override
+    public Results returnDestinationCard(List<DestinationCard> returnedCard)
+    {
+//        ReturnDestCardCommand cmd = new DrawDestCardCommand();
+//        cmd.setType("returndestcard");
+//        cmd.setReturnedCard(returnedCard);
+//        threadIt(cmd);
         return null;
     }
 
@@ -160,16 +200,6 @@ public class ServerProxy implements IServer
             {
                 mResults = new ClientCommunicator().send("execcommand", o);
             }
-            if(mResults != null && !mResults.isSuccess())
-            {
-
-                ClientModel.SINGLETON.sendToObservers(mResults.getErrorInfo());
-
-            }
-            else
-            {
-                //do nothing - ClientFacade is handling results
-            }
             return null;
         }
 
@@ -178,6 +208,10 @@ public class ServerProxy implements IServer
         {
             if(mResults != null)
             {
+                if(!mResults.isSuccess())
+                {
+                    ClientModel.SINGLETON.sendToObservers(mResults.getErrorInfo());
+                }
                 ClientFacade.SINGLETON.processResults(mResults);
             }
         }
