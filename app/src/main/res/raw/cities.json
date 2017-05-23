@@ -83,11 +83,26 @@
   "labelY" : 49,
   "name" : "Saint Louis"
 }, {
-  "xConstraint" : 65,
-  "yConstraint" : 67.0,
-  "labelX" : 65,
-  "labelY" : 64,
+  "xConstraint" : 70,
+  "yConstraint" : 62.0,
+  "labelX" : 68,
+  "labelY" : 60,
   "name" : "Nashville"
 }
+, {
+  "xConstraint" : 60,
+  "yConstraint" : 80.0,
+  "labelX" : 63,
+  "labelY" : 83,
+  "name" : "New Orleans"
+
+}, {
+  "xConstraint" : 60,
+  "yConstraint" : 65,
+  "labelX" : 60,
+  "labelY" : 68,
+  "name" : "Little Rock"
+}
+
 
 ]

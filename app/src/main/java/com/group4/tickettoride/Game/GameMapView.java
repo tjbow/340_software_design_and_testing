@@ -20,14 +20,12 @@ import com.group4.shared.Model.ROUTE_COLOR;
 import com.group4.shared.Model.RouteSegment;
 import com.group4.tickettoride.R;
 
-import java.io.BufferedReader;
+
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+
 
 /**
  * Created by Andrew Gill on 5/20/2017.
@@ -233,7 +231,7 @@ public class GameMapView extends View {
 
         float currentX = Math.min(newX1,newX2);
         float xDist = newX2 -newX1;
-        float spaceDist = xDist * .2f / (carCount +1);
+        float spaceDist = (xDist * .1f) / (carCount +2);
 
         while (currentX < Math.max(newX2,newX1)){
 
@@ -244,11 +242,11 @@ public class GameMapView extends View {
                 paint.setColor(Color.BLACK);
             }
 
-            canvas.drawRect(currentX,newY1+RECTANGLE_SCALER,currentX +( (newX2-newX1) /carCount) -spaceDist ,newY2 - RECTANGLE_SCALER ,paint);
-            paint.setColor(Color.RED);  //TODO: DREW: replace with playerColor
-            canvas.drawRect(currentX + 5,newY1+RECTANGLE_SCALER -5,currentX +( (newX2-newX1) /carCount) -spaceDist -5 ,newY2 - RECTANGLE_SCALER +5 ,paint);
+            canvas.drawRect(currentX,newY1+RECTANGLE_SCALER,currentX +( xDist /carCount) -(spaceDist*2) ,newY2 - RECTANGLE_SCALER ,paint);
+            paint.setColor(Color.RED);  //TODO: DREW: replace with route color
+            canvas.drawRect(currentX + 5,newY1+RECTANGLE_SCALER -5,currentX +( (xDist) /carCount) -(2*spaceDist) -5 ,newY2 - RECTANGLE_SCALER +5 ,paint);
 
-            currentX = currentX +( (newX2-newX1) /carCount)  + spaceDist;
+            currentX = currentX +( (newX2-newX1) /carCount)  + (spaceDist / 2);
         }
         canvas.restore();  //Important!!! rotates canvas back to original position
 
@@ -304,7 +302,8 @@ public class GameMapView extends View {
      */
     private boolean isRouteSegment(Pt pt1, Pt pt2, Pt tapPt){
 
-        final int THRESHOLD = 50;  // max distance from the line
+        //final int THRESHOLD = 50;  // max distance from the line
+        final int THRESHOLD =Math.max(getHeight(),getWidth()) / Math.min(getHeight(),getWidth()) *10;
 
 
         float slope = (pt1.y - pt2.y)/(pt1.x-pt2.x)*-1;
