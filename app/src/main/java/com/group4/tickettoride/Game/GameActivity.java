@@ -2,6 +2,7 @@ package com.group4.tickettoride.Game;
 
 import android.content.Context;
 import android.content.Intent;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -12,6 +13,7 @@ import android.widget.Toast;
 import com.group4.shared.Model.Game;
 import com.group4.shared.Model.Player;
 import com.group4.tickettoride.ClientModel.ClientModel;
+import com.group4.tickettoride.Game.GameFragments.PlayerInfoFragment;
 import com.group4.tickettoride.R;
 
 import java.util.Map;
@@ -21,8 +23,8 @@ public class GameActivity extends AppCompatActivity implements IGameActivity {
     private IGamePresenter presenter;
     private String gameName;
     private Game game;
-    private TextView currentPlayers;
-    private Button endGameButton;
+    private PlayerInfoFragment playerInfoFragment;
+
 
     private static final String EXTRA_GAME_NAME = "com.group4.tickettoride.Game.game_name";
 
@@ -38,32 +40,29 @@ public class GameActivity extends AppCompatActivity implements IGameActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
 
-        if(savedInstanceState == null)
-        {
-            Bundle extras = getIntent().getExtras();
-            if(extras == null)
-                gameName = null;
-            else
-                gameName = extras.getString(EXTRA_GAME_NAME);
+//        if(savedInstanceState == null)
+//        {
+//            Bundle extras = getIntent().getExtras();
+//            if(extras == null)
+//                gameName = null;
+//            else
+//                gameName = extras.getString(EXTRA_GAME_NAME);
+//        }
+//        else
+//            this.gameName = (String) savedInstanceState.getSerializable(EXTRA_GAME_NAME);
+
+        //this.presenter = new GamePresenter(this);
+
+        FragmentManager fm = this.getSupportFragmentManager();
+        playerInfoFragment = (PlayerInfoFragment) fm.findFragmentById(R.id.playerInfo_fragment);
+        if (playerInfoFragment == null) {
+            playerInfoFragment = playerInfoFragment.newInstance();
+
         }
-        else
-            this.gameName = (String) savedInstanceState.getSerializable(EXTRA_GAME_NAME);
+        fm.beginTransaction()
+                .add(R.id.playerInfo_fragment, playerInfoFragment)
+                .commit();
 
-        this.presenter = new GamePresenter(this);
-
-        currentPlayers = (TextView) findViewById(R.id.current_players);
-        currentPlayers.setText(setPlayersText());
-
-        endGameButton = (Button) findViewById(R.id.endgame_button);
-        endGameButton.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View view)
-            {
-                endGame();
-            }
-        });
-        endGameButton.setEnabled(true);
     }
 
     @Override
@@ -106,4 +105,10 @@ public class GameActivity extends AppCompatActivity implements IGameActivity {
         this.gameName = game.getGameName();
     }
 
+    @Override
+    public void startNextActivity(Class nextClass) {
+        Intent i = new Intent(GameActivity.this, nextClass);
+        startActivity(i);
+        finish();
+    }
 }

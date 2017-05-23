@@ -46,10 +46,9 @@ public class GamePresenter implements IGamePresenter, Observer
     @Override
     public void onBackPressed()
     {
-        Intent i = new Intent(activity, Login_RegisterActivity.class);
-        activity.startActivity(i);
         ClientModel.SINGLETON.deleteObserver(this);
-        activity.finish();
+        activity.startNextActivity(Login_RegisterActivity.class);
+
     }
 
     @Override
@@ -59,9 +58,7 @@ public class GamePresenter implements IGamePresenter, Observer
         {
             o.deleteObserver(this);
             //end game and start GameListActivity
-            Intent i = new Intent(activity, GameListActivity.class);
-            activity.startActivity(i);
-            activity.finish();
+            activity.startNextActivity(GameListActivity.class);
         }
         else if(arg.getClass() == String.class)
         {
@@ -78,9 +75,7 @@ public class GamePresenter implements IGamePresenter, Observer
         {
             o.deleteObserver(this);
             ClientFacade.SINGLETON.startPoller();
-            Intent i = new Intent(activity, GameListActivity.class);
-            activity.startActivity(i);
-            activity.finish();
+            activity.startNextActivity(GameListActivity.class);
         }
     }
 

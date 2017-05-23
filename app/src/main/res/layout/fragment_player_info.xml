@@ -1,0 +1,139 @@
+<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:tools="http://schemas.android.com/tools"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+              android:columnCount="5"
+            android:rowCount="1"
+
+             tools:context="com.group4.tickettoride.Game.GameFragments.PlayerInfoFragment">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:background="@color/colorBlue"
+        android:layout_columnWeight="1"
+        android:layout_rowWeight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_margin="7dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/player1_username"
+                android:textColor="@color/colorBlack"
+                android:textSize="30sp"
+                android:text="player1"/>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:background="@color/colorRed"
+        android:layout_columnWeight="1"
+        android:layout_rowWeight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_margin="7dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/player2_username"
+                android:textColor="@color/colorBlack"
+                android:textSize="30sp"
+                android:text="player2"/>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:background="@color/colorGreen"
+        android:layout_columnWeight="1"
+        android:layout_rowWeight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_margin="7dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/player3_username"
+                android:textColor="@color/colorBlack"
+                android:textSize="30sp"
+                android:text="player3"/>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:background="@color/colorYellow"
+        android:layout_columnWeight="1"
+        android:layout_rowWeight="1"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_margin="7dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/player4_username"
+                android:textColor="@color/colorBlack"
+                android:textSize="30sp"
+                android:text="player4"/>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:background="@color/colorOrange"
+        android:layout_columnWeight="1"
+        android:layout_rowWeight="1"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_margin="7dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/player5_username"
+                android:textColor="@color/colorBlack"
+                android:textSize="30sp"
+                android:text="player5"/>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+
+</GridLayout>

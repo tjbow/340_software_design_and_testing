@@ -9,4 +9,6 @@ import com.group4.shared.Model.Game;
 public interface IGameActivity
 {
     void setGame(Game game);
+
+    void startNextActivity(Class nextClass);
 }
