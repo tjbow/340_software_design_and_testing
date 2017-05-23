@@ -8,6 +8,24 @@ public class City {
     private float xConstraint;
     private float yConstraint;
     private String name;
+    private float labelX;
+    private float labelY;
+
+    public float getLabelX() {
+        return labelX;
+    }
+
+    public void setLabelX(float labelX) {
+        this.labelX = labelX;
+    }
+
+    public float getLabelY() {
+        return labelY;
+    }
+
+    public void setLabelY(float labelY) {
+        this.labelY = labelY;
+    }
 
     public City(){}
 

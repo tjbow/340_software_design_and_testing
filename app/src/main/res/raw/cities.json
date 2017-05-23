@@ -1,34 +1,74 @@
 [ {
   "xConstraint" : 82.0,
   "yConstraint" : 90.0,
+  "labelX" : 85,
+  "labelY" : 94,
   "name" : "Miami"
 }, {
   "xConstraint" : 80.0,
   "yConstraint" : 70.0,
+  "labelX" : 85,
+  "labelY" : 70,
   "name" : "Charleston"
 }, {
   "xConstraint" : 88.0,
   "yConstraint" : 53.0,
+  "labelX" : 91,
+  "labelY" : 53,
   "name" : "Washington"
 }
 , {
-  "xConstraint" : 88.0,
-  "yConstraint" : 33.0,
+  "xConstraint" : 86.0,
+  "yConstraint" : 38.0,
+  "labelX" : 90,
+  "labelY" : 37,
   "name" : "New York"
 }
 , {
-  "xConstraint" : 80.0,
-  "yConstraint" : 70.0,
-  "name" : "Charleston"
+  "xConstraint" : 93.0,
+  "yConstraint" : 29.0,
+  "labelX" : 95,
+  "labelY" : 29,
+  "name" : "Boston"
 }
 , {
-  "xConstraint" : 80.0,
-  "yConstraint" : 70.0,
-  "name" : "Charleston"
+  "xConstraint" : 86.0,
+  "yConstraint" : 10.0,
+  "labelX" : 0,
+  "labelY" : 0,
+  "name" : "Montreal"
 }, {
-  "xConstraint" : 80.0,
+  "xConstraint" : 72.0,
   "yConstraint" : 70.0,
-  "name" : "Charleston"
+  "labelX" : 0,
+  "labelY" : 0,
+  "name" : "Atlanta"
+}, {
+  "xConstraint" : 77.0,
+  "yConstraint" : 59.0,
+  "labelX" : 0,
+  "labelY" : 0,
+  "name" : "Raleigh"
+}, {
+  "xConstraint" : 78.0,
+  "yConstraint" : 48.0,
+  "labelX" : 0,
+  "labelY" : 0,
+  "name" : "Pitsburgh"
+}
+, {
+  "xConstraint" : 75.0,
+  "yConstraint" : 32.0,
+  "labelX" : 0,
+  "labelY" : 0,
+  "name" : "Toronto"
+}
+, {
+  "xConstraint" : 70.0,
+  "yConstraint" : 20.0,
+  "labelX" : 0,
+  "labelY" : 0,
+  "name" : "Sault St. Marie"
 }
 
 ]

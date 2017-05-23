@@ -5,6 +5,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 
+import android.graphics.Typeface;
 import android.support.annotation.Nullable;
 
 import android.support.v4.content.ContextCompat;
@@ -49,7 +50,7 @@ public class GameMapView extends View {
         r.setX2Constraint(60);
         r.setY1Constraint(70);
         r.setY2Constraint(80);
-        r.setLength(3);
+        r.setLength(2);
         r.setRouteColor(ROUTE_COLOR.RED);
         routeSegments.add(r);
 
@@ -78,6 +79,31 @@ public class GameMapView extends View {
 
         this.routeSegments = RouteSegments;
         invalidate();
+    }
+
+    private void drawLabels(Canvas canvas){
+        Paint strokePaint = new Paint();
+        strokePaint.setFlags(Paint.ANTI_ALIAS_FLAG);
+        //strokePaint.setARGB(255, 0, 0, 0);
+        strokePaint.setColor(Color.BLACK);
+        strokePaint.setTextAlign(Paint.Align.CENTER);
+        strokePaint.setTextSize(30);
+        strokePaint.setTypeface(Typeface.DEFAULT_BOLD);
+        strokePaint.setStyle(Paint.Style.STROKE);
+        strokePaint.setStrokeWidth(2);
+
+        Paint textPaint = new Paint();
+        //textPaint.setARGB(255, 255, 255, 255);
+        textPaint.setColor(Color.WHITE);
+        textPaint.setTextAlign(Paint.Align.CENTER);
+        textPaint.setTextSize(30);
+        textPaint.setTypeface(Typeface.DEFAULT_BOLD);
+        textPaint.setFlags(Paint.ANTI_ALIAS_FLAG);
+
+        for(City c : cities){
+            canvas.drawText(c.getName(),c.getLabelX()/100 * getWidth(),c.getLabelY()/100*getHeight(),strokePaint);
+            canvas.drawText(c.getName(),c.getLabelX()/100 * getWidth(),c.getLabelY()/100*getHeight(),textPaint);
+        }
     }
 
     private void drawRouteSegments(Canvas canvas){
@@ -167,6 +193,8 @@ public class GameMapView extends View {
 
             drawAngledRectangle(pt2, pt1, getAngle(slope), r.getLength(), r.isHighlighted(), canvas);
         }
+
+        drawLabels(canvas);
 
     }
 
