@@ -149,14 +149,14 @@ public class GameMapView extends View {
             canvas.drawText("You touched the line",30f,30f,paint);
         }
 
-        float x1 = 500;
-        float y1 = 700;
-        float x2 = 800;
-        float y2 =200;
+        float x2 = 500;
+        float y2 = 200;
+        float x1 = 800;
+        float y1 =700;
 
         float slope = (y2-y1)/(x2-x1);
 
-        drawAngledRectangle(new Pt(x1,y1), new Pt(x2,y2),getAngle(slope),3,canvas);
+        drawAngledRectangle(new Pt(x1,y1), new Pt(x2,y2),getAngle(slope),8,canvas);
 
     }
 
@@ -164,9 +164,14 @@ public class GameMapView extends View {
         return (float)Math.toDegrees(Math.atan(slope));
     }
 
-    private void drawAngledRectangle(Pt start, Pt end,float angleParam, int carCount, Canvas canvas){
-        float angleDeg = angleParam;
+    private void drawAngledRectangle(Pt start, Pt end,float angleDeg, int carCount, Canvas canvas){
         double angle = Math.PI * angleDeg / 180;
+
+        if(start.x > end.x){
+            Pt temp = start;
+            start = end;
+            end = temp;
+        }
 
 //        canvas.drawCircle(x1,y1,10,paint);
 //        canvas.drawCircle(x2,y2,10,paint);
@@ -187,23 +192,23 @@ public class GameMapView extends View {
         float newY2 = (float)(y2 * Math.cos(angle) -( x2 *Math.sin(angle)));
         float newX2 =(float)( y2*Math.sin(angle) + (x2*Math.cos(angle)));
 
-        final float RECTANGLE_SCALER = getHeight() / 100;
+        //final float RECTANGLE_SCALER = getHeight() / 100;
+        final float RECTANGLE_SCALER = Math.max(getHeight(),getWidth()) / Math.min(getHeight(),getWidth()) *10;
 
 
 
         paint.setColor(Color.BLACK);
 
-//        canvas.drawRect(newX1,newY1+RECTANGLE_SCALER +10,newX2,newY2 - RECTANGLE_SCALER -10,paint);
-//
-//        paint.setColor(Color.RED);
-//
-//        canvas.drawRect(newX1+15,newY1+RECTANGLE_SCALER,newX2-15,newY2 - RECTANGLE_SCALER,paint);
-
         float currentX = Math.min(newX1,newX2);
+        float xDist = newX2 -newX1;
+        float spaceDist = xDist * .2f / (carCount +1);
 
         while (currentX < Math.max(newX2,newX1)){
-            canvas.drawRect(currentX,newY1+RECTANGLE_SCALER +10,currentX +( (newX2-newX1) /carCount) -10 ,newY2 - RECTANGLE_SCALER -10,paint);
-            currentX = currentX +( (newX2-newX1) /carCount)  + 10;
+            paint.setColor(Color.BLACK);
+            canvas.drawRect(currentX,newY1+RECTANGLE_SCALER,currentX +( (newX2-newX1) /carCount) -spaceDist ,newY2 - RECTANGLE_SCALER ,paint);
+            paint.setColor(Color.RED);  //TODO: DREW: replace with playerColor
+            canvas.drawRect(currentX + 5,newY1+RECTANGLE_SCALER -5,currentX +( (newX2-newX1) /carCount) -spaceDist -5 ,newY2 - RECTANGLE_SCALER +5 ,paint);
+            currentX = currentX +( (newX2-newX1) /carCount)  + spaceDist;
         }
 
     }
