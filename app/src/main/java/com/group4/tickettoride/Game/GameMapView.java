@@ -141,7 +141,7 @@ public class GameMapView extends View {
         super.onDraw(canvas);
 //
         paint.setColor(Color.BLACK);
-        paint.setStrokeWidth(15);
+        paint.setStrokeWidth(getHeight()/100);
         paint.setTextSize(50);
         drawRouteSegments(canvas);
         drawCities(canvas);
@@ -149,32 +149,45 @@ public class GameMapView extends View {
             canvas.drawText("You touched the line",30f,30f,paint);
         }
 
-//        float x1 = 200;
-//        float y1 = 200;
-//        float x2 = 500;
-//        float y2 = 500;
-//
-//        float angleDeg = 45;
-//        double angle = Math.PI * angleDeg / 180;
-//
-//        canvas.drawCircle(x1,y1,10,paint);
-//        canvas.drawCircle(x2,y2,10,paint);
-//
-//        canvas.save();
-//        canvas.rotate(angleDeg);
-//
-//        float newY1 =(float)( y1 * Math.cos(angle) -( x1 *Math.sin(angle)));
-//        float newX1 = (float)(y1*Math.sin(angle) + (x1*Math.cos(angle)));
-//
-//        float newY2 = (float)(y2 * Math.cos(angle) -( x2 *Math.sin(angle)));
-//        float newX2 =(float)( y2*Math.sin(angle) + (x2*Math.cos(angle)));
-//
-//        canvas.drawRect(newX1,newY1+40,newX2,newY2 -40,paint);
+        float x1 = 500;
+        float y1 = 700;
+        float x2 = 800;
+        float y2 =200;
 
+        float slope = (y2-y1)/(x2-x1);
 
+        drawAngledRectangle(new Pt(x1,y1), new Pt(x2,y2),getAngle(slope),canvas);
 
     }
 
+    private float getAngle(float slope){
+        return (float)Math.toDegrees(Math.atan(slope));
+    }
+
+    private void drawAngledRectangle(Pt start, Pt end,float angleParam, Canvas canvas){
+                float angleDeg = angleParam;
+        double angle = Math.PI * angleDeg / 180;
+
+//        canvas.drawCircle(x1,y1,10,paint);
+//        canvas.drawCircle(x2,y2,10,paint);
+        float y1 = start.y;
+        float x1 = start.x;
+        float y2 = end.y;
+        float x2 = end.x;
+
+        canvas.save();
+        canvas.rotate(angleDeg);
+
+        float newY1 =(float)( y1 * Math.cos(angle) -( x1 *Math.sin(angle)));
+        float newX1 = (float)(y1*Math.sin(angle) + (x1*Math.cos(angle)));
+
+        float newY2 = (float)(y2 * Math.cos(angle) -( x2 *Math.sin(angle)));
+        float newX2 =(float)( y2*Math.sin(angle) + (x2*Math.cos(angle)));
+
+        final float RECTANGLE_SCALER = getHeight() / 100;
+
+        canvas.drawRect(newX1,newY1+RECTANGLE_SCALER,newX2,newY2 - RECTANGLE_SCALER,paint);
+    }
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
