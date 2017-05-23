@@ -47,12 +47,13 @@ public class GameMapView extends View {
         r.setRouteColor(ROUTE_COLOR.RED);
         routeSegments.add(r);
 
-        RouteSegment r2 = new RouteSegment(); //hard coding in RouteSegment information
+        RouteSegment r2 = new RouteSegment(); //hard coding test RouteSegment information
         r2.setX1Constraint(80);
         r2.setX2Constraint(60);
         r2.setY1Constraint(20);
         r2.setY2Constraint(80);
-        r2.setLength(3);
+        r2.setLength(6);
+        r2.setHighlighted(true);
         r2.setRouteColor(ROUTE_COLOR.GREEN);
 
         routeSegments.add(r2);
@@ -156,7 +157,7 @@ public class GameMapView extends View {
 
             float slope = (pt2.y - pt1.y) / (pt2.x - pt1.x);
 
-            drawAngledRectangle(pt2, pt1, getAngle(slope), 8, canvas);
+            drawAngledRectangle(pt2, pt1, getAngle(slope), r.getLength(), r.isHighlighted(), canvas);
         }
 
     }
@@ -165,7 +166,7 @@ public class GameMapView extends View {
         return (float)Math.toDegrees(Math.atan(slope));
     }
 
-    private void drawAngledRectangle(Pt start, Pt end,float angleDeg, int carCount, Canvas canvas){
+    private void drawAngledRectangle(Pt start, Pt end,float angleDeg, int carCount, boolean isHighlighted, Canvas canvas){
         double angle = Math.PI * angleDeg / 180;
 
         if(start.x > end.x){
@@ -174,15 +175,11 @@ public class GameMapView extends View {
             end = temp;
         }
 
-//        canvas.drawCircle(x1,y1,10,paint);
-//        canvas.drawCircle(x2,y2,10,paint);
         float y1 = start.y;
         float x1 = start.x;
         float y2 = end.y;
         float x2 = end.x;
 
-//        canvas.drawCircle(x1,y1,16,paint);
-//        canvas.drawCircle(x2,y2,16,paint);
 
         canvas.save();
         canvas.rotate(angleDeg);
@@ -203,10 +200,18 @@ public class GameMapView extends View {
         float spaceDist = xDist * .2f / (carCount +1);
 
         while (currentX < Math.max(newX2,newX1)){
-            paint.setColor(Color.BLACK);
+
+            if(isHighlighted){
+                paint.setColor(Color.parseColor("#fff602"));
+
+            }else {
+                paint.setColor(Color.BLACK);
+            }
+
             canvas.drawRect(currentX,newY1+RECTANGLE_SCALER,currentX +( (newX2-newX1) /carCount) -spaceDist ,newY2 - RECTANGLE_SCALER ,paint);
             paint.setColor(Color.RED);  //TODO: DREW: replace with playerColor
             canvas.drawRect(currentX + 5,newY1+RECTANGLE_SCALER -5,currentX +( (newX2-newX1) /carCount) -spaceDist -5 ,newY2 - RECTANGLE_SCALER +5 ,paint);
+
             currentX = currentX +( (newX2-newX1) /carCount)  + spaceDist;
         }
         canvas.restore();  //Important!!! rotates canvas back to original position

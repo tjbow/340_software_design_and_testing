@@ -17,6 +17,15 @@ public class RouteSegment {
     float y1Constraint;
     float x2Constraint;
     float y2Constraint;
+    boolean isHighlighted = false;
+
+    public boolean isHighlighted() {
+        return isHighlighted;
+    }
+
+    public void setHighlighted(boolean highlighted) {
+        isHighlighted = highlighted;
+    }
 
     public float getX1Constraint() {
         return x1Constraint;
