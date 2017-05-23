@@ -156,7 +156,7 @@ public class GameMapView extends View {
 
         float slope = (y2-y1)/(x2-x1);
 
-        drawAngledRectangle(new Pt(x1,y1), new Pt(x2,y2),getAngle(slope),canvas);
+        drawAngledRectangle(new Pt(x1,y1), new Pt(x2,y2),getAngle(slope),3,canvas);
 
     }
 
@@ -164,8 +164,8 @@ public class GameMapView extends View {
         return (float)Math.toDegrees(Math.atan(slope));
     }
 
-    private void drawAngledRectangle(Pt start, Pt end,float angleParam, Canvas canvas){
-                float angleDeg = angleParam;
+    private void drawAngledRectangle(Pt start, Pt end,float angleParam, int carCount, Canvas canvas){
+        float angleDeg = angleParam;
         double angle = Math.PI * angleDeg / 180;
 
 //        canvas.drawCircle(x1,y1,10,paint);
@@ -174,6 +174,9 @@ public class GameMapView extends View {
         float x1 = start.x;
         float y2 = end.y;
         float x2 = end.x;
+
+        canvas.drawCircle(x1,y1,16,paint);
+        canvas.drawCircle(x2,y2,16,paint);
 
         canvas.save();
         canvas.rotate(angleDeg);
@@ -186,7 +189,23 @@ public class GameMapView extends View {
 
         final float RECTANGLE_SCALER = getHeight() / 100;
 
-        canvas.drawRect(newX1,newY1+RECTANGLE_SCALER,newX2,newY2 - RECTANGLE_SCALER,paint);
+
+
+        paint.setColor(Color.BLACK);
+
+//        canvas.drawRect(newX1,newY1+RECTANGLE_SCALER +10,newX2,newY2 - RECTANGLE_SCALER -10,paint);
+//
+//        paint.setColor(Color.RED);
+//
+//        canvas.drawRect(newX1+15,newY1+RECTANGLE_SCALER,newX2-15,newY2 - RECTANGLE_SCALER,paint);
+
+        float currentX = Math.min(newX1,newX2);
+
+        while (currentX < Math.max(newX2,newX1)){
+            canvas.drawRect(currentX,newY1+RECTANGLE_SCALER +10,currentX +( (newX2-newX1) /carCount) -10 ,newY2 - RECTANGLE_SCALER -10,paint);
+            currentX = currentX +( (newX2-newX1) /carCount)  + 10;
+        }
+
     }
 
     @Override
