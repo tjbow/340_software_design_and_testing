@@ -1,0 +1,34 @@
+[ {
+  "xConstraint" : 82.0,
+  "yConstraint" : 90.0,
+  "name" : "Miami"
+}, {
+  "xConstraint" : 80.0,
+  "yConstraint" : 70.0,
+  "name" : "Charleston"
+}, {
+  "xConstraint" : 88.0,
+  "yConstraint" : 53.0,
+  "name" : "Washington"
+}
+, {
+  "xConstraint" : 88.0,
+  "yConstraint" : 33.0,
+  "name" : "New York"
+}
+, {
+  "xConstraint" : 80.0,
+  "yConstraint" : 70.0,
+  "name" : "Charleston"
+}
+, {
+  "xConstraint" : 80.0,
+  "yConstraint" : 70.0,
+  "name" : "Charleston"
+}, {
+  "xConstraint" : 80.0,
+  "yConstraint" : 70.0,
+  "name" : "Charleston"
+}
+
+]

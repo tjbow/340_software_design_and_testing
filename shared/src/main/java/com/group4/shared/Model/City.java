@@ -7,6 +7,17 @@ package com.group4.shared.Model;
 public class City {
     private float xConstraint;
     private float yConstraint;
+    private String name;
+
+    public City(){}
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public float getxConstraint() {
         return xConstraint;
@@ -24,8 +35,8 @@ public class City {
         this.yConstraint = yConstraint;
     }
 
-    public City(float xConstraint, float yConstraint) {
-
+    public City(float xConstraint, float yConstraint, String name) {
+        this.name = name;
         this.xConstraint = xConstraint;
         this.yConstraint = yConstraint;
     }

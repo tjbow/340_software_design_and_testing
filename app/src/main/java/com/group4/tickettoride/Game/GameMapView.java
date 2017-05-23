@@ -12,11 +12,17 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.group4.shared.Model.City;
 import com.group4.shared.Model.ROUTE_COLOR;
 import com.group4.shared.Model.RouteSegment;
 import com.group4.tickettoride.R;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -31,9 +37,9 @@ public class GameMapView extends View {
     boolean tap = false;  //if true display text.  Used only for demonstration purposes
 
     private List<RouteSegment> routeSegments = new ArrayList<>();
-    private Map<String,City> cities = new HashMap<>();
+    private List<City> cities = new ArrayList<>();
 
-    private final float RADIUS = 25;
+    private float CITY_RADIUS = 15;
 
     public GameMapView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
@@ -58,8 +64,10 @@ public class GameMapView extends View {
 
         routeSegments.add(r2);
 
-        City city = new City(60,80);  //hardcoding in a city
-        cities.put("city",city);
+//        City city = new City(60,80,"name");  //hardcoding in a city
+//        cities.add(city);
+
+        getCities();
 
         paint.setFlags(Paint.ANTI_ALIAS_FLAG);
 
@@ -100,7 +108,7 @@ public class GameMapView extends View {
         float width = getWidth();
         float height = getHeight();
 
-        for(City c : cities.values()){
+        for(City c : cities){
             //translating from constraint to pixel value
             float x = c.getxConstraint()/100 * width;
             float y = c.getyConstraint()/100 * height;
@@ -110,7 +118,7 @@ public class GameMapView extends View {
 
 
 
-            canvas.drawCircle(x,y,RADIUS,paint);
+            canvas.drawCircle(x,y,CITY_RADIUS,paint);
         }
     }
 
@@ -226,9 +234,9 @@ public class GameMapView extends View {
         Pt tapPt = new Pt(event.getX(),event.getY());
 
 
-        for(City c : cities.values()){
+        for(City c : cities){
             Pt center = new Pt(c.getxConstraint()/100 * getWidth(),c.getyConstraint()/100 *getHeight());
-            if(getDistance(center,tapPt) < RADIUS){  //if touching city do nothing
+            if(getDistance(center,tapPt) < CITY_RADIUS){  //if touching city do nothing
                 return super.onTouchEvent(event);
             }
         }
@@ -296,6 +304,26 @@ public class GameMapView extends View {
 
         return !(tapPt.x > xMax || tapPt.x < xMin || tapPt.y > yMax || tapPt.y < yMin);
     }
+
+
+    /**
+     * Only used for testing purposes
+     */
+    private void getCities(){
+        InputStream is = getResources().openRawResource(R.raw.cities);
+
+
+        ObjectMapper mapper = new ObjectMapper();
+        try {
+            this.cities = mapper.readValue(is, new TypeReference<List<City>>() { });
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+    }
+
+
 
 
 }
