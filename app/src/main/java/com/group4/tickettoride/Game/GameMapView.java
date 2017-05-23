@@ -72,7 +72,7 @@ public class GameMapView extends View {
 
         paint.setFlags(Paint.ANTI_ALIAS_FLAG);
 
-        setBackgroundResource(R.drawable.unitedstates_map);  //set map as background
+        setBackgroundResource(R.drawable.unitedstatesmap_2);  //set map as background
     }
 
     public void setRouteSegments(List<RouteSegment> RouteSegments){
