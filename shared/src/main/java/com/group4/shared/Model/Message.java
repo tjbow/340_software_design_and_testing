@@ -31,4 +31,16 @@ public class Message
     {
         return color;
     }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
 }

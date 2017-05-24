@@ -25,6 +25,10 @@ public class Game
     private List<Message> chatHistory;
     private CommandList commandList;
 
+    private String playerCurrentTurn;
+    private String playerLongestPath;
+    private String playerWinning;
+
     public Game(String gameName, int playerCount)
     {
         this.gameName = gameName;
@@ -130,6 +134,32 @@ public class Game
     public boolean addCommand(ClientCommand command)
     {
         return commandList.add(command);
+    }
+
+
+// Player Highlights
+    public String getPlayerCurrentTurn() {
+        return playerCurrentTurn;
+    }
+
+    public void setPlayerCurrentTurn(String playerCurrentTurn) {
+        this.playerCurrentTurn = playerCurrentTurn;
+    }
+
+    public String getPlayerLongestPath() {
+        return playerLongestPath;
+    }
+
+    public void setPlayerLongestPath(String playerLongestPath) {
+        this.playerLongestPath = playerLongestPath;
+    }
+
+    public String getPlayerWinning() {
+        return playerWinning;
+    }
+
+    public void setPlayerWinning(String playerWinning) {
+        this.playerWinning = playerWinning;
     }
 
     /*---------------Deprecated-------------------------------*/

@@ -6,4 +6,41 @@ package com.group4.shared.Model;
 
 public class DestinationCard
 {
+
+    private String id;
+    private City cityA;
+    private City cityB;
+    private int points;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public City getCityA() {
+        return cityA;
+    }
+
+    public void setCityA(City cityA) {
+        this.cityA = cityA;
+    }
+
+    public City getCityB() {
+        return cityB;
+    }
+
+    public void setCityB(City cityB) {
+        this.cityB = cityB;
+    }
+
+    public int getPoints() {
+        return points;
+    }
+
+    public void setPoints(int points) {
+        this.points = points;
+    }
 }
