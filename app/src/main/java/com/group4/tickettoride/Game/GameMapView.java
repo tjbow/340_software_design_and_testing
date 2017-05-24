@@ -67,6 +67,7 @@ public class GameMapView extends View {
 //        cities.add(city);
 
         getCities();
+        getRoutes();
 
         paint.setFlags(Paint.ANTI_ALIAS_FLAG);
 
@@ -349,6 +350,21 @@ public class GameMapView extends View {
 
 
     }
+
+    private void getRoutes(){
+        InputStream is = getResources().openRawResource(R.raw.routes);
+
+
+        ObjectMapper mapper = new ObjectMapper();
+        try {
+            this.routeSegments = mapper.readValue(is, new TypeReference<List<RouteSegment>>() { });
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+    }
+
 
 
 

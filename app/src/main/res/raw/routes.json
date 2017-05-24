@@ -1,0 +1,17 @@
+[
+  {
+    "routeId":null,
+    "claimed":false,
+    "owner":null,
+    "length":3,
+    "score":0,
+    "cityA":"cityA",
+    "cityB":"cityB",
+    "x1Constraint":10.0,
+    "y1Constraint":20.0,
+    "x2Constraint":30.0,
+    "y2Constraint":40.0,
+    "routeColor":"RED",
+    "highlighted":false
+  }
+]
