@@ -1,6 +1,6 @@
 package com.group4.tickettoride.Game.GameFragments;
 
-/**
+/*
  * Created by Tom on 5/24/2017.
  */
 
