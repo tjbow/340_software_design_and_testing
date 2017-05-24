@@ -7,6 +7,7 @@ import com.group4.shared.Model.GAME_STATUS;
 import com.group4.shared.Model.Game;
 import com.group4.shared.Model.GameList;
 import com.group4.shared.Model.Message;
+import com.group4.shared.Model.MessageList;
 import com.group4.shared.Model.Player;
 import com.group4.shared.Model.Results;
 import com.group4.shared.Model.RouteList;
@@ -173,13 +174,13 @@ public class ClientFacade implements IClient,IComandExec
     }
 
     @Override
-    public Results onUpdateChat(List<Message> messageList)
+    public Results onUpdateChat(MessageList messageList)
     {
         return null;
     }
 
     @Override
-    public Results onUpdateTurnHistory(List<Message> turnHistory)
+    public Results onUpdateTurnHistory(MessageList turnHistory)
     {
         return null;
     }

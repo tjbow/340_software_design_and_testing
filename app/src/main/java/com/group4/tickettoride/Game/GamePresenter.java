@@ -77,6 +77,7 @@ public class GamePresenter implements IGamePresenter, Observer
             ClientFacade.SINGLETON.startPoller();
             activity.startNextActivity(GameListActivity.class);
         }
+
     }
 
     private void displayError(String error)

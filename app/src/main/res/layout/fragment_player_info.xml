@@ -1,133 +1,706 @@
-<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
              xmlns:tools="http://schemas.android.com/tools"
              android:layout_width="match_parent"
              android:layout_height="match_parent"
-              android:columnCount="5"
-            android:rowCount="1"
+              android:orientation="horizontal"
 
              tools:context="com.group4.tickettoride.Game.GameFragments.PlayerInfoFragment">
 
+   <!--PLAYER 1 VIEWS-->
     <LinearLayout
         android:orientation="vertical"
         android:background="@color/colorBlue"
-        android:layout_columnWeight="1"
-        android:layout_rowWeight="1">
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="0.2">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
+            android:layout_height="0dp"
+            android:layout_weight="0.5"
+            android:orientation="horizontal"
             android:layout_margin="7dp">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="0.7"
                 android:layout_height="wrap_content"
                 android:id="@+id/player1_username"
+                android:text="username1"
                 android:textColor="@color/colorBlack"
-                android:textSize="30sp"
-                android:text="player1"/>
+                android:textSize="18sp"
+                android:scrollHorizontally="true"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:layout_gravity="center"
+                />
+
+            <ImageView
+                android:layout_weight="0.15"
+                android:id="@+id/player1_winningIcon"
+                android:layout_width="0dp"
+                android:layout_height="20dp"
+                android:layout_gravity="center"
+                />
+
+            <ImageView
+                android:layout_weight="0.15"
+                android:id="@+id/player1_longestPathIcon"
+                android:layout_width="0dp"
+                android:layout_height="20dp"
+                android:layout_gravity="center"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:baselineAligned="false"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            android:layout_weight="0.5"
+            >
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.3"
+                android:paddingRight="7dp"
+                android:paddingLeft="7dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/points"/>
+
+                <TextView
+                    android:id="@+id/player1_points"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.2"
+                android:paddingRight="7dp"
+                android:paddingLeft="7dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/train_cards"/>
+
+                <TextView
+                    android:id="@+id/player1_trainCards"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    />
+
+                </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.2"
+                android:paddingRight="7dp"
+                android:paddingLeft="7dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/dest_tickets"/>
+
+                <TextView
+                    android:id="@+id/player1_destCards"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.3"
+                android:paddingRight="7dp"
+                android:paddingLeft="7dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/train_cars"/>
+
+                <TextView
+                    android:id="@+id/player1_trainCars"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    />
+
+            </LinearLayout>
+
 
         </LinearLayout>
 
 
     </LinearLayout>
 
+    <!--PLAYER 2 VIEWS-->
     <LinearLayout
         android:orientation="vertical"
         android:background="@color/colorRed"
-        android:layout_columnWeight="1"
-        android:layout_rowWeight="1">
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="0.2">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
+            android:layout_height="0dp"
+            android:layout_weight="0.5"
+            android:orientation="horizontal"
             android:layout_margin="7dp">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="0.7"
                 android:layout_height="wrap_content"
                 android:id="@+id/player2_username"
+                android:text="username2"
                 android:textColor="@color/colorBlack"
-                android:textSize="30sp"
-                android:text="player2"/>
+                android:textSize="18sp"
+                android:scrollHorizontally="true"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:layout_gravity="center"
+                />
+
+            <ImageView
+                android:layout_weight="0.15"
+                android:id="@+id/player2_winningIcon"
+                android:layout_width="0dp"
+                android:layout_height="20dp"
+                android:layout_gravity="center"
+                />
+
+            <ImageView
+                android:layout_weight="0.15"
+                android:id="@+id/player2_longestPathIcon"
+                android:layout_width="0dp"
+                android:layout_height="20dp"
+                android:layout_gravity="center"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.5"
+            android:orientation="horizontal"
+            >
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.3"
+                android:paddingRight="7dp"
+                android:paddingLeft="7dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/points"/>
+
+                <TextView
+                    android:id="@+id/player2_points"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.2"
+                android:paddingRight="7dp"
+                android:paddingLeft="7dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/train_cards"/>
+
+                <TextView
+                    android:id="@+id/player2_trainCards"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.2"
+                android:paddingRight="7dp"
+                android:paddingLeft="7dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/dest_tickets"/>
+
+                <TextView
+                    android:id="@+id/player2_destCards"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.3"
+                android:paddingRight="7dp"
+                android:paddingLeft="7dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/train_cars"/>
+
+                <TextView
+                    android:id="@+id/player2_trainCars"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    />
+
+            </LinearLayout>
+
 
         </LinearLayout>
 
 
     </LinearLayout>
 
+    <!--PLAYER 3 VIEWS-->
     <LinearLayout
         android:orientation="vertical"
         android:background="@color/colorGreen"
-        android:layout_columnWeight="1"
-        android:layout_rowWeight="1">
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="0.2">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
+            android:layout_height="0dp"
+            android:layout_weight="0.5"
+            android:orientation="horizontal"
             android:layout_margin="7dp">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="0.7"
                 android:layout_height="wrap_content"
                 android:id="@+id/player3_username"
+                android:text="username3"
                 android:textColor="@color/colorBlack"
-                android:textSize="30sp"
-                android:text="player3"/>
+                android:textSize="18sp"
+                android:scrollHorizontally="true"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:layout_gravity="center"
+                />
+
+            <ImageView
+                android:layout_weight="0.15"
+                android:id="@+id/player3_winningIcon"
+                android:layout_width="0dp"
+                android:layout_height="20dp"
+                android:layout_gravity="center"
+                />
+
+            <ImageView
+                android:layout_weight="0.15"
+                android:id="@+id/player3_longestPathIcon"
+                android:layout_width="0dp"
+                android:layout_height="20dp"
+                android:layout_gravity="center"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.5"
+            android:orientation="horizontal"
+            >
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.3"
+                android:paddingRight="7dp"
+                android:paddingLeft="7dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/points"/>
+
+                <TextView
+                    android:id="@+id/player3_points"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.2"
+                android:paddingRight="7dp"
+                android:paddingLeft="7dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/train_cards"/>
+
+                <TextView
+                    android:id="@+id/player3_trainCards"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.2"
+                android:paddingRight="7dp"
+                android:paddingLeft="7dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/dest_tickets"/>
+
+                <TextView
+                    android:id="@+id/player3_destCards"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.3"
+                android:paddingRight="7dp"
+                android:paddingLeft="7dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/train_cars"/>
+
+                <TextView
+                    android:id="@+id/player3_trainCars"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    />
+
+            </LinearLayout>
+
 
         </LinearLayout>
 
 
     </LinearLayout>
 
+    <!--PLAYER 4 VIEWS-->
     <LinearLayout
         android:orientation="vertical"
         android:background="@color/colorYellow"
-        android:layout_columnWeight="1"
-        android:layout_rowWeight="1"
-        >
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="0.2">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
+            android:layout_height="0dp"
+            android:layout_weight="0.5"
+            android:orientation="horizontal"
             android:layout_margin="7dp">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="0.7"
                 android:layout_height="wrap_content"
                 android:id="@+id/player4_username"
+                android:text="username4"
                 android:textColor="@color/colorBlack"
-                android:textSize="30sp"
-                android:text="player4"/>
+                android:textSize="18sp"
+                android:scrollHorizontally="true"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:layout_gravity="center"
+                />
+
+            <ImageView
+                android:layout_weight="0.15"
+                android:id="@+id/player4_winningIcon"
+                android:layout_width="0dp"
+                android:layout_height="20dp"
+                android:layout_gravity="center"
+                />
+
+            <ImageView
+                android:layout_weight="0.15"
+                android:id="@+id/player4_longestPathIcon"
+                android:layout_width="0dp"
+                android:layout_height="20dp"
+                android:layout_gravity="center"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.5"
+            android:orientation="horizontal"
+            >
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.3"
+                android:paddingRight="7dp"
+                android:paddingLeft="7dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/points"/>
+
+                <TextView
+                    android:id="@+id/player4_points"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.2"
+                android:paddingRight="7dp"
+                android:paddingLeft="7dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/train_cards"/>
+
+                <TextView
+                    android:id="@+id/player4_trainCards"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.2"
+                android:paddingRight="7dp"
+                android:paddingLeft="7dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/dest_tickets"/>
+
+                <TextView
+                    android:id="@+id/player4_destCards"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.3"
+                android:paddingRight="7dp"
+                android:paddingLeft="7dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/train_cars"/>
+
+                <TextView
+                    android:id="@+id/player4_trainCars"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    />
+
+            </LinearLayout>
+
 
         </LinearLayout>
 
 
     </LinearLayout>
 
+    <!--PLAYER 5 VIEWS-->
     <LinearLayout
         android:orientation="vertical"
         android:background="@color/colorOrange"
-        android:layout_columnWeight="1"
-        android:layout_rowWeight="1"
-        >
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="0.2">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
+            android:layout_height="0dp"
+            android:layout_weight="0.5"
+            android:orientation="horizontal"
             android:layout_margin="7dp">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="0.7"
                 android:layout_height="wrap_content"
                 android:id="@+id/player5_username"
+                android:text="username5"
                 android:textColor="@color/colorBlack"
-                android:textSize="30sp"
-                android:text="player5"/>
+                android:textSize="18sp"
+                android:scrollHorizontally="true"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:layout_gravity="center"
+                />
+
+            <ImageView
+                android:layout_weight="0.15"
+                android:id="@+id/player5_winningIcon"
+                android:layout_width="0dp"
+                android:layout_height="20dp"
+                android:layout_gravity="center"
+                />
+
+            <ImageView
+                android:layout_weight="0.15"
+                android:id="@+id/player5_longestPathIcon"
+                android:layout_width="0dp"
+                android:layout_height="20dp"
+                android:layout_gravity="center"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.5"
+            android:orientation="horizontal"
+            >
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.3"
+                android:paddingRight="7dp"
+                android:paddingLeft="7dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/points"/>
+
+                <TextView
+                    android:id="@+id/player5_points"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.2"
+                android:paddingRight="7dp"
+                android:paddingLeft="7dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/train_cards"/>
+
+                <TextView
+                    android:id="@+id/player5_trainCards"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.2"
+                android:paddingRight="7dp"
+                android:paddingLeft="7dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/dest_tickets"/>
+
+                <TextView
+                    android:id="@+id/player5_destCards"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.3"
+                android:paddingRight="7dp"
+                android:paddingLeft="7dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/train_cars"/>
+
+                <TextView
+                    android:id="@+id/player5_trainCars"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    />
+
+            </LinearLayout>
+
 
         </LinearLayout>
 
@@ -135,5 +708,8 @@
     </LinearLayout>
 
 
+    </LinearLayout>
 
-</GridLayout>
+
+
+

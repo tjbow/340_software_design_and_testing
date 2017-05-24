@@ -19,6 +19,8 @@ public class Player {
     private int trainCarsRemaining;
     private RouteList claimedRouteList;
     private int score;
+    private boolean winning;
+    private boolean turn;
 
     public Player(User user)
     {
@@ -64,6 +66,8 @@ public class Player {
         return trainCardDeck;
     }
 
+    public int getTrainCardCount() {return trainCardDeck.getCardDeck().size();}
+
     public void setTrainCardDeck(TrainCardDeck trainCardDeck) {
         this.trainCardDeck = trainCardDeck;
     }
@@ -71,6 +75,8 @@ public class Player {
     public DestinationCardDeck getDestinationCardDeck() {
         return destinationCardDeck;
     }
+
+    public int getDestinationCardCount(){return destinationCardDeck.getDestDeck().size();}
 
     public void setDestinationCardDeck(DestinationCardDeck destinationCardDeck) {
         this.destinationCardDeck = destinationCardDeck;
@@ -118,5 +124,21 @@ public class Player {
 
     public void decrementScore(int negativeScore){
         this.score -= negativeScore;
+    }
+
+    public boolean isWinning() {
+        return winning;
+    }
+
+    public void setWinning(boolean winning) {
+        this.winning = winning;
+    }
+
+    public boolean isTurn() {
+        return turn;
+    }
+
+    public void setTurn(boolean turn) {
+        this.turn = turn;
     }
 }

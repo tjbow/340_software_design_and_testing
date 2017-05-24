@@ -21,6 +21,11 @@
     <string name="waiting_message">Waiting for remaining players...</string>
     <string name="ready_message">Let\'s go!</string>
 
+    <string name="points">Pts: </string>
+    <string name="train_cards">TC: </string>
+    <string name="dest_tickets">DT: </string>
+    <string name="train_cars">Cars: </string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 

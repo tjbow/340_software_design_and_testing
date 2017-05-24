@@ -1,6 +1,7 @@
 package com.group4.shared.command.Client;
 
 import com.group4.shared.Model.Message;
+import com.group4.shared.Model.MessageList;
 import com.group4.shared.command.ClientCommand;
 import com.group4.shared.command.Command;
 
@@ -12,14 +13,14 @@ import java.util.List;
 
 public class CUpdateTurnHistoryCommandData extends ClientCommand
 {
-    List<Message> turnHistory;
+    MessageList turnHistory;
 
-    public List<Message> getTurnHistory()
+    public MessageList getTurnHistory()
     {
         return turnHistory;
     }
 
-    public void setTurnHistory(List<Message> turnHistory)
+    public void setTurnHistory(MessageList turnHistory)
     {
         this.turnHistory = turnHistory;
     }

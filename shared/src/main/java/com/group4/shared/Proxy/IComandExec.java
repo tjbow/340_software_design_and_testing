@@ -5,6 +5,7 @@ import com.group4.shared.Model.CommandList;
 import com.group4.shared.Model.Game;
 import com.group4.shared.Model.GameList;
 import com.group4.shared.Model.Message;
+import com.group4.shared.Model.MessageList;
 import com.group4.shared.Model.Player;
 import com.group4.shared.Model.Results;
 import com.group4.shared.Model.RouteList;
@@ -27,8 +28,8 @@ public interface IComandExec {
     Results onReportGameState(Game gameState);
 
 //    PHASE 2
-    Results onUpdateChat(List<Message> messageList);
-    Results onUpdateTurnHistory(List<Message> turnHistory);
+    Results onUpdateChat(MessageList messageList);
+    Results onUpdateTurnHistory(MessageList turnHistory);
     Results onUpdatePlayers(List<Player> playerData);
     Results onUpdateMapData(RouteList routeSegments, List<City> cities);
 }

@@ -59,6 +59,17 @@ public class Game
         return players.size();
     }
 
+    public List<Player> getPlayerList()
+    {
+        List<Player> playerList = new ArrayList<>();
+        for (String key : players.keySet())
+        {
+            playerList.add(players.get(key));
+        }
+
+        return playerList;
+    }
+
 
 //    GAME SETUP
     public String getGameName() {

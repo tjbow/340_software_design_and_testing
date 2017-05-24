@@ -40,18 +40,18 @@ public class GameActivity extends AppCompatActivity implements IGameActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
 
-//        if(savedInstanceState == null)
-//        {
-//            Bundle extras = getIntent().getExtras();
-//            if(extras == null)
-//                gameName = null;
-//            else
-//                gameName = extras.getString(EXTRA_GAME_NAME);
-//        }
-//        else
-//            this.gameName = (String) savedInstanceState.getSerializable(EXTRA_GAME_NAME);
+        if(savedInstanceState == null)
+        {
+            Bundle extras = getIntent().getExtras();
+            if(extras == null)
+                gameName = null;
+            else
+                gameName = extras.getString(EXTRA_GAME_NAME);
+        }
+        else
+            this.gameName = (String) savedInstanceState.getSerializable(EXTRA_GAME_NAME);
 
-        //this.presenter = new GamePresenter(this);
+        this.presenter = new GamePresenter(this);
 
         FragmentManager fm = this.getSupportFragmentManager();
         playerInfoFragment = (PlayerInfoFragment) fm.findFragmentById(R.id.playerInfo_fragment);
