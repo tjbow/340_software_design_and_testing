@@ -43,25 +43,25 @@ public class GameMapView extends View {
     public GameMapView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
 
-        RouteSegment r = new RouteSegment(); //hard coding in RouteSegment information
-        r.setX1Constraint(50);
-        r.setX2Constraint(60);
-        r.setY1Constraint(70);
-        r.setY2Constraint(80);
-        r.setLength(2);
-        r.setRouteColor(ROUTE_COLOR.RED);
-        routeSegments.add(r);
-
-        RouteSegment r2 = new RouteSegment(); //hard coding test RouteSegment information
-        r2.setX1Constraint(80);
-        r2.setX2Constraint(60);
-        r2.setY1Constraint(20);
-        r2.setY2Constraint(80);
-        r2.setLength(6);
-        r2.setHighlighted(true);
-        r2.setRouteColor(ROUTE_COLOR.GREEN);
-
-        routeSegments.add(r2);
+//        RouteSegment r = new RouteSegment(); //hard coding in test RouteSegment information
+//        r.setX1Constraint(50);
+//        r.setX2Constraint(55);
+//        r.setY1Constraint(65);
+//        r.setY2Constraint(70);
+//        r.setLength(2);
+//        r.setRouteColor(ROUTE_COLOR.RED);
+//        routeSegments.add(r);
+//
+//        RouteSegment r2 = new RouteSegment(); //hard coding test RouteSegment information
+//        r2.setX1Constraint(80);
+//        r2.setX2Constraint(60);
+//        r2.setY1Constraint(20);
+//        r2.setY2Constraint(80);
+//        r2.setLength(6);
+//        r2.setHighlighted(true);
+//        r2.setRouteColor(ROUTE_COLOR.GREEN);
+//
+//        routeSegments.add(r2);
 
 //        City city = new City(60,80,"name");  //hardcoding in a city
 //        cities.add(city);
