@@ -21,10 +21,13 @@ public class Game
     private String gameName;
     private GAME_STATUS status;
 
-    private List<Message> turnHistory;
-    private List<Message> chatHistory;
+    private TurnHistory turnHistory;
+    private ChatHistory chatHistory;
     private Decks decks;
     private CommandList commandList;
+
+    private RouteList routes;
+    private List<City> cities;
 
     private String playerCurrentTurn;
     private String playerLongestPath;
@@ -37,8 +40,6 @@ public class Game
         this.players = new HashMap<>();
         this.status = GAME_STATUS.WAITING;
 
-        this.chatHistory = new ArrayList<>();
-        this.turnHistory = new ArrayList<>();
         this.commandList = new CommandList();
     }
 
@@ -95,38 +96,54 @@ public class Game
         this.decks = decks;
     }
 
+    public RouteList getRoutes() {
+        return routes;
+    }
+
+    public void setRoutes(RouteList routes) {
+        this.routes = routes;
+    }
+
+    public List<City> getCities() {
+        return cities;
+    }
+
+    public void setCities(List<City> cities) {
+        this.cities = cities;
+    }
+
     //    GAMEPLAY
 
 //    TURN HISTORY
-    public List<Message> getTurnHistory()
+    public TurnHistory getTurnHistory()
     {
         return turnHistory;
     }
 
-    public void setTurnHistory(List<Message> turnHistory)
+    public void setTurnHistory(TurnHistory turnHistory)
     {
         this.turnHistory = turnHistory;
     }
 
-    public boolean addTurn(Message turn)
+    public void addTurn(Message turn)
     {
-        return turnHistory.add(turn);
+        turnHistory.add(turn);
     }
 
 //    CHAT HISTORY
-    public List<Message> getChatHistory()
+    public ChatHistory getChatHistory()
     {
         return chatHistory;
     }
 
-    public void setChatHistory(List<Message> chatHistory)
+    public void setChatHistory(ChatHistory chatHistory)
     {
         this.chatHistory = chatHistory;
     }
 
-    public boolean addMessage(Message message)
+    public void addMessage(Message message)
     {
-        return chatHistory.add(message);
+        chatHistory.add(message);
     }
 
 //    COMMAND LIST
