@@ -1,9 +1,14 @@
 package com.group4.tickettoride.NextLayerFacade;
 
+import com.group4.shared.Model.DestinationCard;
 import com.group4.shared.Model.Game;
+import com.group4.shared.Model.Message;
 import com.group4.shared.Model.User;
 import com.group4.tickettoride.ClientModel.ClientModel;
 import com.group4.tickettoride.Network.ServerProxy;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class NextLayerFacade implements INextLayerFacade {
 
@@ -39,9 +44,32 @@ public class NextLayerFacade implements INextLayerFacade {
         ServerProxy.SINGLETON.startGame(gameName);
     }
 
+
+
     @Override
     public void endGame(String gameName)
     {
         ServerProxy.SINGLETON.endGame(gameName);
+    }
+
+    @Override
+    public void claimRoute(String routeId) {
+        return;
+    }
+
+    @Override
+    public void sendMessage(String message) {
+        Message newMessage = new Message(message, ClientModel.SINGLETON.getUser().getUsername(), ClientModel.SINGLETON.getPlayer().getColor());
+        ServerProxy.SINGLETON.sendChat(newMessage);
+    }
+
+    @Override
+    public void drawDestinationCards(List<String> destinationId) {
+        List<DestinationCard> destinationCards = new ArrayList<>();
+        for(String Id : destinationId){
+            destinationCards.add(ClientModel.SINGLETON.getGame().getDecks().getDestinationCardDeck().findCard(Id));
+        }
+
+        ServerProxy.SINGLETON.drawDestinationCards(ClientModel.SINGLETON.getUser().getUsername(), destinationCards);
     }
 }

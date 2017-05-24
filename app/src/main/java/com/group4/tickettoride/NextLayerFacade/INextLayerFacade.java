@@ -1,7 +1,9 @@
 package com.group4.tickettoride.NextLayerFacade;
 
 
- interface INextLayerFacade {
+import java.util.List;
+
+interface INextLayerFacade {
 
     void login (String username, String password);
 
@@ -14,4 +16,10 @@ package com.group4.tickettoride.NextLayerFacade;
     void startGame(String gameName);
 
     void endGame(String gameName);
+
+    void claimRoute(String routeId);
+
+    void sendMessage(String message);
+
+    void drawDestinationCards(List<String> destinationId);
 }

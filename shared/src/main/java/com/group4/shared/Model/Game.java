@@ -23,6 +23,7 @@ public class Game
 
     private List<Message> turnHistory;
     private List<Message> chatHistory;
+    private Decks decks;
     private CommandList commandList;
 
     private String playerCurrentTurn;
@@ -86,7 +87,15 @@ public class Game
         this.status = status;
     }
 
-//    GAMEPLAY
+    public Decks getDecks() {
+        return decks;
+    }
+
+    public void setDecks(Decks decks) {
+        this.decks = decks;
+    }
+
+    //    GAMEPLAY
 
 //    TURN HISTORY
     public List<Message> getTurnHistory()

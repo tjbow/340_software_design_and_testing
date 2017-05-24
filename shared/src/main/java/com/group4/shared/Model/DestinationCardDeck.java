@@ -27,4 +27,14 @@ public class DestinationCardDeck {
     public void add(DestinationCard destCard){
         destDeck.add(destCard);
     }
+
+    public DestinationCard findCard(String Id){
+        for(DestinationCard destinationCard : destDeck){
+            if(destinationCard.getId().equals(Id)) {
+                return destinationCard;
+            }
+        }
+
+        return null;
+    }
 }
