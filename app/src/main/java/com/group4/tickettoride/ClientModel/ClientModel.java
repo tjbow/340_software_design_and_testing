@@ -177,6 +177,10 @@ public class ClientModel extends Observable {
         sendToObservers(stats);
     }
 
+    public void updatePlayerInfo(List<Player> players){
+        // TODO: Russell implement Player interation to update Map in game
+    }
+
     @Override
     public synchronized void addObserver(Observer o) {
         super.addObserver(o);

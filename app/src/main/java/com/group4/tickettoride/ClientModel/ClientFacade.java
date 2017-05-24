@@ -98,6 +98,9 @@ public class ClientFacade implements IClient,IComandExec
 
     @Override
     public Results onCreateGame() {
+
+
+
         return null;
     }
 
@@ -138,6 +141,8 @@ public class ClientFacade implements IClient,IComandExec
     {
         //poller.setUpdateGameList(false);
         ClientModel.SINGLETON.sendToObservers(true);
+        ClientModel.SINGLETON.sendToObservers(ClientModel.SINGLETON.getGame());
+
         return null;
     }
 
