@@ -1,18 +1,27 @@
 package com.group4.tickettoride.ClientModel;
 
+import com.group4.shared.Model.ChatHistory;
+import com.group4.shared.Model.City;
 import com.group4.shared.Model.CommandList;
+import com.group4.shared.Model.Decks;
 import com.group4.shared.Model.GAME_STATUS;
 import com.group4.shared.Model.Game;
 import com.group4.shared.Model.GameList;
+import com.group4.shared.Model.GameStats;
+import com.group4.shared.Model.Message;
 import com.group4.shared.Model.Player;
+import com.group4.shared.Model.RouteList;
+import com.group4.shared.Model.TurnHistory;
 import com.group4.shared.Model.User;
 import com.group4.shared.command.Command;
 import com.group4.shared.command.IClientCommand;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.UUID;
+import java.util.concurrent.ScheduledExecutorService;
 
 /**
  * Created by Russell Fitzpatrick on 5/13/2017.
@@ -26,6 +35,7 @@ public class ClientModel extends Observable {
     private String authToken;
     private Player player;
     private Game game;
+    private ScheduledExecutorService execService;
 
     public static ClientModel SINGLETON = new ClientModel();
 
@@ -119,6 +129,14 @@ public class ClientModel extends Observable {
         }
     }
 
+    public ScheduledExecutorService getExecService() {
+        return execService;
+    }
+
+    public void setExecService(ScheduledExecutorService execService) {
+        this.execService = execService;
+    }
+
     public void checkForGame()
     {
         if (/*this.game == null && */gameList.getGameByUsername(user.getUsername()) != null)
@@ -130,6 +148,33 @@ public class ClientModel extends Observable {
         {
             this.game = null;
         }
+    }
+
+    public void setChatHistory(ChatHistory meesageList){
+        game.setChatHistory(meesageList);
+        sendToObservers(meesageList);
+    }
+
+    public void setTurnHistory(TurnHistory turnHistory){
+        game.setTurnHistory(turnHistory);
+        sendToObservers(turnHistory);
+    }
+
+    public void setDecks(Decks decks){
+        game.setDecks(decks);
+        sendToObservers(decks);
+    }
+
+    public void updateMap(RouteList routeList, List<City> cities){
+        game.setRoutes(routeList);
+        sendToObservers(routeList);
+        game.setCities(cities);
+        sendToObservers(cities);
+    }
+
+    public void updateStats(GameStats stats){
+        game.setGameStats(stats);
+        sendToObservers(stats);
     }
 
     @Override

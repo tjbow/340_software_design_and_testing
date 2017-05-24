@@ -29,9 +29,8 @@ public class Game
     private RouteList routes;
     private List<City> cities;
 
-    private String playerCurrentTurn;
-    private String playerLongestPath;
-    private String playerWinning;
+    private GameStats gameStats;
+
 
     public Game(String gameName, int playerCount)
     {
@@ -112,6 +111,14 @@ public class Game
         this.cities = cities;
     }
 
+    public GameStats getGameStats() {
+        return gameStats;
+    }
+
+    public void setGameStats(GameStats gameStats) {
+        this.gameStats = gameStats;
+    }
+
     //    GAMEPLAY
 
 //    TURN HISTORY
@@ -162,31 +169,6 @@ public class Game
         return commandList.add(command);
     }
 
-
-// Player Highlights
-    public String getPlayerCurrentTurn() {
-        return playerCurrentTurn;
-    }
-
-    public void setPlayerCurrentTurn(String playerCurrentTurn) {
-        this.playerCurrentTurn = playerCurrentTurn;
-    }
-
-    public String getPlayerLongestPath() {
-        return playerLongestPath;
-    }
-
-    public void setPlayerLongestPath(String playerLongestPath) {
-        this.playerLongestPath = playerLongestPath;
-    }
-
-    public String getPlayerWinning() {
-        return playerWinning;
-    }
-
-    public void setPlayerWinning(String playerWinning) {
-        this.playerWinning = playerWinning;
-    }
 
     /*---------------Deprecated-------------------------------*/
     @Deprecated
