@@ -69,6 +69,8 @@ public class GameMapView extends View {
         getCities();
         getRoutes();
 
+
+
         paint.setFlags(Paint.ANTI_ALIAS_FLAG);
 
         setBackgroundResource(R.drawable.unitedstatesmap_2);  //set map as background
@@ -173,10 +175,11 @@ public class GameMapView extends View {
     @Override
     public void onDraw(Canvas canvas) {
         super.onDraw(canvas);
+        CITY_RADIUS = getWidth() * .009f;
 //
         paint.setColor(Color.BLACK);
         paint.setStrokeWidth(getHeight()/100);
-        paint.setTextSize(50);
+        paint.setTextSize(getWidth() *.01f);
         drawRouteSegments(canvas);
         drawCities(canvas);
         if(tap){
@@ -226,7 +229,7 @@ public class GameMapView extends View {
         float newX2 =(float)( y2*Math.sin(angle) + (x2*Math.cos(angle)));
 
         //final float RECTANGLE_SCALER = getHeight() / 100;
-        final float RECTANGLE_SCALER = Math.max(getHeight(),getWidth()) / Math.min(getHeight(),getWidth()) *10;
+        final float RECTANGLE_SCALER = Math.max(getHeight(),getWidth())  *.008f;
 
         paint.setColor(Color.BLACK);
 
