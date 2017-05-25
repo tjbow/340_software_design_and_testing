@@ -9,6 +9,12 @@ public class TrainCard {
     CARD_COLOR color;
     boolean visible;
 
+    public TrainCard(CARD_COLOR color, boolean visible)
+    {
+        this.color = color;
+        this.visible = visible;
+    }
+
     public CARD_COLOR getColor() {
         return color;
     }

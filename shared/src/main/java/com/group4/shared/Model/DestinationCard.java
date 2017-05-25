@@ -12,6 +12,14 @@ public class DestinationCard
     private City cityB;
     private int points;
 
+    public DestinationCard(String id, City cityA, City cityB, int points)
+    {
+        this.id = id;
+        this.cityA = cityA;
+        this.cityB = cityB;
+        this.points = points;
+    }
+
     public String getId() {
         return id;
     }

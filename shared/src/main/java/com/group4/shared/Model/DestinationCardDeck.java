@@ -1,5 +1,10 @@
 package com.group4.shared.Model;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.List;
 
 import sun.security.krb5.internal.crypto.Des;
@@ -11,6 +16,38 @@ import sun.security.krb5.internal.crypto.Des;
 public class DestinationCardDeck {
 
     private List<DestinationCard> destDeck;
+
+    public DestinationCardDeck(String param)
+    {
+        destDeck = new ArrayList<>();
+        if(param.equals("newgame"))
+        {
+            initializeDestDeck();
+        }
+    }
+
+    public DestinationCardDeck()
+    {}
+
+    private void initializeDestDeck()
+    {
+
+//        destDeck.add(new DestinationCard("1", new City()));
+    }
+
+    private void getCities(){
+//        InputStream is = new FileInputStream(new File());
+//
+//
+//        ObjectMapper mapper = new ObjectMapper();
+//        try {
+//            this.cities = mapper.readValue(is, new TypeReference<List<City>>() { });
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//
+
+    }
 
     public List<DestinationCard> getDestDeck() {
         return destDeck;
