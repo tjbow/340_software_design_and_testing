@@ -31,7 +31,6 @@ public class Game
 
     private GameStats gameStats;
 
-
     public Game(String gameName, int playerCount)
     {
         this.gameName = gameName;
@@ -78,7 +77,6 @@ public class Game
 
         return playerList;
     }
-
 
 //    GAME SETUP
     public String getGameName() {
@@ -139,7 +137,17 @@ public class Game
         this.gameStats = gameStats;
     }
 
-    //    GAMEPLAY
+//    GAMEPLAY
+
+    public void dealInitialCards()
+    {
+        //init the game decks with all the cards
+        decks.startGameDeck();
+
+        //give four train cards to each player
+
+        //give four destination cards to each player (0 or 1 to be returned)
+    }
 
 //    TURN HISTORY
     public TurnHistory getTurnHistory()

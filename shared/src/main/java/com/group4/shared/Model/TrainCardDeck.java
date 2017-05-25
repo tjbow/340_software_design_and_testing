@@ -1,5 +1,6 @@
 package com.group4.shared.Model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -9,6 +10,16 @@ import java.util.List;
 public class TrainCardDeck {
 
     List<TrainCard> cardDeck;
+
+    public TrainCardDeck(List<TrainCard> cardDeck)
+    {
+        this.cardDeck = cardDeck;
+    }
+
+    public TrainCardDeck()
+    {
+        cardDeck = new ArrayList<>();
+    }
 
     public List<TrainCard> getCardDeck() {
         return cardDeck;
