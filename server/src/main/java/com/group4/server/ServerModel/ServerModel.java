@@ -141,7 +141,6 @@ public class ServerModel
         Player player = new Player(getTempUser());
 
         joinGame(game.getGameName(), player);
-        game.getGameStats().setPlayerCurrentTurn(player.getUserName());
 
         return true;
     }
@@ -185,12 +184,24 @@ public class ServerModel
 
     public void startGame(String gameName)
     {
-        gameList.getGameByName(gameName).setStatus(GAME_STATUS.ONGOING);
+        Game game = gameList.getGameByName(gameName);
+        game.setStatus(GAME_STATUS.ONGOING);
+
+        for(Map.Entry<String, Player> entry : game.getPlayers().entrySet())
+        {
+            entry.getValue().initializeGame();
+        }
+
+        Player firstPlayer = game.getPlayerList().get(0);
+        firstPlayer.setTurn(true);
+        game.getGameStats().setPlayerCurrentTurn(firstPlayer.getUserName());
+
         System.out.println(gameName + " has been started by " + getTempUser().getUsername());
     }
 
     public boolean endGame(String gameName)
     {
+        //TODO: TYLER: adjust ServerModel endGame
         Game game = gameList.getGameByName(gameName);
         return gameList.remove(game);
     }
@@ -219,22 +230,4 @@ public class ServerModel
     {
         this.tempUser = null;
     }
-
-//    DEPRECATED
-//
-//    /**
-//     * Gets the list of commands that were executed after the index in commandID
-//     * @param commandID
-//     */
-//    public CommandList getCommandsSinceIndex(int commandID)
-//    {
-//        CommandList returnList = new CommandList();
-//        // need to have at least one new command to sublist, if not, just return  the empty list
-//        // we are returning all the commands after commandID, thus it is commandID + 1
-//        if(commandID + 1 < commandList.size() - 1)
-//        {
-//            returnList.setCommandList(commandList.getCommandList().subList(commandID + 1, commandList.size()));
-//        }
-//        return returnList;
-//    }
 }

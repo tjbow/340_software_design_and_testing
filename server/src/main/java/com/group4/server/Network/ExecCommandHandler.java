@@ -78,6 +78,7 @@ public class ExecCommandHandler
                 GetGameListCommand getGameListCommand = new Gson().fromJson(requestBody, GetGameListCommand.class);
                 results = getGameListCommand.execute();
                 break;
+            //PHASE 2:
             case "sendchat":
                 if(ServerModel.getInstance().getTempUser() != null)
                 {

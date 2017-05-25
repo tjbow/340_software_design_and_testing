@@ -16,6 +16,8 @@ import com.group4.shared.command.Client.CRegisterCommandData;
 import com.group4.shared.command.Client.CStartGameCommandData;
 import com.group4.shared.command.Client.CUpdateChatCommandData;
 import com.group4.shared.command.Client.CUpdateGameCommandData;
+import com.group4.shared.command.Client.CUpdateGameStatsCommandData;
+import com.group4.shared.command.Client.CUpdatePlayersCommandData;
 
 import java.util.List;
 
@@ -135,13 +137,21 @@ public class ServerFacade implements IServer
             return new Results(false, null, "Sorry, this game is full", null);
         }
 
-        //CREATE AN UPDATEGAME COMMAND TO SEND
         Game game = serverModel.getGameList().getGameByName(gameName);
+
+        //CREATE A PLAYERDATA COMMAND TO ADD TO THE GAME BEING PLAYED
+        CUpdatePlayersCommandData updatePlayersCommandData = new CUpdatePlayersCommandData();
+        updatePlayersCommandData.setType("updateplayers");
+        updatePlayersCommandData.setPlayerData(game.getPlayerList());
+
+        //CREATE AN UPDATEGAME COMMAND TO SEND
         CUpdateGameCommandData updateGameCommandData = new CUpdateGameCommandData();
         updateGameCommandData.setType("updategame");
         updateGameCommandData.setStatus(game.getStatus());
-        updateGameCommandData.setPlayerList(game.getPlayers());
-        //ADD THE UPDATEGAME COMMAND TO THE GAME SO EVERYONE CAN RECEIVE IT
+
+        //ADD THE ABOVE COMMANDS TO THE GAME SO EVERYONE CAN RECEIVE IT
+        game.addCommand(updatePlayersCommandData);
+        updatePlayersCommandData.setCommandNumber(game.getNewCommandIndex());
         game.addCommand(updateGameCommandData);
         updateGameCommandData.setCommandNumber(game.getNewCommandIndex());
 
@@ -161,22 +171,39 @@ public class ServerFacade implements IServer
     public Results startGame(String gameName)
     {
         serverModel.startGame(gameName);
+        Game game = serverModel.getGameList().getGameByName(gameName);
 
         //CREATE A STARTGAME COMMAND TO ADD TO THE GAME BEING PLAYED
         CStartGameCommandData startGameCommandData = new CStartGameCommandData();
         startGameCommandData.setType("startgame");
         startGameCommandData.setWasSuccessful(true);
 
+        //CREATE A GAMESTATS COMMAND TO ADD TO THE GAME BEING PLAYED
+        CUpdateGameStatsCommandData updateStatsCommandData = new CUpdateGameStatsCommandData();
+        updateStatsCommandData.setType("updatestats");
+        updateStatsCommandData.setGameStats(game.getGameStats());
+
+        //CREATE A PLAYERDATA COMMAND TO ADD TO THE GAME BEING PLAYED
+        CUpdatePlayersCommandData updatePlayersCommandData = new CUpdatePlayersCommandData();
+        updatePlayersCommandData.setType("updateplayers");
+        updatePlayersCommandData.setPlayerData(game.getPlayerList());
+
         //CREATE AN UPDATEGAME COMMAND TO ADD TO THE GAME BEING PLAYED
-        Game game = serverModel.getGameList().getGameByName(gameName);
         CUpdateGameCommandData updateGameCommandData = new CUpdateGameCommandData();
         updateGameCommandData.setType("updategame");
         updateGameCommandData.setStatus(game.getStatus());
-        updateGameCommandData.setPlayerList(game.getPlayers());
 
-        //ADD STARTGAME AND UPDATEGAME TO THE GAME FOR RETRIEVAL BY ALL PLAYERS
+
+        //ADD THE ABOVE TO THE GAME FOR RETRIEVAL BY ALL PLAYERS
         game.addCommand(startGameCommandData);
         startGameCommandData.setCommandNumber(game.getNewCommandIndex());
+
+        game.addCommand(updateStatsCommandData);
+        updateStatsCommandData.setCommandNumber(game.getNewCommandIndex());
+
+        game.addCommand(updatePlayersCommandData);
+        updatePlayersCommandData.setCommandNumber(game.getNewCommandIndex());
+
         game.addCommand(updateGameCommandData);
         updateGameCommandData.setCommandNumber(game.getNewCommandIndex());
 

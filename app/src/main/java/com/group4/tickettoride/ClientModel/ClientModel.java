@@ -16,6 +16,7 @@ import com.group4.shared.Model.User;
 import com.group4.shared.command.Command;
 import com.group4.shared.command.IClientCommand;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Observable;
@@ -47,14 +48,12 @@ public class ClientModel extends Observable {
         this.commandIDIndex = 0;
     }
 
-    public void destructor()
+    public void additionalUserLogin(User user)
     {
-        this.user = null;
-        this.gameList = null;
-        this.authToken = null;
-        this.commandIDIndex = 0;
-        this.player = null;
-        this.game = null;
+        setAuthToken(authToken);
+        setUser(user);
+        setCommandIDIndex(0);
+        setGameIfUserIsPlaying();
     }
 
     public User getUser() {
@@ -160,8 +159,16 @@ public class ClientModel extends Observable {
         sendToObservers(stats);
     }
 
-    public void updatePlayerInfo(List<Player> players){
+    public void updatePlayerInfo(List<Player> players)
+    {
+        Map<String, Player> playerMap = new HashMap<>();
+        for(Player player : players)
+        {
+            playerMap.put(player.getUserName(), player);
+        }
+        game.setPlayers(playerMap);
         // TODO: Russell implement Player interation to update Map in game
+        sendToObservers(players);
     }
 
     @Override

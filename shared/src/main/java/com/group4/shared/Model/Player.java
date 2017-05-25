@@ -28,6 +28,18 @@ public class Player {
         this.id = user.getId();
     }
 
+    public void initializeGame()
+    {
+        trainCardDeck = new TrainCardDeck();
+        destinationCardDeck = new DestinationCardDeck();
+        longestPath = false;
+        trainCarsRemaining = 45;
+        claimedRouteList = new RouteList();
+        score = 0;
+        winning = false;
+        turn = false;
+    }
+
     public UUID getId() {
         return id;
     }

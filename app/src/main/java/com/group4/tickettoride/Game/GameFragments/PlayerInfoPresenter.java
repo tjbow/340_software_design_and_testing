@@ -26,6 +26,7 @@ public class PlayerInfoPresenter implements Observer {
     public PlayerInfoPresenter(PlayerInfoFragment fragment)
     {
         this.fragment = fragment;
+        ClientModel.SINGLETON.addObserver(this);
     }
 
     @Override
@@ -38,9 +39,10 @@ public class PlayerInfoPresenter implements Observer {
         {
             updateFragment(((Game) arg).getPlayerList());
         }
-        else if (arg.getClass() == List.class)
+        else if (arg.getClass() == ArrayList.class)
         {
-            updateFragment((List)arg);
+            ArrayList<Player> players = (ArrayList<Player>) arg;
+            updateFragment(players);
         }
     }
 

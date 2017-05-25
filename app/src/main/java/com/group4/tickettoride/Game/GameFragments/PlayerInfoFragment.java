@@ -103,7 +103,7 @@ public class PlayerInfoFragment extends Fragment implements IPlayerInfoFragment{
         this.presenter = new PlayerInfoPresenter(this);
         //players list will be set at this point
 
-        //initializePlayerViews(v);
+//        initializePlayerViews(v);
 
 
 

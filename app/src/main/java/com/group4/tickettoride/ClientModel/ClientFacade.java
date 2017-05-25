@@ -92,8 +92,11 @@ public class ClientFacade implements IClient
 
         poller.setUpdateGameList(true);
         poller.setUpdateGameInfo(false);
+//        ClientModel.SINGLETON.additionalUserLogin(new User(username));
+
         ClientModel.SINGLETON.setAuthToken(authToken);
         ClientModel.SINGLETON.setUser(new User(username));
+        ClientModel.SINGLETON.setCommandIDIndex(0);
         ClientModel.SINGLETON.setGameIfUserIsPlaying();
 
         if (ClientModel.SINGLETON.getGame() != null)
@@ -156,11 +159,10 @@ public class ClientFacade implements IClient
 
     //--------------------GAMEPLAY--------------------------------------------
     @Override
-    public Results onUpdateGame(GAME_STATUS status, Map<String, Player> playerList) {
-    //TODO: TYLER: change onUpdateGame back
+    public Results onUpdateGame(GAME_STATUS status) {
         Game game = ClientModel.SINGLETON.getGame();
 
-        game.setPlayers(playerList);
+//        game.setPlayers(playerList);
 
         ClientModel.SINGLETON.setGame(game);
 

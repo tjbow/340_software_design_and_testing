@@ -12,7 +12,7 @@ import com.group4.tickettoride.ClientModel.ClientFacade;
 public class CUpdateGameCommand extends CUpdateGameCommandData implements IClientCommand {
     @Override
     public Results execute() {
-       return ClientFacade.SINGLETON.onUpdateGame(super.getStatus(), super.getPlayerList());
+       return ClientFacade.SINGLETON.onUpdateGame(super.getStatus());
     }
 
     public void updateModel(){

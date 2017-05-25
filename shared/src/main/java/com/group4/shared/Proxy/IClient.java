@@ -36,7 +36,7 @@ public interface IClient
     Results onUpdateChat(ChatHistory chatHistory);
     Results onUpdateTurnHistory(TurnHistory turnHistory);
 //    Results onUpdateGame(Game gameState);
-    Results onUpdateGame(GAME_STATUS status, Map<String, Player> playerList);
+    Results onUpdateGame(GAME_STATUS status);
     Results onUpdateGameStats(GameStats gameStats);
 
     Results onUpdatePlayers(List<Player> playerData);
