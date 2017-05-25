@@ -1,30 +1,26 @@
 package com.group4.tickettoride.ClientModel;
 
-import com.google.gson.Gson;
+import android.util.Log;
+
+import com.group4.shared.Model.ChatHistory;
 import com.group4.shared.Model.City;
 import com.group4.shared.Model.CommandList;
 import com.group4.shared.Model.GAME_STATUS;
 import com.group4.shared.Model.Game;
 import com.group4.shared.Model.GameList;
-import com.group4.shared.Model.Message;
-import com.group4.shared.Model.MessageList;
+import com.group4.shared.Model.GameStats;
 import com.group4.shared.Model.Player;
 import com.group4.shared.Model.Results;
 import com.group4.shared.Model.RouteList;
+import com.group4.shared.Model.TurnHistory;
 import com.group4.shared.Model.User;
 import com.group4.shared.Proxy.IClient;
-import com.group4.shared.Proxy.IComandExec;
-import com.group4.shared.Proxy.IServer;
-import com.group4.shared.command.Client.CGetGameListCommandData;
-import com.group4.shared.command.Client.CLoginCommandData;
-import com.group4.shared.command.Client.CRegisterCommandData;
 import com.group4.shared.command.ClientCommand;
-import com.group4.shared.command.Command;
 import com.group4.shared.command.IClientCommand;
-import com.group4.tickettoride.Command.CLoginCommand;
-import com.group4.tickettoride.Command.CRegisterCommand;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
@@ -33,7 +29,7 @@ import java.util.concurrent.Future;
  * Created by Tom on 5/15/2017.
  */
 
-public class ClientFacade implements IClient,IComandExec
+public class ClientFacade implements IClient
 {
     private Poller poller;
     private ExecutorService threadPoolExecutor;
@@ -55,10 +51,14 @@ public class ClientFacade implements IClient,IComandExec
 
     public static ClientFacade SINGLETON = new ClientFacade();
 
-    @Override
-    public Results reportGameState()
+    public void setUpdateGameList(boolean poll)
     {
-        return null;
+        poller.setUpdateGameList(poll);
+    }
+
+    public void setUpdateGameInfo(boolean poll)
+    {
+        poller.setUpdateGameInfo(poll);
     }
 
     /**
@@ -78,6 +78,7 @@ public class ClientFacade implements IClient,IComandExec
         }
         //else:
         CommandList cmdList = results.getCommandList();
+        Log.i("ClientFacade", "cmdList size: " + cmdList.size());
         for(ClientCommand cmd : cmdList.getCommandList())
         {
             ((IClientCommand) cmd).execute();
@@ -85,46 +86,31 @@ public class ClientFacade implements IClient,IComandExec
         }
     }
 
-    @Override
-    public Results onJoinGame(String gameName) {
-
-        ClientModel.SINGLETON.setGame(ClientModel.SINGLETON.getGameList().getGameByName(gameName));
-
-        ClientModel.SINGLETON.setPlayer();
-
-        ClientModel.SINGLETON.sendToObservers(true);
-
-        return null;
-    }
-
-    @Override
-    public Results onCreateGame() {
-
-
-
-        return null;
-    }
-
+    //-----------------PRE-GAME-------------------------------------------------------
     @Override
     public Results onLogin(String authToken, String username) {
 
+        poller.setUpdateGameList(true);
+        poller.setUpdateGameInfo(false);
         ClientModel.SINGLETON.setAuthToken(authToken);
-        ClientModel.SINGLETON.setUser( new User(username) );
-        ClientModel.SINGLETON.checkForGame();
+        ClientModel.SINGLETON.setUser(new User(username));
+        ClientModel.SINGLETON.setGameIfUserIsPlaying();
 
         if (ClientModel.SINGLETON.getGame() != null)
         {
-            //user is already in a game, send status
+            //user is already in a game, send status to LoginPresenter which decides to start
+            //either LobbyActivity or GameActivity
             GAME_STATUS status = ClientModel.SINGLETON.getGame().getStatus();
             ClientModel.SINGLETON.sendToObservers(status);
+
+            poller.setUpdateGameList(false);
+            poller.setUpdateGameInfo(true);
         }
         else
         {
-            //user is not in a game, move to next activity
+            //user is not part of a game, move to GameListActivity
             ClientModel.SINGLETON.sendToObservers(true);
         }
-
-        poller.setUpdateGameList(true);
 
         return null;
     }
@@ -138,20 +124,23 @@ public class ClientFacade implements IClient,IComandExec
     }
 
     @Override
-    public Results onStartGame()
-    {
-        //poller.setUpdateGameList(false);
+    public Results onJoinGame(String gameName) {
+
+        ClientModel.SINGLETON.setGame(ClientModel.SINGLETON.getGameList().getGameByName(gameName));
+
+        ClientModel.SINGLETON.setPlayer();
+
         ClientModel.SINGLETON.sendToObservers(true);
-        ClientModel.SINGLETON.sendToObservers(ClientModel.SINGLETON.getGame());
+
+        //stop getting the gameList and start getting gameInfo instead
+        poller.setUpdateGameList(false);
+        poller.setUpdateGameInfo(true);
 
         return null;
     }
 
     @Override
-    public Results onEndGame()
-    {
-        poller.setUpdateGameList(true);
-        ClientModel.SINGLETON.sendToObservers(true);
+    public Results onCreateGame() {
         return null;
     }
 
@@ -160,27 +149,63 @@ public class ClientFacade implements IClient,IComandExec
 
         ClientModel.SINGLETON.setGameList(gameList);
 
-        ClientModel.SINGLETON.updateGame(gameList);
+//        ClientModel.SINGLETON.updateGame(gameList);
+
+        return null;
+    }
+
+    //--------------------GAMEPLAY--------------------------------------------
+    @Override
+    public Results onUpdateGame(GAME_STATUS status, Map<String, Player> playerList) {
+
+//        ClientModel.SINGLETON.setGame(game);
+//        ClientModel.SINGLETON
+        Game game = ClientModel.SINGLETON.getGame();
+
+        game.setPlayers(playerList);
+
+        ClientModel.SINGLETON.setGame(game);
+
+        ClientModel.SINGLETON.sendToObservers(ClientModel.SINGLETON.getGame());
 
         return null;
     }
 
     @Override
-    public Results onReportGameState(Game gameState) {
+    public Results onUpdateGameStats(GameStats gameStats)
+    {
+        return null;
+    }
 
-        ClientModel.SINGLETON.setGame(gameState);
 
+    @Override
+    public Results onStartGame()
+    {
+        //TODO: TYLER: deal the destination cards?
+
+        ClientModel.SINGLETON.sendToObservers(true);
+//        ClientModel.SINGLETON.sendToObservers(ClientModel.SINGLETON.getGame());
         return null;
     }
 
     @Override
-    public Results onUpdateChat(MessageList messageList)
+    public Results onEndGame()
+    {
+        poller.setUpdateGameList(true);
+        poller.setUpdateGameInfo(false);
+
+        ClientModel.SINGLETON.sendToObservers(true);
+        return null;
+    }
+
+    @Override
+    public Results onUpdateChat(ChatHistory chatHistory)
     {
         return null;
     }
 
     @Override
-    public Results onUpdateTurnHistory(MessageList turnHistory)
+    public Results onUpdateTurnHistory(TurnHistory turnHistory)
     {
         return null;
     }
@@ -195,10 +220,5 @@ public class ClientFacade implements IClient,IComandExec
     public Results onUpdateMapData(RouteList routeSegments, List<City> cities)
     {
         return null;
-    }
-
-    public void startPoller()
-    {
-        poller.setUpdateGameList(true);
     }
 }

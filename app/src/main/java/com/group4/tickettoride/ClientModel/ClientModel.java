@@ -112,20 +112,26 @@ public class ClientModel extends Observable {
         this.game = game;
     }
 
-    //TODO: TYLER: Fix endgame scenario
     public void updateGame(GameList gameList)
     {
-        if(this.game != null)
+        if(game != null)
         {
-            this.game = gameList.getGameByName(game.getGameName());
-            if(this.game == null)
-            {
-                sendToObservers(GAME_STATUS.FINISHED);
-            }
-            else
-            {
-                sendToObservers(game);
-            }
+            //reset ClientModel game to the new version
+            game = gameList.getGameByName(game.getGameName());
+
+            if(game != null) sendToObservers(game);
+
+            //if the game is no longer in the gamelist.
+//            if(this.game == null)
+//            {
+//                //this will only happen when GamePresenter is the observer
+//                sendToObservers(GAME_STATUS.FINISHED);
+//            }
+//            else
+//            {
+//                //this will only be sent when LoginPresenter is the observer
+//                sendToObservers(game);
+//            }
         }
     }
 
@@ -137,9 +143,9 @@ public class ClientModel extends Observable {
         this.execService = execService;
     }
 
-    public void checkForGame()
+    public void setGameIfUserIsPlaying()
     {
-        if (/*this.game == null && */gameList.getGameByUsername(user.getUsername()) != null)
+        if (gameList.getGameByUsername(user.getUsername()) != null)
         {
             this.game = gameList.getGameByUsername(user.getUsername());
             setPlayer();

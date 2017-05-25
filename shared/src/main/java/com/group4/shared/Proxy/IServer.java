@@ -23,8 +23,9 @@ public interface IServer {
     Results endGame(String gameName);
 
 //    PHASE 2
-    Results sendChat(Message message);
     Results getPendingCommands(User user, int lastCmdExecuted);
+
+    Results sendChat(Message message);
     Results drawDestinationCards(String userName, List<DestinationCard> selectedCards);
     Results returnDestinationCard(List<DestinationCard> returnedCard);
 

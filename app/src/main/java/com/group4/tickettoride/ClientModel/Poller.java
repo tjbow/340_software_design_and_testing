@@ -4,6 +4,8 @@ package com.group4.tickettoride.ClientModel;
  * Created by Tom on 5/14/2017.
  */
 
+import android.util.Log;
+
 import com.group4.shared.Model.CommandList;
 import com.group4.shared.Model.Game;
 import com.group4.shared.Model.GameList;
@@ -21,48 +23,56 @@ import java.util.concurrent.TimeUnit;
  */
 public class Poller implements Runnable
 {
+    private final String TAG = "Poller";
     static int PERIOD_SECONDS = 1;
     private boolean updateGameList = false;
+    private boolean updateGameInfo = false;
 
     /**
      * Polls the server checking for new entries in the game list and new commands
      */
     private void pollForResults()
     {
-        System.out.println("poller runs");
         if(updateGameList)
         {
+            Log.d(TAG, "poll for gameList");
             importGameList();
         }
-        //runNewCommands(ClientModel.SINGLETON.getCommandIDIndex());
+        if(updateGameInfo)
+        {
+            Log.d(TAG, "poll for gameInfo");
+            importNewCommands(ClientModel.SINGLETON.getCommandIDIndex());
+        }
     }
 
+//    -----------IMPORT METHODS-----------------------
     /**
-     * Gets and runs the list of commands since the command at commandID
-     * @param commandID the last command executed on the client
-     */
-    private void runNewCommands(int commandID)
-    {
-//        Results results = ServerProxy.SINGLETON.getCommandsSinceIndex(commandID);
-        Results results = ServerProxy.SINGLETON.getPendingCommands(ClientModel.SINGLETON.getUser(), commandID);
-        ClientFacade.SINGLETON.processResults(results);
-    }
-
-    /**
-     * Gets the game list and updates the client model through the facade
+     * Gets the gameList from the server
      */
     private void importGameList()
     {
-        Results results = ServerProxy.SINGLETON.getGameList();
+        ServerProxy.SINGLETON.getGameList();
     }
 
     /**
-     * Determine whether the poller will update the game list or not
-     * @param update boolean to determine update
+     * Gets the commandList from the server since the command at lastCmdExecuted
      */
-    public void setUpdateGameList(boolean update)
+    private void importNewCommands(int lastCmdExecuted)
+    {
+        Log.d(TAG, "lastCmdExecuted is: " + lastCmdExecuted);
+        ServerProxy.SINGLETON.getPendingCommands(ClientModel.SINGLETON.getUser(), lastCmdExecuted);
+    }
+
+
+//    ---------POLLING SETTERS-----------------------
+    protected void setUpdateGameList(boolean update)
     {
         updateGameList = update;
+    }
+
+    protected void setUpdateGameInfo(boolean update)
+    {
+        updateGameInfo = update;
     }
 
     @Override
@@ -78,7 +88,4 @@ public class Poller implements Runnable
             }
         }, 0, PERIOD_SECONDS, TimeUnit.SECONDS);
     }
-
-
-
 }

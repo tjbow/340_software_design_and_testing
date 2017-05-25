@@ -1,6 +1,7 @@
 package com.group4.server.ServerModel;
 
 import com.group4.server.Command.LoginCommand;
+import com.group4.shared.Model.ChatHistory;
 import com.group4.shared.Model.CommandList;
 import com.group4.shared.Model.DestinationCard;
 import com.group4.shared.Model.Game;
@@ -19,6 +20,7 @@ import com.group4.shared.command.Client.CLoginCommandData;
 import com.group4.shared.command.Client.CRegisterCommandData;
 import com.group4.shared.command.Client.CStartGameCommandData;
 import com.group4.shared.command.Client.CUpdateChatCommandData;
+import com.group4.shared.command.Client.CUpdateGameCommandData;
 import com.group4.shared.command.Client.CUpdatePlayersCommandData;
 import com.group4.shared.command.ClientCommand;
 import com.group4.shared.command.Server.LoginCommandData;
@@ -32,7 +34,7 @@ import java.util.List;
 /**
  * Provides access to important server functions
  */
-public class ServerFacade implements IServer, IClient
+public class ServerFacade implements IServer
 {
     ServerModel serverModel = ServerModel.getInstance();
 
@@ -42,15 +44,18 @@ public class ServerFacade implements IServer, IClient
         String authToken = serverModel.loginUser(user);
         if(authToken != null)
         {
+            //CREATE A GAMELIST COMMAND TO SEND
             CGetGameListCommandData getGameListCommandData = new CGetGameListCommandData();
             getGameListCommandData.setType("getgamelist");
             getGameListCommandData.setGameList(serverModel.getGameList());
 
+            //CREATE A LOGIN COMMAND TO SEND
             CLoginCommandData loginData = new CLoginCommandData();
             loginData.setAuthToken(authToken);
             loginData.setUsername(user.getUsername());
             loginData.setType("login");
 
+            //ADD THE ABOVE COMMANDS TO THE COMMANDLIST FOR THE RESULTS
             CommandList cmdList = new CommandList();
             cmdList.add(getGameListCommandData);
             cmdList.add(loginData);
@@ -74,15 +79,18 @@ public class ServerFacade implements IServer, IClient
         {
             System.out.println("User " + user.getUsername() + " registered");
 
+            //CREATE A GAMELIST COMMAND TO SEND
             CGetGameListCommandData getGameListCommandData = new CGetGameListCommandData();
             getGameListCommandData.setType("getgamelist");
             getGameListCommandData.setGameList(serverModel.getGameList());
 
+            //CREATE A REGISTER COMMAND TO SEND
             CRegisterCommandData registerData = new CRegisterCommandData();
             registerData.setAuthToken(authToken);
             registerData.setType("register");
             registerData.setUsername(user.getUsername());
 
+            //ADD THE ABOVE COMMANDS TO THE COMMANDLIST FOR THE RESULTS
             CommandList cmdList = new CommandList();
             cmdList.add(getGameListCommandData);
             cmdList.add(registerData);
@@ -106,16 +114,18 @@ public class ServerFacade implements IServer, IClient
             return new Results(false, null, "A game with that name already exists.", null);
         }
 
+        //CREATE A GAMELIST COMMAND TO SEND (necessary for the client to immediately join the game upon receipt)
         CGetGameListCommandData gameListCommandData = new CGetGameListCommandData();
         gameListCommandData.setType("getgamelist");
         gameListCommandData.setGameList(serverModel.getGameList());
 
+        //CREATE A JOINGAME COMMAND TO SEND
         CJoinGameCommandData joinGameCommandData = new CJoinGameCommandData();
         joinGameCommandData.setType("joingame");
         joinGameCommandData.setGameName(game.getGameName());
 
+        //ADD THE ABOVE COMMANDS TO THE COMMANDLIST FOR THE RESULTS
         CommandList cmdList = new CommandList();
-
         cmdList.add(gameListCommandData);
         cmdList.add(joinGameCommandData);
 
@@ -133,16 +143,28 @@ public class ServerFacade implements IServer, IClient
             return new Results(false, null, "Sorry, this game is full", null);
         }
 
+        //CREATE AN UPDATEGAME COMMAND TO SEND
+        Game game = serverModel.getGameList().getGameByName(gameName);
+        CUpdateGameCommandData updateGameCommandData = new CUpdateGameCommandData();
+        updateGameCommandData.setType("updategame");
+        updateGameCommandData.setStatus(game.getStatus());
+        updateGameCommandData.setPlayerList(game.getPlayers());
+        //ADD THE UPDATEGAME COMMAND TO THE GAME SO EVERYONE CAN RECEIVE IT
+        game.addCommand(updateGameCommandData);
+        updateGameCommandData.setCommandNumber(game.getNewCommandIndex());
+
+        //CREATE A GAMELIST COMMAND TO SEND
         CGetGameListCommandData gameListCommandData = new CGetGameListCommandData();
         gameListCommandData.setType("getgamelist");
         gameListCommandData.setGameList(serverModel.getGameList());
 
+        //CREATE A JOINGAME COMMAND TO SEND
         CJoinGameCommandData joinGameCommandData = new CJoinGameCommandData();
         joinGameCommandData.setType("joingame");
         joinGameCommandData.setGameName(gameName);
 
+        //ADD THE ABOVE COMMANDS TO THE COMMANDLIST TO PUT IN RESULTS OBJECT
         CommandList cmdList = new CommandList();
-
         cmdList.add(gameListCommandData);
         cmdList.add(joinGameCommandData);
 
@@ -154,34 +176,46 @@ public class ServerFacade implements IServer, IClient
     {
         serverModel.startGame(gameName);
 
+        //CREATE A GAMELIST COMMAND TO SEND
         CGetGameListCommandData gameListCommandData = new CGetGameListCommandData();
         gameListCommandData.setType("getgamelist");
         gameListCommandData.setGameList(serverModel.getGameList());
 
+        //CREATE A STARTGAME COMMAND TO SEND
         CStartGameCommandData startGameCommandData = new CStartGameCommandData();
         startGameCommandData.setType("startgame");
         startGameCommandData.setWasSuccessful(true);
 
+        //ADD THE ABOVE COMMANDS TO THE COMMANDLIST TO PUT IN RESULTS OBJECT
         CommandList cmdList = new CommandList();
-        cmdList.add(startGameCommandData);
+//        cmdList.add(startGameCommandData);
         cmdList.add(gameListCommandData);
+
+        //CREATE AN UPDATEGAME COMMAND TO ADD TO THE GAME BEING PLAYED
+        Game game = serverModel.getGameList().getGameByName(gameName);
+        CUpdateGameCommandData updateGameCommandData = new CUpdateGameCommandData();
+        updateGameCommandData.setType("updategame");
+        updateGameCommandData.setStatus(game.getStatus());
+        updateGameCommandData.setPlayerList(game.getPlayers());
+
+        //ADD STARTGAME AND UPDATEGAME TO THE GAME FOR RETRIEVAL BY ALL PLAYERS
+        game.addCommand(startGameCommandData);
+        startGameCommandData.setCommandNumber(game.getNewCommandIndex());
+        game.addCommand(updateGameCommandData);
+        updateGameCommandData.setCommandNumber(game.getNewCommandIndex());
 
         return new Results(true, null, null, cmdList);
     }
 
     @Override
-    public Results reportGameState()
-    {
-        return null;
-    }
-
-    @Override
     public Results getGameList()
     {
+        //CREATE A GAMELIST COMMAND TO SEND
         CGetGameListCommandData gameListCommandData = new CGetGameListCommandData();
         gameListCommandData.setType("getgamelist");
         gameListCommandData.setGameList(serverModel.getGameList());
 
+        //PUT THE ABOVE IN A COMMANDLIST TO PUT IN THE RESULTS OBJECT
         CommandList cmdList = new CommandList();
         cmdList.add(gameListCommandData);
 
@@ -219,12 +253,16 @@ public class ServerFacade implements IServer, IClient
 
         game.addMessage(message);
 
+        //CREATE AN UPDATECHAT COMMAND TO SEND
         CUpdateChatCommandData updateChatCommandData = new CUpdateChatCommandData();
         updateChatCommandData.setType("updatechat");
-        updateChatCommandData.setMessageList(game.getChatHistory());
+        updateChatCommandData.setChatHistory(game.getChatHistory());
 
+        //ADD THE UPDATECHAT COMMAND SO EVERYONE CAN RECEIVE IT
         game.addCommand(updateChatCommandData);
+        updateChatCommandData.setCommandNumber(game.getNewCommandIndex());
 
+        //ADD THE UPDATECHAT TO SEND BACK WITH THE RESULTS OBJECT
         CommandList cmdList = new CommandList();
         cmdList.add(updateChatCommandData);
 

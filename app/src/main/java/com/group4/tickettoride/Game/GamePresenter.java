@@ -1,7 +1,5 @@
 package com.group4.tickettoride.Game;
 
-import android.content.Intent;
-
 import com.group4.shared.Model.GAME_STATUS;
 import com.group4.shared.Model.Game;
 import com.group4.tickettoride.ClientModel.ClientFacade;
@@ -48,7 +46,8 @@ public class GamePresenter implements IGamePresenter, Observer
     {
         ClientModel.SINGLETON.deleteObserver(this);
         activity.startNextActivity(Login_RegisterActivity.class);
-
+        ClientFacade.SINGLETON.setUpdateGameInfo(false);
+        ClientFacade.SINGLETON.setUpdateGameList(false);
     }
 
     @Override
@@ -71,13 +70,13 @@ public class GamePresenter implements IGamePresenter, Observer
                 }
             });
         }
-        else if(arg.getClass() == GAME_STATUS.class)
-        {
-            o.deleteObserver(this);
-            ClientFacade.SINGLETON.startPoller();
-            activity.startNextActivity(GameListActivity.class);
-        }
-
+//        else if(arg.getClass() == GAME_STATUS.class)
+//        {
+//            o.deleteObserver(this);
+//            ClientFacade.SINGLETON.setUpdateGameList(true);
+//            ClientFacade.SINGLETON.setUpdateGameInfo(false);
+//            activity.startNextActivity(GameListActivity.class);
+//        }
     }
 
     private void displayError(String error)

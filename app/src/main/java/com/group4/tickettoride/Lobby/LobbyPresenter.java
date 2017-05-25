@@ -5,6 +5,7 @@ import android.content.Intent;
 import com.group4.shared.Model.GAME_STATUS;
 import com.group4.shared.Model.Game;
 import com.group4.shared.Model.Player;
+import com.group4.tickettoride.ClientModel.ClientFacade;
 import com.group4.tickettoride.ClientModel.ClientModel;
 import com.group4.tickettoride.Game.GameActivity;
 import com.group4.tickettoride.GameList.GameListActivity;
@@ -45,6 +46,8 @@ public class LobbyPresenter implements Observer,ILobbyPresenter {
         Intent i = new Intent(activity, Login_RegisterActivity.class);
         activity.startActivity(i);
         ClientModel.SINGLETON.deleteObserver(this);
+        ClientFacade.SINGLETON.setUpdateGameInfo(false);
+        ClientFacade.SINGLETON.setUpdateGameList(false);
         activity.finish();
     }
 

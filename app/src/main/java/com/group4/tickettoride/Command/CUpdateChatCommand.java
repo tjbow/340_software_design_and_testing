@@ -19,6 +19,6 @@ public class CUpdateChatCommand extends CUpdateChatCommandData implements IClien
     @Override
     public Results execute()
     {
-        return ClientFacade.SINGLETON.onUpdateChat(super.getMessageList());
+        return ClientFacade.SINGLETON.onUpdateChat(super.getChatHistory());
     }
 }

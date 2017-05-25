@@ -180,6 +180,13 @@ public class Game
         return commandList.add(command);
     }
 
+    public int getNewCommandIndex()
+    {
+        int index = commandList.size();
+        System.out.println("index is: " + index);
+        return index;
+    }
+
 
     /*---------------Deprecated-------------------------------*/
     @Deprecated

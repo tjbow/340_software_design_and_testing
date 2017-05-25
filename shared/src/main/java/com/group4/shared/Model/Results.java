@@ -1,5 +1,7 @@
 package com.group4.shared.Model;
 
+import java.io.Serializable;
+
 /**
  * Created by tyler on 5/12/17.
  */

@@ -22,6 +22,7 @@ import com.group4.tickettoride.Command.CLoginCommand;
 import com.group4.tickettoride.Command.CRegisterCommand;
 import com.group4.tickettoride.Command.CStartGameCommand;
 import com.group4.tickettoride.Command.CUpdateChatCommand;
+import com.group4.tickettoride.Command.CUpdateGameCommand;
 import com.group4.tickettoride.Command.CUpdatePlayersCommand;
 import com.group4.tickettoride.Command.CUpdateTurnHistoryCommand;
 
@@ -82,6 +83,10 @@ public class Serializer
                     case "getgamelist":
                         ClientCommand getGameListCommand = new Gson().fromJson(next.toString(), CGetGameListCommand.class);
                         iCommands.add(getGameListCommand);
+                        break;
+                    case "updategame":
+                        ClientCommand updateGameCommand = new Gson().fromJson(next.toString(), CUpdateGameCommand.class);
+                        iCommands.add(updateGameCommand);
                         break;
                     case "startgame":
                         ClientCommand startGameCommand = new Gson().fromJson(next.toString(), CStartGameCommand.class);

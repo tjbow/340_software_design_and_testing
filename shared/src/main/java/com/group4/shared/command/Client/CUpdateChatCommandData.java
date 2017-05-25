@@ -1,5 +1,6 @@
 package com.group4.shared.command.Client;
 
+import com.group4.shared.Model.ChatHistory;
 import com.group4.shared.Model.Message;
 import com.group4.shared.Model.MessageList;
 import com.group4.shared.command.ClientCommand;
@@ -13,15 +14,15 @@ import java.util.List;
 
 public class CUpdateChatCommandData extends ClientCommand
 {
-    MessageList messageList;
+    ChatHistory ChatHistory;
 
-    public MessageList getMessageList()
+    public com.group4.shared.Model.ChatHistory getChatHistory()
     {
-        return messageList;
+        return ChatHistory;
     }
 
-    public void setMessageList(MessageList messageList)
+    public void setChatHistory(com.group4.shared.Model.ChatHistory chatHistory)
     {
-        this.messageList = messageList;
+        ChatHistory = chatHistory;
     }
 }

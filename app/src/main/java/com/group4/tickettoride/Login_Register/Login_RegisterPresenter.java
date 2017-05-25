@@ -55,41 +55,40 @@ class Login_RegisterPresenter implements ILogin_RegisterPresenter, Observer {
     public void update(Observable o, final Object arg) {
         if (arg.getClass() == Boolean.class)
         {
-            //things worked properly, move on to gameList
+            //move on to GameListActivity
             o.deleteObserver(this);
-
             Intent i = new Intent(activity, GameListActivity.class);
             activity.startActivity(i);
             activity.finish();
         }
         else if (arg.getClass() == String.class)
         {
-            //it's an error
+            //Error received
             activity.runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
                     displayError( (String) arg);
                 }
             });
-
         }
         else if (arg.getClass() == GAME_STATUS.class)
         {
             GAME_STATUS status = (GAME_STATUS) arg;
+
             if (status == GAME_STATUS.WAITING)
             {
+                //move on to LobbyActivity
                 o.deleteObserver(this);
                 activity.startActivity(new Intent(activity, LobbyActivity.class));
                 activity.finish();
             }
             else if (status == GAME_STATUS.ONGOING)
             {
+                //move on to GameActivity
                 o.deleteObserver(this);
-                activity.startActivity( new Intent(activity, GameActivity.class));
+                activity.startActivity(new Intent(activity, GameActivity.class));
                 activity.finish();
             }
         }
-
-
     }
 }

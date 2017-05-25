@@ -138,6 +138,6 @@ public class ServerProxyTest
         ServerProxy.SINGLETON.getGameList();
 
         //print the message
-        System.out.println(ClientModel.SINGLETON.getGame().getChatHistory().get(0).getMessage());
+//        System.out.println(ClientModel.SINGLETON.getGame().getChatHistory().get(0).getMessage());
     }
 }

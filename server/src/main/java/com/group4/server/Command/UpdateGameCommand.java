@@ -13,14 +13,15 @@ import com.group4.shared.command.Server.GetGameStateCommandData;
  * Created by beefhead on 5/12/2017.
  */
 
-public class GetGameStateCommand extends GetGameStateCommandData implements IServerCommand{
-    private Results getGameState(){
-        IClient serverFacade = new ServerFacade();
-        return serverFacade.reportGameState();
+public class UpdateGameCommand extends GetGameStateCommandData implements IServerCommand{
+    private Results updateGame(){
+        IServer serverFacade = new ServerFacade();
+//        return serverFacade.get();
+        return null;
     }
 
     @Override
     public Results execute() {
-        return null;
+        return updateGame();
     }
 }

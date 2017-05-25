@@ -7,6 +7,7 @@ import com.group4.shared.Model.GAME_STATUS;
 import com.group4.shared.Model.Game;
 import com.group4.shared.Model.GameList;
 
+import com.group4.tickettoride.ClientModel.ClientFacade;
 import com.group4.tickettoride.ClientModel.ClientModel;
 import com.group4.tickettoride.Lobby.LobbyActivity;
 import com.group4.tickettoride.Login_Register.Login_RegisterActivity;
@@ -57,6 +58,8 @@ public class GameListPresenter implements IGameListPresenter, Observer {
         Intent i = new Intent(activity, Login_RegisterActivity.class);
         activity.startActivity(i);
         ClientModel.SINGLETON.deleteObserver(this);
+        ClientFacade.SINGLETON.setUpdateGameInfo(false);
+        ClientFacade.SINGLETON.setUpdateGameList(false);
         activity.finish();
     }
 
