@@ -62,17 +62,15 @@ public class GameActivity extends AppCompatActivity implements IGameActivity {
 
         }
 
-        /////
-        //trainDeckFragment = (TrainDeckFragment) fm.findFragmentById(R.id.trainDeck_fragment);
-        //if (trainDeckFragment == null) {
-        //    trainDeckFragment = trainDeckFragment.newInstance();
-        //}
 
-        /////
+        trainDeckFragment = (TrainDeckFragment) fm.findFragmentById(R.id.trainDeck_fragment);
+        if (trainDeckFragment == null) {
+            trainDeckFragment = trainDeckFragment.newInstance();
+        }
 
         fm.beginTransaction()
                 .add(R.id.playerInfo_fragment, playerInfoFragment)
-                //.add(R.id.trainDeck_fragment, trainDeckFragment)
+                .add(R.id.trainDeck_fragment, trainDeckFragment)
                 .commit();
 
     }

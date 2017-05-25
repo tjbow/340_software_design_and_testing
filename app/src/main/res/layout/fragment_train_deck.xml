@@ -27,7 +27,7 @@
                 android:id="@+id/face_up5"
                 android:layout_width="match_parent"
                 android:layout_height="0dip"
-                android:layout_weight="0.11"/>
+                android:layout_weight="0.11" android:src="@drawable/traincardblack"/>
             <Space
                 android:layout_width="match_parent"
                 android:layout_height="0dip"
@@ -36,7 +36,7 @@
                 android:id="@+id/face_up4"
                 android:layout_width="match_parent"
                 android:layout_height="0dip"
-                android:layout_weight="0.11"/>
+                android:layout_weight="0.11" android:src="@drawable/traincardlocamotive"/>
             <Space
                 android:layout_width="match_parent"
                 android:layout_height="0dip"
@@ -45,7 +45,7 @@
                 android:id="@+id/face_up3"
                 android:layout_width="match_parent"
                 android:layout_height="0dip"
-                android:layout_weight="0.11"/>
+                android:layout_weight="0.11" android:src="@drawable/traincardgreen"/>
             <Space
                 android:layout_width="match_parent"
                 android:layout_height="0dip"
@@ -54,7 +54,7 @@
                 android:id="@+id/face_up2"
                 android:layout_width="match_parent"
                 android:layout_height="0dip"
-                android:layout_weight="0.11"/>
+                android:layout_weight="0.11" android:src="@drawable/traincardpurple"/>
             <Space
                 android:layout_width="match_parent"
                 android:layout_height="0dip"
@@ -63,7 +63,7 @@
                 android:id="@+id/face_up1"
                 android:layout_width="match_parent"
                 android:layout_height="0dip"
-                android:layout_weight="0.11"/>
+                android:layout_weight="0.11" android:src="@drawable/traincardred"/>
             <Space
                 android:layout_width="match_parent"
                 android:layout_height="0dip"
@@ -72,7 +72,7 @@
                 android:id="@+id/trainDeck"
                 android:layout_width="match_parent"
                 android:layout_height="0dip"
-                android:layout_weight="0.11"/>
+                android:layout_weight="0.11" android:src="@drawable/traincardback"/>
             <Space
                 android:layout_width="match_parent"
                 android:layout_height="0dip"
@@ -81,7 +81,7 @@
                 android:id="@+id/destinationDeck"
                 android:layout_width="match_parent"
                 android:layout_height="0dip"
-                android:layout_weight="0.11"/>
+                android:layout_weight="0.11" android:src="@drawable/destcardback"/>
             <Space
                 android:layout_width="match_parent"
                 android:layout_height="0dip"
