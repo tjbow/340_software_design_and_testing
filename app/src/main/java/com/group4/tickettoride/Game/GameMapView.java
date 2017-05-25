@@ -190,10 +190,19 @@ public class GameMapView extends View {
             Pt pt1 = new Pt(r.getX1Constraint()/100 * getWidth(),r.getY1Constraint()/100 *getHeight());
             Pt pt2 = new Pt(r.getX2Constraint()/100 * getWidth(),r.getY2Constraint()/100 *getHeight());
 
+            float angle = 0;
+            try {
 
-            float slope = (pt2.y - pt1.y) / (pt2.x - pt1.x);
+                float slope = (pt2.y - pt1.y) / (pt2.x - pt1.x);
+                angle = getAngle(slope);
 
-            drawAngledRectangle(pt2, pt1, getAngle(slope), r.getLength(), r.isHighlighted(), canvas);
+            }catch (ArithmeticException e){
+
+                angle = 90;
+            }
+
+
+            drawAngledRectangle(pt2, pt1, angle, r.getLength(), r.isHighlighted(), canvas);
         }
 
         drawLabels(canvas);
@@ -309,8 +318,6 @@ public class GameMapView extends View {
         //final int THRESHOLD = 50;  // max distance from the line
         final int THRESHOLD =Math.max(getHeight(),getWidth()) / Math.min(getHeight(),getWidth()) *10;
 
-
-        float slope = (pt1.y - pt2.y)/(pt1.x-pt2.x)*-1;
 
         // using algorithm found here
         //https://en.wikipedia.org/wiki/Distance_from_a_point_to_a_line

@@ -189,9 +189,9 @@
   "name" : "Phoenix"
   }, {
   "xConstraint" : 37,
-  "yConstraint" : 48,
+  "yConstraint" : 51,
   "labelX" : 37,
-  "labelY" : 51,
+  "labelY" : 54,
   "name" : "Denver"
 }, {
   "xConstraint" : 40,
@@ -200,10 +200,10 @@
   "labelY" : 70,
   "name" : "Santa Fe"
 } , {
-  "xConstraint" : 42,
-  "yConstraint" : 82,
-  "labelX" : 42,
-  "labelY" : 86,
+  "xConstraint" : 38,
+  "yConstraint" : 79,
+  "labelX" : 38,
+  "labelY" : 83,
   "name" : "El Paso"
 }, {
   "xConstraint" : 53,
@@ -212,10 +212,10 @@
   "labelY" : 85,
   "name" : "Houston"
 }, {
-  "xConstraint" : 49,
-  "yConstraint" : 75,
-  "labelX" : 49,
-  "labelY" : 79,
+  "xConstraint" : 50,
+  "yConstraint" : 77,
+  "labelX" : 50,
+  "labelY" : 81,
   "name" : "Dallas"
 }, {
   "xConstraint" : 48,
