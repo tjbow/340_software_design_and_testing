@@ -14,6 +14,7 @@ import com.group4.shared.Model.Game;
 import com.group4.shared.Model.Player;
 import com.group4.tickettoride.ClientModel.ClientModel;
 import com.group4.tickettoride.Game.GameFragments.PlayerInfoFragment;
+import com.group4.tickettoride.Game.GameFragments.TrainDeckFragment;
 import com.group4.tickettoride.R;
 
 import java.util.Map;
@@ -24,6 +25,7 @@ public class GameActivity extends AppCompatActivity implements IGameActivity {
     private String gameName;
     private Game game;
     private PlayerInfoFragment playerInfoFragment;
+    private TrainDeckFragment trainDeckFragment;
 
 
     private static final String EXTRA_GAME_NAME = "com.group4.tickettoride.Game.game_name";
@@ -59,8 +61,18 @@ public class GameActivity extends AppCompatActivity implements IGameActivity {
             playerInfoFragment = playerInfoFragment.newInstance();
 
         }
+
+        /////
+        trainDeckFragment = (TrainDeckFragment) fm.findFragmentById(R.id.trainDeck_fragment);
+        if (trainDeckFragment == null) {
+            trainDeckFragment = trainDeckFragment.newInstance();
+        }
+
+        /////
+
         fm.beginTransaction()
                 .add(R.id.playerInfo_fragment, playerInfoFragment)
+                .add(R.id.trainDeck_fragment, trainDeckFragment)
                 .commit();
 
     }
