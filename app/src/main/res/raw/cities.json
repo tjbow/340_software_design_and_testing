@@ -97,16 +97,16 @@
   "name" : "New Orleans"
 
 }, {
-  "xConstraint" : 60,
-  "yConstraint" : 65,
-  "labelX" : 60,
-  "labelY" : 68,
+  "xConstraint" : 58,
+  "yConstraint" : 67,
+  "labelX" : 58,
+  "labelY" : 70,
   "name" : "Little Rock"
 }, {
-  "xConstraint" : 57,
-  "yConstraint" : 57,
-  "labelX" : 57,
-  "labelY" : 63,
+  "xConstraint" : 51,
+  "yConstraint" : 55,
+  "labelX" : 53,
+  "labelY" : 61,
   "name" : "Kansas City"
 }, {
   "xConstraint" : 50,
