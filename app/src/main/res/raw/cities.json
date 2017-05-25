@@ -18,16 +18,16 @@
   "name" : "Washington"
 }
 , {
-  "xConstraint" : 86.0,
-  "yConstraint" : 38.0,
+  "xConstraint" : 87.0,
+  "yConstraint" : 35.0,
   "labelX" : 90,
   "labelY" : 37,
   "name" : "New York"
 }
 , {
-  "xConstraint" : 93.0,
-  "yConstraint" : 29.0,
-  "labelX" : 95,
+  "xConstraint" : 92.0,
+  "yConstraint" : 26.0,
+  "labelX" : 97,
   "labelY" : 29,
   "name" : "Boston"
 }
@@ -140,9 +140,9 @@
   "name" : "Vancouver"
 }, {
   "xConstraint" : 9,
-  "yConstraint" : 12,
+  "yConstraint" : 14,
   "labelX" : 4,
-  "labelY" : 13,
+  "labelY" : 15,
   "name" : "Seattle"
 }, {
   "xConstraint" : 7,
