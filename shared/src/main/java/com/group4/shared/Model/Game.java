@@ -39,7 +39,16 @@ public class Game
         this.players = new HashMap<>();
         this.status = GAME_STATUS.WAITING;
 
-        this.commandList = new CommandList();
+        turnHistory = new TurnHistory();
+        chatHistory = new ChatHistory();
+        decks = new Decks();
+        commandList = new CommandList();
+
+        routes = new RouteList();
+        cities = new ArrayList<>();
+
+        //initialize the first player as player at pos 0
+        gameStats = new GameStats();
     }
 
 //    PLAYERS
@@ -146,6 +155,32 @@ public class Game
     public void addTurn(Message turn)
     {
         turnHistory.add(turn);
+    }
+
+    public void moveToNextPlayer()
+    {
+        String currentPlayer = gameStats.getPlayerCurrentTurn();
+        List<Player> list = getPlayerList();
+        String getNewTurnPlayer = null;
+        for(int i = 0; i < list.size(); i++)
+        {
+            if(list.get(i).getUserName().equals(currentPlayer))
+            {
+                if(i == list.size() - 1)
+                {
+                    getNewTurnPlayer = list.get(0).getUserName();
+                    gameStats.setPlayerCurrentTurn(getNewTurnPlayer);
+                    return;
+                }
+                else
+                {
+                    getNewTurnPlayer = list.get(i + 1).getUserName();
+                    gameStats.setPlayerCurrentTurn(getNewTurnPlayer);
+                    return;
+                }
+            }
+        }
+        gameStats.setPlayerCurrentTurn(null);
     }
 
 //    CHAT HISTORY

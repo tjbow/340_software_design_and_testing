@@ -157,9 +157,7 @@ public class ClientFacade implements IClient
     //--------------------GAMEPLAY--------------------------------------------
     @Override
     public Results onUpdateGame(GAME_STATUS status, Map<String, Player> playerList) {
-
-//        ClientModel.SINGLETON.setGame(game);
-//        ClientModel.SINGLETON
+    //TODO: TYLER: change onUpdateGame back
         Game game = ClientModel.SINGLETON.getGame();
 
         game.setPlayers(playerList);
@@ -174,6 +172,7 @@ public class ClientFacade implements IClient
     @Override
     public Results onUpdateGameStats(GameStats gameStats)
     {
+        ClientModel.SINGLETON.updateStats(gameStats);
         return null;
     }
 
@@ -181,10 +180,7 @@ public class ClientFacade implements IClient
     @Override
     public Results onStartGame()
     {
-        //TODO: TYLER: deal the destination cards?
-
         ClientModel.SINGLETON.sendToObservers(true);
-//        ClientModel.SINGLETON.sendToObservers(ClientModel.SINGLETON.getGame());
         return null;
     }
 
@@ -201,24 +197,30 @@ public class ClientFacade implements IClient
     @Override
     public Results onUpdateChat(ChatHistory chatHistory)
     {
+        ClientModel.SINGLETON.setChatHistory(chatHistory);
         return null;
     }
 
     @Override
     public Results onUpdateTurnHistory(TurnHistory turnHistory)
     {
+        ClientModel.SINGLETON.setTurnHistory(turnHistory);
         return null;
     }
 
     @Override
     public Results onUpdatePlayers(List<Player> playerData)
     {
+        ClientModel.SINGLETON.updatePlayerInfo(playerData);
         return null;
     }
 
     @Override
     public Results onUpdateMapData(RouteList routeSegments, List<City> cities)
     {
+        ClientModel.SINGLETON.updateMap(routeSegments, cities);
         return null;
     }
+
+    //TODO: TYLER: add onUpdatePlayerHand
 }

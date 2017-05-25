@@ -1,18 +1,13 @@
 package com.group4.server.ServerModel;
 
-import com.group4.server.Command.LoginCommand;
-import com.group4.shared.Model.ChatHistory;
 import com.group4.shared.Model.CommandList;
 import com.group4.shared.Model.DestinationCard;
 import com.group4.shared.Model.Game;
-import com.group4.shared.Model.GameList;
 import com.group4.shared.Model.Message;
 import com.group4.shared.Model.Player;
-import com.group4.shared.Proxy.IClient;
 import com.group4.shared.Proxy.IServer;
 import com.group4.shared.Model.Results;
 import com.group4.shared.Model.User;
-import com.group4.shared.command.Client.CCreateGameCommandData;
 import com.group4.shared.command.Client.CEndGameCommandData;
 import com.group4.shared.command.Client.CGetGameListCommandData;
 import com.group4.shared.command.Client.CJoinGameCommandData;
@@ -21,9 +16,6 @@ import com.group4.shared.command.Client.CRegisterCommandData;
 import com.group4.shared.command.Client.CStartGameCommandData;
 import com.group4.shared.command.Client.CUpdateChatCommandData;
 import com.group4.shared.command.Client.CUpdateGameCommandData;
-import com.group4.shared.command.Client.CUpdatePlayersCommandData;
-import com.group4.shared.command.ClientCommand;
-import com.group4.shared.command.Server.LoginCommandData;
 
 import java.util.List;
 
@@ -108,7 +100,7 @@ public class ServerFacade implements IServer
     public Results createGame(String gameName, int numberOfPlayers)
     {
         Game game = new Game(gameName, numberOfPlayers);
-        boolean success = serverModel.addGame(game);
+        boolean success = serverModel.createGame(game);
         if(!success)
         {
             return new Results(false, null, "A game with that name already exists.", null);
@@ -153,11 +145,6 @@ public class ServerFacade implements IServer
         game.addCommand(updateGameCommandData);
         updateGameCommandData.setCommandNumber(game.getNewCommandIndex());
 
-        //CREATE A GAMELIST COMMAND TO SEND
-        CGetGameListCommandData gameListCommandData = new CGetGameListCommandData();
-        gameListCommandData.setType("getgamelist");
-        gameListCommandData.setGameList(serverModel.getGameList());
-
         //CREATE A JOINGAME COMMAND TO SEND
         CJoinGameCommandData joinGameCommandData = new CJoinGameCommandData();
         joinGameCommandData.setType("joingame");
@@ -165,7 +152,6 @@ public class ServerFacade implements IServer
 
         //ADD THE ABOVE COMMANDS TO THE COMMANDLIST TO PUT IN RESULTS OBJECT
         CommandList cmdList = new CommandList();
-        cmdList.add(gameListCommandData);
         cmdList.add(joinGameCommandData);
 
         return new Results(true, null, null, cmdList);
@@ -176,20 +162,10 @@ public class ServerFacade implements IServer
     {
         serverModel.startGame(gameName);
 
-        //CREATE A GAMELIST COMMAND TO SEND
-        CGetGameListCommandData gameListCommandData = new CGetGameListCommandData();
-        gameListCommandData.setType("getgamelist");
-        gameListCommandData.setGameList(serverModel.getGameList());
-
-        //CREATE A STARTGAME COMMAND TO SEND
+        //CREATE A STARTGAME COMMAND TO ADD TO THE GAME BEING PLAYED
         CStartGameCommandData startGameCommandData = new CStartGameCommandData();
         startGameCommandData.setType("startgame");
         startGameCommandData.setWasSuccessful(true);
-
-        //ADD THE ABOVE COMMANDS TO THE COMMANDLIST TO PUT IN RESULTS OBJECT
-        CommandList cmdList = new CommandList();
-//        cmdList.add(startGameCommandData);
-        cmdList.add(gameListCommandData);
 
         //CREATE AN UPDATEGAME COMMAND TO ADD TO THE GAME BEING PLAYED
         Game game = serverModel.getGameList().getGameByName(gameName);
@@ -204,7 +180,7 @@ public class ServerFacade implements IServer
         game.addCommand(updateGameCommandData);
         updateGameCommandData.setCommandNumber(game.getNewCommandIndex());
 
-        return new Results(true, null, null, cmdList);
+        return new Results(true, null, null, null);
     }
 
     @Override

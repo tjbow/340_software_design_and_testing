@@ -24,10 +24,7 @@ public interface IServer {
 
 //    PHASE 2
     Results getPendingCommands(User user, int lastCmdExecuted);
-
     Results sendChat(Message message);
     Results drawDestinationCards(String userName, List<DestinationCard> selectedCards);
     Results returnDestinationCard(List<DestinationCard> returnedCard);
-
-
 }

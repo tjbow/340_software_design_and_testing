@@ -112,29 +112,6 @@ public class ClientModel extends Observable {
         this.game = game;
     }
 
-    public void updateGame(GameList gameList)
-    {
-        if(game != null)
-        {
-            //reset ClientModel game to the new version
-            game = gameList.getGameByName(game.getGameName());
-
-            if(game != null) sendToObservers(game);
-
-            //if the game is no longer in the gamelist.
-//            if(this.game == null)
-//            {
-//                //this will only happen when GamePresenter is the observer
-//                sendToObservers(GAME_STATUS.FINISHED);
-//            }
-//            else
-//            {
-//                //this will only be sent when LoginPresenter is the observer
-//                sendToObservers(game);
-//            }
-        }
-    }
-
     public ScheduledExecutorService getExecService() {
         return execService;
     }
@@ -156,9 +133,9 @@ public class ClientModel extends Observable {
         }
     }
 
-    public void setChatHistory(ChatHistory meesageList){
-        game.setChatHistory(meesageList);
-        sendToObservers(meesageList);
+    public void setChatHistory(ChatHistory messageList){
+        game.setChatHistory(messageList);
+        sendToObservers(messageList);
     }
 
     public void setTurnHistory(TurnHistory turnHistory){
