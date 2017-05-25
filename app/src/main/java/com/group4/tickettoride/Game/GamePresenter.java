@@ -55,9 +55,9 @@ public class GamePresenter implements IGamePresenter, Observer
     {
         if(arg.getClass() == Boolean.class)
         {
-            o.deleteObserver(this);
+//            o.deleteObserver(this);
             //end game and start GameListActivity
-            activity.startNextActivity(GameListActivity.class);
+//            activity.startNextActivity(GameListActivity.class);
         }
         else if(arg.getClass() == String.class)
         {
@@ -69,6 +69,11 @@ public class GamePresenter implements IGamePresenter, Observer
                     displayError((String) arg);
                 }
             });
+        }
+        else if(arg.getClass() == Game.class)
+        {
+            //this is entered if onUpdateGame is called because onUpdateGame sends a game obj to the observers
+            this.getGame();
         }
 //        else if(arg.getClass() == GAME_STATUS.class)
 //        {

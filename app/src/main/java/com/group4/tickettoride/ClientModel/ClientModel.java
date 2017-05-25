@@ -225,7 +225,10 @@ public class ClientModel extends Observable {
      */
     public void setCommandIDIndex(int commandIDIndex)
     {
-        this.commandIDIndex = commandIDIndex;
+        if(this.commandIDIndex < commandIDIndex)
+        {
+            this.commandIDIndex = commandIDIndex;
+        }
     }
 
     public void sendToObservers(Object arg)
