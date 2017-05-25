@@ -4,6 +4,8 @@ package com.group4.tickettoride.Game.GameFragments;
  * Created by Tom on 5/24/2017.
  */
 
+import com.group4.shared.Model.DestinationCard;
+
 import java.util.List;
 
 /**
@@ -12,16 +14,16 @@ import java.util.List;
 public interface IDestCardPickerFragment
 {
     /**
-     * Gets the list of selected card IDs
+     * Gets the list of selected cards
      * @return a list of the selected card IDs
      */
-    List<String> getSelectedCardIDs();
+    List<DestinationCard> getSelectedCards();
 
     /**
      * Sets the cards in the destination view
-     * @param cardIDs the card IDs to be set
+     * @param cards the card to be set
      */
-    void setCards(List<String> cardIDs);
+    void setCards(List<DestinationCard> cards);
 
     /**
      * Sets the confirm button on the view to enabled
