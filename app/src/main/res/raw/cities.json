@@ -70,17 +70,17 @@
   "labelY" : 17,
   "name" : "Sault St. Marie"
 }, {
-  "xConstraint" : 67,
-  "yConstraint" : 38,
-  "labelX" : 64,
+  "xConstraint" : 63,
+  "yConstraint" : 40,
+  "labelX" : 63,
   "labelY" : 38,
   "name" : "Chicago"
 }
 , {
-  "xConstraint" : 65.0,
-  "yConstraint" : 46,
-  "labelX" : 66,
-  "labelY" : 49,
+  "xConstraint" : 62.0,
+  "yConstraint" : 55,
+  "labelX" : 64,
+  "labelY" : 58,
   "name" : "Saint Louis"
 }, {
   "xConstraint" : 70,
@@ -109,16 +109,16 @@
   "labelY" : 63,
   "name" : "Kansas City"
 }, {
-  "xConstraint" : 56,
-  "yConstraint" : 48,
-  "labelX" : 56,
-  "labelY" : 53,
+  "xConstraint" : 50,
+  "yConstraint" : 44,
+  "labelX" : 50,
+  "labelY" : 48,
   "name" : "Omaha"
 }, {
-  "xConstraint" : 58,
-  "yConstraint" : 35,
-  "labelX" : 58,
-  "labelY" : 39,
+  "xConstraint" : 57,
+  "yConstraint" : 29,
+  "labelX" : 57,
+  "labelY" : 34,
   "name" : "Duluth"
 }, {
   "xConstraint" : 50,
