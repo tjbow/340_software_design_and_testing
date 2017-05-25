@@ -227,21 +227,24 @@ public class ServerFacade implements IServer
     @Override
     public Results endGame(String gameName)
     {
-        //TODO: TYLER: Update to use commandList to end the game for all players
         boolean success = serverModel.endGame(gameName);
         if(!success)
         {
             return new Results(true, null, "Cannot end game - game does not exist", null);
         }
 
+        Game game = serverModel.getGameList().getGameByName(gameName);
         CEndGameCommandData endGameCommandData = new CEndGameCommandData();
         endGameCommandData.setType("endgame");
         endGameCommandData.setWasSuccessful(success);
+        game.addCommand(endGameCommandData);
+        endGameCommandData.setCommandNumber(game.getNewCommandIndex());
 
-        CommandList cmdList = new CommandList();
-        cmdList.add(endGameCommandData);
+//        CommandList cmdList = new CommandList();
+//        cmdList.add(endGameCommandData);
+
         System.out.println("The game " + gameName + " was ended.");
-        return new Results(true, null, null, cmdList);
+        return new Results(true, null, null, null);
     }
 
     @Override
@@ -262,15 +265,16 @@ public class ServerFacade implements IServer
         game.addCommand(updateChatCommandData);
         updateChatCommandData.setCommandNumber(game.getNewCommandIndex());
 
+        //Maybe remove this?
         //ADD THE UPDATECHAT TO SEND BACK WITH THE RESULTS OBJECT
-        CommandList cmdList = new CommandList();
-        cmdList.add(updateChatCommandData);
+//        CommandList cmdList = new CommandList();
+//        cmdList.add(updateChatCommandData);
 
         System.out.println("Player " + message.getUserName() +
                 " in game " + game.getGameName() +
                 " chatted the message \"" + message.getMessage() + "\"");
 
-        return new Results(true, "Chat Sent", null, cmdList);
+        return new Results(true, "Chat Sent", null, null);
     }
 
     @Override

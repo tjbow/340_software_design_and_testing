@@ -45,7 +45,6 @@ public class HandlerBase implements HttpHandler
             Headers reqHeaders = httpExchange.getRequestHeaders();
             if (reqHeaders.containsKey("Authorization"))
             {
-                //TODO: TYLER: Invent a better solution for authToken use
                 //get the authToken
                 String authToken = reqHeaders.getFirst("Authorization");
                 User user = ServerModel.getInstance().validateUser(authToken);

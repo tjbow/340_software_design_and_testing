@@ -194,7 +194,7 @@ public class ClientFacade implements IClient
         poller.setUpdateGameList(true);
         poller.setUpdateGameInfo(false);
 
-        ClientModel.SINGLETON.sendToObservers(true);
+        ClientModel.SINGLETON.sendToObservers(GAME_STATUS.FINISHED);
         return null;
     }
 
