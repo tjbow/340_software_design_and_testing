@@ -15,6 +15,7 @@ import com.group4.shared.Model.Game;
 import com.group4.shared.Model.Player;
 import com.group4.tickettoride.ClientModel.ClientModel;
 import com.group4.tickettoride.Game.GameFragments.DestCardPickerFragment;
+import com.group4.tickettoride.Game.GameFragments.PlayerHandFragment;
 import com.group4.tickettoride.Game.GameFragments.PlayerInfoFragment;
 import com.group4.tickettoride.Game.GameFragments.TrainDeckFragment;
 import com.group4.tickettoride.R;
@@ -28,6 +29,7 @@ public class GameActivity extends AppCompatActivity implements IGameActivity {
     private Game game;
     private PlayerInfoFragment playerInfoFragment;
     private TrainDeckFragment trainDeckFragment;
+    private PlayerHandFragment playerHandFragment;
 
 
     private static final String EXTRA_GAME_NAME = "com.group4.tickettoride.Game.game_name";
@@ -70,9 +72,16 @@ public class GameActivity extends AppCompatActivity implements IGameActivity {
             trainDeckFragment = trainDeckFragment.newInstance();
         }
 
+        playerHandFragment = (PlayerHandFragment) fm.findFragmentById(R.id.playerHand_fragment);
+        if(playerHandFragment == null)
+        {
+            playerHandFragment = playerHandFragment.newInstance();
+        }
+
         fm.beginTransaction()
                 .add(R.id.playerInfo_fragment, playerInfoFragment)
                 .add(R.id.trainDeck_fragment, trainDeckFragment)
+                .add(R.id.playerHand_fragment, playerHandFragment)
                 .commit();
 
         // run the destination card picker at the beginning of play

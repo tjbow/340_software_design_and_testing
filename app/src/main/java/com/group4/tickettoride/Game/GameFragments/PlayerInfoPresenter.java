@@ -37,12 +37,12 @@ public class PlayerInfoPresenter implements Observer {
         }
         else if(arg.getClass() == Game.class)
         {
-            updateFragment(((Game) arg).getPlayerList());
+//            updateFragment(((Game) arg).getPlayerList());
         }
         else if (arg.getClass() == ArrayList.class)
         {
             ArrayList<Player> players = (ArrayList<Player>) arg;
-            updateFragment(players);
+//            updateFragment(players);
         }
     }
 

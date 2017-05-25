@@ -1,13 +1,36 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
              xmlns:tools="http://schemas.android.com/tools"
              android:layout_width="match_parent"
              android:layout_height="match_parent"
+              android:orientation="horizontal"
              tools:context="com.group4.tickettoride.Game.GameFragments.PlayerHandFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment"/>
+    <!--horizontal list of the different TrainCards the player has-->
+    <!--Each train card has a number on it indicating how many are there-->
 
-</FrameLayout>
+    <android.support.v7.widget.RecyclerView
+    android:id="@+id/playerHand_recyclerview"
+    android:layout_alignParentLeft="true"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:layout_margin="5dp"
+    android:background="@color/colorTransWhite"/>
+
+    <LinearLayout
+        android:layout_toEndOf="@id/playerHand_recyclerview"
+        android:layout_alignParentRight="true"
+        android:layout_width="120dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:text="here is some txt"/>
+
+    </LinearLayout>
+
+    <!--to the right of the above, vertical text list of destination cards-->
+
+</RelativeLayout>
