@@ -2,6 +2,7 @@ package com.group4.tickettoride.Game;
 
 import android.content.Context;
 import android.content.Intent;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -13,6 +14,7 @@ import android.widget.Toast;
 import com.group4.shared.Model.Game;
 import com.group4.shared.Model.Player;
 import com.group4.tickettoride.ClientModel.ClientModel;
+import com.group4.tickettoride.Game.GameFragments.DestCardPickerFragment;
 import com.group4.tickettoride.Game.GameFragments.PlayerInfoFragment;
 import com.group4.tickettoride.Game.GameFragments.TrainDeckFragment;
 import com.group4.tickettoride.R;
@@ -73,6 +75,9 @@ public class GameActivity extends AppCompatActivity implements IGameActivity {
                 .add(R.id.trainDeck_fragment, trainDeckFragment)
                 .commit();
 
+        // run the destination card picker at the beginning of play
+        DialogFragment destPickerDialog = DestCardPickerFragment.newInstance();
+        destPickerDialog.show(this.getSupportFragmentManager(), "dialog");
     }
 
     @Override
