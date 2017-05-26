@@ -21,10 +21,13 @@ public class PlayerInfoPresenter implements Observer {
 
 
     private PlayerInfoFragment fragment;
+    private List<Player> players;
 
     public PlayerInfoPresenter(PlayerInfoFragment fragment)
     {
         this.fragment = fragment;
+        this.players = ClientModel.SINGLETON.getGame().getPlayerList();
+        updateFragment(players);
         ClientModel.SINGLETON.addObserver(this);
     }
 

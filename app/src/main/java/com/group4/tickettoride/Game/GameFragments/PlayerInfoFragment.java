@@ -105,6 +105,7 @@ public class PlayerInfoFragment extends Fragment implements IPlayerInfoFragment{
         Iconify.with(new FontAwesomeModule());
 
         initializePlayerViews(v);
+
         this.presenter = new PlayerInfoPresenter(this);
 
         return v;

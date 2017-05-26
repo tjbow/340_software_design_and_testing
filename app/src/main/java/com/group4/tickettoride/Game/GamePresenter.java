@@ -55,7 +55,7 @@ public class GamePresenter implements IGamePresenter, Observer
     {
         if(arg.getClass() == Boolean.class)
         {
-            //do not use (GamePresenter only)
+            //do not use (in GamePresenter only)
         }
         else if(arg.getClass() == String.class)
         {
