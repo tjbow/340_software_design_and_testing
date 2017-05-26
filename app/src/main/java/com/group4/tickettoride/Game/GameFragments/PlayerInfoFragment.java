@@ -305,15 +305,18 @@ public class PlayerInfoFragment extends Fragment implements IPlayerInfoFragment{
 
         //PLAYER 1
 
-        player1Username = (TextView) v.findViewById(R.id.player1_username);
-        player1WinningIcon = (ImageView) v.findViewById(R.id.player1_winningIcon);
         Drawable trophyIcon = new IconDrawable(this.getActivity(), FontAwesomeIcons.fa_trophy)
                 .colorRes(R.color.colorBlack).sizeDp(20);
-        player1WinningIcon.setImageDrawable(trophyIcon);
-        player1LongestPathIcon = (ImageView) v.findViewById(R.id.player1_longestPathIcon);
         Drawable roadIcon = new IconDrawable(this.getActivity(), FontAwesomeIcons.fa_road)
                 .colorRes(R.color.colorBlack).sizeDp(20);
+
+        player1Username = (TextView) v.findViewById(R.id.player1_username);
+        player1WinningIcon = (ImageView) v.findViewById(R.id.player1_winningIcon);
+        player1WinningIcon.setImageDrawable(trophyIcon);
+        player1WinningIcon.setVisibility(View.INVISIBLE);
+        player1LongestPathIcon = (ImageView) v.findViewById(R.id.player1_longestPathIcon);
         player1LongestPathIcon.setImageDrawable(roadIcon);
+        player1LongestPathIcon.setVisibility(View.INVISIBLE);
         player1Points = (TextView) v.findViewById(R.id.player1_points);
         player1TrainCards = (TextView) v.findViewById(R.id.player1_trainCards);
         player1DestCards = (TextView) v.findViewById(R.id.player1_destCards);
@@ -324,8 +327,10 @@ public class PlayerInfoFragment extends Fragment implements IPlayerInfoFragment{
         player2Username = (TextView) v.findViewById(R.id.player2_username);
         player2WinningIcon = (ImageView) v.findViewById(R.id.player2_winningIcon);
         player2WinningIcon.setImageDrawable(trophyIcon);
+        player2WinningIcon.setVisibility(View.INVISIBLE);
         player2LongestPathIcon = (ImageView) v.findViewById(R.id.player2_longestPathIcon);
         player2LongestPathIcon.setImageDrawable(roadIcon);
+        player2LongestPathIcon.setVisibility(View.INVISIBLE);
         player2Points = (TextView) v.findViewById(R.id.player2_points);
         player2TrainCards = (TextView) v.findViewById(R.id.player2_trainCards);
         player2DestCards = (TextView) v.findViewById(R.id.player2_destCards);
@@ -336,8 +341,10 @@ public class PlayerInfoFragment extends Fragment implements IPlayerInfoFragment{
         player3Username = (TextView) v.findViewById(R.id.player3_username);
         player3WinningIcon = (ImageView) v.findViewById(R.id.player3_winningIcon);
         player3WinningIcon.setImageDrawable(trophyIcon);
+        player3WinningIcon.setVisibility(View.INVISIBLE);
         player3LongestPathIcon = (ImageView) v.findViewById(R.id.player3_longestPathIcon);
         player3LongestPathIcon.setImageDrawable(roadIcon);
+        player3LongestPathIcon.setVisibility(View.INVISIBLE);
         player3Points = (TextView) v.findViewById(R.id.player3_points);
         player3TrainCards = (TextView) v.findViewById(R.id.player3_trainCards);
         player3DestCards = (TextView) v.findViewById(R.id.player3_destCards);
@@ -350,8 +357,10 @@ public class PlayerInfoFragment extends Fragment implements IPlayerInfoFragment{
         player4Username = (TextView) v.findViewById(R.id.player4_username);
         player4WinningIcon = (ImageView) v.findViewById(R.id.player4_winningIcon);
         player4WinningIcon.setImageDrawable(trophyIcon);
+        player4WinningIcon.setVisibility(View.INVISIBLE);
         player4LongestPathIcon = (ImageView) v.findViewById(R.id.player4_longestPathIcon);
         player4LongestPathIcon.setImageDrawable(roadIcon);
+        player4LongestPathIcon.setVisibility(View.INVISIBLE);
         player4Points = (TextView) v.findViewById(R.id.player4_points);
         player4TrainCards = (TextView) v.findViewById(R.id.player4_trainCards);
         player4DestCards = (TextView) v.findViewById(R.id.player4_destCards);
@@ -365,8 +374,10 @@ public class PlayerInfoFragment extends Fragment implements IPlayerInfoFragment{
         player5Username = (TextView) v.findViewById(R.id.player5_username);
         player5WinningIcon = (ImageView) v.findViewById(R.id.player5_winningIcon);
         player5WinningIcon.setImageDrawable(trophyIcon);
+        player5WinningIcon.setVisibility(View.INVISIBLE);
         player5LongestPathIcon = (ImageView) v.findViewById(R.id.player5_longestPathIcon);
         player5LongestPathIcon.setImageDrawable(roadIcon);
+        player5LongestPathIcon.setVisibility(View.INVISIBLE);
         player5Points = (TextView) v.findViewById(R.id.player5_points);
         player5TrainCards = (TextView) v.findViewById(R.id.player5_trainCards);
         player5DestCards = (TextView) v.findViewById(R.id.player5_destCards);
