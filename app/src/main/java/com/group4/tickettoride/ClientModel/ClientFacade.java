@@ -33,13 +33,12 @@ import java.util.concurrent.Future;
 public class ClientFacade implements IClient
 {
     private Poller poller;
-    private ExecutorService threadPoolExecutor;
     private Future pollerTask;
 
     private ClientFacade()
     {
-        threadPoolExecutor = Executors.newSingleThreadExecutor();
         poller = new Poller();
+        ExecutorService threadPoolExecutor = Executors.newSingleThreadExecutor();
         pollerTask = threadPoolExecutor.submit(poller);
 //         Add a shutdown hook to close down the thread when the app shutsdown
         Runtime.getRuntime().addShutdownHook(new Thread(){
@@ -90,24 +89,25 @@ public class ClientFacade implements IClient
     //-----------------PRE-GAME-------------------------------------------------------
     @Override
     public Results onLogin(String authToken, String username) {
-
-        poller.setUpdateGameList(true);
-        poller.setUpdateGameInfo(false);
-//        ClientModel.SINGLETON.additionalUserLogin(new User(username));
-
         ClientModel.SINGLETON.setAuthToken(authToken);
         ClientModel.SINGLETON.setUser(new User(username));
         ClientModel.SINGLETON.setCommandIDIndex(0);
         ClientModel.SINGLETON.setGameIfUserIsPlaying();
+
+        poller.setUpdateGameList(true);
+        poller.setUpdateGameInfo(false);
 
         if (ClientModel.SINGLETON.getGame() != null)
         {
             //user is already in a game, send status to LoginPresenter which decides to start
             //either LobbyActivity or GameActivity
             GAME_STATUS status = ClientModel.SINGLETON.getGame().getStatus();
+            if(status == GAME_STATUS.ONGOING)
+            {
+                poller.setUpdateGameList(false);
+            }
             ClientModel.SINGLETON.sendToObservers(status);
 
-            poller.setUpdateGameList(false);
             poller.setUpdateGameInfo(true);
         }
         else
@@ -137,7 +137,7 @@ public class ClientFacade implements IClient
         ClientModel.SINGLETON.sendToObservers(true);
 
         //stop getting the gameList and start getting gameInfo instead
-        poller.setUpdateGameList(false);
+//        poller.setUpdateGameList(false);
         poller.setUpdateGameInfo(true);
 
         return null;
@@ -150,11 +150,7 @@ public class ClientFacade implements IClient
 
     @Override
     public Results onGetGameList(GameList gameList) {
-
         ClientModel.SINGLETON.setGameList(gameList);
-
-//        ClientModel.SINGLETON.updateGame(gameList);
-
         return null;
     }
 
@@ -183,6 +179,7 @@ public class ClientFacade implements IClient
     @Override
     public Results onStartGame()
     {
+        poller.setUpdateGameList(false);
         ClientModel.SINGLETON.sendToObservers(true);
         return null;
     }

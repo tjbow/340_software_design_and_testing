@@ -102,6 +102,8 @@ public class PlayerHandFragment extends Fragment implements IPlayerHandFragment
         return v;
     }
 
+
+
     //    ---------INTERFACE IMPLEMENTATION----------------------------------
     @Override
     public void updateTrainCards(List<TrainCard> cards)

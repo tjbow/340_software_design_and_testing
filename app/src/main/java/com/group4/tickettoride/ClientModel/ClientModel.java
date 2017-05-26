@@ -47,14 +47,6 @@ public class ClientModel extends Observable {
         this.commandIDIndex = 0;
     }
 
-    public void additionalUserLogin(User user)
-    {
-        setAuthToken(authToken);
-        setUser(user);
-        setCommandIDIndex(0);
-        setGameIfUserIsPlaying();
-    }
-
     public void clear()
     {
         user = null;
@@ -62,6 +54,7 @@ public class ClientModel extends Observable {
         authToken = null;
         player = null;
         game = null;
+        commandIDIndex = 0;
     }
 
     public User getUser() {
@@ -78,7 +71,10 @@ public class ClientModel extends Observable {
 
     public void setGameList(GameList gameList) {
         this.gameList = gameList;
-
+        if(user != null)
+        {
+            this.game = this.gameList.getGameByUsername(user.getUsername());
+        }
         sendToObservers(gameList);
     }
 

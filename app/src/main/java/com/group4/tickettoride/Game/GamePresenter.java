@@ -46,6 +46,7 @@ public class GamePresenter implements IGamePresenter, Observer
     {
         ClientModel.SINGLETON.clear();
         ClientModel.SINGLETON.deleteObserver(this);
+        ClientModel.SINGLETON.deleteObservers();
         activity.startNextActivity(Login_RegisterActivity.class);
         ClientFacade.SINGLETON.setUpdateGameInfo(false);
         ClientFacade.SINGLETON.setUpdateGameList(false);

@@ -26,6 +26,7 @@ public class Player {
     {
         this.userName = user.getUsername();
         this.id = user.getId();
+        this.turn = false;
     }
 
     public void initializeGame()
@@ -37,7 +38,6 @@ public class Player {
         claimedRouteList = new RouteList();
         score = 0;
         winning = false;
-        turn = false;
     }
 
     public UUID getId() {

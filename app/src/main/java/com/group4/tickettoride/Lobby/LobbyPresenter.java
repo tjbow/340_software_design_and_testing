@@ -4,6 +4,7 @@ import android.content.Intent;
 
 import com.group4.shared.Model.GAME_STATUS;
 import com.group4.shared.Model.Game;
+import com.group4.shared.Model.GameList;
 import com.group4.shared.Model.Player;
 import com.group4.tickettoride.ClientModel.ClientFacade;
 import com.group4.tickettoride.ClientModel.ClientModel;
@@ -79,6 +80,11 @@ public class LobbyPresenter implements Observer,ILobbyPresenter {
         else if (arg.getClass() == Boolean.class)
         {
             startGameActivity(o);
+        }
+        else if(arg.getClass() == GameList.class)
+        {
+            this.game = ClientModel.SINGLETON.getGame();
+            setGameInfo();
         }
     }
 

@@ -42,7 +42,7 @@ public class ServerModel
         userAuthTokens = new HashMap<>();
         gameList = new GameList(new ArrayList<>());
 
-        cities = getCities();
+//        cities = getCities();
     }
 
     /**
@@ -167,6 +167,7 @@ public class ServerModel
         {
             case 0:
                 player.setColor("blue");
+                player.setTurn(true);
                 break;
             case 1:
                 player.setColor("red");
@@ -183,6 +184,12 @@ public class ServerModel
         }
 
         game.addPlayer(player.getUserName(), player);
+
+        //initialize turn
+//        Player firstPlayer = game.getPlayerList().get(0);
+//        firstPlayer.setTurn(true);
+//        game.getGameStats().setPlayerCurrentTurn(firstPlayer.getUserName());
+
         System.out.println("Player \"" + player.getUserName() + "\" joined the game " + game.getGameName()
                 + " (" + game.getCurrentPlayerSize() + "/" + game.getPlayerCount() + " players).");
         return true;
@@ -197,10 +204,6 @@ public class ServerModel
         {
             entry.getValue().initializeGame();
         }
-
-        Player firstPlayer = game.getPlayerList().get(0);
-        firstPlayer.setTurn(true);
-        game.getGameStats().setPlayerCurrentTurn(firstPlayer.getUserName());
 
         //initialize all the game and player decks
         game.dealInitialCards();
