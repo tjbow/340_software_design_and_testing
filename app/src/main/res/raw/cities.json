@@ -170,9 +170,9 @@
   "name" : "Las Vegas"
 }, {
   "xConstraint" : 26,
-  "yConstraint" : 40,
+  "yConstraint" : 44,
   "labelX" : 26,
-  "labelY" : 36,
+  "labelY" : 40,
   "name" : "Salt Lake City"
 }, {
   "xConstraint" : 33,
