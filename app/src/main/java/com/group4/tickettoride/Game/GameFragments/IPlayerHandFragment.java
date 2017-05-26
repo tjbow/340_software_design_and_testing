@@ -18,17 +18,17 @@ public interface IPlayerHandFragment
      * Adds the train cards to the players hand in the view
      * @param cards the list of cards to be added
      */
-    void addTrainCards(List<TrainCard> cards);
+    void updateTrainCards(List<TrainCard> cards);
 
     /**
      * Removes the train cards from the players hand in the view
      * @param cards he list of cards to be removed
      */
-    void removedTrainCards(List<TrainCard> cards);
+//    void removedTrainCards(List<TrainCard> cards);
 
     /**
      * Adds the destination to the players list of destinations in the view
-     * @param card the destination card to be added
+     * @param cards the destination card to be added
      */
-    void addDestination(DestinationCard card);
+    void updateDestinationCards(List<DestinationCard> cards);
 }

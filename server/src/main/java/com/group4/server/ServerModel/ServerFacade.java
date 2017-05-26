@@ -173,6 +173,11 @@ public class ServerFacade implements IServer
         serverModel.startGame(gameName);
         Game game = serverModel.getGameList().getGameByName(gameName);
 
+        //CREATE A PLAYERDATA COMMAND TO ADD TO THE GAME BEING PLAYED
+        CUpdatePlayersCommandData updatePlayersCommandData = new CUpdatePlayersCommandData();
+        updatePlayersCommandData.setType("updateplayers");
+        updatePlayersCommandData.setPlayerData(game.getPlayerList());
+
         //CREATE A STARTGAME COMMAND TO ADD TO THE GAME BEING PLAYED
         CStartGameCommandData startGameCommandData = new CStartGameCommandData();
         startGameCommandData.setType("startgame");
@@ -183,26 +188,20 @@ public class ServerFacade implements IServer
         updateStatsCommandData.setType("updatestats");
         updateStatsCommandData.setGameStats(game.getGameStats());
 
-        //CREATE A PLAYERDATA COMMAND TO ADD TO THE GAME BEING PLAYED
-        CUpdatePlayersCommandData updatePlayersCommandData = new CUpdatePlayersCommandData();
-        updatePlayersCommandData.setType("updateplayers");
-        updatePlayersCommandData.setPlayerData(game.getPlayerList());
-
         //CREATE AN UPDATEGAME COMMAND TO ADD TO THE GAME BEING PLAYED
         CUpdateGameCommandData updateGameCommandData = new CUpdateGameCommandData();
         updateGameCommandData.setType("updategame");
         updateGameCommandData.setStatus(game.getStatus());
 
-
         //ADD THE ABOVE TO THE GAME FOR RETRIEVAL BY ALL PLAYERS
+        game.addCommand(updatePlayersCommandData);
+        updatePlayersCommandData.setCommandNumber(game.getNewCommandIndex());
+
         game.addCommand(startGameCommandData);
         startGameCommandData.setCommandNumber(game.getNewCommandIndex());
 
         game.addCommand(updateStatsCommandData);
         updateStatsCommandData.setCommandNumber(game.getNewCommandIndex());
-
-        game.addCommand(updatePlayersCommandData);
-        updatePlayersCommandData.setCommandNumber(game.getNewCommandIndex());
 
         game.addCommand(updateGameCommandData);
         updateGameCommandData.setCommandNumber(game.getNewCommandIndex());

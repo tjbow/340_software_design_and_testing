@@ -17,6 +17,7 @@ import com.group4.shared.Model.User;
 import com.group4.shared.Proxy.IClient;
 import com.group4.shared.command.ClientCommand;
 import com.group4.shared.command.IClientCommand;
+import com.group4.tickettoride.NextLayerFacade.NextLayerFacade;
 
 import java.util.HashMap;
 import java.util.List;

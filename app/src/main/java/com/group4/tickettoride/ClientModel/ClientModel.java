@@ -165,10 +165,15 @@ public class ClientModel extends Observable {
         for(Player player : players)
         {
             playerMap.put(player.getUserName(), player);
+
+            //also update the model player
+            if(user.getUsername().equals(player.getUserName()))
+            {
+                this.player = player;
+            }
         }
         game.setPlayers(playerMap);
-        // TODO: Russell implement Player interation to update Map in game
-        sendToObservers(players);
+        sendToObservers(game.getPlayerList());
     }
 
     @Override

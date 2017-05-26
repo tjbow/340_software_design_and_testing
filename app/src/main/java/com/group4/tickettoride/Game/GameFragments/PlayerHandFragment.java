@@ -1,8 +1,6 @@
 package com.group4.tickettoride.Game.GameFragments;
 
-import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
-import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -17,16 +15,11 @@ import android.widget.TextView;
 
 import com.group4.shared.Model.CARD_COLOR;
 import com.group4.shared.Model.DestinationCard;
-import com.group4.shared.Model.Game;
 import com.group4.shared.Model.TrainCard;
-import com.group4.tickettoride.GameList.GameListActivity;
 import com.group4.tickettoride.R;
-import com.joanzapata.iconify.Iconify;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -39,12 +32,13 @@ import java.util.Map;
 public class PlayerHandFragment extends Fragment implements IPlayerHandFragment
 {
     private View v;
-    private IPlayerHandPresenter presenter;
-    private List<Drawable> cardList;
-    private Map<CARD_COLOR, Integer> cardCounts;
-
     private RecyclerView recyclerView;
     private CardAdapter adapter;
+
+    private IPlayerHandPresenter presenter;
+    private List<Drawable> cardList;
+    private List<CARD_COLOR> cardColors;
+    private List<TrainCard> playerTrainCards;
 
 
     // TODO: Rename parameter arguments, choose names that match
@@ -90,29 +84,15 @@ public class PlayerHandFragment extends Fragment implements IPlayerHandFragment
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState)
     {
-        cardList = new ArrayList<>();
-
-        cardList.add(ContextCompat.getDrawable(this.getContext(), R.drawable.traincardblack));
-        cardList.add(ContextCompat.getDrawable(this.getContext(), R.drawable.traincardgreen));
-        cardList.add(ContextCompat.getDrawable(this.getContext(), R.drawable.traincardblue));
-        cardList.add(ContextCompat.getDrawable(this.getContext(), R.drawable.traincardpurple));
-
-        cardList.add(ContextCompat.getDrawable(this.getContext(), R.drawable.traincardred));
-        cardList.add(ContextCompat.getDrawable(this.getContext(), R.drawable.traincardbrown));
-        cardList.add(ContextCompat.getDrawable(this.getContext(), R.drawable.traincardwhite));
-        cardList.add(ContextCompat.getDrawable(this.getContext(), R.drawable.traincardyellow));
-
-        cardList.add(ContextCompat.getDrawable(this.getContext(), R.drawable.traincardlocamotive));
-
+        initializeViewLists();
 
         v = inflater.inflate(R.layout.fragment_player_hand, container, false);
-        // Inflate the layout for this fragment
 
         recyclerView = (RecyclerView) v.findViewById(R.id.playerHand_recyclerview);
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext(), LinearLayoutManager.HORIZONTAL, false));
         if (adapter == null)
         {
-            adapter = new PlayerHandFragment.CardAdapter(cardList);
+            adapter = new PlayerHandFragment.CardAdapter(cardColors, cardList);
             recyclerView.setAdapter(adapter);
             adapter.notifyDataSetChanged();
         }
@@ -120,6 +100,26 @@ public class PlayerHandFragment extends Fragment implements IPlayerHandFragment
         this.presenter = new PlayerHandPresenter(this);
 
         return v;
+    }
+
+    //    ---------INTERFACE IMPLEMENTATION----------------------------------
+    @Override
+    public void updateTrainCards(List<TrainCard> cards)
+    {
+        this.playerTrainCards = cards;
+        adapter.notifyDataSetChanged();
+    }
+
+//    @Override
+//    public void removedTrainCards(List<TrainCard> cards)
+//    {
+//
+//    }
+
+    @Override
+    public void updateDestinationCards(List<DestinationCard> cards)
+    {
+
     }
 
     //------------------- RECYCLERVIEW CODE -----------------------
@@ -139,10 +139,18 @@ public class PlayerHandFragment extends Fragment implements IPlayerHandFragment
             trainCard = (ImageView) itemView.findViewById(R.id.trainCardList_traincard_image);
         }
 
-        public void bindCard(Drawable newCard)
+        public void bindCard(CARD_COLOR color, Drawable newCard)
         {
             this.card = newCard;
-//            cardCount.setText(count);
+            int count = 0;
+            for(TrainCard card : playerTrainCards)
+            {
+                if(card.getColor() == color)
+                {
+                    count++;
+                }
+            }
+            cardCount.setText(Integer.toString(count));
             trainCard.setImageDrawable(card);
         }
 
@@ -154,11 +162,13 @@ public class PlayerHandFragment extends Fragment implements IPlayerHandFragment
     }
 
     private class CardAdapter extends RecyclerView.Adapter<PlayerHandFragment.TrainCardHolder> {
+        private List<CARD_COLOR> cardColors;
         private List<Drawable> cards;
 
-        public CardAdapter(List<Drawable> cards)
+        public CardAdapter(List<CARD_COLOR> cardColors, List<Drawable> cards)
         {
             this.cards = cards;
+            this.cardColors = cardColors;
         }
 
         @Override
@@ -173,7 +183,8 @@ public class PlayerHandFragment extends Fragment implements IPlayerHandFragment
         public void onBindViewHolder(PlayerHandFragment.TrainCardHolder holder, int position)
         {
             Drawable card = cards.get(position);
-            holder.bindCard(card);
+            CARD_COLOR color = cardColors.get(position);
+            holder.bindCard(color, card);
         }
         @Override
         public int getItemCount()
@@ -181,12 +192,40 @@ public class PlayerHandFragment extends Fragment implements IPlayerHandFragment
             return cards.size();
         }
 
-        public void setCards(List<Drawable> cards)
-        {
-            this.cards = cards;
-        }
+//        public void setCards(Map<CARD_COLOR, Drawable> cards)
+//        {
+//            this.cards = cards;
+//        }
     }
     //------------------- END RECYCLERVIEW -----------------------
+
+    private void initializeViewLists()
+    {
+        cardList = new ArrayList<>();
+        cardColors = new ArrayList<>();
+        playerTrainCards = new ArrayList<>();
+
+        cardList.add(ContextCompat.getDrawable(this.getContext(), R.drawable.traincardred));
+        cardColors.add(CARD_COLOR.RED);
+        cardList.add(ContextCompat.getDrawable(this.getContext(), R.drawable.traincardblue));
+        cardColors.add(CARD_COLOR.BLUE);
+        cardList.add(ContextCompat.getDrawable(this.getContext(), R.drawable.traincardgreen));
+        cardColors.add(CARD_COLOR.GREEN);
+        cardList.add(ContextCompat.getDrawable(this.getContext(), R.drawable.traincardblack));
+        cardColors.add(CARD_COLOR.BLACK);
+
+        cardList.add(ContextCompat.getDrawable(this.getContext(), R.drawable.traincardbrown));
+        cardColors.add(CARD_COLOR.ORANGE);
+        cardList.add(ContextCompat.getDrawable(this.getContext(), R.drawable.traincardyellow));
+        cardColors.add(CARD_COLOR.YELLOW);
+        cardList.add(ContextCompat.getDrawable(this.getContext(), R.drawable.traincardwhite));
+        cardColors.add(CARD_COLOR.WHITE);
+        cardList.add(ContextCompat.getDrawable(this.getContext(), R.drawable.traincardpurple));
+        cardColors.add(CARD_COLOR.PURPLE);
+
+        cardList.add(ContextCompat.getDrawable(this.getContext(), R.drawable.traincardlocamotive));
+        cardColors.add(CARD_COLOR.RAINBOW);
+    }
 
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri)
@@ -195,25 +234,6 @@ public class PlayerHandFragment extends Fragment implements IPlayerHandFragment
         {
             mListener.onFragmentInteraction(uri);
         }
-    }
-
-//    ---------INTERFACE IMPLEMENTATION----------------------------------
-    @Override
-    public void addTrainCards(List<TrainCard> cards)
-    {
-
-    }
-
-    @Override
-    public void removedTrainCards(List<TrainCard> cards)
-    {
-
-    }
-
-    @Override
-    public void addDestination(DestinationCard card)
-    {
-
     }
 
     /**
