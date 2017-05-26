@@ -21,5 +21,5 @@ interface INextLayerFacade {
 
     void sendMessage(String message);
 
-    void drawDestinationCards(List<String> destinationId);
+    void drawDestinationCards(List<Integer> destinationId);
 }

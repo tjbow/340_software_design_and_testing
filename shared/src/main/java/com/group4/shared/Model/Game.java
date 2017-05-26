@@ -5,6 +5,7 @@ import com.group4.shared.command.Command;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -141,12 +142,36 @@ public class Game
 
     public void dealInitialCards()
     {
-        //init the game decks with all the cards
+        //init the game decks with all the cards (this also shuffles each deck thrice)
         decks.startGameDeck();
 
-        //give four train cards to each player
+        //give four train cards to each player and remove them from the game's tcdeck
+        for(Player player : players.values())
+        {
+            int count = 4;
+            for(Iterator<TrainCard> iterator = decks.getTrainCardDeck().getCardDeck().iterator(); iterator.hasNext();)
+            {
+                TrainCard current = iterator.next();
+                iterator.remove();
+                player.getTrainCardDeck().getCardDeck().add(current);
+                count--;
+                if(count == 0)break;
+            }
+        }
 
-        //give four destination cards to each player (0 or 1 to be returned)
+        //give three destination cards to each player (0 or 1 to be returned)
+        for(Player player : players.values())
+        {
+            int count = 3;
+            for(Iterator<DestinationCard> iterator = decks.getDestinationCardDeck().getDestDeck().iterator(); iterator.hasNext();)
+            {
+                DestinationCard current = iterator.next();
+                iterator.remove();
+                player.getDestinationCardDeck().getDestDeck().add(current);
+                count--;
+                if(count == 0)break;
+            }
+        }
     }
 
 //    TURN HISTORY

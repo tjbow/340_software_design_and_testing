@@ -1,5 +1,6 @@
 package com.group4.shared.Model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -8,7 +9,12 @@ import java.util.List;
 
 public class FaceUpDeck {
 
-    List<TrainCard> faceUpCards;
+    private List<TrainCard> faceUpCards;
+
+    public FaceUpDeck()
+    {
+        faceUpCards = new ArrayList<>();
+    }
 
     public List<TrainCard> getFaceUpCards() {
         return faceUpCards;

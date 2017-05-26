@@ -1,6 +1,8 @@
 package com.group4.shared.Model;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -35,6 +37,13 @@ public class TrainCardDeck {
 
     public void add(TrainCard card){
         cardDeck.add(card);
+    }
+
+    public void shuffle()
+    {
+        Collections.shuffle(cardDeck);
+        Collections.shuffle(cardDeck);
+        Collections.shuffle(cardDeck);
     }
 
 }

@@ -7,12 +7,12 @@ package com.group4.shared.Model;
 public class DestinationCard
 {
 
-    private String id;
-    private City cityA;
-    private City cityB;
+    private int id;
+    private String cityA;
+    private String cityB;
     private int points;
 
-    public DestinationCard(String id, City cityA, City cityB, int points)
+    public DestinationCard(int id, String cityA, String cityB, int points)
     {
         this.id = id;
         this.cityA = cityA;
@@ -20,35 +20,43 @@ public class DestinationCard
         this.points = points;
     }
 
-    public String getId() {
+    public int getId()
+    {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id)
+    {
         this.id = id;
     }
 
-    public City getCityA() {
+    public String getCityA()
+    {
         return cityA;
     }
 
-    public void setCityA(City cityA) {
+    public void setCityA(String cityA)
+    {
         this.cityA = cityA;
     }
 
-    public City getCityB() {
+    public String getCityB()
+    {
         return cityB;
     }
 
-    public void setCityB(City cityB) {
+    public void setCityB(String cityB)
+    {
         this.cityB = cityB;
     }
 
-    public int getPoints() {
+    public int getPoints()
+    {
         return points;
     }
 
-    public void setPoints(int points) {
+    public void setPoints(int points)
+    {
         this.points = points;
     }
 }

@@ -44,8 +44,6 @@ public class NextLayerFacade implements INextLayerFacade {
         ServerProxy.SINGLETON.startGame(gameName);
     }
 
-
-
     @Override
     public void endGame(String gameName)
     {
@@ -64,9 +62,9 @@ public class NextLayerFacade implements INextLayerFacade {
     }
 
     @Override
-    public void drawDestinationCards(List<String> destinationId) {
+    public void drawDestinationCards(List<Integer> destinationId) {
         List<DestinationCard> destinationCards = new ArrayList<>();
-        for(String Id : destinationId){
+        for(int Id : destinationId){
             destinationCards.add(ClientModel.SINGLETON.getGame().getDecks().getDestinationCardDeck().findCard(Id));
         }
 

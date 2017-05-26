@@ -202,6 +202,9 @@ public class ServerModel
         firstPlayer.setTurn(true);
         game.getGameStats().setPlayerCurrentTurn(firstPlayer.getUserName());
 
+        //initialize all the game and player decks
+        game.dealInitialCards();
+
         System.out.println(gameName + " has been started by " + getTempUser().getUsername());
     }
 

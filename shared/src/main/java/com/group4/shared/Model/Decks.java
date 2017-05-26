@@ -1,5 +1,6 @@
 package com.group4.shared.Model;
 
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -60,22 +61,32 @@ public class Decks {
 
             trainCardDeck.add(new TrainCard(CARD_COLOR.RAINBOW, false));
         }
+        trainCardDeck.shuffle();
     }
 
     private void initializeDestCardDeck()
     {
-        //TODO: PHASE 2: initialize the destination card deck
         destinationCardDeck = new DestinationCardDeck("newgame");
+        destinationCardDeck.shuffle();
     }
 
     private void initializeFaceUpDeck()
     {
-        List<TrainCard> drawResult = trainCardDeck.draw();
-        for(TrainCard card : drawResult)
+        faceUpDeck = new FaceUpDeck();
+
+        int count = 5;
+        for(Iterator<TrainCard> iterator = trainCardDeck.getCardDeck().iterator(); iterator.hasNext();)
+        {
+            TrainCard current = iterator.next();
+            iterator.remove();
+            faceUpDeck.add(current);
+            count--;
+            if(count == 0) break;
+        }
+
+        for(TrainCard card : faceUpDeck.getFaceUpCards())
         {
             card.setVisible(true);
-            faceUpDeck.add(card);
-            trainCardDeck.getCardDeck().remove(card);
         }
     }
 }

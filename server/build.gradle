@@ -7,6 +7,7 @@ dependencies {
     compile 'com.fasterxml.jackson.core:jackson-databind:2.9.0.pr3'
     compile 'com.fasterxml.jackson.core:jackson-core:2.9.0.pr3'
     compile 'com.fasterxml.jackson.core:jackson-annotations:2.9.0.pr3'
+    compile 'junit:junit:4.12'
 }
 
 sourceCompatibility = "1.8"
