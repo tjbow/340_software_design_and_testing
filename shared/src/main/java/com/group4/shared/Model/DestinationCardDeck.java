@@ -22,20 +22,25 @@ public class DestinationCardDeck {
         destDeck = new ArrayList<>();
         if(param.equals("newgame"))
         {
-            initializeDestDeck();
+            initializeGameDestDeck();
         }
     }
 
     public DestinationCardDeck()
-    {}
+    {
+        destDeck = new ArrayList<>();
+    }
 
-    private void initializeDestDeck()
+    private void initializeGameDestDeck()
     {
 
 //        destDeck.add(new DestinationCard("1", new City()));
     }
 
     private void getCities(){
+
+//        Staff staff = gson.fromJson(new FileReader("D:\\file.json"), Staff.class);
+
 //        InputStream is = new FileInputStream(new File());
 //
 //
