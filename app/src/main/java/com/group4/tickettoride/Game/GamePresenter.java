@@ -44,6 +44,7 @@ public class GamePresenter implements IGamePresenter, Observer
     @Override
     public void onBackPressed()
     {
+        ClientModel.SINGLETON.clear();
         ClientModel.SINGLETON.deleteObserver(this);
         activity.startNextActivity(Login_RegisterActivity.class);
         ClientFacade.SINGLETON.setUpdateGameInfo(false);

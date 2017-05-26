@@ -36,7 +36,6 @@ public class ClientModel extends Observable {
     private String authToken;
     private Player player;
     private Game game;
-    private ScheduledExecutorService execService;
 
     public static ClientModel SINGLETON = new ClientModel();
 
@@ -54,6 +53,15 @@ public class ClientModel extends Observable {
         setUser(user);
         setCommandIDIndex(0);
         setGameIfUserIsPlaying();
+    }
+
+    public void clear()
+    {
+        user = null;
+        gameList = null;
+        authToken = null;
+        player = null;
+        game = null;
     }
 
     public User getUser() {
@@ -109,14 +117,6 @@ public class ClientModel extends Observable {
 
     public void setGame(Game game) {
         this.game = game;
-    }
-
-    public ScheduledExecutorService getExecService() {
-        return execService;
-    }
-
-    public void setExecService(ScheduledExecutorService execService) {
-        this.execService = execService;
     }
 
     public void setGameIfUserIsPlaying()

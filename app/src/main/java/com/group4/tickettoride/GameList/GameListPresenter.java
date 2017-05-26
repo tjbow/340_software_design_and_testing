@@ -57,6 +57,7 @@ public class GameListPresenter implements IGameListPresenter, Observer {
     {
         Intent i = new Intent(activity, Login_RegisterActivity.class);
         activity.startActivity(i);
+        ClientModel.SINGLETON.clear();
         ClientModel.SINGLETON.deleteObserver(this);
         ClientFacade.SINGLETON.setUpdateGameInfo(false);
         ClientFacade.SINGLETON.setUpdateGameList(false);
