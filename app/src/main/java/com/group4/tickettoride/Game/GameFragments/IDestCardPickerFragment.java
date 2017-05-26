@@ -14,10 +14,16 @@ import java.util.List;
 public interface IDestCardPickerFragment
 {
     /**
+     * Sets the minimum number of cards selected
+     * @param num number of cards selected
+     */
+    void setMinNumSelected(int num);
+
+    /**
      * Gets the list of selected cards
      * @return a list of the selected card IDs
      */
-    List<DestinationCard> getSelectedCards();
+    List<Integer> getSelectedCards();
 
     /**
      * Sets the cards in the destination view

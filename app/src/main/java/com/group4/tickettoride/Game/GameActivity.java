@@ -84,8 +84,8 @@ public class GameActivity extends AppCompatActivity implements IGameActivity {
                 .add(R.id.playerHand_fragment, playerHandFragment)
                 .commit();
 
-        // run the destination card picker at the beginning of play
-        DialogFragment destPickerDialog = DestCardPickerFragment.newInstance();
+        // run the destination card picker at the beginning of play, 2 minimum at beginning of game
+        DialogFragment destPickerDialog = DestCardPickerFragment.newInstance(2);
         destPickerDialog.show(this.getSupportFragmentManager(), "dialog");
     }
 

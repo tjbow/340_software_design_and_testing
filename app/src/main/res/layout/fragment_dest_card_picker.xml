@@ -6,52 +6,66 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:focusable="true">
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="0dip"
-            android:layout_weight="0.2"
-        ></RelativeLayout>
+            android:layout_weight="0.2">
+        </RelativeLayout>
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="0dip"
-            android:layout_weight="0.6">
+            android:layout_weight="0.6"
+            android:focusable="true">
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:focusable="true">
                 <Space
                     android:layout_width="0dip"
                     android:layout_height="match_parent"
-                    android:layout_weight="0.025"/>
+                    android:layout_weight="0.025"
+                    android:clickable="false"/>
                 <ImageView
                     android:id="@+id/dest_picker1"
                     android:layout_width="0dip"
                     android:layout_height="match_parent"
-                    android:layout_weight="0.3" android:src="@drawable/destticket"/>
+                    android:layout_weight="0.3"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:src="@drawable/destticket"/>
                 <Space
                     android:layout_width="0dip"
                     android:layout_height="match_parent"
-                    android:layout_weight="0.025"/>
+                    android:layout_weight="0.025"
+                    android:clickable="false"/>
                 <ImageView
                     android:id="@+id/dest_picker2"
                     android:layout_width="0dip"
                     android:layout_height="match_parent"
+                    android:clickable="true"
+                    android:focusable="true"
                     android:layout_weight="0.3" android:src="@drawable/destticket"/>
                 <Space
                     android:layout_width="0dip"
                     android:layout_height="match_parent"
-                    android:layout_weight="0.025"/>
+                    android:layout_weight="0.025"
+                    android:clickable="false"/>
                 <ImageView
                     android:id="@+id/dest_picker3"
                     android:layout_width="0dip"
                     android:layout_height="match_parent"
+                    android:clickable="true"
+                    android:focusable="true"
                     android:layout_weight="0.3" android:src="@drawable/destticket"/>
                 <Space
                     android:layout_width="0dip"
                     android:layout_height="match_parent"
-                    android:layout_weight="0.025"/>
+                    android:layout_weight="0.025"
+                    android:clickable="false"/>
             </LinearLayout>
         </RelativeLayout>
 
@@ -59,6 +73,11 @@
             android:layout_width="match_parent"
             android:layout_height="0dip"
             android:layout_weight="0.2">
+            <Button
+                android:id="@+id/desk_picker_button"
+                android:text="Confirm"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
         </RelativeLayout>
 
     </LinearLayout>
