@@ -5,7 +5,6 @@ import android.view.View;
 
 import com.group4.shared.Model.Game;
 import com.group4.shared.Model.Player;
-import com.group4.tickettoride.ClientModel.ClientFacade;
 import com.group4.tickettoride.ClientModel.ClientModel;
 
 import java.util.ArrayList;
@@ -13,7 +12,7 @@ import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
 
-import static android.graphics.Typeface.BOLD;
+
 import static android.graphics.Typeface.BOLD_ITALIC;
 import static android.graphics.Typeface.NORMAL;
 import static com.group4.tickettoride.Game.GameFragments.PlayerInfoFragment.*;
@@ -42,7 +41,7 @@ public class PlayerInfoPresenter implements Observer {
         else if (arg.getClass() == ArrayList.class)
         {
             ArrayList<Player> players = (ArrayList<Player>) arg;
-//            updateFragment(players);
+            updateFragment(players);
         }
     }
 
@@ -65,17 +64,18 @@ public class PlayerInfoPresenter implements Observer {
 
     private void setPlayerInfo(List<Player> players)
     {
-        if (!fragment.isInitialized())
+
+        if (fragment.getPlayers() == null)
         {
             fragment.setPlayers(getPlayerUsernames(players));
         }
 
         for (Player player : players)
         {
-            fragment.setPlayerTextField(player.getUserName(), POINTS, player.getScore());
-            fragment.setPlayerTextField(player.getUserName(), TRAIN_CARDS, player.getTrainCardCount());
-            fragment.setPlayerTextField(player.getUserName(), DEST_CARDS, player.getDestinationCardCount());
-            fragment.setPlayerTextField(player.getUserName(), TRAIN_CARS, player.getTrainCarsRemaining());
+            fragment.setPlayerTextField(player.getUserName(), POINTS, Integer.toString(player.getScore()));
+            fragment.setPlayerTextField(player.getUserName(), TRAIN_CARDS, Integer.toString(player.getTrainCardCount()));
+            fragment.setPlayerTextField(player.getUserName(), DEST_CARDS, Integer.toString(player.getDestinationCardCount()));
+            fragment.setPlayerTextField(player.getUserName(), TRAIN_CARS, Integer.toString(player.getTrainCarsRemaining()));
             fragment.setPlayerImageField(player.getUserName(), WINNING_ICON, player.isWinning() ?
                     View.VISIBLE : View.INVISIBLE);
             fragment.setPlayerImageField(player.getUserName(), LONGEST_ICON, player.isLongestPath() ?

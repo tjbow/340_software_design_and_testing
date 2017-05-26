@@ -88,7 +88,16 @@ public class Player {
         return destinationCardDeck;
     }
 
-    public int getDestinationCardCount(){return destinationCardDeck.getDestDeck().size();}
+    public int getDestinationCardCount(){
+        if (destinationCardDeck.getDestDeck() != null){
+            return destinationCardDeck.getDestDeck().size();
+        }
+        else
+        {
+            return 0;
+        }
+
+    }
 
     public void setDestinationCardDeck(DestinationCardDeck destinationCardDeck) {
         this.destinationCardDeck = destinationCardDeck;

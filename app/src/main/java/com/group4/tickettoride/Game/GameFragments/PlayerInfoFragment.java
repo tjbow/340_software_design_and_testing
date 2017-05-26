@@ -87,7 +87,7 @@ public class PlayerInfoFragment extends Fragment implements IPlayerInfoFragment{
     public static final String TRAIN_CARS = "trains";
 
     private PlayerInfoPresenter presenter;
-    private boolean initialized = false;
+
 
     private View v;
 
@@ -103,12 +103,9 @@ public class PlayerInfoFragment extends Fragment implements IPlayerInfoFragment{
         // Inflate the layout for this fragment
         v = inflater.inflate(R.layout.fragment_player_info, container, false);
         Iconify.with(new FontAwesomeModule());
+
+        initializePlayerViews(v);
         this.presenter = new PlayerInfoPresenter(this);
-        //players list will be set at this point
-
-//        initializePlayerViews(v);
-
-
 
         return v;
     }
@@ -118,13 +115,8 @@ public class PlayerInfoFragment extends Fragment implements IPlayerInfoFragment{
         return new PlayerInfoFragment();
     }
 
-    public void setPlayerTextField(String username, String field, int value)
+    public void setPlayerTextField(String username, String field, String value)
     {
-        if (!initialized)
-        {
-            return;
-        }
-
         switch(players.indexOf(username))
         {
             case 0:
@@ -286,6 +278,23 @@ public class PlayerInfoFragment extends Fragment implements IPlayerInfoFragment{
         {
             case 0:
                 player1Username.setTypeface(null, style);
+                break;
+            case 1:
+                player2Username.setTypeface(null, style);
+                break;
+            case 2:
+                player3Username.setTypeface(null, style);
+                break;
+            case 3:
+                player4Username.setTypeface(null, style);
+                break;
+            case 4:
+                player5Username.setTypeface(null, style);
+                break;
+            default:
+                System.out.println("too many players");
+
+
         }
     }
 
@@ -297,8 +306,6 @@ public class PlayerInfoFragment extends Fragment implements IPlayerInfoFragment{
         //PLAYER 1
 
         player1Username = (TextView) v.findViewById(R.id.player1_username);
-        //might as well set the username now since we have it
-        player1Username.setText(players.get(0));
         player1WinningIcon = (ImageView) v.findViewById(R.id.player1_winningIcon);
         Drawable trophyIcon = new IconDrawable(this.getActivity(), FontAwesomeIcons.fa_trophy)
                 .colorRes(R.color.colorBlack).sizeDp(20);
@@ -315,7 +322,6 @@ public class PlayerInfoFragment extends Fragment implements IPlayerInfoFragment{
         //PLAYER 2
 
         player2Username = (TextView) v.findViewById(R.id.player2_username);
-        player2Username.setText(players.get(1));
         player2WinningIcon = (ImageView) v.findViewById(R.id.player2_winningIcon);
         player2WinningIcon.setImageDrawable(trophyIcon);
         player2LongestPathIcon = (ImageView) v.findViewById(R.id.player2_longestPathIcon);
@@ -327,70 +333,72 @@ public class PlayerInfoFragment extends Fragment implements IPlayerInfoFragment{
 
         //PLAYER 3
 
-        if (this.players.size() >= 3)
-        {
-            player3Username = (TextView) v.findViewById(R.id.player3_username);
-            player3Username.setText(players.get(2));
-            player3WinningIcon = (ImageView) v.findViewById(R.id.player3_winningIcon);
-            player3WinningIcon.setImageDrawable(trophyIcon);
-            player3LongestPathIcon = (ImageView) v.findViewById(R.id.player3_longestPathIcon);
-            player3LongestPathIcon.setImageDrawable(roadIcon);
-            player3Points = (TextView) v.findViewById(R.id.player3_points);
-            player3TrainCards = (TextView) v.findViewById(R.id.player3_trainCards);
-            player3DestCards = (TextView) v.findViewById(R.id.player3_destCards);
-            player3TrainCars = (TextView) v.findViewById(R.id.player3_trainCars);
+        player3Username = (TextView) v.findViewById(R.id.player3_username);
+        player3WinningIcon = (ImageView) v.findViewById(R.id.player3_winningIcon);
+        player3WinningIcon.setImageDrawable(trophyIcon);
+        player3LongestPathIcon = (ImageView) v.findViewById(R.id.player3_longestPathIcon);
+        player3LongestPathIcon.setImageDrawable(roadIcon);
+        player3Points = (TextView) v.findViewById(R.id.player3_points);
+        player3TrainCards = (TextView) v.findViewById(R.id.player3_trainCards);
+        player3DestCards = (TextView) v.findViewById(R.id.player3_destCards);
+        player3TrainCars = (TextView) v.findViewById(R.id.player3_trainCars);
 
-        }
+
 
         //PLAYER 4
 
-        if (this.players.size() >= 4)
-        {
-            player4Username = (TextView) v.findViewById(R.id.player4_username);
-            player4Username.setText(players.get(3));
-            player4WinningIcon = (ImageView) v.findViewById(R.id.player4_winningIcon);
-            player4WinningIcon.setImageDrawable(trophyIcon);
-            player4LongestPathIcon = (ImageView) v.findViewById(R.id.player4_longestPathIcon);
-            player4LongestPathIcon.setImageDrawable(roadIcon);
-            player4Points = (TextView) v.findViewById(R.id.player4_points);
-            player4TrainCards = (TextView) v.findViewById(R.id.player4_trainCards);
-            player4DestCards = (TextView) v.findViewById(R.id.player4_destCards);
-            player4TrainCars = (TextView) v.findViewById(R.id.player4_trainCars);
+        player4Username = (TextView) v.findViewById(R.id.player4_username);
+        player4WinningIcon = (ImageView) v.findViewById(R.id.player4_winningIcon);
+        player4WinningIcon.setImageDrawable(trophyIcon);
+        player4LongestPathIcon = (ImageView) v.findViewById(R.id.player4_longestPathIcon);
+        player4LongestPathIcon.setImageDrawable(roadIcon);
+        player4Points = (TextView) v.findViewById(R.id.player4_points);
+        player4TrainCards = (TextView) v.findViewById(R.id.player4_trainCards);
+        player4DestCards = (TextView) v.findViewById(R.id.player4_destCards);
+        player4TrainCars = (TextView) v.findViewById(R.id.player4_trainCars);
 
-        }
+
 
         //PLAYER 5
 
-        if (this.players.size() >= 5)
-        {
-            player5Username = (TextView) v.findViewById(R.id.player5_username);
-            player5Username.setText(players.get(4));
-            player5WinningIcon = (ImageView) v.findViewById(R.id.player5_winningIcon);
-            player5WinningIcon.setImageDrawable(trophyIcon);
-            player5LongestPathIcon = (ImageView) v.findViewById(R.id.player5_longestPathIcon);
-            player5LongestPathIcon.setImageDrawable(roadIcon);
-            player5Points = (TextView) v.findViewById(R.id.player5_points);
-            player5TrainCards = (TextView) v.findViewById(R.id.player5_trainCards);
-            player5DestCards = (TextView) v.findViewById(R.id.player5_destCards);
-            player5TrainCars = (TextView) v.findViewById(R.id.player5_trainCars);
-        }
 
-        this.initialized = true;
+        player5Username = (TextView) v.findViewById(R.id.player5_username);
+        player5WinningIcon = (ImageView) v.findViewById(R.id.player5_winningIcon);
+        player5WinningIcon.setImageDrawable(trophyIcon);
+        player5LongestPathIcon = (ImageView) v.findViewById(R.id.player5_longestPathIcon);
+        player5LongestPathIcon.setImageDrawable(roadIcon);
+        player5Points = (TextView) v.findViewById(R.id.player5_points);
+        player5TrainCards = (TextView) v.findViewById(R.id.player5_trainCards);
+        player5DestCards = (TextView) v.findViewById(R.id.player5_destCards);
+        player5TrainCars = (TextView) v.findViewById(R.id.player5_trainCars);
+
+
+
     }
 
     public void setPlayers(List<String> players) {
         this.players = players;
-        if (!initialized)
+        //initialize the usernames here so we don't have to do it again unless they change somehow
+        //also, this switch statement doesn't have breaks for each case on purpose. This way, it will
+        //start with the maximum and work down
+        switch(players.size())
         {
-            this.initializePlayerViews(v);
+            case 5:
+                player5Username.setText(players.get(4));
+            case 4:
+                player4Username.setText(players.get(3));
+            case 3:
+                player3Username.setText(players.get(2));
+            case 2:
+                player2Username.setText(players.get(1));
+                player1Username.setText(players.get(0));
+                break;
+            default:
+                System.out.println("Error: Not enough players in list.");
+
         }
     }
 
-    public boolean isInitialized() {
-        return initialized;
-    }
+    public List<String> getPlayers() {return players;}
 
-    public void setInitialized(boolean initialized) {
-        this.initialized = initialized;
-    }
 }
