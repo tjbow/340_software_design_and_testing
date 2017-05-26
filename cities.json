@@ -1,0 +1,228 @@
+[ {
+  "xConstraint" : 82.0,
+  "yConstraint" : 90.0,
+  "labelX" : 85,
+  "labelY" : 94,
+  "name" : "Miami"
+}, {
+  "xConstraint" : 80.0,
+  "yConstraint" : 70.0,
+  "labelX" : 85,
+  "labelY" : 70,
+  "name" : "Charleston"
+}, {
+  "xConstraint" : 88.0,
+  "yConstraint" : 53.0,
+  "labelX" : 94.5,
+  "labelY" : 53,
+  "name" : "Washington"
+}
+, {
+  "xConstraint" : 87.0,
+  "yConstraint" : 35.0,
+  "labelX" : 90,
+  "labelY" : 37,
+  "name" : "New York"
+}
+, {
+  "xConstraint" : 92.0,
+  "yConstraint" : 26.0,
+  "labelX" : 97,
+  "labelY" : 29,
+  "name" : "Boston"
+}
+, {
+  "xConstraint" : 86.0,
+  "yConstraint" : 10.0,
+  "labelX" : 86.0,
+  "labelY" : 8.5,
+  "name" : "Montreal"
+}, {
+  "xConstraint" : 72.0,
+  "yConstraint" : 70.0,
+  "labelX" : 72,
+  "labelY" : 74,
+  "name" : "Atlanta"
+}, {
+  "xConstraint" : 80.0,
+  "yConstraint" : 59.0,
+  "labelX" : 83,
+  "labelY" : 58,
+  "name" : "Raleigh"
+}, {
+  "xConstraint" : 78.0,
+  "yConstraint" : 48.0,
+  "labelX" : 81,
+  "labelY" : 48,
+  "name" : "Pitsburgh"
+}
+, {
+  "xConstraint" : 75.0,
+  "yConstraint" : 32.0,
+  "labelX" : 75,
+  "labelY" : 35,
+  "name" : "Toronto"
+}
+, {
+  "xConstraint" : 70.0,
+  "yConstraint" : 20.0,
+  "labelX" : 68,
+  "labelY" : 17,
+  "name" : "Sault St. Marie"
+}, {
+  "xConstraint" : 63,
+  "yConstraint" : 40,
+  "labelX" : 63,
+  "labelY" : 38,
+  "name" : "Chicago"
+}
+, {
+  "xConstraint" : 62.0,
+  "yConstraint" : 55,
+  "labelX" : 64,
+  "labelY" : 58,
+  "name" : "Saint Louis"
+}, {
+  "xConstraint" : 70,
+  "yConstraint" : 62.0,
+  "labelX" : 68,
+  "labelY" : 60,
+  "name" : "Nashville"
+}
+, {
+  "xConstraint" : 60,
+  "yConstraint" : 80.0,
+  "labelX" : 63,
+  "labelY" : 83,
+  "name" : "New Orleans"
+
+}, {
+  "xConstraint" : 58,
+  "yConstraint" : 67,
+  "labelX" : 58,
+  "labelY" : 70,
+  "name" : "Little Rock"
+}, {
+  "xConstraint" : 51,
+  "yConstraint" : 55,
+  "labelX" : 53,
+  "labelY" : 61,
+  "name" : "Kansas City"
+}, {
+  "xConstraint" : 50,
+  "yConstraint" : 44,
+  "labelX" : 50,
+  "labelY" : 48,
+  "name" : "Omaha"
+}, {
+  "xConstraint" : 57,
+  "yConstraint" : 29,
+  "labelX" : 57,
+  "labelY" : 34,
+  "name" : "Duluth"
+}, {
+  "xConstraint" : 50,
+  "yConstraint" : 10,
+  "labelX" : 50,
+  "labelY" : 15,
+  "name" : "Winnipeg"
+}, {
+  "xConstraint" : 25,
+  "yConstraint" : 7,
+  "labelX" : 25,
+  "labelY" : 4,
+  "name" : "Calgary"
+}, {
+  "xConstraint" : 12,
+  "yConstraint" : 4,
+  "labelX" : 12,
+  "labelY" : 2,
+  "name" : "Vancouver"
+}, {
+  "xConstraint" : 9,
+  "yConstraint" : 14,
+  "labelX" : 4,
+  "labelY" : 15,
+  "name" : "Seattle"
+}, {
+  "xConstraint" : 7,
+  "yConstraint" : 20,
+  "labelX" : 4,
+  "labelY" : 23,
+  "name" : "Portland"
+}, {
+  "xConstraint" : 6,
+  "yConstraint" : 46,
+  "labelX" : 7,
+  "labelY" : 50,
+  "name" : "San Francisco"
+}, {
+  "xConstraint" : 11,
+  "yConstraint" : 64,
+  "labelX" : 14,
+  "labelY" : 67,
+  "name" : "Los Angeles"
+}, {
+  "xConstraint" : 24,
+  "yConstraint" : 57,
+  "labelX" : 24,
+  "labelY" : 59,
+  "name" : "Las Vegas"
+}, {
+  "xConstraint" : 26,
+  "yConstraint" : 40,
+  "labelX" : 26,
+  "labelY" : 36,
+  "name" : "Salt Lake City"
+}, {
+  "xConstraint" : 33,
+  "yConstraint" : 28,
+  "labelX" : 33,
+  "labelY" : 31,
+  "name" : "Helena"
+}
+, {
+  "xConstraint" : 30,
+  "yConstraint" : 70,
+  "labelX" : 30,
+  "labelY" : 75,
+  "name" : "Phoenix"
+  }, {
+  "xConstraint" : 37,
+  "yConstraint" : 51,
+  "labelX" : 37,
+  "labelY" : 54,
+  "name" : "Denver"
+}, {
+  "xConstraint" : 40,
+  "yConstraint" : 65,
+  "labelX" : 40,
+  "labelY" : 70,
+  "name" : "Santa Fe"
+} , {
+  "xConstraint" : 38,
+  "yConstraint" : 79,
+  "labelX" : 38,
+  "labelY" : 83,
+  "name" : "El Paso"
+}, {
+  "xConstraint" : 53,
+  "yConstraint" : 82,
+  "labelX" : 53,
+  "labelY" : 85,
+  "name" : "Houston"
+}, {
+  "xConstraint" : 50,
+  "yConstraint" : 77,
+  "labelX" : 50,
+  "labelY" : 81,
+  "name" : "Dallas"
+}, {
+  "xConstraint" : 48,
+  "yConstraint" : 68,
+  "labelX" : 48,
+  "labelY" : 65,
+  "name" : "Oklahoma City"
+}
+
+]

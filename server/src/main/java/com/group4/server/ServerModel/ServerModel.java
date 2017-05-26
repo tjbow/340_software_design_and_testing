@@ -4,6 +4,8 @@ package com.group4.server.ServerModel;
  * Created by Tom on 5/14/2017.
  */
 
+import com.google.gson.Gson;
+import com.group4.shared.Model.City;
 import com.group4.shared.Model.CommandList;
 import com.group4.shared.Model.GAME_STATUS;
 import com.group4.shared.Model.Game;
@@ -12,6 +14,8 @@ import com.group4.shared.Model.Player;
 import com.group4.shared.Model.Results;
 import com.group4.shared.Model.User;
 
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -26,8 +30,9 @@ public class ServerModel
     private List<User> users;
     private GameList gameList;
     private Map<String, User> userAuthTokens;
-//    private CommandList commandList; // holds all commands executed on the server to this point
     private User tempUser;
+
+    private List<City> cities;
 
     private static ServerModel serverModel = new ServerModel();
 
@@ -36,7 +41,8 @@ public class ServerModel
         users = new ArrayList<>();
         userAuthTokens = new HashMap<>();
         gameList = new GameList(new ArrayList<>());
-//        commandList = new CommandList();
+
+        cities = getCities();
     }
 
     /**
@@ -215,7 +221,22 @@ public class ServerModel
         return gameList;
     }
 
-//    AUTHTOKEN METHODS
+    private List<City> getCities()
+    {
+        Gson gson = new Gson();
+        ArrayList<City> cities = null;
+        try
+        {
+            cities = (ArrayList<City>) gson.fromJson(new FileReader("cities.json"), ArrayList.class);
+        } catch (FileNotFoundException e)
+        {
+            e.printStackTrace();
+        }
+
+        return cities;
+    }
+
+    //    AUTHTOKEN METHODS
     public User getTempUser()
     {
         return tempUser;
