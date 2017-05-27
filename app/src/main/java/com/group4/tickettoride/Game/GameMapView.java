@@ -201,8 +201,10 @@ public class GameMapView extends View {
                 angle = 90;
             }
 
+            int color = getColor(r);
 
-            drawAngledRectangle(pt2, pt1, angle, r.getLength(), r.isHighlighted(), canvas);
+
+            drawAngledRectangle(pt2, pt1, angle, r.getLength(), r.isHighlighted(), color, canvas);
         }
 
         drawLabels(canvas);
@@ -213,7 +215,8 @@ public class GameMapView extends View {
         return (float)Math.toDegrees(Math.atan(slope));
     }
 
-    private void drawAngledRectangle(Pt start, Pt end,float angleDeg, int carCount, boolean isHighlighted, Canvas canvas){
+    private void drawAngledRectangle(Pt start, Pt end,float angleDeg, int carCount, boolean isHighlighted,
+            int color, Canvas canvas){
         double angle = Math.PI * angleDeg / 180;
 
         if(start.x > end.x){
@@ -256,7 +259,7 @@ public class GameMapView extends View {
             }
 
             canvas.drawRect(currentX,newY1+RECTANGLE_SCALER,currentX +( xDist /carCount) -(spaceDist*2) ,newY2 - RECTANGLE_SCALER ,paint);
-            paint.setColor(Color.RED);  //TODO: DREW: replace with route color
+            paint.setColor(color);  //TODO: DREW: replace with route color
             canvas.drawRect(currentX + 5,newY1+RECTANGLE_SCALER -5,currentX +( (xDist) /carCount) -(2*spaceDist) -5 ,newY2 - RECTANGLE_SCALER +5 ,paint);
 
             currentX = currentX +( (newX2-newX1) /carCount)  + (spaceDist / 2);
