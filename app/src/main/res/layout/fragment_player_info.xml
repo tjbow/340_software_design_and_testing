@@ -676,13 +676,13 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:text="@string/dest_tickets"
                     android:textColor="@color/colorWhite"/>
 
                 <TextView
                     android:id="@+id/player5_destCards"
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
-                    android:text="8"
                     android:textColor="@color/colorWhite"/>
 
             </LinearLayout>

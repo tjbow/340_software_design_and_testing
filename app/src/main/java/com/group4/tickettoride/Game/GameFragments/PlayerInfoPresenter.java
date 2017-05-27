@@ -27,6 +27,7 @@ public class PlayerInfoPresenter implements Observer {
     {
         this.fragment = fragment;
         this.players = ClientModel.SINGLETON.getGame().getPlayerList();
+        fragment.setPlayers(getPlayerUsernames(this.players));
         updateFragment(players);
         ClientModel.SINGLETON.addObserver(this);
     }
@@ -67,11 +68,6 @@ public class PlayerInfoPresenter implements Observer {
 
     private void setPlayerInfo(List<Player> players)
     {
-
-        if (fragment.getPlayers() == null)
-        {
-            fragment.setPlayers(getPlayerUsernames(players));
-        }
 
         for (Player player : players)
         {

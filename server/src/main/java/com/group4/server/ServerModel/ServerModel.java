@@ -179,20 +179,20 @@ public class ServerModel
         switch (currentPlayerCount)
         {
             case 0:
-                player.setColor("blue");
+                player.setColor(Player.BLUE);
                 player.setTurn(true);
                 break;
             case 1:
-                player.setColor("red");
+                player.setColor(Player.RED);
                 break;
             case 2:
-                player.setColor("green");
+                player.setColor(Player.GREEN);
                 break;
             case 3:
-                player.setColor("yellow");
+                player.setColor(Player.YELLOW);
                 break;
             case 4:
-                player.setColor("black");
+                player.setColor(Player.BLACK);
                 break;
         }
 
