@@ -68,6 +68,6 @@ public class NextLayerFacade implements INextLayerFacade {
             destinationCards.add(ClientModel.SINGLETON.getGame().getDecks().getDestinationCardDeck().findCard(Id));
         }
 
-        ServerProxy.SINGLETON.drawDestinationCards(ClientModel.SINGLETON.getUser().getUsername(), destinationCards);
+        ServerProxy.SINGLETON.drawDestinationCards(ClientModel.SINGLETON.getUser().getUsername());
     }
 }

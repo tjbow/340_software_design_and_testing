@@ -127,7 +127,7 @@ public class ServerProxyNoAsync implements IServer
     }
 
     @Override
-    public Results drawDestinationCards(String userName, List<DestinationCard> selectedCards)
+    public Results drawDestinationCards(String userName)
     {
         return null;
     }
