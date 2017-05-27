@@ -72,8 +72,8 @@ public class PlayerInfoPresenter implements Observer {
         for (Player player : players)
         {
             fragment.setPlayerTextField(player.getUserName(), POINTS, Integer.toString(player.getScore()));
-            fragment.setPlayerTextField(player.getUserName(), TRAIN_CARDS, Integer.toString(player.getTrainCardCount()));
-            fragment.setPlayerTextField(player.getUserName(), DEST_CARDS, Integer.toString(player.getDestinationCardCount()));
+            fragment.setPlayerTextField(player.getUserName(), TRAIN_CARDS, Integer.toString(player.getPlayerHand().getTrainCardCount()));
+            fragment.setPlayerTextField(player.getUserName(), DEST_CARDS, Integer.toString(player.getPlayerHand().getDestinationCardCount()));
             fragment.setPlayerTextField(player.getUserName(), TRAIN_CARS, Integer.toString(player.getTrainCarsRemaining()));
             fragment.setPlayerImageField(player.getUserName(), WINNING_ICON, player.isWinning() ?
                     View.VISIBLE : View.INVISIBLE);

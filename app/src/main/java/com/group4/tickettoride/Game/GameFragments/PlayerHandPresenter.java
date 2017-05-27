@@ -23,7 +23,7 @@ public class PlayerHandPresenter implements Observer, IPlayerHandPresenter
         this.fragment = fragment;
         player = ClientModel.SINGLETON.getPlayer();
         ClientModel.SINGLETON.addObserver(this);
-        fragment.updateTrainCards(player.getTrainCardDeck().getCardDeck());
+        fragment.updateTrainCards(player.getPlayerHand().getTrainCards().getCardDeck());
     }
 
     @Override

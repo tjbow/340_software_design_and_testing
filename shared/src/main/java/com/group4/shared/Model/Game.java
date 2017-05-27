@@ -151,7 +151,7 @@ public class Game
             {
                 TrainCard current = iterator.next();
                 iterator.remove();
-                player.getTrainCardDeck().getCardDeck().add(current);
+                player.getPlayerHand().getTrainCards().getCardDeck().add(current);
                 count--;
                 if(count == 0)break;
             }
@@ -165,7 +165,7 @@ public class Game
             {
                 DestinationCard current = iterator.next();
                 iterator.remove();
-                player.getDestinationCardDeck().getDestDeck().add(current);
+                player.getPlayerHand().getDestinationCards().getDestDeck().add(current);
                 count--;
                 if(count == 0)break;
             }
@@ -181,7 +181,7 @@ public class Game
         {
             DestinationCard current = iterator.next();
             iterator.remove();
-            player.getDestinationCardDeck().getDestDeck().add(current);
+            player.getPlayerHand().getDestinationCards().getDestDeck().add(current);
             count--;
             if(count == 0)break;
         }
@@ -201,7 +201,7 @@ public class Game
             idNums.add(card.getId());
         }
 
-        for(Iterator<DestinationCard> iterator = player.getDestinationCardDeck().getDestDeck().iterator(); iterator.hasNext();)
+        for(Iterator<DestinationCard> iterator = player.getPlayerHand().getDestinationCards().getDestDeck().iterator(); iterator.hasNext();)
         {
             DestinationCard current = iterator.next();
             if(idNums.contains(current.getId()))

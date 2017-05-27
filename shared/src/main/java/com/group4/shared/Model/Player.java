@@ -19,8 +19,7 @@ public class Player {
     private String userName;
     private String color;
 
-    private TrainCardDeck trainCardDeck;
-    private DestinationCardDeck destinationCardDeck;
+    private PlayerHand playerHand;
     private boolean longestPath;
     private int trainCarsRemaining;
     private RouteList claimedRouteList;
@@ -37,13 +36,20 @@ public class Player {
 
     public void initializeGame()
     {
-        trainCardDeck = new TrainCardDeck();
-        destinationCardDeck = new DestinationCardDeck();
+        playerHand = new PlayerHand();
         longestPath = false;
         trainCarsRemaining = 45;
         claimedRouteList = new RouteList();
         score = 0;
         winning = false;
+    }
+
+    public PlayerHand getPlayerHand() {
+        return playerHand;
+    }
+
+    public void setPlayerHand(PlayerHand playerHand) {
+        this.playerHand = playerHand;
     }
 
     public UUID getId() {
@@ -78,35 +84,6 @@ public class Player {
 
     public void setColor(String color) {
         this.color = color;
-    }
-
-    public TrainCardDeck getTrainCardDeck() {
-        return trainCardDeck;
-    }
-
-    public int getTrainCardCount() {return trainCardDeck.getCardDeck().size();}
-
-    public void setTrainCardDeck(TrainCardDeck trainCardDeck) {
-        this.trainCardDeck = trainCardDeck;
-    }
-
-    public DestinationCardDeck getDestinationCardDeck() {
-        return destinationCardDeck;
-    }
-
-    public int getDestinationCardCount(){
-        if (destinationCardDeck.getDestDeck() != null){
-            return destinationCardDeck.getDestDeck().size();
-        }
-        else
-        {
-            return 0;
-        }
-
-    }
-
-    public void setDestinationCardDeck(DestinationCardDeck destinationCardDeck) {
-        this.destinationCardDeck = destinationCardDeck;
     }
 
     public boolean isLongestPath() {
