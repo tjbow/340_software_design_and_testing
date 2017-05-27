@@ -1,14 +1,10 @@
 package com.group4.shared.Model;
 
 import com.group4.shared.command.ClientCommand;
-import com.group4.shared.command.Command;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
-import java.util.UUID;
 
 /**
  * Created by Russell Fitzpatrick on 5/13/2017.
@@ -17,7 +13,7 @@ import java.util.UUID;
 public class Game
 {
 
-    private Map<String, Player> players;
+    private List<Player> players;
     private int playerCount;
     private String gameName;
     private GAME_STATUS status;
@@ -36,7 +32,7 @@ public class Game
     {
         this.gameName = gameName;
         this.playerCount = playerCount;
-        this.players = new HashMap<>();
+        this.players = new ArrayList<>();
         this.status = GAME_STATUS.WAITING;
 
         turnHistory = new TurnHistory();
@@ -52,31 +48,33 @@ public class Game
     }
 
 //    PLAYERS
-    public Map<String, Player> getPlayers() {
+
+    public List<Player> getPlayers()
+    {
         return players;
     }
 
-    public void setPlayers(Map<String, Player> players) {
+    public void setPlayers(List<Player> players) {
         this.players = players;
     }
 
-    public void addPlayer(String username, Player player){
-        players.put(username, player);
-    }
-
-    public int getCurrentPlayerSize(){
-        return players.size();
-    }
-
-    public List<Player> getPlayerList()
+    public Player getPlayerByUserName(String userName)
     {
-        List<Player> playerList = new ArrayList<>();
-        for (String key : players.keySet())
+        for(Player player : players)
         {
-            playerList.add(players.get(key));
+            if(player.getUserName().equals(userName)) return player;
         }
+        return null;
+    }
 
-        return playerList;
+    public void addPlayer(Player player)
+    {
+        players.add(player);
+    }
+
+    public int getCurrentPlayerSize()
+    {
+        return players.size();
     }
 
 //    GAME SETUP
@@ -146,7 +144,7 @@ public class Game
         decks.startGameDeck();
 
         //give four train cards to each player and remove them from the game's tcdeck
-        for(Player player : players.values())
+        for(Player player : players)
         {
             int count = 4;
             for(Iterator<TrainCard> iterator = decks.getTrainCardDeck().getCardDeck().iterator(); iterator.hasNext();)
@@ -160,7 +158,7 @@ public class Game
         }
 
         //give three destination cards to each player (0 or 1 to be returned)
-        for(Player player : players.values())
+        for(Player player : players)
         {
             int count = 3;
             for(Iterator<DestinationCard> iterator = decks.getDestinationCardDeck().getDestDeck().iterator(); iterator.hasNext();)
@@ -176,7 +174,7 @@ public class Game
 
     public void playerTurn_DrawDestinationCards(String userName)
     {
-        Player player = players.get(userName);
+        Player player = getPlayerByUserName(userName);
 
         int count = 3;
         for(Iterator<DestinationCard> iterator = decks.getDestinationCardDeck().getDestDeck().iterator(); iterator.hasNext();)
@@ -195,7 +193,7 @@ public class Game
         {
             return;
         }
-        Player player = players.get(userName);
+        Player player = getPlayerByUserName(userName);
 
         ArrayList<Integer> idNums = new ArrayList<>();
         for(DestinationCard card : returnedCard)
@@ -233,7 +231,7 @@ public class Game
     public void moveToNextPlayer()
     {
         String currentPlayer = gameStats.getPlayerCurrentTurn();
-        List<Player> list = getPlayerList();
+        List<Player> list = getPlayers();
         String getNewTurnPlayer = null;
         for(int i = 0; i < list.size(); i++)
         {
@@ -293,40 +291,5 @@ public class Game
         int index = commandList.size();
         System.out.println("index is: " + index);
         return index;
-    }
-
-
-    /*---------------Deprecated-------------------------------*/
-    @Deprecated
-    private int gameId;
-    @Deprecated
-    private String gameID;
-
-    @Deprecated
-    public int getGameId() {
-        return gameId;
-    }
-
-    @Deprecated
-    public void setGameId(int gameId) {
-        this.gameId = gameId;
-    }
-
-    @Deprecated
-    public String getGameID() {
-        return gameID;
-    }
-
-    @Deprecated
-    public void setGameID(String gameID) {
-        this.gameID = gameID;
-    }
-
-    @Deprecated
-    public Game(Map<String, Player> players, int gameId, String gameName, int playerCount) {
-        this.players = players;
-        this.gameId = gameId;
-        this.gameName = gameName;
-        this.playerCount = playerCount;
     }
 }

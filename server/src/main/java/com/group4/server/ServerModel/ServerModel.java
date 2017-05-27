@@ -196,7 +196,8 @@ public class ServerModel
                 break;
         }
 
-        game.addPlayer(player.getUserName(), player);
+//        game.addPlayer(player.getUserName(), player);
+        game.addPlayer(player);
 
         System.out.println("Player \"" + player.getUserName() + "\" joined the game " + game.getGameName()
                 + " (" + game.getCurrentPlayerSize() + "/" + game.getPlayerCount() + " players).");
@@ -209,10 +210,11 @@ public class ServerModel
         game.setStatus(GAME_STATUS.ONGOING);
 
         //initialize the players with empty decks
-        for(Map.Entry<String, Player> entry : game.getPlayers().entrySet())
-        {
-            entry.getValue().initializeGame();
-        }
+//        for(Player player : game.getPlayers())
+//        {
+//            player.initializeGame();
+//        }
+        game.getPlayers().forEach(Player::initializeGame);
 
         //initialize all the game and player decks
         game.dealInitialGameCards();

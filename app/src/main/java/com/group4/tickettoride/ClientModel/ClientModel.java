@@ -2,27 +2,18 @@ package com.group4.tickettoride.ClientModel;
 
 import com.group4.shared.Model.ChatHistory;
 import com.group4.shared.Model.City;
-import com.group4.shared.Model.CommandList;
 import com.group4.shared.Model.Decks;
-import com.group4.shared.Model.GAME_STATUS;
 import com.group4.shared.Model.Game;
 import com.group4.shared.Model.GameList;
 import com.group4.shared.Model.GameStats;
-import com.group4.shared.Model.Message;
 import com.group4.shared.Model.Player;
 import com.group4.shared.Model.RouteList;
 import com.group4.shared.Model.TurnHistory;
 import com.group4.shared.Model.User;
-import com.group4.shared.command.Command;
-import com.group4.shared.command.IClientCommand;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Observable;
 import java.util.Observer;
-import java.util.UUID;
-import java.util.concurrent.ScheduledExecutorService;
 
 /**
  * Created by Russell Fitzpatrick on 5/13/2017.
@@ -95,13 +86,21 @@ public class ClientModel extends Observable {
 
     public void setPlayer() {
         String userName = user.getUsername();
-
-        Map<String, Player> players = game.getPlayers();
-        for(Map.Entry<String, Player> entry : players.entrySet())
+//
+//        Map<String, Player> players = game.getPlayers();
+//        for(Map.Entry<String, Player> entry : players.entrySet())
+//        {
+//            if(entry.getKey().equals(userName))
+//            {
+//                this.player = entry.getValue();
+//                return;
+//            }
+//        }
+        for(Player player : game.getPlayers())
         {
-            if(entry.getKey().equals(userName))
+            if(player.getUserName().equals(userName))
             {
-                this.player = entry.getValue();
+                this.player = player;
                 return;
             }
         }
@@ -157,19 +156,23 @@ public class ClientModel extends Observable {
 
     public void updatePlayerInfo(List<Player> players)
     {
-        Map<String, Player> playerMap = new HashMap<>();
-        for(Player player : players)
-        {
-            playerMap.put(player.getUserName(), player);
+//        Map<String, Player> playerMap = new HashMap<>();
+//        for(Player player : players)
+//        {
+//            playerMap.put(player.getUserName(), player);
+//
+//            //also update the model player
+//            if(user.getUsername().equals(player.getUserName()))
+//            {
+//                this.player = player;
+//            }
+//        }
+        game.setPlayers(players);
 
-            //also update the model player
-            if(user.getUsername().equals(player.getUserName()))
-            {
-                this.player = player;
-            }
-        }
-        game.setPlayers(playerMap);
-        sendToObservers(game.getPlayerList());
+        //also update the model player
+        player = game.getPlayerByUserName(user.getUsername());
+
+        sendToObservers(game.getPlayers());
     }
 
     @Override

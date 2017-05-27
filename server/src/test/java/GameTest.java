@@ -27,32 +27,32 @@ public class GameTest
         User user2 = new User("russ", "pwd");
         User user3 = new User("drew", "pwd");
 
-        game.addPlayer(user.getUsername(), new Player(user));
-        game.addPlayer(user1.getUsername(), new Player(user1));
-        game.addPlayer(user2.getUsername(), new Player(user2));
-        game.addPlayer(user3.getUsername(), new Player(user3));
+//        game.addPlayer(user.getUsername(), new Player(user));
+//        game.addPlayer(user1.getUsername(), new Player(user1));
+//        game.addPlayer(user2.getUsername(), new Player(user2));
+//        game.addPlayer(user3.getUsername(), new Player(user3));
 
-        for(Map.Entry<String, Player> entry : game.getPlayers().entrySet())
-        {
-            entry.getValue().initializeGame();
-        }
+//        for(Map.Entry<String, Player> entry : game.getPlayers().entrySet())
+//        {
+//            entry.getValue().initializeGame();
+//        }
 
         game.dealInitialGameCards();
 
-        Player player = game.getPlayers().get(user.getUsername());
+//        Player player = game.getPlayers().get(user.getUsername());
 
-        List<DestinationCard> playersDeck = player.getDestinationCardDeck().getDestDeck();
-        int count = 2;
-        List<DestinationCard> returnedCard = new ArrayList<>();
-        for(DestinationCard card : playersDeck)
-        {
-            returnedCard.add(card);
-            count--;
-            if(count == 0) break;
-        }
-
-        game.playerTurn_ReturnDestinationCards(user.getUsername(), returnedCard);
-
-        System.out.println();
+//        List<DestinationCard> playersDeck = player.getDestinationCardDeck().getDestDeck();
+//        int count = 2;
+//        List<DestinationCard> returnedCard = new ArrayList<>();
+//        for(DestinationCard card : playersDeck)
+//        {
+//            returnedCard.add(card);
+//            count--;
+//            if(count == 0) break;
+//        }
+//
+//        game.playerTurn_ReturnDestinationCards(user.getUsername(), returnedCard);
+//
+//        System.out.println();
     }
 }

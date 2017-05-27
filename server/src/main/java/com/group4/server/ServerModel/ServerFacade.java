@@ -142,7 +142,7 @@ public class ServerFacade implements IServer
         //CREATE A PLAYERDATA COMMAND TO ADD TO THE GAME BEING PLAYED
         CUpdatePlayersCommandData updatePlayersCommandData = new CUpdatePlayersCommandData();
         updatePlayersCommandData.setType("updateplayers");
-        updatePlayersCommandData.setPlayerData(game.getPlayerList());
+        updatePlayersCommandData.setPlayerData(game.getPlayers());
 
         //CREATE AN UPDATEGAME COMMAND TO SEND
         CUpdateGameCommandData updateGameCommandData = new CUpdateGameCommandData();
@@ -176,7 +176,7 @@ public class ServerFacade implements IServer
         //CREATE A PLAYERDATA COMMAND TO ADD TO THE GAME BEING PLAYED
         CUpdatePlayersCommandData updatePlayersCommandData = new CUpdatePlayersCommandData();
         updatePlayersCommandData.setType("updateplayers");
-        updatePlayersCommandData.setPlayerData(game.getPlayerList());
+        updatePlayersCommandData.setPlayerData(game.getPlayers());
 
         //CREATE A STARTGAME COMMAND TO ADD TO THE GAME BEING PLAYED
         CStartGameCommandData startGameCommandData = new CStartGameCommandData();
@@ -300,7 +300,7 @@ public class ServerFacade implements IServer
 
         CUpdatePlayersCommandData updatePlayersCommandData = new CUpdatePlayersCommandData();
         updatePlayersCommandData.setType("updateplayers");
-        updatePlayersCommandData.setPlayerData(game.getPlayerList());
+        updatePlayersCommandData.setPlayerData(game.getPlayers());
 
         CUpdateGameCommandData updateGameCommandData = new CUpdateGameCommandData();
         updateGameCommandData.setType("updategame");

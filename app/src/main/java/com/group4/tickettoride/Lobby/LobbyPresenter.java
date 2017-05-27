@@ -5,16 +5,12 @@ import android.content.Intent;
 import com.group4.shared.Model.GAME_STATUS;
 import com.group4.shared.Model.Game;
 import com.group4.shared.Model.GameList;
-import com.group4.shared.Model.Player;
 import com.group4.tickettoride.ClientModel.ClientFacade;
 import com.group4.tickettoride.ClientModel.ClientModel;
 import com.group4.tickettoride.Game.GameActivity;
-import com.group4.tickettoride.GameList.GameListActivity;
 import com.group4.tickettoride.Login_Register.Login_RegisterActivity;
 import com.group4.tickettoride.NextLayerFacade.NextLayerFacade;
 
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -103,14 +99,7 @@ public class LobbyPresenter implements Observer,ILobbyPresenter {
 
     public void setGameInfo()
     {
-        List<Player> players = new LinkedList<>();
-        for (String key : game.getPlayers().keySet())
-        {
-            players.add(game.getPlayers().get(key));
-        }
-
-        activity.setPlayerList(players);
-
+        activity.setPlayerList(game.getPlayers());
         activity.setCurrentPlayers(game.getCurrentPlayerSize());
         activity.setMaxPlayers(game.getPlayerCount());
         activity.setGameName(game.getGameName());

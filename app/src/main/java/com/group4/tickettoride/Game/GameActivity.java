@@ -6,21 +6,15 @@ import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.group4.shared.Model.Game;
 import com.group4.shared.Model.Player;
-import com.group4.tickettoride.ClientModel.ClientModel;
 import com.group4.tickettoride.Game.GameFragments.DestCardPickerFragment;
 import com.group4.tickettoride.Game.GameFragments.PlayerHandFragment;
 import com.group4.tickettoride.Game.GameFragments.PlayerInfoFragment;
 import com.group4.tickettoride.Game.GameFragments.TrainDeckFragment;
 import com.group4.tickettoride.R;
-
-import java.util.Map;
 
 public class GameActivity extends AppCompatActivity implements IGameActivity {
 
@@ -100,11 +94,11 @@ public class GameActivity extends AppCompatActivity implements IGameActivity {
     {
         StringBuilder players = new StringBuilder("Players: ");
 
-        Map<String, Player> currPlayers = game.getPlayers();
+//        Map<String, Player> currPlayers = game.getPlayers();
 
-        for(Player player : currPlayers.values())
+        for(Player player : game.getPlayers())
         {
-            players.append(player.getUserName() + "   ");
+            players.append(player.getUserName() + ", ");
         }
 
         return players.toString();

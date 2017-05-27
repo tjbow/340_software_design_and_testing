@@ -38,7 +38,11 @@ public class GameList {
     {
         for (Game game : gameList)
         {
-            if (game.getPlayers().containsKey(username))
+//            if (game.getPlayers().containsKey(username))
+//            {
+//                return game;
+//            }
+            if(game.getPlayerByUserName(username) != null)
             {
                 return game;
             }
