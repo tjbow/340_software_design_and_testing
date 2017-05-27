@@ -10,13 +10,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="10dp">
+        android:gravity="bottom"
+        android:weightSum="1">
 
         <ImageView
             android:id="@+id/trainCardList_traincard_image"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/traincardblack"/>
+            android:layout_width="93dp"
+            android:layout_height="match_parent"
+            android:src="@drawable/traincardblack"
+            android:rotation="270"
+            />
 
         <TextView
             android:id="@+id/trainCardList_card_count"
@@ -25,7 +28,7 @@
             android:textColor="@color/colorBlack"
             android:textSize="18sp"
             android:gravity="center"
-            android:text="8"
+            android:text="@string/dest_tickets"
             />
 
     </LinearLayout>

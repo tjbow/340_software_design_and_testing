@@ -241,9 +241,6 @@ public class ServerFacade implements IServer
         game.addCommand(endGameCommandData);
         endGameCommandData.setCommandNumber(game.getNewCommandIndex());
 
-//        CommandList cmdList = new CommandList();
-//        cmdList.add(endGameCommandData);
-
         System.out.println("The game " + gameName + " was ended.");
         return new Results(true, null, null, null);
     }
@@ -265,11 +262,6 @@ public class ServerFacade implements IServer
         //ADD THE UPDATECHAT COMMAND SO EVERYONE CAN RECEIVE IT
         game.addCommand(updateChatCommandData);
         updateChatCommandData.setCommandNumber(game.getNewCommandIndex());
-
-        //Maybe remove this?
-        //ADD THE UPDATECHAT TO SEND BACK WITH THE RESULTS OBJECT
-//        CommandList cmdList = new CommandList();
-//        cmdList.add(updateChatCommandData);
 
         System.out.println("Player " + message.getUserName() +
                 " in game " + game.getGameName() +
@@ -311,9 +303,6 @@ public class ServerFacade implements IServer
         updatePlayersCommandData.setCommandNumber(game.getNewCommandIndex());
         game.addCommand(updateGameCommandData);
         updateGameCommandData.setCommandNumber(game.getNewCommandIndex());
-
-//        System.out.println("Player " + userName +
-//                " selected " + selectedCards.size() + " destination cards.");
 
         return new Results(true, "Destination cards drawn", null, null);
     }

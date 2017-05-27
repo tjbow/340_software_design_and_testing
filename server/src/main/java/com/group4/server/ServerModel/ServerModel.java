@@ -196,7 +196,6 @@ public class ServerModel
                 break;
         }
 
-//        game.addPlayer(player.getUserName(), player);
         game.addPlayer(player);
 
         System.out.println("Player \"" + player.getUserName() + "\" joined the game " + game.getGameName()
@@ -209,11 +208,6 @@ public class ServerModel
         Game game = gameList.getGameByName(gameName);
         game.setStatus(GAME_STATUS.ONGOING);
 
-        //initialize the players with empty decks
-//        for(Player player : game.getPlayers())
-//        {
-//            player.initializeGame();
-//        }
         game.getPlayers().forEach(Player::initializeGame);
 
         //initialize all the game and player decks

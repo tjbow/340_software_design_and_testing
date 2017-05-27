@@ -86,24 +86,8 @@ public class ClientModel extends Observable {
 
     public void setPlayer() {
         String userName = user.getUsername();
-//
-//        Map<String, Player> players = game.getPlayers();
-//        for(Map.Entry<String, Player> entry : players.entrySet())
-//        {
-//            if(entry.getKey().equals(userName))
-//            {
-//                this.player = entry.getValue();
-//                return;
-//            }
-//        }
-        for(Player player : game.getPlayers())
-        {
-            if(player.getUserName().equals(userName))
-            {
-                this.player = player;
-                return;
-            }
-        }
+
+        this.player = game.getPlayerByUserName(userName);
     }
 
     public Game getGame() {
@@ -184,19 +168,6 @@ public class ClientModel extends Observable {
     public synchronized void deleteObserver(Observer o) {
         super.deleteObserver(o);
     }
-
-    /**
-     * Runs the commands in the commandList on the client model
-     *
-     * @param commandList list of new commands to run
-     */
-    //public void runCommands(CommandList commandList)
-    //{
-    //for(Command command : commandList.commandList)
-    //    {
-    //        ((IClientCommand) command).execute();
-    //    }
-    //}
 
     /**
      * Get the current command index for the model

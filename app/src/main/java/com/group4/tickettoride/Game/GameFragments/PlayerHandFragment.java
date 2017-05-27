@@ -32,23 +32,21 @@ import java.util.List;
 public class PlayerHandFragment extends Fragment implements IPlayerHandFragment
 {
     private View v;
-    private RecyclerView recyclerView;
-    private CardAdapter adapter;
-
     private IPlayerHandPresenter presenter;
-    private List<Drawable> cardList;
-    private List<CARD_COLOR> cardColors;
+
+    //traincard variables
+    private RecyclerView trainCardView;
+    private TrainCardAdapter trainAdapter;
+    private List<Drawable> trainCardImages;
+    private List<CARD_COLOR> trainCardColors;
     private List<TrainCard> playerTrainCards;
 
+    //dest card variables
+    private RecyclerView destCardView;
+    private DestinationCardAdapter destAdapter;
+    private List<Drawable> destCardImages;
+    private List<DestinationCard> playerDestCards;
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
 
     private OnFragmentInteractionListener mListener;
 
@@ -88,16 +86,27 @@ public class PlayerHandFragment extends Fragment implements IPlayerHandFragment
 
         v = inflater.inflate(R.layout.fragment_player_hand, container, false);
 
-        recyclerView = (RecyclerView) v.findViewById(R.id.playerHand_recyclerview);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext(), LinearLayoutManager.HORIZONTAL, false));
-        if (adapter == null)
+        this.presenter = new PlayerHandPresenter(this);
+        this.playerDestCards = presenter.getDestCards();
+        this.playerTrainCards = presenter.getTrainCards();
+
+        trainCardView = (RecyclerView) v.findViewById(R.id.playerHand_traincardlist);
+        trainCardView.setLayoutManager(new LinearLayoutManager(this.getContext(), LinearLayoutManager.HORIZONTAL, false));
+        if (trainAdapter == null)
         {
-            adapter = new PlayerHandFragment.CardAdapter(cardColors, cardList);
-            recyclerView.setAdapter(adapter);
-            adapter.notifyDataSetChanged();
+            trainAdapter = new TrainCardAdapter(trainCardColors, trainCardImages);
+            trainCardView.setAdapter(trainAdapter);
+            trainAdapter.notifyDataSetChanged();
         }
 
-        this.presenter = new PlayerHandPresenter(this);
+        destCardView = (RecyclerView) v.findViewById(R.id.playerHand_destcardlist);
+        destCardView.setLayoutManager(new LinearLayoutManager(this.getContext(), LinearLayoutManager.VERTICAL, false));
+        if(destAdapter == null)
+        {
+            destAdapter = new DestinationCardAdapter(destCardImages, playerDestCards);
+            destCardView.setAdapter(destAdapter);
+            destAdapter.notifyDataSetChanged();
+        }
 
         return v;
     }
@@ -109,7 +118,7 @@ public class PlayerHandFragment extends Fragment implements IPlayerHandFragment
     public void updateTrainCards(List<TrainCard> cards)
     {
         this.playerTrainCards = cards;
-        adapter.notifyDataSetChanged();
+        trainAdapter.notifyDataSetChanged();
     }
 
 //    @Override
@@ -121,10 +130,11 @@ public class PlayerHandFragment extends Fragment implements IPlayerHandFragment
     @Override
     public void updateDestinationCards(List<DestinationCard> cards)
     {
-
+        this.playerDestCards = cards;
+        destAdapter.notifyDataSetChanged();
     }
 
-    //------------------- RECYCLERVIEW CODE -----------------------
+    //------------------- TRAIN CARD RECYCLERVIEW CODE ------------------------------------
 
     private class TrainCardHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView cardCount;
@@ -163,11 +173,11 @@ public class PlayerHandFragment extends Fragment implements IPlayerHandFragment
         }
     }
 
-    private class CardAdapter extends RecyclerView.Adapter<PlayerHandFragment.TrainCardHolder> {
+    private class TrainCardAdapter extends RecyclerView.Adapter<PlayerHandFragment.TrainCardHolder> {
         private List<CARD_COLOR> cardColors;
         private List<Drawable> cards;
 
-        public CardAdapter(List<CARD_COLOR> cardColors, List<Drawable> cards)
+        public TrainCardAdapter(List<CARD_COLOR> cardColors, List<Drawable> cards)
         {
             this.cards = cards;
             this.cardColors = cardColors;
@@ -193,40 +203,117 @@ public class PlayerHandFragment extends Fragment implements IPlayerHandFragment
         {
             return cards.size();
         }
-
-//        public void setCards(Map<CARD_COLOR, Drawable> cards)
-//        {
-//            this.cards = cards;
-//        }
     }
-    //------------------- END RECYCLERVIEW -----------------------
+    //------------------- END TRAINCARD RECYCLERVIEW ---------------------------------------------
+
+    //    ------------DESTINATION CARD RECYCLER---------------------------------------------------
+    
+    private class DestinationCardAdapter extends RecyclerView.Adapter<PlayerHandFragment.DestinationCardHolder> {
+        private List<DestinationCard> cards;
+        private List<Drawable> cardImages;
+
+        public DestinationCardAdapter(List<Drawable> cardImages, List<DestinationCard> cards)
+        {
+            this.cardImages = cardImages;
+            this.cards = cards;
+        }
+
+        @Override
+        public PlayerHandFragment.DestinationCardHolder onCreateViewHolder(ViewGroup parent, int viewType)
+        {
+            LayoutInflater layoutInflater = LayoutInflater.from(PlayerHandFragment.this.getContext());
+            View view = layoutInflater.inflate(R.layout.dest_card_list_item, parent, false);
+            return new PlayerHandFragment.DestinationCardHolder(view);
+        }
+
+        @Override
+        public void onBindViewHolder(PlayerHandFragment.DestinationCardHolder holder, int position)
+        {
+            DestinationCard card = cards.get(position);
+            Drawable cardImage = cardImages.get(position);
+            holder.bindCard(card, cardImage);
+        }
+        @Override
+        public int getItemCount()
+        {
+            return cards.size();
+        }
+    }
+//    ------------DESTINATION CARD HOLDER---------------------------------------------------
+    private class DestinationCardHolder extends RecyclerView.ViewHolder implements View.OnClickListener
+{
+        TextView cardInfo;
+        ImageView cardImageView;
+
+        public DestinationCardHolder(View itemView)
+        {
+            super(itemView);
+
+            itemView.setOnClickListener(this);
+            cardInfo = (TextView) itemView.findViewById(R.id.destCardList_card_info);
+            cardImageView = (ImageView) itemView.findViewById(R.id.destCardList_destcard_image);
+        }
+
+        public void bindCard(DestinationCard newCard, Drawable cardImage)
+        {
+            String cardText = newCard.getCityA() + " to " +
+                                newCard.getCityB() + ", " +
+                            newCard.getPoints() + "pts";
+
+            cardInfo.setText(cardText);
+            cardImageView.setImageDrawable(cardImage);
+        }
+
+        @Override
+        public void onClick(View v) {
+            //call presenter's joinGame()
+//            presenter.joinGame(game.getGameName());
+        }
+    }
+//    ----------END DESTCARD RECYCLER------------------------------
 
     private void initializeViewLists()
     {
-        cardList = new ArrayList<>();
-        cardColors = new ArrayList<>();
+        //TRAIN CARDS
+        trainCardImages = new ArrayList<>();
+        trainCardColors = new ArrayList<>();
         playerTrainCards = new ArrayList<>();
 
-        cardList.add(ContextCompat.getDrawable(this.getContext(), R.drawable.traincardred));
-        cardColors.add(CARD_COLOR.RED);
-        cardList.add(ContextCompat.getDrawable(this.getContext(), R.drawable.traincardblue));
-        cardColors.add(CARD_COLOR.BLUE);
-        cardList.add(ContextCompat.getDrawable(this.getContext(), R.drawable.traincardgreen));
-        cardColors.add(CARD_COLOR.GREEN);
-        cardList.add(ContextCompat.getDrawable(this.getContext(), R.drawable.traincardblack));
-        cardColors.add(CARD_COLOR.BLACK);
+        trainCardImages.add(ContextCompat.getDrawable(this.getContext(), R.drawable.traincardred));
+        trainCardColors.add(CARD_COLOR.RED);
+        trainCardImages.add(ContextCompat.getDrawable(this.getContext(), R.drawable.traincardblue));
+        trainCardColors.add(CARD_COLOR.BLUE);
+        trainCardImages.add(ContextCompat.getDrawable(this.getContext(), R.drawable.traincardgreen));
+        trainCardColors.add(CARD_COLOR.GREEN);
+        trainCardImages.add(ContextCompat.getDrawable(this.getContext(), R.drawable.traincardblack));
+        trainCardColors.add(CARD_COLOR.BLACK);
 
-        cardList.add(ContextCompat.getDrawable(this.getContext(), R.drawable.traincardbrown));
-        cardColors.add(CARD_COLOR.ORANGE);
-        cardList.add(ContextCompat.getDrawable(this.getContext(), R.drawable.traincardyellow));
-        cardColors.add(CARD_COLOR.YELLOW);
-        cardList.add(ContextCompat.getDrawable(this.getContext(), R.drawable.traincardwhite));
-        cardColors.add(CARD_COLOR.WHITE);
-        cardList.add(ContextCompat.getDrawable(this.getContext(), R.drawable.traincardpurple));
-        cardColors.add(CARD_COLOR.PURPLE);
+        trainCardImages.add(ContextCompat.getDrawable(this.getContext(), R.drawable.traincardbrown));
+        trainCardColors.add(CARD_COLOR.ORANGE);
+        trainCardImages.add(ContextCompat.getDrawable(this.getContext(), R.drawable.traincardyellow));
+        trainCardColors.add(CARD_COLOR.YELLOW);
+        trainCardImages.add(ContextCompat.getDrawable(this.getContext(), R.drawable.traincardwhite));
+        trainCardColors.add(CARD_COLOR.WHITE);
+        trainCardImages.add(ContextCompat.getDrawable(this.getContext(), R.drawable.traincardpurple));
+        trainCardColors.add(CARD_COLOR.PURPLE);
 
-        cardList.add(ContextCompat.getDrawable(this.getContext(), R.drawable.traincardlocamotive));
-        cardColors.add(CARD_COLOR.RAINBOW);
+        trainCardImages.add(ContextCompat.getDrawable(this.getContext(), R.drawable.traincardlocamotive));
+        trainCardColors.add(CARD_COLOR.RAINBOW);
+
+
+        //DESTINATION CARDS
+        destCardImages = new ArrayList<>();
+        playerDestCards = new ArrayList<>();
+        destCardImages.add(ContextCompat.getDrawable(this.getContext(), R.drawable.traincardlocamotive));
+        destCardImages.add(ContextCompat.getDrawable(this.getContext(), R.drawable.traincardlocamotive));
+        destCardImages.add(ContextCompat.getDrawable(this.getContext(), R.drawable.traincardlocamotive));
+        destCardImages.add(ContextCompat.getDrawable(this.getContext(), R.drawable.traincardlocamotive));
+        destCardImages.add(ContextCompat.getDrawable(this.getContext(), R.drawable.traincardlocamotive));
+        destCardImages.add(ContextCompat.getDrawable(this.getContext(), R.drawable.traincardlocamotive));
+        destCardImages.add(ContextCompat.getDrawable(this.getContext(), R.drawable.traincardlocamotive));
+        destCardImages.add(ContextCompat.getDrawable(this.getContext(), R.drawable.traincardlocamotive));
+        destCardImages.add(ContextCompat.getDrawable(this.getContext(), R.drawable.traincardlocamotive));
+
     }
 
     // TODO: Rename method, update argument and hook method into UI event

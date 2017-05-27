@@ -228,7 +228,7 @@ public class Game
         turnHistory.add(turn);
     }
 
-    public void moveToNextPlayer()
+    public void setTurnToNextPlayer()
     {
         String currentPlayer = gameStats.getPlayerCurrentTurn();
         List<Player> list = getPlayers();
