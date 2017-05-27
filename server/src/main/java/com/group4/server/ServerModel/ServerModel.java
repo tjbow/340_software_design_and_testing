@@ -4,20 +4,14 @@ package com.group4.server.ServerModel;
  * Created by Tom on 5/14/2017.
  */
 
-import com.google.gson.Gson;
-import com.group4.shared.Model.City;
-import com.group4.shared.Model.CommandList;
 import com.group4.shared.Model.GAME_STATUS;
 import com.group4.shared.Model.Game;
 import com.group4.shared.Model.GameList;
 import com.group4.shared.Model.Player;
-import com.group4.shared.Model.Results;
 import com.group4.shared.Model.User;
-
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.security.SecureRandom;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -32,8 +26,6 @@ public class ServerModel
     private Map<String, User> userAuthTokens;
     private User tempUser;
 
-    private List<City> cities;
-
     private static ServerModel serverModel = new ServerModel();
 
     private ServerModel()
@@ -41,22 +33,22 @@ public class ServerModel
         users = new ArrayList<>();
         userAuthTokens = new HashMap<>();
         gameList = new GameList(new ArrayList<>());
-
-//        cities = getCities();
     }
 
     /**
      * Return the singleton instance of this class
-     * @return
+     * @return this
      */
     public static ServerModel getInstance()
     {
         return serverModel;
     }
 
+
+//    -------REGISTER/LOGIN/AUTHENTICATION METHODS------------------------------------
     /**
      * Checks to see if a user is already registered
-     * @param user
+     * @param user the user to be found
      * @return A boolean indicating if the user is registered
      */
     private boolean doesUserExist(User user)
@@ -89,10 +81,10 @@ public class ServerModel
     /**
      * Adds the user to DB and then calls loginUser(User) to log
      * him in and return an authToken
-     * @param user
-     * @return
+     * @param user the user to be registered
+     * @return login(user), which is an authtoken
      */
-    public String registerUser(User user)
+    String registerUser(User user)
     {
         if(doesUserExist(user))
         {
@@ -104,10 +96,10 @@ public class ServerModel
 
     /**
      * Creates and returns an authToken for the supplied user
-     * @param user
-     * @return
+     * @param user the user to be logged in
+     * @return new authToken
      */
-    public String loginUser(User user)
+    String loginUser(User user)
     {
         if(!doesUserExist(user))
         {
@@ -120,22 +112,43 @@ public class ServerModel
 
     /**
      * Generates an authorization token
-     * @return
+     * @return the authToken as a String
      */
     private String generateToken()
     {
         SecureRandom random = new SecureRandom();
         byte bytes[] = new byte[20];
         random.nextBytes(bytes);
-        return bytes.toString();
+        return Arrays.toString(bytes);
     }
 
-    /**
-     * Adds a game to the game list on the server
-     * @param game
-     */
-    protected boolean createGame(Game game)
+    public User getTempUser()
     {
+        return tempUser;
+    }
+
+    public void setTempUser(User tempUser)
+    {
+        this.tempUser = tempUser;
+    }
+
+    public void deleteTempUser()
+    {
+        this.tempUser = null;
+    }
+//    --------END AUTHENTICATION METHODS------------------------------------------------
+
+
+//    --------GAME PREP METHODS---------------------------------------------------------
+    /** Adds a game to the game list on the server
+     *
+     * @param gameName the name of the game to be created
+     * @param numberOfPlayers the number of players the game needs to start
+     * @return boolean whether or not the game was created successfully
+     */
+    boolean createGame(String gameName, int numberOfPlayers)
+    {
+        Game game = new Game(gameName, numberOfPlayers);
         if(gameList.getGameByName(game.getGameName()) != null)
         {
             return false;
@@ -151,7 +164,7 @@ public class ServerModel
         return true;
     }
 
-    protected boolean joinGame(String gameName, Player player)
+    boolean joinGame(String gameName, Player player)
     {
         Game game = gameList.getGameByName(gameName);
 
@@ -185,33 +198,29 @@ public class ServerModel
 
         game.addPlayer(player.getUserName(), player);
 
-        //initialize turn
-//        Player firstPlayer = game.getPlayerList().get(0);
-//        firstPlayer.setTurn(true);
-//        game.getGameStats().setPlayerCurrentTurn(firstPlayer.getUserName());
-
         System.out.println("Player \"" + player.getUserName() + "\" joined the game " + game.getGameName()
                 + " (" + game.getCurrentPlayerSize() + "/" + game.getPlayerCount() + " players).");
         return true;
     }
 
-    public void startGame(String gameName)
+    void startGame(String gameName)
     {
         Game game = gameList.getGameByName(gameName);
         game.setStatus(GAME_STATUS.ONGOING);
 
+        //initialize the players with empty decks
         for(Map.Entry<String, Player> entry : game.getPlayers().entrySet())
         {
             entry.getValue().initializeGame();
         }
 
         //initialize all the game and player decks
-        game.dealInitialCards();
+        game.dealInitialGameCards();
 
         System.out.println(gameName + " has been started by " + getTempUser().getUsername());
     }
 
-    public boolean endGame(String gameName)
+    boolean endGame(String gameName)
     {
         //TODO: TYLER: adjust ServerModel endGame
         Game game = gameList.getGameByName(gameName);
@@ -220,41 +229,27 @@ public class ServerModel
 
     /**
      * Gets the current list of games on the server
-     * @return
+     * @return this.gameList
      */
-    public GameList getGameList()
+    GameList getGameList()
     {
         return gameList;
     }
 
-    private List<City> getCities()
-    {
-        Gson gson = new Gson();
-        ArrayList<City> cities = null;
-        try
-        {
-            cities = (ArrayList<City>) gson.fromJson(new FileReader("cities.json"), ArrayList.class);
-        } catch (FileNotFoundException e)
-        {
-            e.printStackTrace();
-        }
+//    ----END GAME PREP METHODS---------------------------------------------------------
 
-        return cities;
-    }
-
-    //    AUTHTOKEN METHODS
-    public User getTempUser()
-    {
-        return tempUser;
-    }
-
-    public void setTempUser(User tempUser)
-    {
-        this.tempUser = tempUser;
-    }
-
-    public void deleteTempUser()
-    {
-        this.tempUser = null;
-    }
+//    private List<City> getCities()
+//    {
+//        Gson gson = new Gson();
+//        ArrayList<City> cities = null;
+//        try
+//        {
+//            cities = (ArrayList<City>) gson.fromJson(new FileReader("cities.json"), ArrayList.class);
+//        } catch (FileNotFoundException e)
+//        {
+//            e.printStackTrace();
+//        }
+//
+//        return cities;
+//    }
 }

@@ -167,12 +167,12 @@ public class ServerProxy implements IServer
     }
 
     @Override
-    public Results drawDestinationCards(String userName, List<DestinationCard> selectedCards)
+    public Results drawDestinationCards(String userName)
     {
         DrawDestCardsCommandData cmd = new DrawDestCardsCommandData();
         cmd.setType("drawdestcards");
         cmd.setUserName(userName);
-        cmd.setSelectedCards(selectedCards);
+//        cmd.setSelectedCards(selectedCards);
         threadIt(cmd);
         return null;
     }

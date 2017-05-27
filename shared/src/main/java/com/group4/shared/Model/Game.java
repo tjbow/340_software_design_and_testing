@@ -138,9 +138,9 @@ public class Game
         this.gameStats = gameStats;
     }
 
-//    GAMEPLAY
+//    -------GAMEPLAY---------------------------------------------------------------
 
-    public void dealInitialCards()
+    public void dealInitialGameCards()
     {
         //init the game decks with all the cards (this also shuffles each deck thrice)
         decks.startGameDeck();
@@ -170,6 +170,46 @@ public class Game
                 player.getDestinationCardDeck().getDestDeck().add(current);
                 count--;
                 if(count == 0)break;
+            }
+        }
+    }
+
+    public void playerTurn_DrawDestinationCards(String userName)
+    {
+        Player player = players.get(userName);
+
+        int count = 3;
+        for(Iterator<DestinationCard> iterator = decks.getDestinationCardDeck().getDestDeck().iterator(); iterator.hasNext();)
+        {
+            DestinationCard current = iterator.next();
+            iterator.remove();
+            player.getDestinationCardDeck().getDestDeck().add(current);
+            count--;
+            if(count == 0)break;
+        }
+    }
+
+    public void playerTurn_ReturnDestinationCards(String userName, List<DestinationCard> returnedCard)
+    {
+        if(returnedCard == null)
+        {
+            return;
+        }
+        Player player = players.get(userName);
+
+        ArrayList<Integer> idNums = new ArrayList<>();
+        for(DestinationCard card : returnedCard)
+        {
+            idNums.add(card.getId());
+        }
+
+        for(Iterator<DestinationCard> iterator = player.getDestinationCardDeck().getDestDeck().iterator(); iterator.hasNext();)
+        {
+            DestinationCard current = iterator.next();
+            if(idNums.contains(current.getId()))
+            {
+                iterator.remove();
+                decks.getDestinationCardDeck().add(current);
             }
         }
     }

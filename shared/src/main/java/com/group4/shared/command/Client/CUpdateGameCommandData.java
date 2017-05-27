@@ -1,5 +1,6 @@
 package com.group4.shared.command.Client;
 
+import com.group4.shared.Model.Decks;
 import com.group4.shared.Model.GAME_STATUS;
 import com.group4.shared.Model.Game;
 import com.group4.shared.Model.Player;
@@ -14,18 +15,8 @@ import java.util.Map;
 
 public class CUpdateGameCommandData extends ClientCommand
 {
-    private Game game;
     private GAME_STATUS status;
-
-    public Game getGame()
-    {
-        return game;
-    }
-
-    public void setGame(Game game)
-    {
-        this.game = game;
-    }
+    private Decks deckState;
 
     public GAME_STATUS getStatus()
     {
@@ -35,5 +26,15 @@ public class CUpdateGameCommandData extends ClientCommand
     public void setStatus(GAME_STATUS status)
     {
         this.status = status;
+    }
+
+    public Decks getDeckState()
+    {
+        return deckState;
+    }
+
+    public void setDeckState(Decks deckState)
+    {
+        this.deckState = deckState;
     }
 }

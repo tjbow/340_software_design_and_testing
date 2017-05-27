@@ -15,7 +15,7 @@ public class DrawDestCardsCommand extends DrawDestCardsCommandData implements IS
     private Results drawDestCards()
     {
         IServer serverFacade = new ServerFacade();
-        return serverFacade.drawDestinationCards(super.getUserName(), super.getSelectedCards());
+        return serverFacade.drawDestinationCards(super.getUserName());
     }
 
     @Override

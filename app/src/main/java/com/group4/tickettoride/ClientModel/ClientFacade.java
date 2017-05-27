@@ -5,6 +5,7 @@ import android.util.Log;
 import com.group4.shared.Model.ChatHistory;
 import com.group4.shared.Model.City;
 import com.group4.shared.Model.CommandList;
+import com.group4.shared.Model.Decks;
 import com.group4.shared.Model.GAME_STATUS;
 import com.group4.shared.Model.Game;
 import com.group4.shared.Model.GameList;
@@ -156,10 +157,10 @@ public class ClientFacade implements IClient
 
     //--------------------GAMEPLAY--------------------------------------------
     @Override
-    public Results onUpdateGame(GAME_STATUS status) {
-        Game game = ClientModel.SINGLETON.getGame();
+    public Results onUpdateGame(GAME_STATUS status, Decks deckState) {
+        //TODO: TYLER: update status and game deck
 
-//        game.setPlayers(playerList);
+        Game game = ClientModel.SINGLETON.getGame();
 
         ClientModel.SINGLETON.setGame(game);
 

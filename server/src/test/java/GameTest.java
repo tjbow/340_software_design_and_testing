@@ -1,9 +1,14 @@
+import com.group4.shared.Model.DestinationCard;
+import com.group4.shared.Model.DestinationCardDeck;
 import com.group4.shared.Model.Game;
 import com.group4.shared.Model.Player;
 import com.group4.shared.Model.User;
 
 import org.junit.Test;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -32,7 +37,21 @@ public class GameTest
             entry.getValue().initializeGame();
         }
 
-//        game.dealInitialCards();
+        game.dealInitialGameCards();
+
+        Player player = game.getPlayers().get(user.getUsername());
+
+        List<DestinationCard> playersDeck = player.getDestinationCardDeck().getDestDeck();
+        int count = 2;
+        List<DestinationCard> returnedCard = new ArrayList<>();
+        for(DestinationCard card : playersDeck)
+        {
+            returnedCard.add(card);
+            count--;
+            if(count == 0) break;
+        }
+
+        game.playerTurn_ReturnDestinationCards(user.getUsername(), returnedCard);
 
         System.out.println();
     }

@@ -3,6 +3,7 @@ package com.group4.shared.Proxy;
 import com.group4.shared.Model.ChatHistory;
 import com.group4.shared.Model.City;
 import com.group4.shared.Model.CommandList;
+import com.group4.shared.Model.Decks;
 import com.group4.shared.Model.GAME_STATUS;
 import com.group4.shared.Model.Game;
 import com.group4.shared.Model.GameList;
@@ -35,8 +36,7 @@ public interface IClient
 
     Results onUpdateChat(ChatHistory chatHistory);
     Results onUpdateTurnHistory(TurnHistory turnHistory);
-//    Results onUpdateGame(Game gameState);
-    Results onUpdateGame(GAME_STATUS status);
+    Results onUpdateGame(GAME_STATUS status, Decks deckState);
     Results onUpdateGameStats(GameStats gameStats);
 
     Results onUpdatePlayers(List<Player> playerData);

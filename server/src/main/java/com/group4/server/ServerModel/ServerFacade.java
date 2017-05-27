@@ -2,6 +2,7 @@ package com.group4.server.ServerModel;
 
 import com.group4.shared.Model.CommandList;
 import com.group4.shared.Model.DestinationCard;
+import com.group4.shared.Model.GAME_STATUS;
 import com.group4.shared.Model.Game;
 import com.group4.shared.Model.Message;
 import com.group4.shared.Model.Player;
@@ -101,8 +102,7 @@ public class ServerFacade implements IServer
     @Override
     public Results createGame(String gameName, int numberOfPlayers)
     {
-        Game game = new Game(gameName, numberOfPlayers);
-        boolean success = serverModel.createGame(game);
+        boolean success = serverModel.createGame(gameName, numberOfPlayers);
         if(!success)
         {
             return new Results(false, null, "A game with that name already exists.", null);
@@ -116,7 +116,7 @@ public class ServerFacade implements IServer
         //CREATE A JOINGAME COMMAND TO SEND
         CJoinGameCommandData joinGameCommandData = new CJoinGameCommandData();
         joinGameCommandData.setType("joingame");
-        joinGameCommandData.setGameName(game.getGameName());
+        joinGameCommandData.setGameName(gameName);
 
         //ADD THE ABOVE COMMANDS TO THE COMMANDLIST FOR THE RESULTS
         CommandList cmdList = new CommandList();
@@ -221,9 +221,8 @@ public class ServerFacade implements IServer
         CommandList cmdList = new CommandList();
         cmdList.add(gameListCommandData);
 
-        Results results = new Results(true, null, null, cmdList);
         //System.out.println("getGameList() was called.");
-        return results;
+        return new Results(true, null, null, cmdList);
     }
 
     @Override
@@ -238,7 +237,7 @@ public class ServerFacade implements IServer
         Game game = serverModel.getGameList().getGameByName(gameName);
         CEndGameCommandData endGameCommandData = new CEndGameCommandData();
         endGameCommandData.setType("endgame");
-        endGameCommandData.setWasSuccessful(success);
+        endGameCommandData.setWasSuccessful(true);
         game.addCommand(endGameCommandData);
         endGameCommandData.setCommandNumber(game.getNewCommandIndex());
 
@@ -292,32 +291,53 @@ public class ServerFacade implements IServer
     }
 
     @Override
-    public Results drawDestinationCards(String userName, List<DestinationCard> selectedCards)
+    public Results drawDestinationCards(String userName)
     {
         Game game = serverModel.getGameList().getGameByUsername(userName);
 
 //        get the player and add selectedCards to his destination card deck
+        game.playerTurn_DrawDestinationCards(userName);
 
-//        CUpdatePlayersCommandData updatePlayersCommandData = new CUpdatePlayersCommandData();
-//        updatePlayersCommandData.setType("updateplayers");
-//        updatePlayersCommandData.setPlayerData();
+        CUpdatePlayersCommandData updatePlayersCommandData = new CUpdatePlayersCommandData();
+        updatePlayersCommandData.setType("updateplayers");
+        updatePlayersCommandData.setPlayerData(game.getPlayerList());
 
-//        game.addCommand(updatePlayersCommandData);
+        CUpdateGameCommandData updateGameCommandData = new CUpdateGameCommandData();
+        updateGameCommandData.setType("updategame");
+        updateGameCommandData.setStatus(GAME_STATUS.ONGOING);
+        updateGameCommandData.setDeckState(game.getDecks());
 
-//        CommandList cmdList = new CommandList();
-//        cmdList.add(updatePlayersCommandData);
+        game.addCommand(updatePlayersCommandData);
+        updatePlayersCommandData.setCommandNumber(game.getNewCommandIndex());
+        game.addCommand(updateGameCommandData);
+        updateGameCommandData.setCommandNumber(game.getNewCommandIndex());
 
-        System.out.println("Player " + userName +
-                " selected " + selectedCards.size() + " destination cards.");
+//        System.out.println("Player " + userName +
+//                " selected " + selectedCards.size() + " destination cards.");
 
-        return new Results(false, null, "not yet implemented", null);
+        return new Results(true, "Destination cards drawn", null, null);
     }
 
     @Override
     public Results returnDestinationCard(List<DestinationCard> returnedCard)
     {
-//        take the card within returnedCard and insert it into the game dest card deck
+//        take the card within returnedCard(s) and insert it into the game dest card deck
+        Game game = serverModel.getGameList().getGameByUsername(serverModel.getTempUser().getUsername());
+        String userName = serverModel.getTempUser().getUsername();
+        game.playerTurn_ReturnDestinationCards(userName, returnedCard);
 
-        return new Results(false, null, "returnDestinationCard not yet implemented on server", null);
+        CUpdateGameCommandData updateGameCommandData = new CUpdateGameCommandData();
+        updateGameCommandData.setType("updategame");
+        updateGameCommandData.setStatus(GAME_STATUS.ONGOING);
+        updateGameCommandData.setDeckState(game.getDecks());
+
+        game.addCommand(updateGameCommandData);
+        updateGameCommandData.setCommandNumber(game.getNewCommandIndex());
+
+        int cardsSelected = 3 - returnedCard.size();
+        System.out.println("Player " + serverModel.getTempUser().getUsername() +
+                " selected " + cardsSelected + " destination cards.");
+
+        return new Results(true, "Destination cards selected", null, null);
     }
 }
