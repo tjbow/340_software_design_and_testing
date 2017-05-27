@@ -6,6 +6,7 @@ package com.group4.tickettoride.Game.GameFragments;
 
 import com.group4.shared.Model.DestinationCard;
 import com.group4.shared.Model.DestinationCardDeck;
+import com.group4.shared.Model.PlayerHand;
 import com.group4.shared.Model.TrainCard;
 import com.group4.shared.Model.TrainCardDeck;
 
@@ -16,11 +17,7 @@ import java.util.List;
  */
 public interface IPlayerHandPresenter
 {
-    void addTrainCards(TrainCardDeck playerTrainCardDeck);
+    void updatePlayerHand(PlayerHand hand);
 
-    void addDestCards(DestinationCardDeck playerDestCardDeck);
-
-    List<TrainCard> getTrainCards();
-
-    List<DestinationCard> getDestCards();
+    PlayerHand getPlayerHandCards();
 }

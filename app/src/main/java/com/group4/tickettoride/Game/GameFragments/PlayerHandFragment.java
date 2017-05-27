@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import com.group4.shared.Model.CARD_COLOR;
 import com.group4.shared.Model.DestinationCard;
+import com.group4.shared.Model.PlayerHand;
 import com.group4.shared.Model.TrainCard;
 import com.group4.tickettoride.R;
 
@@ -87,8 +88,9 @@ public class PlayerHandFragment extends Fragment implements IPlayerHandFragment
         v = inflater.inflate(R.layout.fragment_player_hand, container, false);
 
         this.presenter = new PlayerHandPresenter(this);
-        this.playerDestCards = presenter.getDestCards();
-        this.playerTrainCards = presenter.getTrainCards();
+        PlayerHand hand = presenter.getPlayerHandCards();
+        this.playerTrainCards = hand.getTrainCards().getCardDeck();
+        this.playerDestCards = hand.getDestinationCards().getDestDeck();
 
         trainCardView = (RecyclerView) v.findViewById(R.id.playerHand_traincardlist);
         trainCardView.setLayoutManager(new LinearLayoutManager(this.getContext(), LinearLayoutManager.HORIZONTAL, false));

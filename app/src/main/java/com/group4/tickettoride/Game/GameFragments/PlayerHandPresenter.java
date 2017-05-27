@@ -4,6 +4,7 @@ import com.group4.shared.Model.DestinationCard;
 import com.group4.shared.Model.DestinationCardDeck;
 import com.group4.shared.Model.Game;
 import com.group4.shared.Model.Player;
+import com.group4.shared.Model.PlayerHand;
 import com.group4.shared.Model.TrainCard;
 import com.group4.shared.Model.TrainCardDeck;
 import com.group4.tickettoride.ClientModel.ClientModel;
@@ -26,33 +27,19 @@ public class PlayerHandPresenter implements Observer, IPlayerHandPresenter
         this.fragment = fragment;
         player = ClientModel.SINGLETON.getPlayer();
         ClientModel.SINGLETON.addObserver(this);
-
-//        this.fragment.updateTrainCards(player.getTrainCardDeck().getCardDeck());
-//        this.fragment.updateDestinationCards(player.getDestinationCardDeck().getDestDeck());
     }
 
     @Override
-    public void addTrainCards(TrainCardDeck playerTrainCardDeck)
+    public void updatePlayerHand(PlayerHand hand)
     {
-        fragment.updateTrainCards(playerTrainCardDeck.getCardDeck());
+        fragment.updateDestinationCards(hand.getDestinationCards().getDestDeck());
+        fragment.updateTrainCards(hand.getTrainCards().getCardDeck());
     }
 
     @Override
-    public void addDestCards(DestinationCardDeck playerDestCardDeck)
+    public PlayerHand getPlayerHandCards()
     {
-        fragment.updateDestinationCards(playerDestCardDeck.getDestDeck());
-    }
-
-    @Override
-    public List<TrainCard> getTrainCards()
-    {
-        return player.getPlayerHand().getTrainCards().getCardDeck();
-    }
-
-    @Override
-    public List<DestinationCard> getDestCards()
-    {
-        return player.getPlayerHand().getDestinationCards().getDestDeck();
+        return player.getPlayerHand();
     }
 
     @Override
@@ -69,6 +56,11 @@ public class PlayerHandPresenter implements Observer, IPlayerHandPresenter
         else if (arg.getClass() == Boolean.class)
         {
             //
+        }
+        else if(arg.getClass() == PlayerHand.class)
+        {
+            PlayerHand playerHand = (PlayerHand) arg;
+            updatePlayerHand(playerHand);
         }
     }
 }
