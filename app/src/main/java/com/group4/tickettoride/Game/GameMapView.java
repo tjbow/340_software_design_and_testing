@@ -167,6 +167,10 @@ public class GameMapView extends View {
                 return ContextCompat.getColor(getContext(),R.color.colorWhite);
             case PURPLE:
                 return ContextCompat.getColor(getContext(),R.color.colorPurple);
+            case PINK:
+                return ContextCompat.getColor(getContext(),R.color.colorPink);
+            case BLUE:
+                return ContextCompat.getColor(getContext(),R.color.colorBlue);
 
         }
         return 0;
@@ -180,7 +184,7 @@ public class GameMapView extends View {
         paint.setColor(Color.BLACK);
         paint.setStrokeWidth(getHeight()/100);
         paint.setTextSize(getWidth() *.01f);
-        drawRouteSegments(canvas);
+        //drawRouteSegments(canvas);
         drawCities(canvas);
         if(tap){
             canvas.drawText("You touched the line",30f,30f,paint);
@@ -259,7 +263,7 @@ public class GameMapView extends View {
             }
 
             canvas.drawRect(currentX,newY1+RECTANGLE_SCALER,currentX +( xDist /carCount) -(spaceDist*2) ,newY2 - RECTANGLE_SCALER ,paint);
-            paint.setColor(color);  //TODO: DREW: replace with route color
+            paint.setColor(color);
             canvas.drawRect(currentX + 5,newY1+RECTANGLE_SCALER -5,currentX +( (xDist) /carCount) -(2*spaceDist) -5 ,newY2 - RECTANGLE_SCALER +5 ,paint);
 
             currentX = currentX +( (newX2-newX1) /carCount)  + (spaceDist / 2);

@@ -41,7 +41,7 @@
     "y1Constraint":88,
     "x2Constraint":81,
     "y2Constraint":71,
-    "routeColor":"GRAY",
+    "routeColor":"PINK",
     "highlighted":false
   },
   {
@@ -56,7 +56,7 @@
     "y1Constraint":88.5,
     "x2Constraint":72,
     "y2Constraint":71,
-    "routeColor":"GRAY",
+    "routeColor":"BLUE",
     "highlighted":false
   },
   {
@@ -71,7 +71,7 @@
     "y1Constraint":90,
     "x2Constraint":61.5,
     "y2Constraint":80.5,
-    "routeColor":"GRAY",
+    "routeColor":"RED",
     "highlighted":false
   },
   {
@@ -114,7 +114,7 @@
   "y1Constraint":59,
   "x2Constraint":71.7,
   "y2Constraint":61.5,
-  "routeColor":"GRAY",
+  "routeColor":"BLACK",
   "highlighted":false
 }, {
   "routeId":"NashvilleAtlanta",
@@ -198,7 +198,7 @@
   "y1Constraint":50,
   "x2Constraint":87,
   "y2Constraint":38.5,
-  "routeColor":"GRAY",
+  "routeColor":"ORANGE",
   "highlighted":false
 }, {
   "routeId":"WashinhgtonNewYorkRight",
@@ -212,7 +212,7 @@
   "y1Constraint":49.5,
   "x2Constraint":89.1,
   "y2Constraint":38,
-  "routeColor":"GRAY",
+  "routeColor":"BLACK",
   "highlighted":false
 }, {
   "routeId":"PitsburghNewYorkRight",
@@ -226,7 +226,7 @@
   "y1Constraint":46.5,
   "x2Constraint":86,
   "y2Constraint":37,
-  "routeColor":"GRAY",
+  "routeColor":"GREEN",
   "highlighted":false
 }, {
   "routeId":"PitsburghNewYorkLeft",
@@ -240,7 +240,7 @@
   "y1Constraint":44.5,
   "x2Constraint":84.5,
   "y2Constraint":34,
-  "routeColor":"GRAY",
+  "routeColor":"WHITE",
   "highlighted":false
 }, {
   "routeId":"PitsburghNewYorkLeft",
@@ -268,7 +268,7 @@
   "y1Constraint":24.5,
   "x2Constraint":86.5,
   "y2Constraint":34,
-  "routeColor":"GRAY",
+  "routeColor":"YELLOW",
   "highlighted":false
 }, {
   "routeId":"NewYorkBostonBottom",
@@ -282,7 +282,7 @@
   "y1Constraint":27.5,
   "x2Constraint":88,
   "y2Constraint":36,
-  "routeColor":"GRAY",
+  "routeColor":"RED",
   "highlighted":false
 }, {
   "routeId":"BostonMontrealBottom",
@@ -299,7 +299,7 @@
   "routeColor":"GRAY",
   "highlighted":false
 }, {
-  "routeId":"BostonMontrealBottom",
+  "routeId":"BostonMontrealTop",
   "claimed":false,
   "owner":null,
   "length":3,
@@ -352,7 +352,7 @@
   "y1Constraint":10,
   "x2Constraint":70,
   "y2Constraint":17,
-  "routeColor":"GRAY",
+  "routeColor":"BLACK",
   "highlighted":false
 }, {
   "routeId":"SaultStMarieToronto",
@@ -394,7 +394,7 @@
   "y1Constraint":50,
   "x2Constraint":70,
   "y2Constraint":60,
-  "routeColor":"GRAY",
+  "routeColor":"YELLOW",
   "highlighted":false
 },{
   "routeId":"ChicagoPistburghTop",
@@ -408,7 +408,7 @@
   "y1Constraint":40,
   "x2Constraint":77,
   "y2Constraint":47,
-  "routeColor":"GRAY",
+  "routeColor":"ORANGE",
   "highlighted":false
 },{
   "routeId":"ChicagoPistburghBottom",
@@ -422,7 +422,7 @@
   "y1Constraint":43,
   "x2Constraint":76,
   "y2Constraint":50,
-  "routeColor":"GRAY",
+  "routeColor":"BLACK",
   "highlighted":false
 },{
   "routeId":"ChicagoToronto",
@@ -436,7 +436,7 @@
   "y1Constraint":38,
   "x2Constraint":73,
   "y2Constraint":33,
-  "routeColor":"GRAY",
+  "routeColor":"WHITE",
   "highlighted":false
 },{
   "routeId":"ChicagoDuluth",
@@ -450,7 +450,7 @@
   "y1Constraint":40,
   "x2Constraint":57,
   "y2Constraint":30,
-  "routeColor":"GRAY",
+  "routeColor":"RED",
   "highlighted":false
 },{
   "routeId":"TorontoDuluth",
@@ -464,7 +464,7 @@
   "y1Constraint":31,
   "x2Constraint":58,
   "y2Constraint":29,
-  "routeColor":"GRAY",
+  "routeColor":"PINK",
   "highlighted":false
 },{
   "routeId":"DuluthSaulStMarie",
@@ -492,7 +492,7 @@
   "y1Constraint":26.5,
   "x2Constraint":51,
   "y2Constraint":12,
-  "routeColor":"GRAY",
+  "routeColor":"BLACK",
   "highlighted":false
 },{
   "routeId":"WinnipegSaulStMarie",
@@ -520,7 +520,7 @@
   "y1Constraint":43,
   "x2Constraint":62,
   "y2Constraint":40,
-  "routeColor":"GRAY",
+  "routeColor":"BLUE",
   "highlighted":false
 },{
   "routeId":"SaintLouisChicagoLeft",
@@ -534,7 +534,7 @@
   "y1Constraint":42,
   "x2Constraint":60.9,
   "y2Constraint":53,
-  "routeColor":"GRAY",
+  "routeColor":"GREEN",
   "highlighted":false
 },{
   "routeId":"SaintLouisChicagoRight",
@@ -548,7 +548,7 @@
   "y1Constraint":42,
   "x2Constraint":63,
   "y2Constraint":53,
-  "routeColor":"GRAY",
+  "routeColor":"WHITE",
   "highlighted":false
 },{
   "routeId":"SaintLouisPitsburgh",
@@ -562,7 +562,7 @@
   "y1Constraint":50.5,
   "x2Constraint":63,
   "y2Constraint":55,
-  "routeColor":"GRAY",
+  "routeColor":"GREEN",
   "highlighted":false
 },{
   "routeId":"SaintLouisNashville",
@@ -590,7 +590,7 @@
   "y1Constraint":70,
   "x2Constraint":60.5,
   "y2Constraint":77,
-  "routeColor":"GRAY",
+  "routeColor":"YELLOW",
   "highlighted":false
 },{
   "routeId":"AtlentaNewOrleansRight",
@@ -604,7 +604,7 @@
   "y1Constraint":73,
   "x2Constraint":61.5,
   "y2Constraint":79,
-  "routeColor":"GRAY",
+  "routeColor":"ORANGE",
   "highlighted":false
 },{
   "routeId":"NewOrleansLittleRock",
@@ -618,7 +618,7 @@
   "y1Constraint":68,
   "x2Constraint":60,
   "y2Constraint":79,
-  "routeColor":"GRAY",
+  "routeColor":"GREEN",
   "highlighted":false
 },{
   "routeId":"NashvilleLittleRock",
@@ -632,7 +632,7 @@
   "y1Constraint":63,
   "x2Constraint":60,
   "y2Constraint":68,
-  "routeColor":"GRAY",
+  "routeColor":"WHITE",
   "highlighted":false
 },{
   "routeId":"LittleRockSaintLouis",
@@ -660,7 +660,7 @@
   "y1Constraint":54,
   "x2Constraint":52,
   "y2Constraint":54,
-  "routeColor":"GRAY",
+  "routeColor":"BLUE",
   "highlighted":false
 },{
   "routeId":"StLouisKansasCityBottom",
@@ -674,7 +674,7 @@
   "y1Constraint":57,
   "x2Constraint":52,
   "y2Constraint":57,
-  "routeColor":"GRAY",
+  "routeColor":"PINK",
   "highlighted":false
 },{
   "routeId":"OmahaDuluthRight",
@@ -691,7 +691,7 @@
   "routeColor":"GRAY",
   "highlighted":false
 },{
-  "routeId":"OmahaDuluthRight",
+  "routeId":"OmahaDuluthLeft",
   "claimed":false,
   "owner":null,
   "length":2,
@@ -870,7 +870,7 @@
   "y1Constraint":81,
   "x2Constraint":53,
   "y2Constraint":85,
-  "routeColor":"GRAY",
+  "routeColor":"GREEN",
   "highlighted":false
 },{
   "routeId":"DallasElPaso",
@@ -884,7 +884,7 @@
   "y1Constraint":78,
   "x2Constraint":49,
   "y2Constraint":79,
-  "routeColor":"GRAY",
+  "routeColor":"RED",
   "highlighted":false
 },{
   "routeId":"WinnipegCalgary",
@@ -898,7 +898,7 @@
   "y1Constraint":8,
   "x2Constraint":48,
   "y2Constraint":10,
-  "routeColor":"GRAY",
+  "routeColor":"WHITE",
   "highlighted":false
 },{
   "routeId":"CalgaryHelena",
@@ -926,7 +926,7 @@
   "y1Constraint":25,
   "x2Constraint":49.5,
   "y2Constraint":12,
-  "routeColor":"GRAY",
+  "routeColor":"BLUE",
   "highlighted":false
 },{
   "routeId":"HelenaDuluth",
@@ -940,7 +940,7 @@
   "y1Constraint":27.5,
   "x2Constraint":55,
   "y2Constraint":28,
-  "routeColor":"GRAY",
+  "routeColor":"ORANGE",
   "highlighted":false
 },{
   "routeId":"HelenaOmaha",
@@ -954,7 +954,7 @@
   "y1Constraint":30,
   "x2Constraint":48,
   "y2Constraint":43,
-  "routeColor":"GRAY",
+  "routeColor":"RED",
   "highlighted":false
 },{
   "routeId":"VancouverCalgary",
@@ -982,7 +982,7 @@
   "y1Constraint":15,
   "x2Constraint":31.5,
   "y2Constraint":28,
-  "routeColor":"GRAY",
+  "routeColor":"YELLOW",
   "highlighted":false
 },{
   "routeId":"CalgarySeattle",
@@ -1010,10 +1010,10 @@
   "y1Constraint":42,
   "x2Constraint":33,
   "y2Constraint":29,
-  "routeColor":"GRAY",
+  "routeColor":"PINK",
   "highlighted":false
 },{
-  "routeId":"SaltLakeCityHDenverTop",
+  "routeId":"SaltLakeCityDenverTop",
   "claimed":false,
   "owner":null,
   "length":3,
@@ -1024,7 +1024,7 @@
   "y1Constraint":43,
   "x2Constraint":36,
   "y2Constraint":49,
-  "routeColor":"GRAY",
+  "routeColor":"RED",
   "highlighted":false
 },{
   "routeId":"SaltLakeCityHDenverBottom",
@@ -1038,7 +1038,7 @@
   "y1Constraint":46,
   "x2Constraint":35.5,
   "y2Constraint":52,
-  "routeColor":"GRAY",
+  "routeColor":"YELLOW",
   "highlighted":false
 },{
   "routeId":"DenverHelena",
@@ -1052,7 +1052,7 @@
   "y1Constraint":31,
   "x2Constraint":37,
   "y2Constraint":49,
-  "routeColor":"GRAY",
+  "routeColor":"GREEN",
   "highlighted":false
 },{
   "routeId":"SaltLakeCityPortland",
@@ -1066,7 +1066,7 @@
   "y1Constraint":20.5,
   "x2Constraint":26,
   "y2Constraint":42,
-  "routeColor":"GRAY",
+  "routeColor":"BLUE",
   "highlighted":false
 },{
   "routeId":"SeatlePortlandLeft",
@@ -1108,7 +1108,7 @@
   "y1Constraint":19.7,
   "x2Constraint":4.9,
   "y2Constraint":46,
-  "routeColor":"GRAY",
+  "routeColor":"GREEN",
   "highlighted":false
 },{
   "routeId":"PortlandSanFranciscoRight",
@@ -1122,7 +1122,7 @@
   "y1Constraint":20.5,
   "x2Constraint":7.3,
   "y2Constraint":46,
-  "routeColor":"GRAY",
+  "routeColor":"PINK",
   "highlighted":false
 },{
   "routeId":"SanfranciscoSaltLakeCityTop",
@@ -1136,7 +1136,7 @@
   "y1Constraint":44,
   "x2Constraint":8,
   "y2Constraint":46,
-  "routeColor":"GRAY",
+  "routeColor":"ORANGE",
   "highlighted":false
 },{
   "routeId":"SanfranciscoSaltLakeCityBottom",
@@ -1150,7 +1150,7 @@
   "y1Constraint":47,
   "x2Constraint":8,
   "y2Constraint":49,
-  "routeColor":"GRAY",
+  "routeColor":"WHITE",
   "highlighted":false
 },{
   "routeId":"SanfranciscoLosAngelesRight",
@@ -1164,7 +1164,7 @@
   "y1Constraint":63,
   "x2Constraint":7,
   "y2Constraint":49,
-  "routeColor":"GRAY",
+  "routeColor":"PINK",
   "highlighted":false
 },{
   "routeId":"SanfranciscoLosAngelesLeft",
@@ -1178,21 +1178,7 @@
   "y1Constraint":63,
   "x2Constraint":5,
   "y2Constraint":49,
-  "routeColor":"GRAY",
-  "highlighted":false
-},{
-  "routeId":"LasVegasAngelesLTop",
-  "claimed":false,
-  "owner":null,
-  "length":2,
-  "score":0,
-  "cityA":"LasVegas",
-  "cityB":"SaltLakeCity",
-  "x1Constraint":12,
-  "y1Constraint":61,
-  "x2Constraint":23,
-  "y2Constraint":54,
-  "routeColor":"GRAY",
+  "routeColor":"YELLOW",
   "highlighted":false
 },{
   "routeId":"LasVegasAngelesBottom",
@@ -1220,7 +1206,7 @@
   "y1Constraint":45,
   "x2Constraint":24,
   "y2Constraint":55,
-  "routeColor":"GRAY",
+  "routeColor":"ORANGE",
   "highlighted":false
 },{
   "routeId":"LosAngelesPhoenix",
@@ -1248,7 +1234,7 @@
   "y1Constraint":68,
   "x2Constraint":36,
   "y2Constraint":52,
-  "routeColor":"GRAY",
+  "routeColor":"WHITE",
   "highlighted":false
 },{
   "routeId":"ElPasoPhoenix",
@@ -1276,7 +1262,7 @@
   "y1Constraint":67,
   "x2Constraint":35,
   "y2Constraint":81,
-  "routeColor":"GRAY",
+  "routeColor":"BLACK",
   "highlighted":false
 },{
   "routeId":"ElPasoSantaFe",
@@ -1321,18 +1307,18 @@
   "routeColor":"GRAY",
   "highlighted":false
 },{
-  "routeId":"SantaFeDenver",
+  "routeId":"SantaFeOklahomaCity",
   "claimed":false,
   "owner":null,
   "length":3,
   "score":0,
   "cityA":"SantaFe",
-  "cityB":"Denver",
+  "cityB":"OklahomaCity",
   "x1Constraint":40,
   "y1Constraint":66,
   "x2Constraint":47,
   "y2Constraint":68,
-  "routeColor":"GRAY",
+  "routeColor":"BLUE",
   "highlighted":false
 },{
   "routeId":"DenverKansasCityBottom",
@@ -1346,7 +1332,7 @@
   "y1Constraint":54,
   "x2Constraint":47,
   "y2Constraint":57,
-  "routeColor":"GRAY",
+  "routeColor":"ORANGE",
   "highlighted":false
 },{
   "routeId":"DenverKansasCityTop",
@@ -1360,7 +1346,7 @@
   "y1Constraint":51,
   "x2Constraint":47,
   "y2Constraint":54,
-  "routeColor":"GRAY",
+  "routeColor":"BLACK",
   "highlighted":false
 },{
   "routeId":"DenverOmaha",
@@ -1374,7 +1360,7 @@
   "y1Constraint":48,
   "x2Constraint":47,
   "y2Constraint":47,
-  "routeColor":"GRAY",
+  "routeColor":"PINK",
   "highlighted":false
 }
 ]
