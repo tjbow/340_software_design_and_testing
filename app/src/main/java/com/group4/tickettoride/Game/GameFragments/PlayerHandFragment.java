@@ -10,6 +10,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -47,6 +48,8 @@ public class PlayerHandFragment extends Fragment implements IPlayerHandFragment
     private DestinationCardAdapter destAdapter;
     private List<Drawable> destCardImages;
     private List<DestinationCard> playerDestCards;
+
+    private Button testFunctionButton;
 
 
     private OnFragmentInteractionListener mListener;
@@ -110,6 +113,16 @@ public class PlayerHandFragment extends Fragment implements IPlayerHandFragment
             destAdapter.notifyDataSetChanged();
         }
 
+        testFunctionButton = (Button) v.findViewById(R.id.test_function_button);
+        testFunctionButton.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                testAction();
+            }
+        });
+
         return v;
     }
 
@@ -134,6 +147,13 @@ public class PlayerHandFragment extends Fragment implements IPlayerHandFragment
     {
         this.playerDestCards = cards;
         destAdapter.notifyDataSetChanged();
+        destCardView.setAdapter(new DestinationCardAdapter(destCardImages, playerDestCards));
+        destCardView.invalidate();
+    }
+
+    private void testAction()
+    {
+        presenter.testAction();
     }
 
     //------------------- TRAIN CARD RECYCLERVIEW CODE ------------------------------------

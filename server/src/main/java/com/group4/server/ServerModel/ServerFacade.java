@@ -304,6 +304,8 @@ public class ServerFacade implements IServer
         game.addCommand(updateGameCommandData);
         updateGameCommandData.setCommandNumber(game.getNewCommandIndex());
 
+        System.out.println("Destination Cards Drawn");
+
         return new Results(true, "Destination cards drawn", null, null);
     }
 
@@ -320,8 +322,14 @@ public class ServerFacade implements IServer
         updateGameCommandData.setStatus(GAME_STATUS.ONGOING);
         updateGameCommandData.setDeckState(game.getDecks());
 
+        CUpdatePlayersCommandData updatePlayersCommandData = new CUpdatePlayersCommandData();
+        updatePlayersCommandData.setType("updateplayers");
+        updatePlayersCommandData.setPlayerData(game.getPlayers());
+
         game.addCommand(updateGameCommandData);
         updateGameCommandData.setCommandNumber(game.getNewCommandIndex());
+        game.addCommand(updatePlayersCommandData);
+        updatePlayersCommandData.setCommandNumber(game.getNewCommandIndex());
 
         int cardsSelected = 3 - returnedCard.size();
         System.out.println("Player " + serverModel.getTempUser().getUsername() +

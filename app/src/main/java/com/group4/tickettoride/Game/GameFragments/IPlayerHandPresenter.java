@@ -20,4 +20,6 @@ public interface IPlayerHandPresenter
     void updatePlayerHand(PlayerHand hand);
 
     PlayerHand getPlayerHandCards();
+
+    void testAction();
 }

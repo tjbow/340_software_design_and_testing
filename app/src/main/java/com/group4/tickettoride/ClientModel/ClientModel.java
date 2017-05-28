@@ -3,17 +3,22 @@ package com.group4.tickettoride.ClientModel;
 import com.group4.shared.Model.ChatHistory;
 import com.group4.shared.Model.City;
 import com.group4.shared.Model.Decks;
+import com.group4.shared.Model.DestinationCard;
 import com.group4.shared.Model.Game;
 import com.group4.shared.Model.GameList;
 import com.group4.shared.Model.GameStats;
 import com.group4.shared.Model.Player;
+import com.group4.shared.Model.PlayerHand;
 import com.group4.shared.Model.RouteList;
 import com.group4.shared.Model.TurnHistory;
 import com.group4.shared.Model.User;
+import com.group4.tickettoride.Network.ServerProxy;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
+import java.util.Random;
 
 /**
  * Created by Russell Fitzpatrick on 5/13/2017.
@@ -28,9 +33,13 @@ public class ClientModel extends Observable {
     private Player player;
     private Game game;
 
+    private int actionCounter;
+
     public static ClientModel SINGLETON = new ClientModel();
 
-    private ClientModel() {}
+    private ClientModel() {
+        actionCounter = 0;
+    }
 
     public ClientModel(User user, GameList gameList) {
         this.user = user;
@@ -46,6 +55,81 @@ public class ClientModel extends Observable {
         player = null;
         game = null;
         commandIDIndex = 0;
+    }
+
+    public void testActions()
+    {
+        switch (actionCounter)
+        {
+            case 0:
+                // update player points
+                for(Player player : game.getPlayers())
+                {
+                    player.setScore(new Random().nextInt(10 - 1 + 1) + 1);
+                }
+                sendToObservers(game.getPlayers());
+                sendToObservers("Update points. Next: Remove Train Card for this player.");
+                //TODO: TYLER: add a server call to update points
+                actionCounter++;
+                break;
+            case 1:
+                // remove train card for this player
+                PlayerHand hand = player.getPlayerHand();
+                hand.getTrainCards().getCardDeck().remove(0);
+                sendToObservers(hand);
+                sendToObservers("Remove Train card. Next: Add Train card for this player.");
+                actionCounter++;
+                break;
+            case 2:
+                //TODO: TYLER: add a server call to draw train cards
+                // add train cards for this player
+                sendToObservers("Press again.");
+                actionCounter++;
+                break;
+            case 3:
+                // remove destination cards for this player
+                PlayerHand hand1 = player.getPlayerHand();
+                List<DestinationCard> removed = new ArrayList<>();
+                removed.add(hand1.getDestinationCards().getDestDeck().get(0));
+                removed.add(hand1.getDestinationCards().getDestDeck().get(1));
+                ServerProxy.SINGLETON.returnDestinationCard(removed);
+                sendToObservers("Remove Destination cards. Next: Add Destination cards for this player.");
+                actionCounter++;
+                break;
+            case 4:
+                // add destination cards for this player
+                ServerProxy.SINGLETON.drawDestinationCards(user.getUsername());
+                sendToObservers("Add Destination cards. Next: Update number of destination cards for other players");
+                actionCounter++;
+                break;
+            case 5:
+                // Update number of destination cards for other players
+                actionCounter++;
+                break;
+            case 6:
+                // Update visible cards and number of invisible cards in train card deck
+                actionCounter++;
+                break;
+            case 7:
+                // Update number of cards in destination card deck
+                actionCounter++;
+                break;
+            case 8:
+                // Add claimed route (for any player)
+                actionCounter++;
+                break;
+            case 9:
+                // Add chat message from any player
+                actionCounter++;
+                break;
+            case 10:
+                // Add game history entries
+                actionCounter++;
+                break;
+            default:
+                actionCounter = 0;
+                break;
+        }
     }
 
     public User getUser() {
@@ -156,7 +240,14 @@ public class ClientModel extends Observable {
         //also update the model player
         player = game.getPlayerByUserName(user.getUsername());
 
+        //update the player info fragment
         sendToObservers(game.getPlayers());
+
+        //update the player hand fragment
+        if(player != null && player.getPlayerHand() != null)
+        {
+            sendToObservers(player.getPlayerHand());
+        }
     }
 
     @Override

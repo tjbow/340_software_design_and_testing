@@ -8,6 +8,7 @@ import com.group4.shared.Model.PlayerHand;
 import com.group4.shared.Model.TrainCard;
 import com.group4.shared.Model.TrainCardDeck;
 import com.group4.tickettoride.ClientModel.ClientModel;
+import com.group4.tickettoride.NextLayerFacade.NextLayerFacade;
 
 import java.util.List;
 import java.util.Observable;
@@ -40,6 +41,12 @@ public class PlayerHandPresenter implements Observer, IPlayerHandPresenter
     public PlayerHand getPlayerHandCards()
     {
         return player.getPlayerHand();
+    }
+
+    @Override
+    public void testAction()
+    {
+        ClientModel.SINGLETON.testActions();
     }
 
     @Override

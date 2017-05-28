@@ -21,6 +21,6 @@ public class DrawDestCardsCommand extends DrawDestCardsCommandData implements IS
     @Override
     public Results execute()
     {
-        return null;
+        return drawDestCards();
     }
 }

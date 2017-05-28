@@ -15,8 +15,8 @@
         android:layout_height="match_parent"
         android:background="@color/colorTransWhite"
         android:layout_margin="3dp"
-        android:paddingTop="15dp"
-        android:layout_weight="0.28"/>
+        android:paddingTop="3dp"
+        android:layout_weight="0.32"/>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/playerHand_destcardlist"
@@ -27,5 +27,12 @@
         android:layout_margin="3dp"
         android:paddingLeft="12dp"
         android:layout_weight="0.60"/>
+
+    <Button
+        android:id="@+id/test_function_button"
+        android:layout_width="61dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:text="Test"/>
 
 </LinearLayout>
