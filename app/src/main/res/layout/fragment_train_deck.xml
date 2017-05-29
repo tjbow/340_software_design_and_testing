@@ -24,7 +24,7 @@
                 android:layout_height="0dip"
                 android:layout_weight="0.03"/>
             <ImageView
-                android:id="@+id/face_up5"
+                android:id="@+id/face_up4"
                 android:layout_width="match_parent"
                 android:layout_height="0dip"
                 android:layout_weight="0.11" android:src="@drawable/traincardblack"/>
@@ -33,7 +33,7 @@
                 android:layout_height="0dip"
                 android:layout_weight="0.03"/>
             <ImageView
-                android:id="@+id/face_up4"
+                android:id="@+id/face_up3"
                 android:layout_width="match_parent"
                 android:layout_height="0dip"
                 android:layout_weight="0.11" android:src="@drawable/traincardlocamotive"/>
@@ -42,7 +42,7 @@
                 android:layout_height="0dip"
                 android:layout_weight="0.03"/>
             <ImageView
-                android:id="@+id/face_up3"
+                android:id="@+id/face_up2"
                 android:layout_width="match_parent"
                 android:layout_height="0dip"
                 android:layout_weight="0.11" android:src="@drawable/traincardgreen"/>
@@ -51,7 +51,7 @@
                 android:layout_height="0dip"
                 android:layout_weight="0.03"/>
             <ImageView
-                android:id="@+id/face_up2"
+                android:id="@+id/face_up1"
                 android:layout_width="match_parent"
                 android:layout_height="0dip"
                 android:layout_weight="0.11" android:src="@drawable/traincardpurple"/>
@@ -60,7 +60,7 @@
                 android:layout_height="0dip"
                 android:layout_weight="0.03"/>
             <ImageView
-                android:id="@+id/face_up1"
+                android:id="@+id/face_up0"
                 android:layout_width="match_parent"
                 android:layout_height="0dip"
                 android:layout_weight="0.11" android:src="@drawable/traincardred"/>
@@ -69,7 +69,7 @@
                 android:layout_height="0dip"
                 android:layout_weight="0.03"/>
             <ImageView
-                android:id="@+id/trainDeck"
+                android:id="@+id/train_deck_image"
                 android:layout_width="match_parent"
                 android:layout_height="0dip"
                 android:layout_weight="0.11" android:src="@drawable/traincardback"/>
@@ -78,7 +78,7 @@
                 android:layout_height="0dip"
                 android:layout_weight="0.03"/>
             <ImageView
-                android:id="@+id/destinationDeck"
+                android:id="@+id/destination_deck_image"
                 android:layout_width="match_parent"
                 android:layout_height="0dip"
                 android:layout_weight="0.11" android:src="@drawable/destcardback"/>
@@ -96,5 +96,33 @@
         android:layout_width="0dip"
         android:layout_height="fill_parent"
         android:layout_weight="0.15">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="0dip"
+                android:layout_weight="0.73"/>
+            <TextView
+                android:id="@+id/train_deck_remain_text"
+                android:layout_width="match_parent"
+                android:layout_height="0dip"
+                android:layout_weight="0.11" android:gravity="center"/>
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="0dip"
+                android:layout_weight="0.03"/>
+            <TextView
+                android:id="@+id/dest_deck_remain_text"
+                android:layout_width="match_parent"
+                android:layout_height="0dip"
+                android:layout_weight="0.11" android:gravity="center"/>
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="0dip"
+                android:layout_weight="0.03"/>
+        </LinearLayout>
+
     </RelativeLayout>
 </LinearLayout>

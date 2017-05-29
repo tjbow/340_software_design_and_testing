@@ -310,7 +310,7 @@ public class PlayerHandFragment extends Fragment implements IPlayerHandFragment
         trainCardImages.add(ContextCompat.getDrawable(this.getContext(), R.drawable.traincardblack));
         trainCardColors.add(CARD_COLOR.BLACK);
 
-        trainCardImages.add(ContextCompat.getDrawable(this.getContext(), R.drawable.traincardbrown));
+        trainCardImages.add(ContextCompat.getDrawable(this.getContext(), R.drawable.traincardorange));
         trainCardColors.add(CARD_COLOR.ORANGE);
         trainCardImages.add(ContextCompat.getDrawable(this.getContext(), R.drawable.traincardyellow));
         trainCardColors.add(CARD_COLOR.YELLOW);

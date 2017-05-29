@@ -15,7 +15,7 @@ public interface ITrainDeckFragment
 {
     /**
      * Sets the face up cards in the view
-     * @param cards the list of cards to be set
+     * @param cards the list of face up cards
      */
     void setFaceUpCards(List<TrainCard> cards);
 

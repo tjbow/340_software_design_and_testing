@@ -51,6 +51,7 @@ public class DestCardPickerFragment extends DialogFragment implements IDestCardP
     public DestCardPickerFragment()
     {
         selectedImages = new ArrayList<>();
+        destPresenter = new DestCardPickerPresenter(this);
         // Required empty public constructor
     }
 
@@ -74,7 +75,6 @@ public class DestCardPickerFragment extends DialogFragment implements IDestCardP
     public void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        destPresenter = new DestCardPickerPresenter(this);
         setCancelable(false);
     }
 

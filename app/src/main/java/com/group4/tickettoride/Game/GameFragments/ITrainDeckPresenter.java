@@ -33,4 +33,23 @@ public interface ITrainDeckPresenter
      * @return a list of drawn destination cards
      */
     List<DestinationCard> drawDestCards();
+
+    /**
+     * Gets the face up cards in the deck in the model
+     * @return face up cards
+     */
+    List<TrainCard> getFaceUpCards();
+
+    /**
+     * Gets the number of train deck cards remaining
+     * @return the number of train deck cards remaining
+     */
+    int getTrainDeckCardsRemaining();
+
+    /**
+     * Gets the number of destination deck cards remaining
+     * @return the number of destination deck cards remaining
+     */
+    int getDestDeckCardsRemaining();
+
 }
