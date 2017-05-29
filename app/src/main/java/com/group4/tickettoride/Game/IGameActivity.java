@@ -1,6 +1,6 @@
 package com.group4.tickettoride.Game;
 
-import com.group4.shared.Model.Game;
+import com.group4.shared.Model.Game.Game;
 
 /**
  * Created by tyler on 5/18/17.

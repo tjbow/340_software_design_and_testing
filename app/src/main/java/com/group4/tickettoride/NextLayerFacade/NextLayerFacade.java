@@ -1,7 +1,6 @@
 package com.group4.tickettoride.NextLayerFacade;
 
-import com.group4.shared.Model.DestinationCard;
-import com.group4.shared.Model.Game;
+import com.group4.shared.Model.Deck.DestinationCard;
 import com.group4.shared.Model.Message;
 import com.group4.shared.Model.User;
 import com.group4.tickettoride.ClientModel.ClientModel;

@@ -15,9 +15,8 @@ import android.view.View;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.group4.shared.Model.City;
-import com.group4.shared.Model.ROUTE_COLOR;
-import com.group4.shared.Model.RouteSegment;
+import com.group4.shared.Model.Map.City;
+import com.group4.shared.Model.Map.RouteSegment;
 import com.group4.tickettoride.R;
 
 

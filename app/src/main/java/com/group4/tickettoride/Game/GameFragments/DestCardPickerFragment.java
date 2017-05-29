@@ -1,6 +1,5 @@
 package com.group4.tickettoride.Game.GameFragments;
 
-import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Point;
 import android.net.Uri;
@@ -13,11 +12,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 
-import com.group4.shared.Model.DestinationCard;
+import com.group4.shared.Model.Deck.DestinationCard;
 import com.group4.tickettoride.R;
 
 import java.util.ArrayList;

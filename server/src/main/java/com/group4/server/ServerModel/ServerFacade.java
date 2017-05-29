@@ -1,9 +1,9 @@
 package com.group4.server.ServerModel;
 
 import com.group4.shared.Model.CommandList;
-import com.group4.shared.Model.DestinationCard;
-import com.group4.shared.Model.GAME_STATUS;
-import com.group4.shared.Model.Game;
+import com.group4.shared.Model.Deck.DestinationCard;
+import com.group4.shared.Model.Game.GAME_STATUS;
+import com.group4.shared.Model.Game.Game;
 import com.group4.shared.Model.Message;
 import com.group4.shared.Model.Player;
 import com.group4.shared.Proxy.IServer;

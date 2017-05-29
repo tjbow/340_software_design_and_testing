@@ -4,9 +4,9 @@ package com.group4.tickettoride.Game.GameFragments;
  * Created by Tom on 5/24/2017.
  */
 
-import com.group4.shared.Model.DestinationCard;
-import com.group4.shared.Model.TrainCard;
-import com.group4.shared.Model.TrainCardDeck;
+import com.group4.shared.Model.Deck.DestinationCard;
+import com.group4.shared.Model.Deck.TrainCard;
+import com.group4.shared.Model.Deck.TrainCardDeck;
 
 import java.util.List;
 

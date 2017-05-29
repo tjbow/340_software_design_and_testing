@@ -3,7 +3,7 @@ package com.group4.tickettoride.Game.GameFragments;
 
 import android.view.View;
 
-import com.group4.shared.Model.Game;
+import com.group4.shared.Model.Game.Game;
 import com.group4.shared.Model.Player;
 import com.group4.tickettoride.ClientModel.ClientModel;
 

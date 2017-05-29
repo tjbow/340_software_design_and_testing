@@ -1,4 +1,7 @@
-package com.group4.shared.Model;
+package com.group4.shared.Model.Deck;
+
+import com.group4.shared.Model.Deck.DestinationCardDeck;
+import com.group4.shared.Model.Deck.TrainCardDeck;
 
 /**
  * Created by Russell Fitzpatrick on 5/27/2017.

@@ -1,4 +1,4 @@
-package com.group4.shared.Model;
+package com.group4.shared.Model.Map;
 
 /**
  * Created by abgill on 5/22/2017.

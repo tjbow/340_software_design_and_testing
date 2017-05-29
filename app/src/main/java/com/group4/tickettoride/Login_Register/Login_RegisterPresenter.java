@@ -4,7 +4,7 @@ package com.group4.tickettoride.Login_Register;
 
 import android.content.Intent;
 
-import com.group4.shared.Model.GAME_STATUS;
+import com.group4.shared.Model.Game.GAME_STATUS;
 import com.group4.tickettoride.ClientModel.ClientModel;
 import com.group4.tickettoride.Game.GameActivity;
 import com.group4.tickettoride.GameList.GameListActivity;

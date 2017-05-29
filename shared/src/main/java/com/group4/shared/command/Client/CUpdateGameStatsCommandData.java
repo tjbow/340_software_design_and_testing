@@ -1,6 +1,6 @@
 package com.group4.shared.command.Client;
 
-import com.group4.shared.Model.GameStats;
+import com.group4.shared.Model.Game.GameStats;
 import com.group4.shared.command.ClientCommand;
 
 /**

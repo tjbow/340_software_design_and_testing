@@ -1,7 +1,6 @@
-package com.group4.shared.Model;
+package com.group4.shared.Model.Deck;
 
 import java.util.Iterator;
-import java.util.List;
 
 /**
  * Created by Russell Fitzpatrick on 5/23/2017.

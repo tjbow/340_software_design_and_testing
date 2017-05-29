@@ -1,4 +1,4 @@
-package com.group4.shared.Model;
+package com.group4.shared.Model.Deck;
 
 /**
  * Created by tyler on 5/22/17.

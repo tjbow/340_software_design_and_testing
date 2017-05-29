@@ -1,11 +1,9 @@
 package com.group4.tickettoride.GameList;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.BitmapDrawable;
 import android.support.v4.app.FragmentManager;
@@ -21,8 +19,8 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.group4.shared.Model.Game;
-import com.group4.shared.Model.GameList;
+import com.group4.shared.Model.Game.Game;
+import com.group4.shared.Model.Game.GameList;
 import com.group4.tickettoride.R;
 
 import java.util.List;

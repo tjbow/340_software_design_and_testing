@@ -6,14 +6,8 @@ package com.group4.tickettoride.ClientModel;
 
 import android.util.Log;
 
-import com.group4.shared.Model.CommandList;
-import com.group4.shared.Model.Game;
-import com.group4.shared.Model.GameList;
-import com.group4.shared.Model.Results;
 import com.group4.tickettoride.Network.ServerProxy;
-import com.group4.tickettoride.Network.ServerProxyNoAsync;
 
-import java.util.ArrayList;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;

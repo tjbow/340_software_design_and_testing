@@ -8,8 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Toast;
 
-import com.group4.shared.Model.Game;
-import com.group4.shared.Model.Player;
+import com.group4.shared.Model.Game.Game;
 import com.group4.tickettoride.Game.GameFragments.DestCardPickerFragment;
 import com.group4.tickettoride.Game.GameFragments.PlayerHandFragment;
 import com.group4.tickettoride.Game.GameFragments.PlayerInfoFragment;

@@ -4,9 +4,9 @@ package com.group4.server.ServerModel;
  * Created by Tom on 5/14/2017.
  */
 
-import com.group4.shared.Model.GAME_STATUS;
-import com.group4.shared.Model.Game;
-import com.group4.shared.Model.GameList;
+import com.group4.shared.Model.Game.GAME_STATUS;
+import com.group4.shared.Model.Game.Game;
+import com.group4.shared.Model.Game.GameList;
 import com.group4.shared.Model.Player;
 import com.group4.shared.Model.User;
 import java.security.SecureRandom;

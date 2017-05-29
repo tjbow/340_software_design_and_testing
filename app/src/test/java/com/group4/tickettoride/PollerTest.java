@@ -28,7 +28,7 @@ public class PollerTest
     @Test
     public void testClientFacade() throws InterruptedException
     {
-        ClientFacade.SINGLETON.reportGameState();
+        //ClientFacade.SINGLETON.reportGameState();
         Thread.sleep(20000);
     }
 }

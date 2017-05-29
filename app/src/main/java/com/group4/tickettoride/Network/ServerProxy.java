@@ -2,8 +2,7 @@ package com.group4.tickettoride.Network;
 
 import android.os.AsyncTask;
 
-import com.group4.shared.Model.CommandList;
-import com.group4.shared.Model.DestinationCard;
+import com.group4.shared.Model.Deck.DestinationCard;
 import com.group4.shared.Model.Message;
 import com.group4.shared.Model.Results;
 import com.group4.shared.Model.User;

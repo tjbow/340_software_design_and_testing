@@ -1,11 +1,8 @@
 package com.group4.server.Command;
 
 import com.group4.server.ServerModel.ServerFacade;
-import com.group4.shared.Model.Game;
 import com.group4.shared.Model.Results;
-import com.group4.shared.Proxy.IClient;
 import com.group4.shared.Proxy.IServer;
-import com.group4.shared.command.IClientCommand;
 import com.group4.shared.command.IServerCommand;
 import com.group4.shared.command.Server.GetGameStateCommandData;
 

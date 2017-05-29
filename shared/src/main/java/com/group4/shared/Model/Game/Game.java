@@ -1,5 +1,15 @@
-package com.group4.shared.Model;
+package com.group4.shared.Model.Game;
 
+import com.group4.shared.Model.ChatHistory;
+import com.group4.shared.Model.Map.City;
+import com.group4.shared.Model.CommandList;
+import com.group4.shared.Model.Deck.Decks;
+import com.group4.shared.Model.Deck.DestinationCard;
+import com.group4.shared.Model.Deck.TrainCard;
+import com.group4.shared.Model.Message;
+import com.group4.shared.Model.Player;
+import com.group4.shared.Model.Map.RouteList;
+import com.group4.shared.Model.TurnHistory;
 import com.group4.shared.command.ClientCommand;
 
 import java.util.ArrayList;

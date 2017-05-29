@@ -1,21 +1,17 @@
 package com.group4.shared.Proxy;
 
 import com.group4.shared.Model.ChatHistory;
-import com.group4.shared.Model.City;
-import com.group4.shared.Model.CommandList;
-import com.group4.shared.Model.Decks;
-import com.group4.shared.Model.GAME_STATUS;
-import com.group4.shared.Model.Game;
-import com.group4.shared.Model.GameList;
-import com.group4.shared.Model.GameStats;
-import com.group4.shared.Model.Message;
+import com.group4.shared.Model.Map.City;
+import com.group4.shared.Model.Deck.Decks;
+import com.group4.shared.Model.Game.GAME_STATUS;
+import com.group4.shared.Model.Game.GameList;
+import com.group4.shared.Model.Game.GameStats;
 import com.group4.shared.Model.Player;
 import com.group4.shared.Model.Results;
-import com.group4.shared.Model.RouteList;
+import com.group4.shared.Model.Map.RouteList;
 import com.group4.shared.Model.TurnHistory;
 
 import java.util.List;
-import java.util.Map;
 
 
 /**

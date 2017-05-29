@@ -1,14 +1,8 @@
-package com.group4.shared.Model;
+package com.group4.shared.Model.Deck;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
-import sun.security.krb5.internal.crypto.Des;
 
 /**
  * Created by Russell Fitzpatrick on 5/23/2017.

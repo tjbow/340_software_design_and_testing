@@ -1,10 +1,7 @@
 package com.group4.tickettoride.GameList;
 
 
-import com.group4.shared.Model.Game;
-import com.group4.shared.Model.GameList;
-
-import java.util.List;
+import com.group4.shared.Model.Game.GameList;
 
 public interface IGameListActivity {
 

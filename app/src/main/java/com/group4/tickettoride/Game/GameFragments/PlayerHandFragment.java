@@ -14,10 +14,10 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.group4.shared.Model.CARD_COLOR;
-import com.group4.shared.Model.DestinationCard;
-import com.group4.shared.Model.PlayerHand;
-import com.group4.shared.Model.TrainCard;
+import com.group4.shared.Model.Deck.CARD_COLOR;
+import com.group4.shared.Model.Deck.DestinationCard;
+import com.group4.shared.Model.Deck.PlayerHand;
+import com.group4.shared.Model.Deck.TrainCard;
 import com.group4.tickettoride.R;
 
 import java.util.ArrayList;

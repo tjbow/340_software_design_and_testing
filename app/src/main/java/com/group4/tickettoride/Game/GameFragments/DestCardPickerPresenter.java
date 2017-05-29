@@ -1,7 +1,7 @@
 package com.group4.tickettoride.Game.GameFragments;
 
-import com.group4.shared.Model.DestinationCard;
-import com.group4.shared.Model.DestinationCardDeck;
+import com.group4.shared.Model.Deck.DestinationCard;
+import com.group4.shared.Model.Deck.DestinationCardDeck;
 import com.group4.tickettoride.ClientModel.ClientModel;
 
 import java.util.List;

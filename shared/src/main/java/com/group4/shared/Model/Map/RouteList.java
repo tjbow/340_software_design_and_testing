@@ -1,4 +1,6 @@
-package com.group4.shared.Model;
+package com.group4.shared.Model.Map;
+
+import com.group4.shared.Model.Player;
 
 import java.util.List;
 

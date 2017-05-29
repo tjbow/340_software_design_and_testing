@@ -1,15 +1,7 @@
-import com.group4.shared.Model.DestinationCard;
-import com.group4.shared.Model.DestinationCardDeck;
-import com.group4.shared.Model.Game;
-import com.group4.shared.Model.Player;
+import com.group4.shared.Model.Game.Game;
 import com.group4.shared.Model.User;
 
 import org.junit.Test;
-
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
 
 /**
  * Created by tyler on 5/25/17.

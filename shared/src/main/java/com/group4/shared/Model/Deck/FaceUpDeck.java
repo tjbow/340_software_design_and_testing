@@ -1,4 +1,4 @@
-package com.group4.shared.Model;
+package com.group4.shared.Model.Deck;
 
 import java.util.ArrayList;
 import java.util.List;

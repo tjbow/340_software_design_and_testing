@@ -2,9 +2,9 @@ package com.group4.tickettoride.Lobby;
 
 import android.content.Intent;
 
-import com.group4.shared.Model.GAME_STATUS;
-import com.group4.shared.Model.Game;
-import com.group4.shared.Model.GameList;
+import com.group4.shared.Model.Game.GAME_STATUS;
+import com.group4.shared.Model.Game.Game;
+import com.group4.shared.Model.Game.GameList;
 import com.group4.tickettoride.ClientModel.ClientFacade;
 import com.group4.tickettoride.ClientModel.ClientModel;
 import com.group4.tickettoride.Game.GameActivity;

@@ -1,9 +1,8 @@
 package com.group4.shared.command.Client;
 
-import com.group4.shared.Model.City;
-import com.group4.shared.Model.RouteList;
+import com.group4.shared.Model.Map.City;
+import com.group4.shared.Model.Map.RouteList;
 import com.group4.shared.command.ClientCommand;
-import com.group4.shared.command.Command;
 
 import java.util.List;
 

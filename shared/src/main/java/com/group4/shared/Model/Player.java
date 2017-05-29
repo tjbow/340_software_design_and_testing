@@ -1,5 +1,8 @@
 package com.group4.shared.Model;
 
+import com.group4.shared.Model.Deck.PlayerHand;
+import com.group4.shared.Model.Map.RouteList;
+
 import java.util.UUID;
 
 /**
