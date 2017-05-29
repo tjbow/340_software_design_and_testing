@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.group4.shared.Model.Deck.DestinationCard;
 import com.group4.tickettoride.R;
@@ -31,11 +32,18 @@ import java.util.List;
  */
 public class DestCardPickerFragment extends DialogFragment implements IDestCardPickerFragment
 {
+    private IDestCardPickerPresenter destPresenter;
     private ImageView imageView0;
     private ImageView imageView1;
     private ImageView imageView2;
     private Button confirmButton;
     private List<Integer> selectedImages;
+
+    public int getMinNumSelected()
+    {
+        return minNumSelected;
+    }
+
     static private int minNumSelected;
 
     private OnFragmentInteractionListener mListener;
@@ -66,6 +74,8 @@ public class DestCardPickerFragment extends DialogFragment implements IDestCardP
     public void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
+        destPresenter = new DestCardPickerPresenter(this);
+        setCancelable(false);
     }
 
     @Override
@@ -92,13 +102,11 @@ public class DestCardPickerFragment extends DialogFragment implements IDestCardP
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_dest_card_picker, container);
         // grab layout items
-        imageView0 = (ImageView) v.findViewById(R.id.dest_picker1);
-        imageView1 = (ImageView) v.findViewById(R.id.dest_picker2);
-        imageView2 = (ImageView) v.findViewById(R.id.dest_picker3);
+        imageView0 = (ImageView) v.findViewById(R.id.dest_picker0);
+        imageView1 = (ImageView) v.findViewById(R.id.dest_picker1);
+        imageView2 = (ImageView) v.findViewById(R.id.dest_picker2);
         confirmButton = (Button)v.findViewById(R.id.desk_picker_button);
-
-        //Set properties
-        confirmButton.setEnabled(false);
+        setTextViews(v);
 
         // set on click listeners
         imageView0.setOnClickListener(new View.OnClickListener() {
@@ -124,14 +132,7 @@ public class DestCardPickerFragment extends DialogFragment implements IDestCardP
 
         confirmButton.setOnClickListener(new View.OnClickListener()  {
             public void onClick(View v) {
-                // When button is clicked, call up to owning activity.
-                ArrayList<Integer> sel = (ArrayList) getSelectedCards();
-                String out = "";
-                for(Integer i : sel)
-                {
-                    out += i.toString() + " ";
-                }
-                confirmButton.setText(out);
+                handleConfirm();
             }
         });
 
@@ -172,12 +173,6 @@ public class DestCardPickerFragment extends DialogFragment implements IDestCardP
 
     }
 
-    @Override
-    public void setConfirmButtonEnabled(boolean enabled)
-    {
-
-    }
-
     /**
      * This interface must be implemented by activities that contain this
      * fragment to allow an interaction in this fragment to be communicated
@@ -192,6 +187,57 @@ public class DestCardPickerFragment extends DialogFragment implements IDestCardP
     {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
+    }
+
+    /**
+     * Set the text to the proper cities
+     */
+    void setTextViews(View v)
+    {
+        TextView textView0 = (TextView) v.findViewById(R.id.dest_text0);
+        TextView textView1 = (TextView) v.findViewById(R.id.dest_text1);
+        TextView textView2 = (TextView) v.findViewById(R.id.dest_text2);
+
+        //Set properties
+        confirmButton.setEnabled(false);
+        List<DestinationCard> destCards = destPresenter.getCards();
+        textView0.setText(getDestText(destCards.get(0)));
+        textView1.setText(getDestText(destCards.get(1)));
+        textView2.setText(getDestText(destCards.get(2)));
+    }
+
+    /**
+     * Creates a string based on destination cities
+     * @param card the destination card
+     */
+    String getDestText(DestinationCard card)
+    {
+        return card.getCityA() + " to " + card.getCityB();
+    }
+
+    /**
+     * Handles the confirmation button click
+     */
+    private void handleConfirm()
+    {
+        destPresenter.returnSelectedDestCards(getComplimentOfSelCards());
+        dismiss();
+    }
+
+    /**
+     * Get indices not selected
+     */
+    private List<Integer> getComplimentOfSelCards()
+    {
+        List<Integer> notSelected = new ArrayList<>();
+        for(int i = 0; i <= 2; i++) // get complement of
+        {
+            if(!selectedImages.contains(i))
+            {
+                notSelected.add(i);
+            }
+        }
+        return notSelected;
     }
 
     /**

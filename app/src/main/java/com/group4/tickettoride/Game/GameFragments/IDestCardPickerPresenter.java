@@ -16,9 +16,15 @@ public interface IDestCardPickerPresenter
 {
     /**
      * Adds a destination to the client model
-     * @param cardIDs the IDs associated with the cards picked in the view
+     * @param cards Cards picked in the view
      */
-    void addDestination(List<String> cardIDs);
+    void addDestination(List<DestinationCard> cards);
+
+    /**
+     * Returns the selected destination cards to the deck
+     * @param selCards list of selected cards
+     */
+    void returnSelectedDestCards(List<Integer> selCards);
 
     /**
      * Draws three new cards from the deck
@@ -27,8 +33,9 @@ public interface IDestCardPickerPresenter
     List<DestinationCard> drawThreeNewCards();
 
     /**
-     * Returns the cards back to the deck
-     * @param cards return destination cards
+     * Get list of destination cards associated with the picker
+     * @return list of destination cards
      */
-    void returnDestinationCards(DestinationCardDeck cards);
+    public List<DestinationCard> getCards();
+
 }

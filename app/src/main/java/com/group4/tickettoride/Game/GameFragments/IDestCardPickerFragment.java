@@ -32,8 +32,8 @@ public interface IDestCardPickerFragment
     void setCards(List<DestinationCard> cards);
 
     /**
-     * Sets the confirm button on the view to enabled
-     * @param enabled sets whether the button is enabled or disabled
+     * Gets the minimum number selected from the view
+     * @return minimjm number selected
      */
-    void setConfirmButtonEnabled(boolean enabled);
+    int getMinNumSelected();
 }
