@@ -103,4 +103,10 @@ public class DestCardPickerPresenter implements Observer, IDestCardPickerPresent
     {
         return cards;
     }
+
+    @Override
+    public void setFirstDestCardsSelected()
+    {
+        ClientModel.SINGLETON.getPlayer().setFirstDestCardsSelected(true);
+    }
 }

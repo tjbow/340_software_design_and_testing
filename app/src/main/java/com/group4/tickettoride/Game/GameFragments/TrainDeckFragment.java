@@ -15,6 +15,7 @@ import com.group4.shared.Model.Deck.CARD_COLOR;
 import com.group4.shared.Model.Deck.TrainCard;
 import com.group4.tickettoride.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -28,11 +29,12 @@ import java.util.List;
 public class TrainDeckFragment extends Fragment implements ITrainDeckFragment
 {
     ITrainDeckPresenter trainPresenter;
-    ImageView faceUpImageView0;
-    ImageView faceUpImageView1;
-    ImageView faceUpImageView2;
-    ImageView faceUpImageView3;
-    ImageView faceUpImageView4;
+    List<ImageView> faceUpImageViewList;
+    //ImageView faceUpImageView0;
+    //ImageView faceUpImageView1;
+    //ImageView faceUpImageView2;
+    //ImageView faceUpImageView3;
+    //ImageView faceUpImageView4;
     ImageView trainDeckImageView;
     ImageView destDeckImageView;
     TextView trainCardsRemainTextView;
@@ -44,6 +46,7 @@ public class TrainDeckFragment extends Fragment implements ITrainDeckFragment
     {
         // Required empty public constructor
         trainPresenter = new TrainDeckPresenter(this);
+        faceUpImageViewList = new ArrayList<>();
     }
 
     /**
@@ -73,11 +76,11 @@ public class TrainDeckFragment extends Fragment implements ITrainDeckFragment
     {
         View v = inflater.inflate(R.layout.fragment_train_deck, container, false);
         // Grab components
-        faceUpImageView0 = (ImageView) v.findViewById(R.id.face_up0);
-        faceUpImageView1 = (ImageView) v.findViewById(R.id.face_up1);
-        faceUpImageView2 = (ImageView) v.findViewById(R.id.face_up2);
-        faceUpImageView3 = (ImageView) v.findViewById(R.id.face_up3);
-        faceUpImageView4 = (ImageView) v.findViewById(R.id.face_up4);
+        faceUpImageViewList.add((ImageView) v.findViewById(R.id.face_up0));
+        faceUpImageViewList.add((ImageView) v.findViewById(R.id.face_up1));
+        faceUpImageViewList.add((ImageView) v.findViewById(R.id.face_up2));
+        faceUpImageViewList.add((ImageView) v.findViewById(R.id.face_up3));
+        faceUpImageViewList.add((ImageView) v.findViewById(R.id.face_up4));
         trainDeckImageView = (ImageView) v.findViewById(R.id.train_deck_image);
         destDeckImageView = (ImageView) v.findViewById(R.id.destination_deck_image);
         trainCardsRemainTextView = (TextView) v.findViewById(R.id.train_deck_remain_text);
@@ -110,11 +113,17 @@ public class TrainDeckFragment extends Fragment implements ITrainDeckFragment
     @Override
     public void setFaceUpCards(List<TrainCard> cards)
     {
-        faceUpImageView0.setImageDrawable(getPictureFromColor(cards.get(0).getColor()));
-        faceUpImageView1.setImageDrawable(getPictureFromColor(cards.get(1).getColor()));
-        faceUpImageView2.setImageDrawable(getPictureFromColor(cards.get(2).getColor()));
-        faceUpImageView3.setImageDrawable(getPictureFromColor(cards.get(3).getColor()));
-        faceUpImageView4.setImageDrawable(getPictureFromColor(cards.get(4).getColor()));
+        for(int i = 0; i < 5; i++)
+        {
+            if(cards.size() > i) // card to add to view
+            {
+                faceUpImageViewList.get(i).setImageDrawable(getPictureFromColor(cards.get(i).getColor()));
+            }
+            else // no card to add set transparent
+            {
+                faceUpImageViewList.get(i).setImageResource(android.R.color.transparent);
+            }
+        }
     }
 
     @Override

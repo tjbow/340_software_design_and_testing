@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.widget.Toast;
 
 import com.group4.shared.Model.Game.Game;
+import com.group4.tickettoride.ClientModel.ClientModel;
 import com.group4.tickettoride.Game.GameFragments.DestCardPickerFragment;
 import com.group4.tickettoride.Game.GameFragments.PlayerHandFragment;
 import com.group4.tickettoride.Game.GameFragments.PlayerInfoFragment;
@@ -78,8 +79,11 @@ public class GameActivity extends AppCompatActivity implements IGameActivity {
                 .commit();
 
         // run the destination card picker at the beginning of play, 2 minimum at beginning of game
-        DialogFragment destPickerDialog = DestCardPickerFragment.newInstance(2);
-        destPickerDialog.show(this.getSupportFragmentManager(), "dialog");
+        if(!ClientModel.SINGLETON.getPlayer().isFirstDestCardsSelected())
+        {
+            DialogFragment destPickerDialog = DestCardPickerFragment.newInstance(2);
+            destPickerDialog.show(this.getSupportFragmentManager(), "dialog");
+        }
     }
 
     @Override

@@ -30,7 +30,24 @@ public class TrainCardDeck {
         this.cardDeck = cardDeck;
     }
 
-    public List<TrainCard> draw(){
+    /**
+     * Draw a single card from the deck, remove the card from the deck
+     * @return the drawn train card, null if 0 cards left
+     */
+    public TrainCard draw()
+    {
+        if(!cardDeck.isEmpty())
+        {
+            return cardDeck.remove(cardDeck.size() - 1);
+        }
+        else
+        {
+            return null;
+        }
+    }
+
+    public List<TrainCard> drawFour(){
+
         return cardDeck.subList((cardDeck.size() - 4), cardDeck.size());
     }
 

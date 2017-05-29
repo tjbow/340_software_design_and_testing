@@ -38,4 +38,9 @@ public interface IDestCardPickerPresenter
      */
     public List<DestinationCard> getCards();
 
+    /**
+     * Sets the players first destination cards selected
+     */
+    public void setFirstDestCardsSelected();
+
 }

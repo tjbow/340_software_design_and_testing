@@ -1,6 +1,7 @@
 package com.group4.tickettoride.ClientModel;
 
 import com.group4.shared.Model.ChatHistory;
+import com.group4.shared.Model.Deck.TrainCard;
 import com.group4.shared.Model.Map.City;
 import com.group4.shared.Model.Deck.Decks;
 import com.group4.shared.Model.Deck.DestinationCard;
@@ -104,14 +105,32 @@ public class ClientModel extends Observable {
                 break;
             case 5:
                 // Update number of destination cards for other players
+                for(int i = 0; i > game.getPlayerCount(); i++)
+                {
+                    Player curPlayer = game.getPlayers().get(i);
+                    if(!getPlayer().getUserName().equals(curPlayer.getUserName()))
+                    {
+                        curPlayer.getPlayerHand().getDestinationCards().add(new DestinationCard(911, "A", "B", 2));
+                    }
+                }
+
                 actionCounter++;
                 break;
             case 6:
                 // Update visible cards and number of invisible cards in train card deck
+                List<TrainCard> newCards = new ArrayList<>();
+                for(int i = 0; i < 5; i++)
+                {
+                    newCards.add(game.getDecks().getTrainCardDeck().draw());
+                }
+                game.getDecks().getFaceUpDeck().setFaceUpCards(newCards);
+                sendToObservers("New face up cards drawn. Next: Update number of cards in destination deck");
                 actionCounter++;
                 break;
             case 7:
                 // Update number of cards in destination card deck
+                game.getDecks().getDestinationCardDeck().draw();
+                sendToObservers("Update number of cards in destination deck");
                 actionCounter++;
                 break;
             case 8:

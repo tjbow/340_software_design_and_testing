@@ -71,7 +71,14 @@ public class DestinationCardDeck {
     }
 
     public List<DestinationCard> draw(){
-        return destDeck.subList((destDeck.size() - 3), destDeck.size());
+        int numDrawCards = 3;
+        if(destDeck.size() < 3)
+        {
+            numDrawCards = destDeck.size();
+        }
+        List<DestinationCard> drawnCards = destDeck.subList((destDeck.size() - numDrawCards), destDeck.size());
+        destDeck.removeAll(drawnCards);
+        return drawnCards;
     }
 
     public void add(DestinationCard destCard){

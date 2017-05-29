@@ -19,6 +19,8 @@ import android.widget.TextView;
 import com.group4.shared.Model.Deck.DestinationCard;
 import com.group4.tickettoride.R;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,9 +35,7 @@ import java.util.List;
 public class DestCardPickerFragment extends DialogFragment implements IDestCardPickerFragment
 {
     private IDestCardPickerPresenter destPresenter;
-    private ImageView imageView0;
-    private ImageView imageView1;
-    private ImageView imageView2;
+    private List<ImageView> destCardImageList;
     private Button confirmButton;
     private List<Integer> selectedImages;
 
@@ -52,7 +52,7 @@ public class DestCardPickerFragment extends DialogFragment implements IDestCardP
     {
         selectedImages = new ArrayList<>();
         destPresenter = new DestCardPickerPresenter(this);
-        // Required empty public constructor
+        destCardImageList = new ArrayList<>();
     }
 
     /**
@@ -102,28 +102,28 @@ public class DestCardPickerFragment extends DialogFragment implements IDestCardP
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_dest_card_picker, container);
         // grab layout items
-        imageView0 = (ImageView) v.findViewById(R.id.dest_picker0);
-        imageView1 = (ImageView) v.findViewById(R.id.dest_picker1);
-        imageView2 = (ImageView) v.findViewById(R.id.dest_picker2);
+        destCardImageList.add((ImageView) v.findViewById(R.id.dest_picker0));
+        destCardImageList.add((ImageView) v.findViewById(R.id.dest_picker1));
+        destCardImageList.add((ImageView) v.findViewById(R.id.dest_picker2));
         confirmButton = (Button)v.findViewById(R.id.desk_picker_button);
         setTextViews(v);
 
         // set on click listeners
-        imageView0.setOnClickListener(new View.OnClickListener() {
+        destCardImageList.get(0).setOnClickListener(new View.OnClickListener() {
             public void onClick(View v)
             {
                 handleImageClick(0);
             }
         });
 
-        imageView1.setOnClickListener(new View.OnClickListener() {
+        destCardImageList.get(1).setOnClickListener(new View.OnClickListener() {
             public void onClick(View v)
             {
                 handleImageClick(1);
             }
         });
 
-        imageView2.setOnClickListener(new View.OnClickListener() {
+        destCardImageList.get(2).setOnClickListener(new View.OnClickListener() {
             public void onClick(View v)
             {
                 handleImageClick(2);
@@ -194,16 +194,19 @@ public class DestCardPickerFragment extends DialogFragment implements IDestCardP
      */
     void setTextViews(View v)
     {
-        TextView textView0 = (TextView) v.findViewById(R.id.dest_text0);
-        TextView textView1 = (TextView) v.findViewById(R.id.dest_text1);
-        TextView textView2 = (TextView) v.findViewById(R.id.dest_text2);
+        List<TextView> textViewList = new ArrayList<>();
+        textViewList.add((TextView) v.findViewById(R.id.dest_text0));
+        textViewList.add((TextView) v.findViewById(R.id.dest_text1));
+        textViewList.add((TextView) v.findViewById(R.id.dest_text2));
 
         //Set properties
         confirmButton.setEnabled(false);
         List<DestinationCard> destCards = destPresenter.getCards();
-        textView0.setText(getDestText(destCards.get(0)));
-        textView1.setText(getDestText(destCards.get(1)));
-        textView2.setText(getDestText(destCards.get(2)));
+
+        for(int i = 0; i < destCards.size(); i++)
+        {
+            textViewList.get(i).setText(getDestText(destCards.get(0)));
+        }
     }
 
     /**
@@ -221,6 +224,7 @@ public class DestCardPickerFragment extends DialogFragment implements IDestCardP
     private void handleConfirm()
     {
         destPresenter.returnSelectedDestCards(getComplimentOfSelCards());
+        //destPresenter.setFirstDestCardsSelected();
         dismiss();
     }
 
@@ -260,13 +264,13 @@ public class DestCardPickerFragment extends DialogFragment implements IDestCardP
         switch(num)
         {
             case 0:
-                selImage = imageView0;
+                selImage = destCardImageList.get(0);
                 break;
             case 1:
-                selImage = imageView1;
+                selImage = destCardImageList.get(1);
                 break;
             case 2:
-                selImage = imageView2;
+                selImage = destCardImageList.get(2);
                 break;
             default:
                 throw new IndexOutOfBoundsException();

@@ -195,6 +195,12 @@ public class Game
             count--;
             if(count == 0)break;
         }
+
+        // Alternate implementation with draw method
+//        for(DestinationCard card : decks.getDestinationCardDeck().draw())
+//        {
+//            player.getPlayerHand().getDestinationCards().add(card);
+//        }
     }
 
     public void playerTurn_ReturnDestinationCards(String userName, List<DestinationCard> returnedCard)

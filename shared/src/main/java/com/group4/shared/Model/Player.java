@@ -29,12 +29,14 @@ public class Player {
     private int score;
     private boolean winning;
     private boolean turn;
+    private boolean firstDestCardsSelected;
 
     public Player(User user)
     {
         this.userName = user.getUsername();
         this.id = user.getId();
         this.turn = false;
+        this.firstDestCardsSelected = false;
     }
 
     public void initializeGame()
@@ -147,5 +149,15 @@ public class Player {
 
     public void setTurn(boolean turn) {
         this.turn = turn;
+    }
+
+    public boolean isFirstDestCardsSelected()
+    {
+        return firstDestCardsSelected;
+    }
+
+    public void setFirstDestCardsSelected(boolean firstDestCardsSelected)
+    {
+        this.firstDestCardsSelected = firstDestCardsSelected;
     }
 }
