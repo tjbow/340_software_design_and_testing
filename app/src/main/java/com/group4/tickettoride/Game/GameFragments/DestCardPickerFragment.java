@@ -224,7 +224,12 @@ public class DestCardPickerFragment extends DialogFragment implements IDestCardP
         confirmButton.setEnabled(false);
         List<DestinationCard> destCards = destPresenter.getCards();
 
-        for(int i = 0; i < destCards.size(); i++)
+        int upperlimit = 3;
+        if (destCards.size() < upperlimit)
+        {
+            upperlimit = destCards.size();
+        }
+        for(int i = 0; i < upperlimit; i++)
         {
             textViewList.get(i).setText(getDestText(destCards.get(i)));
         }
