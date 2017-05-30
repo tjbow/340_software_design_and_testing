@@ -16,7 +16,7 @@ import com.group4.tickettoride.Game.GameFragments.PlayerInfoFragment;
 import com.group4.tickettoride.Game.GameFragments.TrainDeckFragment;
 import com.group4.tickettoride.R;
 
-public class GameActivity extends AppCompatActivity implements IGameActivity {
+public class GameActivity extends AppCompatActivity implements IGameActivity, IMapActivity {
 
     private IGamePresenter presenter;
     private String gameName;
@@ -122,5 +122,10 @@ public class GameActivity extends AppCompatActivity implements IGameActivity {
         Intent i = new Intent(GameActivity.this, nextClass);
         startActivity(i);
         finish();
+    }
+
+    @Override
+    public void onOpenChat() {
+
     }
 }

@@ -210,6 +210,13 @@ public class GameMapView extends View {
             drawAngledRectangle(pt2, pt1, angle, r.getLength(), r.isHighlighted(), color, canvas);
         }
 
+        paint.setColor(Color.LTGRAY);
+
+        canvas.drawRect(0,0,150,100,paint);
+        paint.setColor(Color.BLACK);
+        paint.setTextSize(40);
+        canvas.drawText("Chat",45,75,paint);
+
         drawLabels(canvas);
 
     }
@@ -278,6 +285,12 @@ public class GameMapView extends View {
 
         Pt tapPt = new Pt(event.getX(),event.getY());
 
+
+        if(x <=150 && y <=100){
+            IMapActivity activity = (IMapActivity) getContext();
+            activity.onOpenChat();
+            return  super.onTouchEvent(event);
+        }
 
         for(City c : cities){
             Pt center = new Pt(c.getxConstraint()/100 * getWidth(),c.getyConstraint()/100 *getHeight());
