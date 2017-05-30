@@ -8,6 +8,7 @@ import com.group4.shared.Model.Deck.DestinationCard;
 import com.group4.shared.Model.Game.Game;
 import com.group4.shared.Model.Game.GameList;
 import com.group4.shared.Model.Game.GameStats;
+import com.group4.shared.Model.MessageList;
 import com.group4.shared.Model.Player;
 import com.group4.shared.Model.Deck.PlayerHand;
 import com.group4.shared.Model.Map.RouteList;
@@ -219,9 +220,19 @@ public class ClientModel extends Observable {
         sendToObservers(messageList);
     }
 
+    public MessageList getChatHistory()
+    {
+        return game.getChatHistory();
+    }
+
     public void setTurnHistory(TurnHistory turnHistory){
         game.setTurnHistory(turnHistory);
         sendToObservers(turnHistory);
+    }
+
+    public MessageList getTurnHistory()
+    {
+        return game.getTurnHistory();
     }
 
     public void setDecks(Decks decks){
