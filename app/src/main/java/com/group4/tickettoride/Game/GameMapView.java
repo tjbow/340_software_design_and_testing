@@ -16,6 +16,7 @@ import android.view.View;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.group4.shared.Model.Map.City;
+import com.group4.shared.Model.Map.PLAYER_COLOR;
 import com.group4.shared.Model.Map.RouteSegment;
 import com.group4.tickettoride.R;
 
@@ -38,6 +39,8 @@ public class GameMapView extends View {
     private List<City> cities = new ArrayList<>();
 
     private float CITY_RADIUS = 15;
+
+
 
     public GameMapView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
@@ -75,6 +78,11 @@ public class GameMapView extends View {
         setBackgroundResource(R.drawable.unitedstatesmap_2);  //set map as background
     }
 
+
+    /**
+     * Call this to update route information
+     * @param RouteSegments
+     */
     public void setRouteSegments(List<RouteSegment> RouteSegments){
 
         this.routeSegments = RouteSegments;
@@ -106,6 +114,22 @@ public class GameMapView extends View {
         }
     }
 
+    private int getPlayerColor(PLAYER_COLOR c){
+        switch (c){
+            case BLACK:
+                return Color.BLACK;
+            case GREEN:
+                return ContextCompat.getColor(getContext(),R.color.colorGreen);
+            case YELLOW:
+                return ContextCompat.getColor(getContext(),R.color.colorYellow);
+            case BLUE:
+                return ContextCompat.getColor(getContext(), R.color.colorBlue);
+            case RED:
+                return ContextCompat.getColor(getContext(),R.color.colorRed);
+        }
+        return 0xFFFFFF;
+    }
+
     private void drawRouteSegments(Canvas canvas){
 
         float width = getWidth();
@@ -113,14 +137,16 @@ public class GameMapView extends View {
 
         for(RouteSegment r : routeSegments){
             //translating from constraint to pixel value
-            float x1 = r.getX1Constraint()/100 * width;
-            float y1 = r.getY1Constraint()/100 * height;
-            float x2 = r.getX2Constraint()/100 * width;
-            float y2 = r.getY2Constraint()/100 * height;
+            if(r.isClaimed()) {
+                float x1 = r.getX1Constraint() / 100 * width;
+                float y1 = r.getY1Constraint() / 100 * height;
+                float x2 = r.getX2Constraint() / 100 * width;
+                float y2 = r.getY2Constraint() / 100 * height;
 
-            paint.setColor(getColor(r));
+                paint.setColor(getPlayerColor(r.getPlayer_color()));
 
-            canvas.drawLine(x1,y1,x2,y2,paint);
+                canvas.drawLine(x1, y1, x2, y2, paint);
+            }
         }
     }
 
@@ -183,7 +209,7 @@ public class GameMapView extends View {
         paint.setColor(Color.BLACK);
         paint.setStrokeWidth(getHeight()/100);
         paint.setTextSize(getWidth() *.01f);
-        //drawRouteSegments(canvas);
+
         drawCities(canvas);
         if(tap){
             canvas.drawText("You touched the line",30f,30f,paint);
@@ -209,6 +235,8 @@ public class GameMapView extends View {
 
             drawAngledRectangle(pt2, pt1, angle, r.getLength(), r.isHighlighted(), color, canvas);
         }
+
+        drawRouteSegments(canvas);
 
         paint.setColor(Color.LTGRAY);
 
@@ -240,7 +268,6 @@ public class GameMapView extends View {
         float y2 = end.y;
         float x2 = end.x;
 
-
         canvas.save();
         canvas.rotate(angleDeg);
 
@@ -249,8 +276,7 @@ public class GameMapView extends View {
 
         float newY2 = (float)(y2 * Math.cos(angle) -( x2 *Math.sin(angle)));
         float newX2 =(float)( y2*Math.sin(angle) + (x2*Math.cos(angle)));
-
-        //final float RECTANGLE_SCALER = getHeight() / 100;
+        
         final float RECTANGLE_SCALER = Math.max(getHeight(),getWidth())  *.008f;
 
         paint.setColor(Color.BLACK);

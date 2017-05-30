@@ -10,6 +10,7 @@ public class RouteSegment {
 
     String routeId;
     boolean claimed;
+
     Player owner;
     int length;
     int score;
@@ -19,6 +20,18 @@ public class RouteSegment {
     float y1Constraint;
     float x2Constraint;
     float y2Constraint;
+
+    public PLAYER_COLOR getPlayer_color() {
+        return player_color;
+    }
+
+    public void setPlayer_color(PLAYER_COLOR player_color) {
+        this.player_color = player_color;
+    }
+
+    PLAYER_COLOR player_color = null;
+
+
     boolean isHighlighted = false;
 
     public boolean isHighlighted() {
