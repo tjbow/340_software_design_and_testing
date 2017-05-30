@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import com.group4.shared.Model.Game.Game;
 import com.group4.tickettoride.ClientModel.ClientModel;
+import com.group4.tickettoride.Game.GameFragments.Chat_GameHistoryFragment;
 import com.group4.tickettoride.Game.GameFragments.DestCardPickerFragment;
 import com.group4.tickettoride.Game.GameFragments.PlayerHandFragment;
 import com.group4.tickettoride.Game.GameFragments.PlayerInfoFragment;
@@ -25,7 +26,7 @@ public class GameActivity extends AppCompatActivity implements IGameActivity, IM
     private TrainDeckFragment trainDeckFragment;
     private PlayerHandFragment playerHandFragment;
 
-
+    public final String CHAT_GAME_HISTORY_DIALOG = "Chat_GameHistoryDialog";
     private static final String EXTRA_GAME_NAME = "com.group4.tickettoride.Game.game_name";
 
     public static Intent newIntent(Context packageContext, String gameName)
@@ -126,6 +127,13 @@ public class GameActivity extends AppCompatActivity implements IGameActivity, IM
 
     @Override
     public void onOpenChat() {
+        showChat_GameHistoryDialog();
+    }
 
+    void showChat_GameHistoryDialog()
+    {
+        FragmentManager manager = getSupportFragmentManager();
+        Chat_GameHistoryFragment dialog = new Chat_GameHistoryFragment();
+        dialog.show(manager, CHAT_GAME_HISTORY_DIALOG);
     }
 }
