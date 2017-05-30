@@ -237,14 +237,15 @@ public class Chat_GameHistoryFragment extends DialogFragment {
 
     public String getMessageListType()
     {
-        if (chatButton.isSelected())
+        if (chatButton.isChecked())
         {
             return "chat";
         }
-        else
+        else if (gameHistoryButton.isChecked())
         {
             return "gameHistory";
         }
+        else return null;
     }
 
 }
