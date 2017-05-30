@@ -56,7 +56,10 @@ public class DestCardPickerPresenter implements Observer, IDestCardPickerPresent
         List<DestinationCard> returnCards = new ArrayList<>();
         for(Integer sel : selCards)
         {
-            returnCards.add(cards.get(sel));
+            if(sel < cards.size())
+            {
+                returnCards.add(cards.get(sel));
+            }
         }
         ServerProxy.SINGLETON.returnDestinationCard(returnCards);
     }

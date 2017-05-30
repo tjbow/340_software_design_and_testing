@@ -17,6 +17,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.group4.shared.Model.Deck.DestinationCard;
+import com.group4.tickettoride.ClientModel.DestinationCardHelper;
 import com.group4.tickettoride.R;
 
 import org.w3c.dom.Text;
@@ -105,6 +106,7 @@ public class DestCardPickerFragment extends DialogFragment implements IDestCardP
         destCardImageList.add((ImageView) v.findViewById(R.id.dest_picker0));
         destCardImageList.add((ImageView) v.findViewById(R.id.dest_picker1));
         destCardImageList.add((ImageView) v.findViewById(R.id.dest_picker2));
+        setImageViews(v);
         confirmButton = (Button)v.findViewById(R.id.desk_picker_button);
         setTextViews(v);
 
@@ -190,6 +192,27 @@ public class DestCardPickerFragment extends DialogFragment implements IDestCardP
     }
 
     /**
+     * Sets the image views
+     * @param v the current view
+     */
+    void setImageViews(View v)
+    {
+        for(int i = 0; i < 3; i++)
+        {
+            if(destPresenter.getCards().size() > i)
+            {
+                destCardImageList.get(i).setImageDrawable(
+                        DestinationCardHelper.getPictureId(destPresenter.getCards().get(i), getContext()));
+            }
+            else
+            {
+                destCardImageList.get(i).setImageResource(android.R.color.transparent);
+            }
+
+        }
+    }
+
+    /**
      * Set the text to the proper cities
      */
     void setTextViews(View v)
@@ -205,7 +228,7 @@ public class DestCardPickerFragment extends DialogFragment implements IDestCardP
 
         for(int i = 0; i < destCards.size(); i++)
         {
-            textViewList.get(i).setText(getDestText(destCards.get(0)));
+            textViewList.get(i).setText(getDestText(destCards.get(i)));
         }
     }
 
