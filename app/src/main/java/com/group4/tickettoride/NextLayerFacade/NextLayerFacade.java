@@ -55,8 +55,10 @@ public class NextLayerFacade implements INextLayerFacade {
     }
 
     @Override
-    public void sendMessage(String message) {
-        Message newMessage = new Message(message, ClientModel.SINGLETON.getUser().getUsername(), ClientModel.SINGLETON.getPlayer().getColor());
+    public void sendMessage(String message)
+    {
+        Message newMessage = new Message(message, ClientModel.SINGLETON.getUser().getUsername(),
+                ClientModel.SINGLETON.getPlayer().getColor());
         ServerProxy.SINGLETON.sendChat(newMessage);
     }
 

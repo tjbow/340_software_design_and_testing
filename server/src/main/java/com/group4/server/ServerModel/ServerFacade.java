@@ -20,6 +20,7 @@ import com.group4.shared.command.Client.CUpdateChatCommandData;
 import com.group4.shared.command.Client.CUpdateGameCommandData;
 import com.group4.shared.command.Client.CUpdateGameStatsCommandData;
 import com.group4.shared.command.Client.CUpdatePlayersCommandData;
+import com.group4.shared.command.Client.CUpdateTurnHistoryCommandData;
 
 import java.util.List;
 
@@ -318,6 +319,12 @@ public class ServerFacade implements IServer
         String userName = serverModel.getTempUser().getUsername();
         game.playerTurn_ReturnDestinationCards(userName, returnedCard);
 
+        Player player = game.getPlayerByUserName(userName);
+
+        //TODO: TYLER: fix turn history
+        Message message = new Message("Drew Destination Cards", player.getUserName(), player.getColor());
+        game.addTurn(message);
+
         CUpdateGameCommandData updateGameCommandData = new CUpdateGameCommandData();
         updateGameCommandData.setType("updategame");
         updateGameCommandData.setStatus(GAME_STATUS.ONGOING);
@@ -327,10 +334,18 @@ public class ServerFacade implements IServer
         updatePlayersCommandData.setType("updateplayers");
         updatePlayersCommandData.setPlayerData(game.getPlayers());
 
+        CUpdateTurnHistoryCommandData updateTurnHistoryCommandData = new CUpdateTurnHistoryCommandData();
+        updateTurnHistoryCommandData.setType("updateturn");
+        updateTurnHistoryCommandData.setTurnHistory(game.getTurnHistory());
+
         game.addCommand(updateGameCommandData);
         updateGameCommandData.setCommandNumber(game.getNewCommandIndex());
+
         game.addCommand(updatePlayersCommandData);
         updatePlayersCommandData.setCommandNumber(game.getNewCommandIndex());
+
+        game.addCommand(updateTurnHistoryCommandData);
+        updateTurnHistoryCommandData.setCommandNumber(game.getNewCommandIndex());
 
         int cardsSelected = 3 - returnedCard.size();
         System.out.println("Player " + serverModel.getTempUser().getUsername() +
