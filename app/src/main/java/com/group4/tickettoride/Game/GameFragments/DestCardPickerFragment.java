@@ -20,8 +20,6 @@ import com.group4.shared.Model.Deck.DestinationCard;
 import com.group4.tickettoride.ClientModel.DestinationCardHelper;
 import com.group4.tickettoride.R;
 
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -202,7 +200,7 @@ public class DestCardPickerFragment extends DialogFragment implements IDestCardP
             if(destPresenter.getCards().size() > i)
             {
                 destCardImageList.get(i).setImageDrawable(
-                        DestinationCardHelper.getPictureId(destPresenter.getCards().get(i), getContext()));
+                        DestinationCardHelper.getDestPicture(destPresenter.getCards().get(i), getContext()));
             }
             else
             {

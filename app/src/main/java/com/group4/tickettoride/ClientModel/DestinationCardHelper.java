@@ -19,7 +19,7 @@ public final class DestinationCardHelper
      * @param context context from the current activity
      * @return the drawable destination card
      */
-    public static Drawable getPictureId(DestinationCard card, Context context)
+    public static Drawable getDestPicture(DestinationCard card, Context context)
     {
         int id = 0;
         switch(card.getId())
