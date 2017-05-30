@@ -155,13 +155,12 @@ public class ClientFacade implements IClient
     //--------------------GAMEPLAY--------------------------------------------
     @Override
     public Results onUpdateGame(GAME_STATUS status, Decks deckState) {
-        //TODO: TYLER: update status and game deck
 
         Game game = ClientModel.SINGLETON.getGame();
 
         ClientModel.SINGLETON.setGame(game);
 
-        ClientModel.SINGLETON.sendToObservers(ClientModel.SINGLETON.getGame());
+        ClientModel.SINGLETON.setDecks(deckState);
 
         return null;
     }

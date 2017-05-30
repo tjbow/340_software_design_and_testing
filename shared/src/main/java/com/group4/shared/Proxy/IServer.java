@@ -1,6 +1,7 @@
 package com.group4.shared.Proxy;
 
 import com.group4.shared.Model.Deck.DestinationCard;
+import com.group4.shared.Model.Deck.TrainCard;
 import com.group4.shared.Model.Message;
 import com.group4.shared.Model.Results;
 import com.group4.shared.Model.User;
@@ -26,4 +27,5 @@ public interface IServer {
     Results sendChat(Message message);
     Results drawDestinationCards(String userName);
     Results returnDestinationCard(List<DestinationCard> returnedCard);
+    Results drawTrainCards(String userName);
 }

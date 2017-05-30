@@ -3,12 +3,14 @@ package com.group4.tickettoride.Network;
 import android.os.AsyncTask;
 
 import com.group4.shared.Model.Deck.DestinationCard;
+import com.group4.shared.Model.Deck.TrainCard;
 import com.group4.shared.Model.Message;
 import com.group4.shared.Model.Results;
 import com.group4.shared.Model.User;
 import com.group4.shared.Proxy.IServer;
 import com.group4.shared.command.Server.CreateGameCommandData;
 import com.group4.shared.command.Server.DrawDestCardsCommandData;
+import com.group4.shared.command.Server.DrawTrainCardsCommandData;
 import com.group4.shared.command.Server.EndGameCommandData;
 import com.group4.shared.command.Server.GetGameListCommandData;
 import com.group4.shared.command.Server.GetPendingCommandsData;
@@ -182,6 +184,16 @@ public class ServerProxy implements IServer
         ReturnDestCardCommandData cmd = new ReturnDestCardCommandData();
         cmd.setType("returndestcard");
         cmd.setReturnedCard(returnedCard);
+        threadIt(cmd);
+        return null;
+    }
+
+    @Override
+    public Results drawTrainCards(String userName)
+    {
+        DrawTrainCardsCommandData cmd = new DrawTrainCardsCommandData();
+        cmd.setType("drawtraincards");
+        cmd.setUserName(userName);
         threadIt(cmd);
         return null;
     }

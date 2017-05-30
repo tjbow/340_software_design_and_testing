@@ -228,6 +228,22 @@ public class Game
         }
     }
 
+    public void playerTurn_DrawTrainCards(String userName)
+    {
+        //TODO: TYLER: fix in a later phase to choose draw location
+        Player player = getPlayerByUserName(userName);
+
+        int count = 2;
+        for(Iterator<TrainCard> iterator = decks.getTrainCardDeck().getCardDeck().iterator(); iterator.hasNext();)
+        {
+            TrainCard current = iterator.next();
+            iterator.remove();
+            player.getPlayerHand().getTrainCards().getCardDeck().add(current);
+            count--;
+            if(count == 0)break;
+        }
+    }
+
 //    TURN HISTORY
     public TurnHistory getTurnHistory()
     {

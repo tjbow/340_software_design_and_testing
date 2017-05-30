@@ -18,7 +18,7 @@ import java.util.List;
  * Created by tyler on 5/16/17.
  */
 
-public class ServerProxyNoAsync implements IServer
+public class ServerProxyNoAsync
 {
     private ServerProxyNoAsync()
     {
@@ -110,7 +110,6 @@ public class ServerProxyNoAsync implements IServer
         return null;
     }
 
-    @Override
     public Results sendChat(Message message)
     {
         SendChatCommandData cmd = new SendChatCommandData();
@@ -120,19 +119,16 @@ public class ServerProxyNoAsync implements IServer
         return null;
     }
 
-    @Override
     public Results getPendingCommands(User user, int lastCmdExecuted)
     {
         return null;
     }
 
-    @Override
     public Results drawDestinationCards(String userName)
     {
         return null;
     }
 
-    @Override
     public Results returnDestinationCard(List<DestinationCard> returnedCard)
     {
         return null;

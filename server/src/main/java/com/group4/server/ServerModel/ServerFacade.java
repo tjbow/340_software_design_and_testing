@@ -2,6 +2,7 @@ package com.group4.server.ServerModel;
 
 import com.group4.shared.Model.CommandList;
 import com.group4.shared.Model.Deck.DestinationCard;
+import com.group4.shared.Model.Deck.TrainCard;
 import com.group4.shared.Model.Game.GAME_STATUS;
 import com.group4.shared.Model.Game.Game;
 import com.group4.shared.Model.Message;
@@ -336,5 +337,29 @@ public class ServerFacade implements IServer
                 " selected " + cardsSelected + " destination cards.");
 
         return new Results(true, "Destination cards selected", null, null);
+    }
+
+    @Override
+    public Results drawTrainCards(String userName)
+    {
+        Game game = serverModel.getGameList().getGameByUsername(userName);
+
+        game.playerTurn_DrawTrainCards(userName);
+
+        CUpdateGameCommandData updateGameCommandData = new CUpdateGameCommandData();
+        updateGameCommandData.setType("updategame");
+        updateGameCommandData.setStatus(GAME_STATUS.ONGOING);
+        updateGameCommandData.setDeckState(game.getDecks());
+
+        CUpdatePlayersCommandData updatePlayersCommandData = new CUpdatePlayersCommandData();
+        updatePlayersCommandData.setType("updateplayers");
+        updatePlayersCommandData.setPlayerData(game.getPlayers());
+
+        game.addCommand(updateGameCommandData);
+        updateGameCommandData.setCommandNumber(game.getNewCommandIndex());
+        game.addCommand(updatePlayersCommandData);
+        updatePlayersCommandData.setCommandNumber(game.getNewCommandIndex());
+
+        return new Results(true, "Train cards drawn", null, null);
     }
 }

@@ -15,11 +15,11 @@
             android:name=".Login_Register.Login_RegisterActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:screenOrientation="portrait">
-            <!--<intent-filter>-->
-                <!--<action android:name="android.intent.action.MAIN" />-->
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-                <!--<category android:name="android.intent.category.LAUNCHER" />-->
-            <!--</intent-filter>-->
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
              <!--&lt;!&ndash;<intent-filter>&ndash;&gt;-->
              <!--<action android:name="android.intent.action.MAIN" />-->
 
@@ -56,11 +56,11 @@
         <activity android:name=".Game.testActivity"
               android:screenOrientation="landscape">
 
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+            <!--<intent-filter>-->
+                <!--<action android:name="android.intent.action.MAIN" />-->
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+                <!--<category android:name="android.intent.category.LAUNCHER" />-->
+            <!--</intent-filter>-->
 
         </activity>
     </application>

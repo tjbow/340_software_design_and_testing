@@ -85,7 +85,8 @@ public class ClientModel extends Observable {
             case 2:
                 //TODO: TYLER: add a server call to draw train cards
                 // add train cards for this player
-                sendToObservers("Press again.");
+                ServerProxy.SINGLETON.drawTrainCards(user.getUsername());
+                sendToObservers("Train cards added. Next: Remove destination cards");
                 actionCounter++;
                 break;
             case 3:
@@ -106,15 +107,19 @@ public class ClientModel extends Observable {
                 break;
             case 5:
                 // Update number of destination cards for other players
-                for(int i = 0; i > game.getPlayerCount(); i++)
+//                for(int i = 0; i > game.getPlayerCount(); i++)
+//                {
+//                    Player curPlayer = game.getPlayers().get(i);
+//                    if(!getPlayer().getUserName().equals(curPlayer.getUserName()))
+//                    {
+//                        curPlayer.getPlayerHand().getDestinationCards().add(new DestinationCard(911, "A", "B", 2));
+//                    }
+//                }
+                for(Player player : game.getPlayers())
                 {
-                    Player curPlayer = game.getPlayers().get(i);
-                    if(!getPlayer().getUserName().equals(curPlayer.getUserName()))
-                    {
-                        curPlayer.getPlayerHand().getDestinationCards().add(new DestinationCard(911, "A", "B", 2));
-                    }
+                    ServerProxy.SINGLETON.drawDestinationCards(player.getUserName());
                 }
-
+                sendToObservers("Add Dest Cards for other players. Next: Update face up card decks");
                 actionCounter++;
                 break;
             case 6:
@@ -130,8 +135,8 @@ public class ClientModel extends Observable {
                 break;
             case 7:
                 // Update number of cards in destination card deck
-                game.getDecks().getDestinationCardDeck().draw();
-                sendToObservers("Update number of cards in destination deck");
+                ServerProxy.SINGLETON.drawDestinationCards(player.getUserName());
+                sendToObservers("Update number of cards in destination deck. Next: Add claimed route for any player");
                 actionCounter++;
                 break;
             case 8:
@@ -198,8 +203,10 @@ public class ClientModel extends Observable {
         return game;
     }
 
-    public void setGame(Game game) {
+    public void setGame(Game game)
+    {
         this.game = game;
+        sendToObservers(ClientModel.SINGLETON.getGame());
     }
 
     public void setGameIfUserIsPlaying()
@@ -235,9 +242,14 @@ public class ClientModel extends Observable {
         return game.getTurnHistory();
     }
 
-    public void setDecks(Decks decks){
-        game.setDecks(decks);
-        sendToObservers(decks);
+    public void setDecks(Decks decks)
+    {
+        //used by updateGame when it receives a non-null deck
+        if(decks != null)
+        {
+            game.setDecks(decks);
+            sendToObservers(decks);
+        }
     }
 
     public void updateMap(RouteList routeList, List<City> cities){
