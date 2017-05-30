@@ -41,6 +41,9 @@ public class GameMapView extends View {
     private float CITY_RADIUS = 15;
 
 
+    public List<RouteSegment> getRouteSegments() {
+        return routeSegments;
+    }
 
     public GameMapView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
