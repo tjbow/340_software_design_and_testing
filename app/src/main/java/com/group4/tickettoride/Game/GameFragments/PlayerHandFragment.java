@@ -252,7 +252,7 @@ public class PlayerHandFragment extends Fragment implements IPlayerHandFragment
         public void onBindViewHolder(PlayerHandFragment.DestinationCardHolder holder, int position)
         {
             DestinationCard card = cards.get(position);
-            Drawable cardImage = cardImages.get(position);
+            Drawable cardImage = cardImages.get(card.getId());
             holder.bindCard(card, cardImage);
         }
         @Override
@@ -326,16 +326,36 @@ public class PlayerHandFragment extends Fragment implements IPlayerHandFragment
         //DESTINATION CARDS
         destCardImages = new ArrayList<>();
         playerDestCards = new ArrayList<>();
-        destCardImages.add(ContextCompat.getDrawable(this.getContext(), R.drawable.traincardlocamotive));
-        destCardImages.add(ContextCompat.getDrawable(this.getContext(), R.drawable.traincardlocamotive));
-        destCardImages.add(ContextCompat.getDrawable(this.getContext(), R.drawable.traincardlocamotive));
-        destCardImages.add(ContextCompat.getDrawable(this.getContext(), R.drawable.traincardlocamotive));
-        destCardImages.add(ContextCompat.getDrawable(this.getContext(), R.drawable.traincardlocamotive));
-        destCardImages.add(ContextCompat.getDrawable(this.getContext(), R.drawable.traincardlocamotive));
-        destCardImages.add(ContextCompat.getDrawable(this.getContext(), R.drawable.traincardlocamotive));
-        destCardImages.add(ContextCompat.getDrawable(this.getContext(), R.drawable.traincardlocamotive));
-        destCardImages.add(ContextCompat.getDrawable(this.getContext(), R.drawable.traincardlocamotive));
-
+        destCardImages.add(ContextCompat.getDrawable(this.getContext(), R.drawable.la_ny));
+        destCardImages.add(ContextCompat.getDrawable(this.getContext(), R.drawable.duluth_houston));
+        destCardImages.add(ContextCompat.getDrawable(this.getContext(), R.drawable.saultstemarie_nashville));
+        destCardImages.add(ContextCompat.getDrawable(this.getContext(), R.drawable.ny_atlanta));
+        destCardImages.add(ContextCompat.getDrawable(this.getContext(), R.drawable.portland_nashville));
+        destCardImages.add(ContextCompat.getDrawable(this.getContext(), R.drawable.vancouver_montreal));
+        destCardImages.add(ContextCompat.getDrawable(this.getContext(), R.drawable.duluth_elpaso));
+        destCardImages.add(ContextCompat.getDrawable(this.getContext(), R.drawable.toronto_miami));
+        destCardImages.add(ContextCompat.getDrawable(this.getContext(), R.drawable.portland_phoenix));
+        destCardImages.add(ContextCompat.getDrawable(this.getContext(), R.drawable.dallas_ny));
+        destCardImages.add(ContextCompat.getDrawable(this.getContext(), R.drawable.calgary_slc));
+        destCardImages.add(ContextCompat.getDrawable(this.getContext(), R.drawable.calgary_phoenix));
+        destCardImages.add(ContextCompat.getDrawable(this.getContext(), R.drawable.la_miami));
+        destCardImages.add(ContextCompat.getDrawable(this.getContext(), R.drawable.winnipeg_littlerock));
+        destCardImages.add(ContextCompat.getDrawable(this.getContext(), R.drawable.sanfrancisco_atlanta));
+        destCardImages.add(ContextCompat.getDrawable(this.getContext(), R.drawable.kansascity_houston));
+        destCardImages.add(ContextCompat.getDrawable(this.getContext(), R.drawable.la_chicago));
+        destCardImages.add(ContextCompat.getDrawable(this.getContext(), R.drawable.denver_pittsburgh));
+        destCardImages.add(ContextCompat.getDrawable(this.getContext(), R.drawable.chicago_santafe));
+        destCardImages.add(ContextCompat.getDrawable(this.getContext(), R.drawable.vancouver_santafe));
+        destCardImages.add(ContextCompat.getDrawable(this.getContext(), R.drawable.boston_miami));
+        destCardImages.add(ContextCompat.getDrawable(this.getContext(), R.drawable.chicago_neworleans));
+        destCardImages.add(ContextCompat.getDrawable(this.getContext(), R.drawable.montreal_atlanta));
+        destCardImages.add(ContextCompat.getDrawable(this.getContext(), R.drawable.seattle_ny));
+        destCardImages.add(ContextCompat.getDrawable(this.getContext(), R.drawable.denver_elpaso));
+        destCardImages.add(ContextCompat.getDrawable(this.getContext(), R.drawable.helena_la));
+        destCardImages.add(ContextCompat.getDrawable(this.getContext(), R.drawable.winnipeg_houston));
+        destCardImages.add(ContextCompat.getDrawable(this.getContext(), R.drawable.montreal_newlorleans));
+        destCardImages.add(ContextCompat.getDrawable(this.getContext(), R.drawable.saultstemarie_oklahomacity));
+        destCardImages.add(ContextCompat.getDrawable(this.getContext(), R.drawable.seattle_la));
     }
 
     // TODO: Rename method, update argument and hook method into UI event

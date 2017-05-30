@@ -83,7 +83,6 @@ public class ClientModel extends Observable {
                 actionCounter++;
                 break;
             case 2:
-                //TODO: TYLER: add a server call to draw train cards
                 // add train cards for this player
                 ServerProxy.SINGLETON.drawTrainCards(user.getUsername());
                 sendToObservers("Train cards added. Next: Remove destination cards");
@@ -107,19 +106,11 @@ public class ClientModel extends Observable {
                 break;
             case 5:
                 // Update number of destination cards for other players
-//                for(int i = 0; i > game.getPlayerCount(); i++)
-//                {
-//                    Player curPlayer = game.getPlayers().get(i);
-//                    if(!getPlayer().getUserName().equals(curPlayer.getUserName()))
-//                    {
-//                        curPlayer.getPlayerHand().getDestinationCards().add(new DestinationCard(911, "A", "B", 2));
-//                    }
-//                }
                 for(Player player : game.getPlayers())
                 {
                     ServerProxy.SINGLETON.drawDestinationCards(player.getUserName());
                 }
-                sendToObservers("Add Dest Cards for other players. Next: Update face up card decks");
+                sendToObservers("Added Dest Cards for other players. Next: Update face up card decks");
                 actionCounter++;
                 break;
             case 6:
