@@ -302,11 +302,11 @@ public class DestCardPickerFragment extends DialogFragment implements IDestCardP
         // if already selected, deselect
         if(!selectedImages.contains(num))
         {
-            selImage.setBackgroundColor(Color.BLACK);
+            selImage.setBackgroundColor(Color.argb(100,0,0,255));
         }
         else
         {
-            selImage.setBackgroundColor(Color.WHITE);
+            selImage.setBackgroundColor(Color.argb(0,0,0,0));
         }
     }
 

@@ -76,6 +76,7 @@
                     android:layout_weight="0.3"
                     android:clickable="true"
                     android:focusable="true"
+                    android:padding="5dp"
                     android:src="@drawable/destticket"/>
                 <Space
                     android:layout_width="0dip"
@@ -86,9 +87,10 @@
                     android:id="@+id/dest_picker1"
                     android:layout_width="0dip"
                     android:layout_height="match_parent"
+                    android:layout_weight="0.3"
                     android:clickable="true"
                     android:focusable="true"
-                    android:layout_weight="0.3" android:src="@drawable/destticket"/>
+                    android:padding="5dp" android:src="@drawable/destticket"/>
                 <Space
                     android:layout_width="0dip"
                     android:layout_height="match_parent"
@@ -98,9 +100,10 @@
                     android:id="@+id/dest_picker2"
                     android:layout_width="0dip"
                     android:layout_height="match_parent"
+                    android:layout_weight="0.3"
                     android:clickable="true"
                     android:focusable="true"
-                    android:layout_weight="0.3" android:src="@drawable/destticket"/>
+                    android:padding="5dp" android:src="@drawable/destticket"/>
                 <Space
                     android:layout_width="0dip"
                     android:layout_height="match_parent"
