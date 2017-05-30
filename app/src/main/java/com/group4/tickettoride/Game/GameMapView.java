@@ -212,10 +212,10 @@ public class GameMapView extends View {
 
         paint.setColor(Color.LTGRAY);
 
-        canvas.drawRect(0,0,150,100,paint);
+        canvas.drawRect(0,0,125,100,paint);
         paint.setColor(Color.BLACK);
         paint.setTextSize(40);
-        canvas.drawText("Chat",45,75,paint);
+        canvas.drawText("Chat",25,75,paint);
 
         drawLabels(canvas);
 
