@@ -215,7 +215,4 @@ public class GameListActivity extends AppCompatActivity implements IGameListActi
         //TODO @john: implement
     }
 
-    public IGameListPresenter getPresenter() {
-        return presenter;
-    }
 }

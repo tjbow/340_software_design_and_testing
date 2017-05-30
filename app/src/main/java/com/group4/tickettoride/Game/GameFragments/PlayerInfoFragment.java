@@ -4,10 +4,13 @@ package com.group4.tickettoride.Game.GameFragments;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+
+import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.group4.shared.Model.Player;
@@ -86,6 +89,10 @@ public class PlayerInfoFragment extends Fragment implements IPlayerInfoFragment{
     public static final String DEST_CARDS = "destinations";
     public static final String TRAIN_CARS = "trains";
 
+    private static final String CHAT_GAME_HISTORY_DIALOG = "Chat_GameHistoryDialog";
+
+    private LinearLayout layout;
+
     private PlayerInfoPresenter presenter;
 
 
@@ -106,9 +113,24 @@ public class PlayerInfoFragment extends Fragment implements IPlayerInfoFragment{
 
         initializePlayerViews(v);
 
+        layout = (LinearLayout) v.findViewById(R.id.player_info_fragment_layout);
+        layout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showDialog();
+            }
+        });
+
         this.presenter = new PlayerInfoPresenter(this);
 
         return v;
+    }
+
+    void showDialog()
+    {
+        FragmentManager manager = getFragmentManager();
+        Chat_GameHistoryFragment dialog = new Chat_GameHistoryFragment();
+        dialog.show(manager, CHAT_GAME_HISTORY_DIALOG);
     }
 
     public static PlayerInfoFragment newInstance()

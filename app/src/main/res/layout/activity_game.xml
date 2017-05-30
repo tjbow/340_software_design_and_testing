@@ -9,27 +9,6 @@
     android:orientation="horizontal"
     android:gravity="center">
 
-    <!--<TextView-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:text="You are currently gaming. :)"-->
-        <!--android:textSize="25sp"-->
-        <!--android:layout_marginBottom="16dp"/>-->
-
-    <!--<TextView-->
-        <!--android:id="@+id/current_players"-->
-        <!--android:text="Player1, Player2, Player3"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_marginBottom="16dp"/>-->
-
-    <!--<Button-->
-        <!--android:id="@+id/endgame_button"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:text="End Game"-->
-        <!--android:layout_marginTop="32dp"/>-->
-
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="match_parent"
@@ -46,13 +25,6 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="0.7"/>
-
-        <!--<FrameLayout-->
-            <!--android:id="@+id/map_fragment"-->
-            <!--android:background="@color/colorAccent"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="0dp"-->
-            <!--android:layout_weight="0.7"/>-->
 
         <FrameLayout
             android:id="@+id/playerHand_fragment"

@@ -1,5 +1,6 @@
 package com.group4.shared.Model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -8,7 +9,7 @@ import java.util.List;
 
 public class MessageList {
 
-    private List<Message> messageList;
+    private List<Message> messageList = new ArrayList<>();
 
     public List<Message> getMessageList() {
         return messageList;
