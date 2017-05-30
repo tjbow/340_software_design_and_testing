@@ -161,7 +161,7 @@ public class Chat_GameHistoryFragment extends DialogFragment {
             switch(colorString)
             {
                 case Player.BLUE:
-                    return R.color.colorBlack;
+                    return R.color.colorBlue;
                 case Player.RED:
                     return R.color.colorRed;
                 case Player.GREEN:
@@ -233,6 +233,18 @@ public class Chat_GameHistoryFragment extends DialogFragment {
     public void clearMessageText()
     {
         messageToSendText.setText("");
+    }
+
+    public String getMessageListType()
+    {
+        if (chatButton.isSelected())
+        {
+            return "chat";
+        }
+        else
+        {
+            return "gameHistory";
+        }
     }
 
 }

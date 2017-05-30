@@ -31,10 +31,12 @@ public class Chat_GameHistoryPresenter implements Observer{
         if (arg.getClass() == ChatHistory.class)
         {
             this.chatMessages = (ChatHistory) arg;
+            updateMessages();
         }
         else if (arg.getClass() == TurnHistory.class)
         {
             this.gameHistory = (TurnHistory) arg;
+            updateMessages();
         }
     }
 
@@ -56,5 +58,17 @@ public class Chat_GameHistoryPresenter implements Observer{
         fragment.clearMessageText();
         //call next layer facade sendmessage
         NextLayerFacade.SINGLETON.sendMessage(message);
+    }
+
+    private void updateMessages()
+    {
+        if (fragment.getMessageListType().equals("chat"))
+        {
+            fragment.setMessageList(chatMessages.getMessageList());
+        }
+        else if (fragment.getMessageListType().equals("gameHistory"))
+        {
+            fragment.setMessageList(gameHistory.getMessageList());
+        }
     }
 }
