@@ -11,6 +11,7 @@ public class Decks {
     private TrainCardDeck trainCardDeck;
     private DestinationCardDeck destinationCardDeck;
     private FaceUpDeck faceUpDeck;
+    private TrainCardDeck discardDeck;
 
     public TrainCardDeck getTrainCardDeck() {
         return trainCardDeck;
@@ -36,6 +37,14 @@ public class Decks {
         this.faceUpDeck = faceUpDeck;
     }
 
+    public TrainCardDeck getDiscardDeck() {
+        return discardDeck;
+    }
+
+    public void setDiscardDeck(TrainCardDeck discardDeck) {
+        this.discardDeck = discardDeck;
+    }
+
     public void startGameDeck()
     {
         initializeTrainCardDeck();
@@ -57,9 +66,12 @@ public class Decks {
             trainCardDeck.add(new TrainCard(CARD_COLOR.PURPLE, false));
             trainCardDeck.add(new TrainCard(CARD_COLOR.RED, false));
             trainCardDeck.add(new TrainCard(CARD_COLOR.WHITE, false));
+        }
 
+        for(int i = 0; i < 14; i++){
             trainCardDeck.add(new TrainCard(CARD_COLOR.RAINBOW, false));
         }
+
         trainCardDeck.shuffle();
     }
 
@@ -87,5 +99,10 @@ public class Decks {
         {
             card.setVisible(true);
         }
+    }
+
+    public void shuffleDiscard(){
+        trainCardDeck.getCardDeck().addAll(discardDeck.getCardDeck());
+        trainCardDeck.shuffle();
     }
 }
