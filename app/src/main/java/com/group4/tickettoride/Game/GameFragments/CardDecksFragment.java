@@ -21,12 +21,12 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link TrainDeckFragment.OnFragmentInteractionListener} interface
+ * {@link CardDecksFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link TrainDeckFragment#newInstance} factory method to
+ * Use the {@link CardDecksFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class TrainDeckFragment extends Fragment implements ITrainDeckFragment
+public class CardDecksFragment extends Fragment implements ITrainDeckFragment
 {
     ITrainDeckPresenter trainPresenter;
     List<ImageView> faceUpImageViewList;
@@ -42,10 +42,10 @@ public class TrainDeckFragment extends Fragment implements ITrainDeckFragment
 
     private OnFragmentInteractionListener mListener;
 
-    public TrainDeckFragment()
+    public CardDecksFragment()
     {
         // Required empty public constructor
-        trainPresenter = new TrainDeckPresenter(this);
+        trainPresenter = new CardDecksPresenter(this);
         faceUpImageViewList = new ArrayList<>();
     }
 
@@ -53,12 +53,12 @@ public class TrainDeckFragment extends Fragment implements ITrainDeckFragment
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
      *
-     * @return A new instance of fragment TrainDeckFragment.
+     * @return A new instance of fragment CardDecksFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static TrainDeckFragment newInstance()
+    public static CardDecksFragment newInstance()
     {
-        TrainDeckFragment fragment = new TrainDeckFragment();
+        CardDecksFragment fragment = new CardDecksFragment();
         Bundle args = new Bundle();
         fragment.setArguments(args);
         return fragment;

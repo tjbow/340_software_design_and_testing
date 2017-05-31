@@ -13,11 +13,11 @@ import java.util.Observer;
  * Created by Tom on 5/24/2017.
  */
 
-public class TrainDeckPresenter implements ITrainDeckPresenter, Observer
+public class CardDecksPresenter implements ITrainDeckPresenter, Observer
 {
     ITrainDeckFragment trainFragment;
 
-    TrainDeckPresenter(ITrainDeckFragment inTrainFragment)
+    CardDecksPresenter(ITrainDeckFragment inTrainFragment)
     {
         trainFragment = inTrainFragment;
         ClientModel.SINGLETON.addObserver(this);

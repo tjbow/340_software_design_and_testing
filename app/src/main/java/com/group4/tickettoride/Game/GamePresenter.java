@@ -9,6 +9,7 @@ import com.group4.tickettoride.Login_Register.Login_RegisterActivity;
 import com.group4.tickettoride.NextLayerFacade.NextLayerFacade;
 import com.group4.tickettoride.R;
 
+import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -89,6 +90,10 @@ public class GamePresenter implements IGamePresenter, Observer
                 o.deleteObserver(this);
                 activity.startNextActivity(GameListActivity.class);
             }
+        }
+        else if(arg.getClass() == ArrayList.class)
+        {
+
         }
     }
 

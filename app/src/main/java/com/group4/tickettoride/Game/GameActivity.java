@@ -14,7 +14,7 @@ import com.group4.tickettoride.Game.GameFragments.Chat_GameHistoryFragment;
 import com.group4.tickettoride.Game.GameFragments.DestCardPickerFragment;
 import com.group4.tickettoride.Game.GameFragments.PlayerHandFragment;
 import com.group4.tickettoride.Game.GameFragments.PlayerInfoFragment;
-import com.group4.tickettoride.Game.GameFragments.TrainDeckFragment;
+import com.group4.tickettoride.Game.GameFragments.CardDecksFragment;
 import com.group4.tickettoride.R;
 
 public class GameActivity extends AppCompatActivity implements IGameActivity, IMapActivity {
@@ -23,7 +23,7 @@ public class GameActivity extends AppCompatActivity implements IGameActivity, IM
     private String gameName;
     private Game game;
     private PlayerInfoFragment playerInfoFragment;
-    private TrainDeckFragment trainDeckFragment;
+    private CardDecksFragment mCardDecksFragment;
     private PlayerHandFragment playerHandFragment;
 
     public final String CHAT_GAME_HISTORY_DIALOG = "Chat_GameHistoryDialog";
@@ -62,9 +62,9 @@ public class GameActivity extends AppCompatActivity implements IGameActivity, IM
         }
 
 
-        trainDeckFragment = (TrainDeckFragment) fm.findFragmentById(R.id.trainDeck_fragment);
-        if (trainDeckFragment == null) {
-            trainDeckFragment = trainDeckFragment.newInstance();
+        mCardDecksFragment = (CardDecksFragment) fm.findFragmentById(R.id.trainDeck_fragment);
+        if (mCardDecksFragment == null) {
+            mCardDecksFragment = mCardDecksFragment.newInstance();
         }
 
         playerHandFragment = (PlayerHandFragment) fm.findFragmentById(R.id.playerHand_fragment);
@@ -75,7 +75,7 @@ public class GameActivity extends AppCompatActivity implements IGameActivity, IM
 
         fm.beginTransaction()
                 .add(R.id.playerInfo_fragment, playerInfoFragment)
-                .add(R.id.trainDeck_fragment, trainDeckFragment)
+                .add(R.id.trainDeck_fragment, mCardDecksFragment)
                 .add(R.id.playerHand_fragment, playerHandFragment)
                 .commit();
 
