@@ -7,6 +7,7 @@ import com.group4.tickettoride.ClientModel.ClientModel;
 import com.group4.tickettoride.GameList.GameListActivity;
 import com.group4.tickettoride.Login_Register.Login_RegisterActivity;
 import com.group4.tickettoride.NextLayerFacade.NextLayerFacade;
+import com.group4.tickettoride.R;
 
 import java.util.Observable;
 import java.util.Observer;
@@ -18,11 +19,14 @@ import java.util.Observer;
 public class GamePresenter implements IGamePresenter, Observer
 {
     private GameActivity activity;
+    private GameMapView gameMapView;
     private Game game;
 
     public GamePresenter(GameActivity activity)
     {
         this.activity = activity;
+        this.gameMapView = (GameMapView) activity.findViewById(R.id.game_map_view);
+        ClientModel.SINGLETON.setRouteSegments(gameMapView.getRouteSegments());
         getGame();
         ClientModel.SINGLETON.addObserver(this);
     }
@@ -55,6 +59,8 @@ public class GamePresenter implements IGamePresenter, Observer
     @Override
     public void update(Observable o, final Object arg)
     {
+        // temp route segments code
+        gameMapView.setRouteSegments(ClientModel.SINGLETON.getRouteSegments());
         if(arg.getClass() == Boolean.class)
         {
             //do not use (in GamePresenter only)

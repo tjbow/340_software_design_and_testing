@@ -8,6 +8,8 @@ import com.group4.shared.Model.Deck.DestinationCard;
 import com.group4.shared.Model.Game.Game;
 import com.group4.shared.Model.Game.GameList;
 import com.group4.shared.Model.Game.GameStats;
+import com.group4.shared.Model.Map.PLAYER_COLOR;
+import com.group4.shared.Model.Map.RouteSegment;
 import com.group4.shared.Model.MessageList;
 import com.group4.shared.Model.Player;
 import com.group4.shared.Model.Deck.PlayerHand;
@@ -35,6 +37,8 @@ public class ClientModel extends Observable {
     private Player player;
     private Game game;
 
+    private List<RouteSegment> routeSegments;
+
     private int actionCounter;
 
     public static ClientModel SINGLETON = new ClientModel();
@@ -47,6 +51,7 @@ public class ClientModel extends Observable {
         this.user = user;
         this.gameList = gameList;
         this.commandIDIndex = 0;
+        this.routeSegments = new ArrayList<>();
     }
 
     public void clear()
@@ -133,6 +138,10 @@ public class ClientModel extends Observable {
             case 8:
                 // Add claimed route (for any player)
                 actionCounter++;
+                routeSegments.get(0).setClaimed(true);
+                routeSegments.get(0).setOwner(getPlayer());
+                routeSegments.get(0).setPlayer_color(PLAYER_COLOR.BLUE);
+                sendToObservers("Added claimed route");
                 break;
             case 9:
                 // Add chat message from any player
@@ -319,5 +328,15 @@ public class ClientModel extends Observable {
         setChanged();
         notifyObservers(arg);
         clearChanged();
+    }
+
+    public List<RouteSegment> getRouteSegments()
+    {
+        return routeSegments;
+    }
+
+    public void setRouteSegments(List<RouteSegment> routeSegments)
+    {
+        this.routeSegments = routeSegments;
     }
 }
