@@ -11,6 +11,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -89,6 +90,17 @@ public class Chat_GameHistoryFragment extends DialogFragment {
                 {
                     sendButton.setEnabled(false);
                 }
+            }
+        });
+        messageToSendText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+
+                if (sendButton.isEnabled())
+                {
+                    sendButton.performClick();
+                }
+                return true;
             }
         });
 

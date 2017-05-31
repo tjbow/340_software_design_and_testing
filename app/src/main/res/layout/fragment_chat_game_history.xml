@@ -57,7 +57,8 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="0.8"
-            android:hint="@string/message_hint"/>
+            android:hint="@string/message_hint"
+            android:imeOptions="actionSend"/>
 
         <Button
             android:id="@+id/send_button"
