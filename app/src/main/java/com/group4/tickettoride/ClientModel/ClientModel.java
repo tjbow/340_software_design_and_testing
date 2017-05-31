@@ -141,6 +141,10 @@ public class ClientModel extends Observable {
                 routeSegments.get(0).setClaimed(true);
                 routeSegments.get(0).setOwner(getPlayer());
                 routeSegments.get(0).setPlayer_color(PLAYER_COLOR.BLUE);
+
+                routeSegments.get(2).setClaimed(true);
+                routeSegments.get(2).setOwner(getPlayer());
+                routeSegments.get(2).setPlayer_color(PLAYER_COLOR.RED);
                 sendToObservers("Added claimed route");
                 break;
             case 9:
