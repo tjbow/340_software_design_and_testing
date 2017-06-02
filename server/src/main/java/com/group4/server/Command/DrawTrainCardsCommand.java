@@ -15,7 +15,7 @@ public class DrawTrainCardsCommand extends DrawTrainCardsCommandData implements 
     private Results drawTrainCards()
     {
         IServer serverFacade = new ServerFacade();
-        return serverFacade.drawTrainCards(super.getUserName());
+        return serverFacade.drawFaceDownTrainCard(super.getUserName());
     }
     @Override
     public Results execute()
