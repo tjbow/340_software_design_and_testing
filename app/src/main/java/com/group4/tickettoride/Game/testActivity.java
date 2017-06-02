@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.group4.shared.Model.Map.RouteSegment;
 import com.group4.tickettoride.Game.GameFragments.DestCardPickerFragment;
 import com.group4.tickettoride.R;
 
@@ -23,5 +24,10 @@ public class testActivity extends AppCompatActivity implements IMapActivity {
     @Override
     public void onOpenChat() {
 
+    }
+
+    @Override
+    public void onClickRoute(RouteSegment r) {
+        
     }
 }

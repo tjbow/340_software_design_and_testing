@@ -19,10 +19,12 @@ import com.group4.shared.Model.User;
 import com.group4.tickettoride.Network.ServerProxy;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.Random;
+import java.util.Set;
 
 /**
  * Created by Russell Fitzpatrick on 5/13/2017.
@@ -37,7 +39,7 @@ public class ClientModel extends Observable {
     private Player player;
     private Game game;
 
-    private List<RouteSegment> routeSegments;
+    private Set<RouteSegment> routeSegments;
 
     private int actionCounter;
 
@@ -51,7 +53,7 @@ public class ClientModel extends Observable {
         this.user = user;
         this.gameList = gameList;
         this.commandIDIndex = 0;
-        this.routeSegments = new ArrayList<>();
+        this.routeSegments = new HashSet<>();
     }
 
     public void clear()
@@ -137,15 +139,16 @@ public class ClientModel extends Observable {
                 break;
             case 8:
                 // Add claimed route (for any player)
-                actionCounter++;
-                routeSegments.get(0).setClaimed(true);
-                routeSegments.get(0).setOwner(getPlayer());
-                routeSegments.get(0).setPlayer_color(PLAYER_COLOR.BLUE);
-
-                routeSegments.get(2).setClaimed(true);
-                routeSegments.get(2).setOwner(getPlayer());
-                routeSegments.get(2).setPlayer_color(PLAYER_COLOR.RED);
-                sendToObservers("Added claimed route");
+//                actionCounter++;
+//                routeSegments.get(0).setClaimed(true);
+//                routeSegments.get(0).setOwner(getPlayer());
+//                routeSegments.get(0).setPlayer_color(PLAYER_COLOR.BLUE);
+//
+//                routeSegments.get(2).setClaimed(true);
+//                routeSegments.get(2).setOwner(getPlayer());
+//                routeSegments.get(2).setPlayer_color(PLAYER_COLOR.RED);
+//                sendToObservers("Added claimed route");
+//                break;
                 break;
             case 9:
                 // Add chat message from any player
@@ -334,12 +337,12 @@ public class ClientModel extends Observable {
         clearChanged();
     }
 
-    public List<RouteSegment> getRouteSegments()
+    public Set<RouteSegment> getRouteSegments()
     {
         return routeSegments;
     }
 
-    public void setRouteSegments(List<RouteSegment> routeSegments)
+    public void setRouteSegments(Set<RouteSegment> routeSegments)
     {
         this.routeSegments = routeSegments;
     }

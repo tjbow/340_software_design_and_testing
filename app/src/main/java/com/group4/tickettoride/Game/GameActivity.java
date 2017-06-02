@@ -133,7 +133,7 @@ public class GameActivity extends AppCompatActivity implements IGameActivity, IM
 
     @Override
     public void onClickRoute(RouteSegment r) {
-        
+
     }
 
     void showChat_GameHistoryDialog()
