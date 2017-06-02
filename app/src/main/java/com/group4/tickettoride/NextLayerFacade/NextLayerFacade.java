@@ -61,14 +61,4 @@ public class NextLayerFacade implements INextLayerFacade {
                 ClientModel.SINGLETON.getPlayer().getColor());
         ServerProxy.SINGLETON.sendChat(newMessage);
     }
-
-    @Override
-    public void drawDestinationCards(List<Integer> destinationId) {
-        List<DestinationCard> destinationCards = new ArrayList<>();
-        for(int Id : destinationId){
-            destinationCards.add(ClientModel.SINGLETON.getGame().getDecks().getDestinationCardDeck().findCard(Id));
-        }
-
-        ServerProxy.SINGLETON.drawDestinationCards(ClientModel.SINGLETON.getUser().getUsername());
-    }
 }

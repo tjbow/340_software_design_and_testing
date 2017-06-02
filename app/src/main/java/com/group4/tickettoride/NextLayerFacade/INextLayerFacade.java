@@ -20,6 +20,4 @@ interface INextLayerFacade {
     void claimRoute(String routeId);
 
     void sendMessage(String message);
-
-    void drawDestinationCards(List<Integer> destinationId);
 }
