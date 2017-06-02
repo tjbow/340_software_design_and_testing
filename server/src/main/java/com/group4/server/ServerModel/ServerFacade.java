@@ -5,6 +5,7 @@ import com.group4.shared.Model.Deck.DestinationCard;
 import com.group4.shared.Model.Deck.TrainCard;
 import com.group4.shared.Model.Game.GAME_STATUS;
 import com.group4.shared.Model.Game.Game;
+import com.group4.shared.Model.Map.RouteSegment;
 import com.group4.shared.Model.Message;
 import com.group4.shared.Model.Player;
 import com.group4.shared.Proxy.IServer;
@@ -33,6 +34,9 @@ import java.util.List;
  */
 public class ServerFacade implements IServer
 {
+    /**
+     * Gets the Singleton instance of the ServerModel to use locally
+     */
     ServerModel serverModel = ServerModel.getInstance();
 
     @Override
@@ -355,7 +359,7 @@ public class ServerFacade implements IServer
     }
 
     @Override
-    public Results drawTrainCards(String userName)
+    public Results drawFaceDownTrainCard(String userName)
     {
         Game game = serverModel.getGameList().getGameByUsername(userName);
 
@@ -376,5 +380,17 @@ public class ServerFacade implements IServer
         updatePlayersCommandData.setCommandNumber(game.getNewCommandIndex());
 
         return new Results(true, "Train cards drawn", null, null);
+    }
+
+    @Override
+    public Results drawFaceUpTrainCard(String userName, int position)
+    {
+        return null;
+    }
+
+    @Override
+    public Results claimRoute(String userName, RouteSegment claimedSegment, List<TrainCard> usedCards)
+    {
+        return null;
     }
 }

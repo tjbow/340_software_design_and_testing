@@ -4,6 +4,7 @@ import android.os.AsyncTask;
 
 import com.group4.shared.Model.Deck.DestinationCard;
 import com.group4.shared.Model.Deck.TrainCard;
+import com.group4.shared.Model.Map.RouteSegment;
 import com.group4.shared.Model.Message;
 import com.group4.shared.Model.Results;
 import com.group4.shared.Model.User;
@@ -189,12 +190,24 @@ public class ServerProxy implements IServer
     }
 
     @Override
-    public Results drawTrainCards(String userName)
+    public Results drawFaceDownTrainCard(String userName)
     {
         DrawTrainCardsCommandData cmd = new DrawTrainCardsCommandData();
         cmd.setType("drawtraincards");
         cmd.setUserName(userName);
         threadIt(cmd);
+        return null;
+    }
+
+    @Override
+    public Results drawFaceUpTrainCard(String userName, int position)
+    {
+        return null;
+    }
+
+    @Override
+    public Results claimRoute(String userName, RouteSegment claimedSegment, List<TrainCard> usedCards)
+    {
         return null;
     }
 
