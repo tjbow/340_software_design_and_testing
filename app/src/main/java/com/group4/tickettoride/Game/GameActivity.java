@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.widget.Toast;
 
 import com.group4.shared.Model.Game.Game;
+import com.group4.shared.Model.Map.RouteSegment;
 import com.group4.tickettoride.ClientModel.ClientModel;
 import com.group4.tickettoride.Game.GameFragments.Chat_GameHistoryFragment;
 import com.group4.tickettoride.Game.GameFragments.DestCardPickerFragment;
@@ -128,6 +129,11 @@ public class GameActivity extends AppCompatActivity implements IGameActivity, IM
     @Override
     public void onOpenChat() {
         showChat_GameHistoryDialog();
+    }
+
+    @Override
+    public void onClickRoute(RouteSegment r) {
+        
     }
 
     void showChat_GameHistoryDialog()
