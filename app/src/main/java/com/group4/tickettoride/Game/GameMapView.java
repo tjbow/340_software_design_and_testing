@@ -24,7 +24,9 @@ import com.group4.tickettoride.R;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 
 /**
@@ -35,13 +37,13 @@ public class GameMapView extends View {
     private Paint paint = new Paint(); // holds styling information for what gets drawn on the canvas
     boolean tap = false;  //if true display text.  Used only for demonstration purposes
 
-    private List<RouteSegment> routeSegments = new ArrayList<>();
-    private List<City> cities = new ArrayList<>();
+    static private Set<RouteSegment> routeSegments = new HashSet<>();
+    static private Set<City> cities = new HashSet<>();
 
     private float CITY_RADIUS = 15;
 
 
-    public List<RouteSegment> getRouteSegments() {
+    public Set<RouteSegment> getRouteSegments() {
         return routeSegments;
     }
 
@@ -86,7 +88,7 @@ public class GameMapView extends View {
      * Call this to update route information
      * @param RouteSegments
      */
-    public void setRouteSegments(List<RouteSegment> RouteSegments){
+    public void setRouteSegments(Set<RouteSegment> RouteSegments){
 
         this.routeSegments = RouteSegments;
         invalidate();
