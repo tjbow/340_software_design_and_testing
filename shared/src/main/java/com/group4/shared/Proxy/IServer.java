@@ -31,6 +31,6 @@ public interface IServer {
 
 //    PHASE 3
     Results drawFaceUpTrainCard(String userName, int position);
-    Results drawFaceDownTrainCard(String userName);
+    Results drawFaceDownTrainCard(String userName, TrainCard selectedCard);
     Results claimRoute(String userName, RouteSegment claimedSegment, List<TrainCard> usedCards);
 }

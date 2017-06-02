@@ -12,14 +12,15 @@ import com.group4.shared.command.Server.DrawTrainCardsCommandData;
 
 public class DrawTrainCardsCommand extends DrawTrainCardsCommandData implements IServerCommand
 {
-    private Results drawTrainCards()
-    {
-        IServer serverFacade = new ServerFacade();
-        return serverFacade.drawFaceDownTrainCard(super.getUserName());
-    }
+//    private Results drawTrainCards()
+//    {
+//        IServer serverFacade = new ServerFacade();
+//        return serverFacade.drawFaceDownTrainCard(super.getUserName());
+//    }
     @Override
     public Results execute()
     {
-        return drawTrainCards();
+//        return drawTrainCards();
+        return null;
     }
 }

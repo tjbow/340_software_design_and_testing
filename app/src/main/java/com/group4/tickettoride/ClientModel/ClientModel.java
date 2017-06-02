@@ -91,8 +91,8 @@ public class ClientModel extends Observable {
                 break;
             case 2:
                 // add train cards for this player
-                ServerProxy.SINGLETON.drawFaceDownTrainCard(user.getUsername());
-                sendToObservers("Train cards added. Next: Remove destination cards");
+//                ServerProxy.SINGLETON.drawFaceDownTrainCard(user.getUsername());
+//                sendToObservers("Train cards added. Next: Remove destination cards");
                 actionCounter++;
                 break;
             case 3:

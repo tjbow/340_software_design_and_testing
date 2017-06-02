@@ -190,7 +190,7 @@ public class ServerProxy implements IServer
     }
 
     @Override
-    public Results drawFaceDownTrainCard(String userName)
+    public Results drawFaceDownTrainCard(String userName, TrainCard drawnCard)
     {
         DrawTrainCardsCommandData cmd = new DrawTrainCardsCommandData();
         cmd.setType("drawtraincards");
