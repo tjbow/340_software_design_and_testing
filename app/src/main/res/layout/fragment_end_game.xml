@@ -1,0 +1,357 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:tools="http://schemas.android.com/tools"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+              android:orientation="vertical"
+             tools:context="com.group4.tickettoride.Game.GameFragments.EndGameFragment">
+
+    <TableLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center">
+
+        <!--Column Names-->
+        <TableRow
+            android:id="@+id/endGame_columnTitles"
+            android:layout_margin="5dp"
+            android:gravity="center"
+            >
+
+            <ImageView
+                />
+
+            <TextView
+                android:text="@string/rank"
+                android:textColor="@color/colorBlack"
+                android:textSize="20sp"
+                android:padding="5dp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:text="@string/player_name"
+                android:textColor="@color/colorBlack"
+                android:textSize="20sp"
+                android:padding="5dp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:text="@string/routes_claimed_pts"
+                android:textColor="@color/colorBlack"
+                android:textSize="20sp"
+                android:padding="5dp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:text="@string/destinations_pos_pts"
+                android:textColor="@color/colorBlack"
+                android:textSize="20sp"
+                android:padding="5dp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:text="@string/destinations_neg_pts"
+                android:textColor="@color/colorBlack"
+                android:textSize="20sp"
+                android:padding="5dp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:text="@string/longest_path_pts"
+                android:textColor="@color/colorBlack"
+                android:textSize="20sp"
+                android:padding="5dp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:text="@string/total_points"
+                android:textColor="@color/colorBlack"
+                android:textSize="20sp"
+                android:padding="5dp"
+                android:textStyle="bold"/>
+
+
+        </TableRow>
+
+        <!--Rank 1 Player-->
+        <TableRow
+            android:id="@+id/endGame_rank1Info"
+            android:layout_margin="5dp"
+            android:gravity="center"
+            >
+
+            <ImageView
+                android:id="@+id/winnerIcon"
+                />
+
+            <TextView
+                android:id="@+id/rank1_rank"
+                android:textColor="@color/colorBlack"
+                android:textSize="20sp"
+                android:padding="5dp"/>
+
+            <TextView
+                android:id="@+id/rank1_username"
+                android:textColor="@color/colorBlack"
+                android:textSize="20sp"
+                android:padding="5dp"/>
+
+            <TextView
+                android:id="@+id/rank1_rcPts"
+                android:textColor="@color/colorBlack"
+                android:textSize="20sp"
+                android:padding="5dp"/>
+
+            <TextView
+                android:id="@+id/rank1_destPosPts"
+                android:textColor="@color/colorBlack"
+                android:textSize="20sp"
+                android:padding="5dp"/>
+
+            <TextView
+                android:id="@+id/rank1_destNegPts"
+                android:textColor="@color/colorRed"
+                android:textSize="20sp"
+                android:padding="5dp"/>
+
+            <TextView
+                android:id="@+id/rank1_longPathPts"
+                android:textColor="@color/colorBlack"
+                android:textSize="20sp"
+                android:padding="5dp"/>
+
+            <TextView
+                android:id="@+id/rank1_total"
+                android:textColor="@color/colorBlack"
+                android:textSize="20sp"
+                android:padding="5dp"
+                android:textStyle="bold"/>
+
+        </TableRow>
+
+        <!--rank2 Player-->
+        <TableRow
+            android:id="@+id/endGame_rank2Info"
+            android:layout_margin="5dp"
+            android:gravity="center"
+            >
+
+            <ImageView
+
+                />
+
+            <TextView
+                android:id="@+id/rank2_rank"
+                android:textColor="@color/colorBlack"
+                android:textSize="20sp"
+                android:padding="5dp"/>
+
+            <TextView
+                android:id="@+id/rank2_username"
+                android:textColor="@color/colorBlack"
+                android:textSize="20sp"
+                android:padding="5dp"/>
+
+            <TextView
+                android:id="@+id/rank2_rcPts"
+                android:textColor="@color/colorBlack"
+                android:textSize="20sp"
+                android:padding="5dp"/>
+
+            <TextView
+                android:id="@+id/rank2_destPosPts"
+                android:textColor="@color/colorBlack"
+                android:textSize="20sp"
+                android:padding="5dp"/>
+
+            <TextView
+                android:id="@+id/rank2_destNegPts"
+                android:textColor="@color/colorRed"
+                android:textSize="20sp"
+                android:padding="5dp"/>
+
+            <TextView
+                android:id="@+id/rank2_longPathPts"
+                android:textColor="@color/colorBlack"
+                android:textSize="20sp"
+                android:padding="5dp"/>
+
+            <TextView
+                android:id="@+id/rank2_total"
+                android:textColor="@color/colorBlack"
+                android:textSize="20sp"
+                android:padding="5dp"
+                android:textStyle="bold"/>
+
+        </TableRow>
+
+        <!--rank3 Player-->
+        <TableRow
+            android:id="@+id/endGame_rank3Info"
+            android:layout_margin="5dp"
+            android:gravity="center"
+            >
+
+            <ImageView
+
+                />
+
+            <TextView
+                android:id="@+id/rank3_rank"
+                android:textColor="@color/colorBlack"
+                android:textSize="20sp"
+                android:padding="5dp"/>
+
+            <TextView
+                android:id="@+id/rank3_username"
+                android:textColor="@color/colorBlack"
+                android:textSize="20sp"
+                android:padding="5dp"/>
+
+            <TextView
+                android:id="@+id/rank3_rcPts"
+                android:textColor="@color/colorBlack"
+                android:textSize="20sp"
+                android:padding="5dp"/>
+
+            <TextView
+                android:id="@+id/rank3_destPosPts"
+                android:textColor="@color/colorBlack"
+                android:textSize="20sp"
+                android:padding="5dp"/>
+
+            <TextView
+                android:id="@+id/rank3_destNegPts"
+                android:textColor="@color/colorRed"
+                android:textSize="20sp"
+                android:padding="5dp"/>
+
+            <TextView
+                android:id="@+id/rank3_longPathPts"
+                android:textColor="@color/colorBlack"
+                android:textSize="20sp"
+                android:padding="5dp"/>
+
+            <TextView
+                android:id="@+id/rank3_total"
+                android:textColor="@color/colorBlack"
+                android:textSize="20sp"
+                android:padding="5dp"
+                android:textStyle="bold"/>
+
+        </TableRow>
+
+        <!--rank4 Player-->
+        <TableRow
+            android:id="@+id/endGame_rank4Info"
+            android:layout_margin="5dp"
+            android:gravity="center"
+            >
+
+            <ImageView
+
+                />
+
+            <TextView
+                android:id="@+id/rank4_rank"
+                android:textColor="@color/colorBlack"
+                android:textSize="20sp"
+                android:padding="5dp"/>
+
+            <TextView
+                android:id="@+id/rank4_username"
+                android:textColor="@color/colorBlack"
+                android:textSize="20sp"
+                android:padding="5dp"/>
+
+            <TextView
+                android:id="@+id/rank4_rcPts"
+                android:textColor="@color/colorBlack"
+                android:textSize="20sp"
+                android:padding="5dp"/>
+
+            <TextView
+                android:id="@+id/rank4_destPosPts"
+                android:textColor="@color/colorBlack"
+                android:textSize="20sp"
+                android:padding="5dp"/>
+
+            <TextView
+                android:id="@+id/rank4_destNegPts"
+                android:textColor="@color/colorRed"
+                android:textSize="20sp"
+                android:padding="5dp"/>
+
+            <TextView
+                android:id="@+id/rank4_longPathPts"
+                android:textColor="@color/colorBlack"
+                android:textSize="20sp"
+                android:padding="5dp"/>
+
+            <TextView
+                android:id="@+id/rank4_total"
+                android:textColor="@color/colorBlack"
+                android:textSize="20sp"
+                android:padding="5dp"
+                android:textStyle="bold"/>
+
+        </TableRow>
+
+        <!--rank5 Player-->
+        <TableRow
+            android:id="@+id/endGame_rank5Info"
+            android:layout_margin="5dp"
+            android:gravity="center"
+            >
+
+            <ImageView
+
+                />
+
+            <TextView
+                android:id="@+id/rank5_rank"
+                android:textColor="@color/colorBlack"
+                android:textSize="20sp"
+                android:padding="5dp"/>
+
+            <TextView
+                android:id="@+id/rank5_username"
+                android:textColor="@color/colorBlack"
+                android:textSize="20sp"
+                android:padding="5dp"/>
+
+            <TextView
+                android:id="@+id/rank5_rcPts"
+                android:textColor="@color/colorBlack"
+                android:textSize="20sp"
+                android:padding="5dp"/>
+
+            <TextView
+                android:id="@+id/rank5_destPosPts"
+                android:textColor="@color/colorBlack"
+                android:textSize="20sp"
+                android:padding="5dp"/>
+
+            <TextView
+                android:id="@+id/rank5_destNegPts"
+                android:textColor="@color/colorRed"
+                android:textSize="20sp"
+                android:padding="5dp"/>
+
+            <TextView
+                android:id="@+id/rank5_longPathPts"
+                android:textColor="@color/colorBlack"
+                android:textSize="20sp"
+                android:padding="5dp"/>
+
+            <TextView
+                android:id="@+id/rank5_total"
+                android:textColor="@color/colorBlack"
+                android:textSize="20sp"
+                android:padding="5dp"
+                android:textStyle="bold"/>
+
+        </TableRow>
+
+    </TableLayout>
+
+</LinearLayout>

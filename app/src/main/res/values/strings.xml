@@ -34,6 +34,21 @@
     <string name="send">Send</string>
     <string name="message_hint">Enter message here</string>
 
+    <string name="game_over">Game Over!</string>
+    <string name="finish_game">Finish Game</string>
+    <string name="rank">Rank</string>
+    <string name="player_name">Player</string>
+    <string name="routes_claimed_pts">RC</string>
+    <string name="destinations_pos_pts">DT+</string>
+    <string name="destinations_neg_pts">DT-</string>
+    <string name="longest_path_pts">LP</string>
+    <string name="total_points">Total</string>
+    <string name="rank1">1</string>
+    <string name="rank2">2</string>
+    <string name="rank3">3</string>
+    <string name="rank4">4</string>
+    <string name="rank5">5</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 

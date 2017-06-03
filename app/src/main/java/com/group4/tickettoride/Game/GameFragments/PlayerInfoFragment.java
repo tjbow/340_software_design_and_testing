@@ -90,6 +90,7 @@ public class PlayerInfoFragment extends Fragment implements IPlayerInfoFragment{
     public static final String TRAIN_CARS = "trains";
 
     private static final String CHAT_GAME_HISTORY_DIALOG = "Chat_GameHistoryDialog";
+    private static final String END_GAME_DIALOG = "EndGameDialog";
 
     private LinearLayout layout;
 
@@ -117,7 +118,7 @@ public class PlayerInfoFragment extends Fragment implements IPlayerInfoFragment{
         layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showDialog();
+                showEndGameDialog();
             }
         });
 
@@ -126,11 +127,18 @@ public class PlayerInfoFragment extends Fragment implements IPlayerInfoFragment{
         return v;
     }
 
-    void showDialog()
+    void showChatDialog()
     {
         FragmentManager manager = getFragmentManager();
         Chat_GameHistoryFragment dialog = new Chat_GameHistoryFragment();
         dialog.show(manager, CHAT_GAME_HISTORY_DIALOG);
+    }
+
+    void showEndGameDialog()
+    {
+        FragmentManager manager = getFragmentManager();
+        EndGameFragment dialog = new EndGameFragment();
+        dialog.show(manager, END_GAME_DIALOG);
     }
 
     public static PlayerInfoFragment newInstance()
