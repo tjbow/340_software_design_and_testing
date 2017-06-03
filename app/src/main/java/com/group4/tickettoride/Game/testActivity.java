@@ -28,6 +28,7 @@ public class testActivity extends AppCompatActivity implements IMapActivity {
 
     @Override
     public void onClickRoute(RouteSegment r) {
-        
+
+
     }
 }

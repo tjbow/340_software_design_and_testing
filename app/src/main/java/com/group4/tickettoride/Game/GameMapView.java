@@ -380,7 +380,7 @@ public class GameMapView extends View {
 
         ObjectMapper mapper = new ObjectMapper();
         try {
-            this.cities = mapper.readValue(is, new TypeReference<List<City>>() { });
+            this.cities = mapper.readValue(is, new TypeReference<Set<City>>() { });
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -394,7 +394,7 @@ public class GameMapView extends View {
 
         ObjectMapper mapper = new ObjectMapper();
         try {
-            this.routeSegments = mapper.readValue(is, new TypeReference<List<RouteSegment>>() { });
+            this.routeSegments = mapper.readValue(is, new TypeReference<Set<RouteSegment>>() { });
         } catch (IOException e) {
             e.printStackTrace();
         }
