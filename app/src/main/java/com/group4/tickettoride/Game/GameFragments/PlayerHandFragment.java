@@ -113,15 +113,15 @@ public class PlayerHandFragment extends Fragment implements IPlayerHandFragment
             destAdapter.notifyDataSetChanged();
         }
 
-        testFunctionButton = (Button) v.findViewById(R.id.test_function_button);
-        testFunctionButton.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View view)
-            {
-                testAction();
-            }
-        });
+//        testFunctionButton = (Button) v.findViewById(R.id.test_function_button);
+//        testFunctionButton.setOnClickListener(new View.OnClickListener()
+//        {
+//            @Override
+//            public void onClick(View view)
+//            {
+//                testAction();
+//            }
+//        });
 
         return v;
     }
