@@ -11,14 +11,12 @@ public class PlayerStats {
     private int completedDestinationCards;
     private int incompleteDestinationCards;
     private int longestPathScore;
-    private int totalScore;
 
     public PlayerStats(){
         claimedRouteScore = 0;
         completedDestinationCards = 0;
         incompleteDestinationCards = 0;
         longestPathScore = 0;
-        totalScore = 0;
     }
 
     public int getRank() {
@@ -67,13 +65,7 @@ public class PlayerStats {
 
     public int getTotalScore() {
 
-        totalScore = claimedRouteScore + completedDestinationCards + longestPathScore - incompleteDestinationCards;
-
-        return totalScore;
-    }
-
-    public void setTotalScore(int totalScore) {
-        this.totalScore = totalScore;
+        return claimedRouteScore + completedDestinationCards + longestPathScore - incompleteDestinationCards;
     }
 
     public void incrementRouteScore(int score){
