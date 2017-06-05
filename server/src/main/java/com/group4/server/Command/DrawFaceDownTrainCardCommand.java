@@ -15,7 +15,7 @@ public class DrawFaceDownTrainCardCommand extends DrawFaceDownCardCmdData implem
     private Results drawFaceDownCard()
     {
         IServer serverFacade = new ServerFacade();
-        return serverFacade.drawFaceDownTrainCard(super.getUserName(), super.getSelectedCard());
+        return serverFacade.drawFaceDownTrainCard(super.getUserName());
     }
 
     @Override
