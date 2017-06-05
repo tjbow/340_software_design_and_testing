@@ -27,7 +27,7 @@ public class CardDecksPresenter implements ITrainDeckPresenter, Observer
     @Override
     public void drawFaceUpCard(int num)
     {
-        return;
+        NextLayerFacade.SINGLETON.drawFaceUpTrainCard(num);
     }
 
     @Override

@@ -97,7 +97,7 @@ public class GamePresenter implements IGamePresenter, Observer
         }
     }
 
-    private void displayError(String error)
+    public void displayError(String error)
     {
         activity.displayError(error);
     }

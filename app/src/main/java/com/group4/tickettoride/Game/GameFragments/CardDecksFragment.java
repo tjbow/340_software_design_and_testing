@@ -105,6 +105,41 @@ public class CardDecksFragment extends Fragment implements ITrainDeckFragment
             }
         });
 
+        faceUpImageViewList.get(0).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                checkFaceUpValid(0);
+            }
+        });
+
+        faceUpImageViewList.get(1).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                checkFaceUpValid(1);
+            }
+        });
+
+        faceUpImageViewList.get(2).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                checkFaceUpValid(2);
+            }
+        });
+
+        faceUpImageViewList.get(3).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                checkFaceUpValid(3);
+            }
+        });
+
+        faceUpImageViewList.get(4).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                checkFaceUpValid(4);
+            }
+        });
+
         return v;
     }
 
@@ -114,6 +149,12 @@ public class CardDecksFragment extends Fragment implements ITrainDeckFragment
         if (mListener != null)
         {
             mListener.onFragmentInteraction(uri);
+        }
+    }
+
+    public void checkFaceUpValid(int position){
+        if(position < trainPresenter.getFaceUpCards().size()){
+            trainPresenter.drawFaceUpCard(position);
         }
     }
 
