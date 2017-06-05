@@ -74,7 +74,7 @@ public class ClientModel extends Observable {
                 // update player points
                 for(Player player : game.getPlayers())
                 {
-                    player.setScore(new Random().nextInt(10 - 1 + 1) + 1);
+                    //player.setScore(new Random().nextInt(10 - 1 + 1) + 1);
                 }
                 sendToObservers(game.getPlayers());
                 sendToObservers("Update points. Next: Remove Train Card for this player.");

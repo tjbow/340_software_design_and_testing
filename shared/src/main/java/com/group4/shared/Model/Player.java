@@ -134,6 +134,10 @@ public class Player {
         trainCarsRemaining -= carsUsed;
     }
 
+    public void getScore(){
+        stats.getTotalScore();
+    }
+
     public void incrementRouteScore(int score){
         stats.incrementRouteScore(score);
     }
