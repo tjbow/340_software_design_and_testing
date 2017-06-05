@@ -5,7 +5,10 @@ import android.content.Intent;
 
 import com.group4.shared.Model.Game.Game;
 import com.group4.shared.Model.Player;
+import com.group4.tickettoride.ClientModel.ClientFacade;
+import com.group4.tickettoride.ClientModel.ClientModel;
 import com.group4.tickettoride.GameList.GameListActivity;
+import com.group4.tickettoride.Login_Register.Login_RegisterActivity;
 import com.group4.tickettoride.NextLayerFacade.NextLayerFacade;
 
 import java.util.List;
@@ -26,9 +29,21 @@ class EndGamePresenter implements IEndGamePresenter {
 
     public void onFinishGame()
     {
-//        NextLayerFacade.SINGLETON.endGame(game.getGameName());
-//        fragment.startActivity(new Intent(fragment.getActivity(), GameListActivity.class));
-//        fragment.getActivity().finish();
+        NextLayerFacade.SINGLETON.endGame(game.getGameName());
+        fragment.startActivity(new Intent(fragment.getActivity(), GameListActivity.class));
+        fragment.getActivity().finish();
+        ClientModel.SINGLETON.deleteObservers();
+        ClientFacade.SINGLETON.setUpdateGameInfo(false);
+    }
+
+    public void onBackPressed()
+    {
+        NextLayerFacade.SINGLETON.endGame(game.getGameName());
+        ClientModel.SINGLETON.clear();
+        ClientModel.SINGLETON.deleteObservers();
+        fragment.getActivity().startActivity(new Intent(fragment.getActivity(), Login_RegisterActivity.class));
+        ClientFacade.SINGLETON.setUpdateGameInfo(false);
+        ClientFacade.SINGLETON.setUpdateGameList(false);
     }
 
     private void fillEndGameTable()
