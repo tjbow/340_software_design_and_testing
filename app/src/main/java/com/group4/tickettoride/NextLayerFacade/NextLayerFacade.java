@@ -1,6 +1,9 @@
 package com.group4.tickettoride.NextLayerFacade;
 
 import com.group4.shared.Model.Deck.DestinationCard;
+import com.group4.shared.Model.Deck.TrainCard;
+import com.group4.shared.Model.Map.RouteList;
+import com.group4.shared.Model.Map.RouteSegment;
 import com.group4.shared.Model.Message;
 import com.group4.shared.Model.User;
 import com.group4.tickettoride.ClientModel.ClientModel;
@@ -50,8 +53,40 @@ public class NextLayerFacade implements INextLayerFacade {
     }
 
     @Override
-    public void claimRoute(String routeId) {
-        return;
+    public void claimRoute(String routeId, List<TrainCard> usedCards) {
+
+        RouteSegment segment = ClientModel.SINGLETON.getGame().getRoutes().findRoute(routeId);
+        String username = ClientModel.SINGLETON.getUser().getUsername();
+
+        ServerProxy.SINGLETON.claimRoute(username, segment, usedCards);
+
+    }
+
+    @Override
+    public void drawFaceUpTrainCard(int position) {
+
+        String username = ClientModel.SINGLETON.getUser().getUsername();
+
+        ServerProxy.SINGLETON.drawFaceUpTrainCard(username, position);
+
+    }
+
+    @Override
+    public void drawFaceDownTrainCard() {
+
+        String username = ClientModel.SINGLETON.getUser().getUsername();
+
+        ServerProxy.SINGLETON.drawFaceDownTrainCard(username);
+
+    }
+
+    @Override
+    public void drawDestinationCards() {
+
+        String username = ClientModel.SINGLETON.getUser().getUsername();
+
+        ServerProxy.SINGLETON.drawDestinationCards(username);
+
     }
 
     @Override

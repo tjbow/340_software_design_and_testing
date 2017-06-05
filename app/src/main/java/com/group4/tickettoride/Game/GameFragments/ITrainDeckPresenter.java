@@ -20,19 +20,19 @@ public interface ITrainDeckPresenter
      * @param num selects the particular face up card to draw (0th through 4th)
      * @return the selected train card
      */
-    TrainCardDeck drawFaceUpCard(int num);
+    void drawFaceUpCard(int num);
 
     /**
      * Draws a train card from the face down deck
-     * @return the drawn train card
+     * @return the drawn train card is returned from the Server Side
      */
-    TrainCard drawTrainCard();
+    void drawTrainCard();
 
     /**
      * Draws destination cards from destination card deck
-     * @return a list of drawn destination cards
+     * @return destination cards are returned from the Server Side
      */
-    List<DestinationCard> drawDestCards();
+    void drawDestCards();
 
     /**
      * Gets the face up cards in the deck in the model

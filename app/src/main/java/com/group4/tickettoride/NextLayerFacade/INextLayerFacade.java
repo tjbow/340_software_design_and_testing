@@ -1,6 +1,8 @@
 package com.group4.tickettoride.NextLayerFacade;
 
 
+import com.group4.shared.Model.Deck.TrainCard;
+
 import java.util.List;
 
 interface INextLayerFacade {
@@ -17,7 +19,13 @@ interface INextLayerFacade {
 
     void endGame(String gameName);
 
-    void claimRoute(String routeId);
+    void claimRoute(String routeId, List<TrainCard> usedCards);
+
+    void drawFaceUpTrainCard(int position);
+
+    void drawFaceDownTrainCard();
+
+    void drawDestinationCards();
 
     void sendMessage(String message);
 }

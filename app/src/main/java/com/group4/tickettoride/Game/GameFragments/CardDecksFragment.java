@@ -91,6 +91,20 @@ public class CardDecksFragment extends Fragment implements ITrainDeckFragment
         setTrainDeckCardsRemaining(trainPresenter.getTrainDeckCardsRemaining());
         setDestCardsRemaining(trainPresenter.getDestDeckCardsRemaining());
 
+        trainDeckImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                trainPresenter.drawTrainCard();
+            }
+        });
+
+        destDeckImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                trainPresenter.drawDestCards();
+            }
+        });
+
         return v;
     }
 

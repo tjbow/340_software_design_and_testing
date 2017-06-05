@@ -26,7 +26,7 @@ public class Player {
     private boolean longestPath;
     private int trainCarsRemaining;
     private RouteList claimedRouteList;
-    private int score;
+    private PlayerStats stats;
     private boolean winning;
     private boolean turn;
     private boolean firstDestCardsSelected;
@@ -45,7 +45,7 @@ public class Player {
         longestPath = false;
         trainCarsRemaining = 45;
         claimedRouteList = new RouteList();
-        score = 0;
+        stats = new PlayerStats();
         winning = false;
     }
 
@@ -97,6 +97,13 @@ public class Player {
 
     public void setLongestPath(boolean longestPath) {
         this.longestPath = longestPath;
+
+        if(longestPath == true){
+            stats.setLongestPathScore();
+        }
+        else{
+            stats.removeLongestPathScore();
+        }
     }
 
     public int getTrainCarsRemaining() {
@@ -115,24 +122,28 @@ public class Player {
         this.claimedRouteList = claimedRouteList;
     }
 
-    public int getScore() {
-        return score;
+    public PlayerStats getStats() {
+        return stats;
     }
 
-    public void setScore(int score) {
-        this.score = score;
+    public void setStats(PlayerStats stats) {
+        this.stats = stats;
     }
 
     public void decrementCars(int carsUsed){
         trainCarsRemaining -= carsUsed;
     }
 
-    public void incrementScore(int score){
-        this.score += score;
+    public void incrementRouteScore(int score){
+        stats.incrementRouteScore(score);
     }
 
-    public void decrementScore(int negativeScore){
-        this.score -= negativeScore;
+    public void decrementDestinationScore(int negativeScore){
+        stats.decrementDestinationScore(negativeScore);
+    }
+
+    public void incrementDestinationScore(int positiveScore){
+        stats.incrementDestinationScore(positiveScore);
     }
 
     public boolean isWinning() {

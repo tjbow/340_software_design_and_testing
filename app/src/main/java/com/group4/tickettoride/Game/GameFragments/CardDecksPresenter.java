@@ -4,6 +4,7 @@ import com.group4.shared.Model.Deck.DestinationCard;
 import com.group4.shared.Model.Deck.TrainCard;
 import com.group4.shared.Model.Deck.TrainCardDeck;
 import com.group4.tickettoride.ClientModel.ClientModel;
+import com.group4.tickettoride.NextLayerFacade.NextLayerFacade;
 
 import java.util.List;
 import java.util.Observable;
@@ -24,21 +25,21 @@ public class CardDecksPresenter implements ITrainDeckPresenter, Observer
     }
 
     @Override
-    public TrainCardDeck drawFaceUpCard(int num)
+    public void drawFaceUpCard(int num)
     {
-        return null;
+        return;
     }
 
     @Override
-    public TrainCard drawTrainCard()
+    public void drawTrainCard()
     {
-        return null;
+        NextLayerFacade.SINGLETON.drawFaceDownTrainCard();
     }
 
     @Override
-    public List<DestinationCard> drawDestCards()
+    public void drawDestCards()
     {
-        return null;
+        NextLayerFacade.SINGLETON.drawDestinationCards();
     }
 
     @Override
