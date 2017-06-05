@@ -5,6 +5,7 @@ import com.group4.shared.Model.Deck.DestinationCard;
 import com.group4.shared.Model.Deck.TrainCard;
 import com.group4.shared.Model.Game.GAME_STATUS;
 import com.group4.shared.Model.Game.Game;
+import com.group4.shared.Model.Game.MOVE_STATE;
 import com.group4.shared.Model.Map.RouteSegment;
 import com.group4.shared.Model.Message;
 import com.group4.shared.Model.Player;
@@ -21,6 +22,7 @@ import com.group4.shared.command.Client.CUpdateChatCommandData;
 import com.group4.shared.command.Client.CUpdateGameCommandData;
 import com.group4.shared.command.Client.CUpdateGameStatsCommandData;
 import com.group4.shared.command.Client.CUpdatePlayersCommandData;
+import com.group4.shared.command.Client.CUpdateStateCommandData;
 import com.group4.shared.command.Client.CUpdateTurnHistoryCommandData;
 
 import java.util.List;
@@ -326,6 +328,13 @@ public class ServerFacade implements IServer
         Player player = game.getPlayerByUserName(userName);
 
         //TODO: TYLER: fix turn history
+
+//        CUpdateStateCommandData cmd = new CUpdateStateCommandData();
+//        cmd.setType("updatestate");
+//        cmd.setUserName(user.getUsername());
+//        cmd.setState(MOVE_STATE.DO_NOT_CHANGE);
+//        game.addCommand()
+
         Message message = new Message("Drew Destination Cards", player.getUserName(), player.getColor());
         game.addTurn(message);
 

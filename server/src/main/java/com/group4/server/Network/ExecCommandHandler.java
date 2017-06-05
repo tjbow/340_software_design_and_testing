@@ -3,6 +3,8 @@ package com.group4.server.Network;
 import com.google.gson.Gson;
 import com.group4.server.Command.CreateGameCommand;
 import com.group4.server.Command.DrawDestCardsCommand;
+import com.group4.server.Command.DrawFaceDownTrainCardCommand;
+import com.group4.server.Command.DrawFaceUpTrainCardCommand;
 import com.group4.server.Command.DrawTrainCardsCommand;
 import com.group4.server.Command.EndGameCommand;
 import com.group4.server.Command.GetGameListCommand;
@@ -18,6 +20,7 @@ import com.group4.shared.Model.Results;
 import com.group4.shared.command.Command;
 import com.group4.shared.command.IClientCommand;
 import com.group4.shared.command.IServerCommand;
+import com.group4.shared.command.Server.DrawFaceDownCardCmdData;
 import com.group4.shared.command.Server.LoginCommandData;
 
 /**
@@ -112,11 +115,19 @@ public class ExecCommandHandler
                 }
                 else results = noAuthToken();
                 break;
-            case "drawtraincards":
+            case "drawfacedowntrain":
                 if(ServerModel.getInstance().getTempUser() != null)
                 {
-                    DrawTrainCardsCommand drawTrainCardsCommand = new Gson().fromJson(requestBody, DrawTrainCardsCommand.class);
-                    results = drawTrainCardsCommand.execute();
+                    DrawFaceDownTrainCardCommand drawFaceDownTrainCardCommand = new Gson().fromJson(requestBody, DrawFaceDownTrainCardCommand.class);
+                    results = drawFaceDownTrainCardCommand.execute();
+                }
+                else results = noAuthToken();
+                break;
+            case "drawfaceuptrain":
+                if(ServerModel.getInstance().getTempUser() != null)
+                {
+                    DrawFaceUpTrainCardCommand drawFaceUpTrainCardCommand = new Gson().fromJson(requestBody, DrawFaceUpTrainCardCommand.class);
+                    results = drawFaceUpTrainCardCommand.execute();
                 }
                 else results = noAuthToken();
                 break;

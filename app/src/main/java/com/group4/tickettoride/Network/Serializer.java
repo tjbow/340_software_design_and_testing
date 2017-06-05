@@ -10,6 +10,7 @@ import com.group4.shared.Model.CommandList;
 import com.group4.shared.Model.Results;
 import com.group4.shared.Model.User;
 import com.group4.shared.command.Client.CLoginCommandData;
+import com.group4.shared.command.Client.CUpdateStateCommandData;
 import com.group4.shared.command.ClientCommand;
 import com.group4.shared.command.Command;
 import com.group4.shared.command.IClientCommand;
@@ -26,6 +27,7 @@ import com.group4.tickettoride.Command.CUpdateChatCommand;
 import com.group4.tickettoride.Command.CUpdateGameCommand;
 import com.group4.tickettoride.Command.CUpdateGameStatsCommand;
 import com.group4.tickettoride.Command.CUpdatePlayersCommand;
+import com.group4.tickettoride.Command.CUpdateStateCommand;
 import com.group4.tickettoride.Command.CUpdateTurnHistoryCommand;
 
 import java.io.IOException;
@@ -117,7 +119,11 @@ public class Serializer
                     case "updateplayerhand":
 //                        ClientCommand updatePlayerHandCommand = new Gson().fromJson(next.toString(), CUpdatePlayerHandCommand.class);
 //                        iCommands.add(updatePlayerHandCommand);
-//                        break;
+                        break;
+                    case "updatestate":
+                        ClientCommand updateStateCommand = new Gson().fromJson(next.toString(), CUpdateStateCommand.class);
+                        iCommands.add(updateStateCommand);
+                        break;
                     default:
                         System.out.println("no command found (serializer)");
                         break;

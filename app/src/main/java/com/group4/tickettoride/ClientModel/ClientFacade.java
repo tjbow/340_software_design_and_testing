@@ -3,6 +3,7 @@ package com.group4.tickettoride.ClientModel;
 import android.util.Log;
 
 import com.group4.shared.Model.ChatHistory;
+import com.group4.shared.Model.Game.MOVE_STATE;
 import com.group4.shared.Model.Map.City;
 import com.group4.shared.Model.CommandList;
 import com.group4.shared.Model.Deck.Decks;
@@ -162,6 +163,12 @@ public class ClientFacade implements IClient
 
         ClientModel.SINGLETON.setDecks(deckState);
 
+        return null;
+    }
+
+    @Override
+    public Results onUpdateState(String userName, MOVE_STATE state)
+    {
         return null;
     }
 

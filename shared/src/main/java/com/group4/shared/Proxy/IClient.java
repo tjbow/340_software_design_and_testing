@@ -1,6 +1,7 @@
 package com.group4.shared.Proxy;
 
 import com.group4.shared.Model.ChatHistory;
+import com.group4.shared.Model.Game.MOVE_STATE;
 import com.group4.shared.Model.Map.City;
 import com.group4.shared.Model.Deck.Decks;
 import com.group4.shared.Model.Game.GAME_STATUS;
@@ -37,4 +38,8 @@ public interface IClient
 
     Results onUpdatePlayers(List<Player> playerData);
     Results onUpdateMapData(RouteList routeSegments, List<City> cities);
+
+//    PHASE 3
+
+    Results onUpdateState(String userName, MOVE_STATE state);
 }

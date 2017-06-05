@@ -11,6 +11,8 @@ import com.group4.shared.Model.User;
 import com.group4.shared.Proxy.IServer;
 import com.group4.shared.command.Server.CreateGameCommandData;
 import com.group4.shared.command.Server.DrawDestCardsCommandData;
+import com.group4.shared.command.Server.DrawFaceDownCardCmdData;
+import com.group4.shared.command.Server.DrawFaceUpCardCmdData;
 import com.group4.shared.command.Server.DrawTrainCardsCommandData;
 import com.group4.shared.command.Server.EndGameCommandData;
 import com.group4.shared.command.Server.GetGameListCommandData;
@@ -192,8 +194,8 @@ public class ServerProxy implements IServer
     @Override
     public Results drawFaceDownTrainCard(String userName)
     {
-        DrawTrainCardsCommandData cmd = new DrawTrainCardsCommandData();
-        cmd.setType("drawtraincards");
+        DrawFaceDownCardCmdData cmd = new DrawFaceDownCardCmdData();
+        cmd.setType("drawfacedowntrain");
         cmd.setUserName(userName);
         threadIt(cmd);
         return null;
@@ -202,6 +204,11 @@ public class ServerProxy implements IServer
     @Override
     public Results drawFaceUpTrainCard(String userName, int position)
     {
+        DrawFaceUpCardCmdData cmd = new DrawFaceUpCardCmdData();
+        cmd.setType("drawfaceuptrain");
+        cmd.setUserName(userName);
+        cmd.setCardPosition(position);
+        threadIt(cmd);
         return null;
     }
 
