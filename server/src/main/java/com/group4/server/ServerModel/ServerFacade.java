@@ -359,7 +359,7 @@ public class ServerFacade implements IServer
     }
 
     @Override
-    public Results drawFaceDownTrainCard(String userName, TrainCard drawnCard)
+    public Results drawFaceDownTrainCard(String userName)
     {
         Game game = serverModel.getGameList().getGameByUsername(userName);
 
