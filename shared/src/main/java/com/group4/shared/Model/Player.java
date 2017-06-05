@@ -135,7 +135,7 @@ public class Player {
     }
 
     public int getScore(){
-        return stats.getTotalScore();
+        return stats.getClaimedRouteScore();
     }
 
     public void incrementRouteScore(int score){
