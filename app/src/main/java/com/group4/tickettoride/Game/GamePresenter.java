@@ -1,15 +1,22 @@
 package com.group4.tickettoride.Game;
 
+import android.support.v4.app.DialogFragment;
+import android.util.Log;
+
+import com.group4.shared.Model.Deck.DestinationCard;
+import com.group4.shared.Model.Deck.DestinationCardDeck;
 import com.group4.shared.Model.Game.GAME_STATUS;
 import com.group4.shared.Model.Game.Game;
 import com.group4.tickettoride.ClientModel.ClientFacade;
 import com.group4.tickettoride.ClientModel.ClientModel;
+import com.group4.tickettoride.Game.GameFragments.DestCardPickerFragment;
 import com.group4.tickettoride.GameList.GameListActivity;
 import com.group4.tickettoride.Login_Register.Login_RegisterActivity;
 import com.group4.tickettoride.NextLayerFacade.NextLayerFacade;
 import com.group4.tickettoride.R;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -94,6 +101,14 @@ public class GamePresenter implements IGamePresenter, Observer
         else if(arg.getClass() == ArrayList.class)
         {
 
+        }
+        else if (arg.getClass() == DestinationCardDeck.class)
+        {
+            DestinationCardDeck deck = (DestinationCardDeck) arg;
+            List<DestinationCard> receivedCards = deck.getDestDeck();
+            Log.d("DestCardPickerPresenter", "PICKER CALLED");
+            DialogFragment destPickerDialog = DestCardPickerFragment.newInstance(1);
+            destPickerDialog.show(activity.getSupportFragmentManager(), "dialog");
         }
     }
 

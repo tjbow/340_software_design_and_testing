@@ -41,6 +41,8 @@ public class ClientModel extends Observable {
 
     private Set<RouteSegment> routeSegments;
 
+    private List<DestinationCard> tempDestPickerDeck;
+
     private int actionCounter;
 
     public static ClientModel SINGLETON = new ClientModel();
@@ -64,104 +66,6 @@ public class ClientModel extends Observable {
         player = null;
         game = null;
         commandIDIndex = 0;
-    }
-
-    public void testActions()
-    {
-        switch (actionCounter)
-        {
-            case 0:
-                // update player points
-                for(Player player : game.getPlayers())
-                {
-                    //player.setScore(new Random().nextInt(10 - 1 + 1) + 1);
-                }
-                sendToObservers(game.getPlayers());
-                sendToObservers("Update points. Next: Remove Train Card for this player.");
-                //TODO: TYLER: add a server call to update points
-                actionCounter++;
-                break;
-            case 1:
-                // remove train card for this player
-                PlayerHand hand = player.getPlayerHand();
-                hand.getTrainCards().getCardDeck().remove(0);
-                sendToObservers(hand);
-                sendToObservers("Remove Train card. Next: Add Train card for this player.");
-                actionCounter++;
-                break;
-            case 2:
-                // add train cards for this player
-//                ServerProxy.SINGLETON.drawFaceDownTrainCard(user.getUsername());
-//                sendToObservers("Train cards added. Next: Remove destination cards");
-                actionCounter++;
-                break;
-            case 3:
-                // remove destination cards for this player
-                PlayerHand hand1 = player.getPlayerHand();
-                List<DestinationCard> removed = new ArrayList<>();
-                removed.add(hand1.getDestinationCards().getDestDeck().get(0));
-                removed.add(hand1.getDestinationCards().getDestDeck().get(1));
-                ServerProxy.SINGLETON.returnDestinationCard(removed);
-                sendToObservers("Remove Destination cards. Next: Add Destination cards for this player.");
-                actionCounter++;
-                break;
-            case 4:
-                // add destination cards for this player
-                ServerProxy.SINGLETON.drawDestinationCards(user.getUsername());
-                sendToObservers("Add Destination cards. Next: Update number of destination cards for other players");
-                actionCounter++;
-                break;
-            case 5:
-                // Update number of destination cards for other players
-                for(Player player : game.getPlayers())
-                {
-                    ServerProxy.SINGLETON.drawDestinationCards(player.getUserName());
-                }
-                sendToObservers("Added Dest Cards for other players. Next: Update face up card decks");
-                actionCounter++;
-                break;
-            case 6:
-                // Update visible cards and number of invisible cards in train card deck
-                List<TrainCard> newCards = new ArrayList<>();
-                for(int i = 0; i < 5; i++)
-                {
-                    newCards.add(game.getDecks().getTrainCardDeck().draw());
-                }
-                game.getDecks().getFaceUpDeck().setFaceUpCards(newCards);
-                sendToObservers("New face up cards drawn. Next: Update number of cards in destination deck");
-                actionCounter++;
-                break;
-            case 7:
-                // Update number of cards in destination card deck
-                ServerProxy.SINGLETON.drawDestinationCards(player.getUserName());
-                sendToObservers("Update number of cards in destination deck. Next: Add claimed route for any player");
-                actionCounter++;
-                break;
-            case 8:
-                // Add claimed route (for any player)
-//                actionCounter++;
-//                routeSegments.get(0).setClaimed(true);
-//                routeSegments.get(0).setOwner(getPlayer());
-//                routeSegments.get(0).setPlayer_color(PLAYER_COLOR.BLUE);
-//
-//                routeSegments.get(2).setClaimed(true);
-//                routeSegments.get(2).setOwner(getPlayer());
-//                routeSegments.get(2).setPlayer_color(PLAYER_COLOR.RED);
-//                sendToObservers("Added claimed route");
-//                break;
-                break;
-            case 9:
-                // Add chat message from any player
-                actionCounter++;
-                break;
-            case 10:
-                // Add game history entries
-                actionCounter++;
-                break;
-            default:
-                actionCounter = 0;
-                break;
-        }
     }
 
     public User getUser() {
@@ -299,6 +203,16 @@ public class ClientModel extends Observable {
         }
     }
 
+    public void setDestPickerDeck(List<DestinationCard> receivedCards)
+    {
+        this.tempDestPickerDeck = receivedCards;
+    }
+
+    public List<DestinationCard> getTempDestPickerDeck()
+    {
+        return tempDestPickerDeck;
+    }
+
     @Override
     public synchronized void addObserver(Observer o) {
         super.addObserver(o);
@@ -345,5 +259,103 @@ public class ClientModel extends Observable {
     public void setRouteSegments(Set<RouteSegment> routeSegments)
     {
         this.routeSegments = routeSegments;
+    }
+
+    @Deprecated
+    public void testActions()
+    {
+        switch (actionCounter)
+        {
+            case 0:
+                // update player points
+                for(Player player : game.getPlayers())
+                {
+                    //player.setScore(new Random().nextInt(10 - 1 + 1) + 1);
+                }
+                sendToObservers(game.getPlayers());
+                sendToObservers("Update points. Next: Remove Train Card for this player.");
+                actionCounter++;
+                break;
+            case 1:
+                // remove train card for this player
+                PlayerHand hand = player.getPlayerHand();
+                hand.getTrainCards().getCardDeck().remove(0);
+                sendToObservers(hand);
+                sendToObservers("Remove Train card. Next: Add Train card for this player.");
+                actionCounter++;
+                break;
+            case 2:
+                // add train cards for this player
+//                ServerProxy.SINGLETON.drawFaceDownTrainCard(user.getUsername());
+//                sendToObservers("Train cards added. Next: Remove destination cards");
+                actionCounter++;
+                break;
+            case 3:
+                // remove destination cards for this player
+                PlayerHand hand1 = player.getPlayerHand();
+                List<DestinationCard> removed = new ArrayList<>();
+                removed.add(hand1.getDestinationCards().getDestDeck().get(0));
+                removed.add(hand1.getDestinationCards().getDestDeck().get(1));
+                ServerProxy.SINGLETON.returnDestinationCard(removed);
+                sendToObservers("Remove Destination cards. Next: Add Destination cards for this player.");
+                actionCounter++;
+                break;
+            case 4:
+                // add destination cards for this player
+                ServerProxy.SINGLETON.drawDestinationCards(user.getUsername());
+                sendToObservers("Add Destination cards. Next: Update number of destination cards for other players");
+                actionCounter++;
+                break;
+            case 5:
+                // Update number of destination cards for other players
+                for(Player player : game.getPlayers())
+                {
+                    ServerProxy.SINGLETON.drawDestinationCards(player.getUserName());
+                }
+                sendToObservers("Added Dest Cards for other players. Next: Update face up card decks");
+                actionCounter++;
+                break;
+            case 6:
+                // Update visible cards and number of invisible cards in train card deck
+                List<TrainCard> newCards = new ArrayList<>();
+                for(int i = 0; i < 5; i++)
+                {
+                    newCards.add(game.getDecks().getTrainCardDeck().draw());
+                }
+                game.getDecks().getFaceUpDeck().setFaceUpCards(newCards);
+                sendToObservers("New face up cards drawn. Next: Update number of cards in destination deck");
+                actionCounter++;
+                break;
+            case 7:
+                // Update number of cards in destination card deck
+                ServerProxy.SINGLETON.drawDestinationCards(player.getUserName());
+                sendToObservers("Update number of cards in destination deck. Next: Add claimed route for any player");
+                actionCounter++;
+                break;
+            case 8:
+                // Add claimed route (for any player)
+//                actionCounter++;
+//                routeSegments.get(0).setClaimed(true);
+//                routeSegments.get(0).setOwner(getPlayer());
+//                routeSegments.get(0).setPlayer_color(PLAYER_COLOR.BLUE);
+//
+//                routeSegments.get(2).setClaimed(true);
+//                routeSegments.get(2).setOwner(getPlayer());
+//                routeSegments.get(2).setPlayer_color(PLAYER_COLOR.RED);
+//                sendToObservers("Added claimed route");
+//                break;
+                break;
+            case 9:
+                // Add chat message from any player
+                actionCounter++;
+                break;
+            case 10:
+                // Add game history entries
+                actionCounter++;
+                break;
+            default:
+                actionCounter = 0;
+                break;
+        }
     }
 }

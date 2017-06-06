@@ -1,7 +1,10 @@
 package com.group4.tickettoride.Game.GameFragments;
 
+import android.util.Log;
+
 import com.group4.shared.Model.Deck.DestinationCard;
 import com.group4.shared.Model.Deck.DestinationCardDeck;
+import com.group4.shared.Model.Game.Game;
 import com.group4.shared.Model.Player;
 import com.group4.shared.Model.Results;
 import com.group4.tickettoride.ClientModel.ClientModel;
@@ -36,7 +39,9 @@ public class DestCardPickerPresenter implements Observer, IDestCardPickerPresent
         }
         else
         {
-            cards = drawThreeNewCards();
+//            cards = drawThreeNewCards();
+            cards = ClientModel.SINGLETON.getTempDestPickerDeck();
+            ClientModel.SINGLETON.setDestPickerDeck(null);
         }
 
     }
@@ -97,9 +102,9 @@ public class DestCardPickerPresenter implements Observer, IDestCardPickerPresent
     }
 
     @Override
-    public void update(Observable observable, Object o)
+    public void update(Observable observable, Object arg)
     {
-
+        //
     }
 
     public List<DestinationCard> getCards()

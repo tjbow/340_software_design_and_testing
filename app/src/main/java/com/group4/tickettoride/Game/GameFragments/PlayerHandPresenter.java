@@ -1,5 +1,9 @@
 package com.group4.tickettoride.Game.GameFragments;
 
+import android.support.v4.app.DialogFragment;
+import android.util.Log;
+
+import com.group4.shared.Model.Deck.DestinationCardDeck;
 import com.group4.shared.Model.Game.Game;
 import com.group4.shared.Model.Player;
 import com.group4.shared.Model.Deck.PlayerHand;

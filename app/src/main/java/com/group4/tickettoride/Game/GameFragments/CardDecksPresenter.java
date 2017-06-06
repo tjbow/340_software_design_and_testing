@@ -27,19 +27,40 @@ public class CardDecksPresenter implements ITrainDeckPresenter, Observer
     @Override
     public void drawFaceUpCard(int num)
     {
-        NextLayerFacade.SINGLETON.drawFaceUpTrainCard(num);
+        if(ClientModel.SINGLETON.getPlayer().isTurn())
+        {
+            NextLayerFacade.SINGLETON.drawFaceUpTrainCard(num);
+        }
+        else
+        {
+            ClientModel.SINGLETON.sendToObservers("It's not your turn!");
+        }
     }
 
     @Override
     public void drawTrainCard()
     {
-        NextLayerFacade.SINGLETON.drawFaceDownTrainCard();
+        if(ClientModel.SINGLETON.getPlayer().isTurn())
+        {
+            NextLayerFacade.SINGLETON.drawFaceDownTrainCard();
+        }
+        else
+        {
+            ClientModel.SINGLETON.sendToObservers("It's not your turn!");
+        }
     }
 
     @Override
     public void drawDestCards()
     {
-        NextLayerFacade.SINGLETON.drawDestinationCards();
+        if(ClientModel.SINGLETON.getPlayer().isTurn())
+        {
+            NextLayerFacade.SINGLETON.drawDestinationCards();
+        }
+        else
+        {
+            ClientModel.SINGLETON.sendToObservers("It's not your turn!");
+        }
     }
 
     @Override

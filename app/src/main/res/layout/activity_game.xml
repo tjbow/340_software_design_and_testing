@@ -43,7 +43,7 @@
 
         <FrameLayout
             android:id="@+id/trainDeck_fragment"
-            android:background="@color/colorGreen"
+            android:background="@color/colorDarkGray"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
 

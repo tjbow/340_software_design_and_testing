@@ -12,6 +12,7 @@ import com.group4.shared.Model.Player;
 import com.group4.shared.Proxy.IServer;
 import com.group4.shared.Model.Results;
 import com.group4.shared.Model.User;
+import com.group4.shared.command.Client.CDrawDestCardsCmdData;
 import com.group4.shared.command.Client.CEndGameCommandData;
 import com.group4.shared.command.Client.CGetGameListCommandData;
 import com.group4.shared.command.Client.CJoinGameCommandData;
@@ -159,9 +160,7 @@ public class ServerFacade implements IServer
 
         //ADD THE ABOVE COMMANDS TO THE GAME SO EVERYONE CAN RECEIVE IT
         game.addCommand(updatePlayersCommandData);
-        updatePlayersCommandData.setCommandNumber(game.getNewCommandIndex());
         game.addCommand(updateGameCommandData);
-        updateGameCommandData.setCommandNumber(game.getNewCommandIndex());
 
         //CREATE A JOINGAME COMMAND TO SEND
         CJoinGameCommandData joinGameCommandData = new CJoinGameCommandData();
@@ -203,16 +202,9 @@ public class ServerFacade implements IServer
 
         //ADD THE ABOVE TO THE GAME FOR RETRIEVAL BY ALL PLAYERS
         game.addCommand(updatePlayersCommandData);
-        updatePlayersCommandData.setCommandNumber(game.getNewCommandIndex());
-
         game.addCommand(startGameCommandData);
-        startGameCommandData.setCommandNumber(game.getNewCommandIndex());
-
         game.addCommand(updateStatsCommandData);
-        updateStatsCommandData.setCommandNumber(game.getNewCommandIndex());
-
         game.addCommand(updateGameCommandData);
-        updateGameCommandData.setCommandNumber(game.getNewCommandIndex());
 
         return new Results(true, null, null, null);
     }
@@ -246,8 +238,8 @@ public class ServerFacade implements IServer
         CEndGameCommandData endGameCommandData = new CEndGameCommandData();
         endGameCommandData.setType("endgame");
         endGameCommandData.setWasSuccessful(true);
+
         game.addCommand(endGameCommandData);
-        endGameCommandData.setCommandNumber(game.getNewCommandIndex());
 
         System.out.println("The game " + gameName + " was ended.");
         return new Results(true, null, null, null);
@@ -269,7 +261,6 @@ public class ServerFacade implements IServer
 
         //ADD THE UPDATECHAT COMMAND SO EVERYONE CAN RECEIVE IT
         game.addCommand(updateChatCommandData);
-        updateChatCommandData.setCommandNumber(game.getNewCommandIndex());
 
         System.out.println("Player " + message.getUserName() +
                 " in game " + game.getGameName() +
@@ -296,25 +287,32 @@ public class ServerFacade implements IServer
         Game game = serverModel.getGameList().getGameByUsername(userName);
 
 //        get the player and add selectedCards to his destination card deck
-        game.playerTurn_DrawDestinationCards(userName);
+        List<DestinationCard> receivedCards = game.playerTurn_DrawDestinationCards(userName);
 
+//        UPDATE PLAYERS COMMAND
         CUpdatePlayersCommandData updatePlayersCommandData = new CUpdatePlayersCommandData();
         updatePlayersCommandData.setType("updateplayers");
         updatePlayersCommandData.setPlayerData(game.getPlayers());
 
+//        UPDATE GAME COMMAND
         CUpdateGameCommandData updateGameCommandData = new CUpdateGameCommandData();
         updateGameCommandData.setType("updategame");
         updateGameCommandData.setStatus(GAME_STATUS.ONGOING);
         updateGameCommandData.setDeckState(game.getDecks());
 
         game.addCommand(updatePlayersCommandData);
-        updatePlayersCommandData.setCommandNumber(game.getNewCommandIndex());
         game.addCommand(updateGameCommandData);
-        updateGameCommandData.setCommandNumber(game.getNewCommandIndex());
 
-        System.out.println("Destination Cards Drawn");
+//        DRAW DESTINATION CARDS COMMAND
+        CDrawDestCardsCmdData drawDestCardsCmdData = new CDrawDestCardsCmdData();
+        drawDestCardsCmdData.setType("drawdestcards");
+        drawDestCardsCmdData.setReceivedCards(receivedCards);
+        game.setTurnToNextPlayer();
 
-        return new Results(true, "Destination cards drawn", null, null);
+        CommandList cmdList = new CommandList();
+        cmdList.add(drawDestCardsCmdData);
+
+        return new Results(true, "Destination cards drawn", null, cmdList);
     }
 
     @Override
@@ -326,39 +324,44 @@ public class ServerFacade implements IServer
         game.playerTurn_ReturnDestinationCards(userName, returnedCard);
 
         Player player = game.getPlayerByUserName(userName);
-
-        //TODO: TYLER: fix turn history
-
-//        CUpdateStateCommandData cmd = new CUpdateStateCommandData();
-//        cmd.setType("updatestate");
-//        cmd.setUserName(user.getUsername());
-//        cmd.setState(MOVE_STATE.DO_NOT_CHANGE);
-//        game.addCommand()
+        player.setFirstDestCardsSelected(true);
 
         Message message = new Message("Drew Destination Cards", player.getUserName(), player.getColor());
         game.addTurn(message);
 
+//        UPDATE GAME COMMAND
         CUpdateGameCommandData updateGameCommandData = new CUpdateGameCommandData();
         updateGameCommandData.setType("updategame");
         updateGameCommandData.setStatus(GAME_STATUS.ONGOING);
         updateGameCommandData.setDeckState(game.getDecks());
 
+//        UPDATE PLAYERS COMMAND
         CUpdatePlayersCommandData updatePlayersCommandData = new CUpdatePlayersCommandData();
         updatePlayersCommandData.setType("updateplayers");
         updatePlayersCommandData.setPlayerData(game.getPlayers());
 
+//        UPDATE TURN HISTORY COMMAND
         CUpdateTurnHistoryCommandData updateTurnHistoryCommandData = new CUpdateTurnHistoryCommandData();
         updateTurnHistoryCommandData.setType("updateturn");
         updateTurnHistoryCommandData.setTurnHistory(game.getTurnHistory());
 
+//        UPDATE STATE COMMAND
+        CUpdateStateCommandData updateStateCommandData = new CUpdateStateCommandData();
+        updateStateCommandData.setType("updatestate");
+        updateStateCommandData.setUserName(userName);
+        updateStateCommandData.setState(MOVE_STATE.NOT_MY_TURN);
+
+//        add game command to game
         game.addCommand(updateGameCommandData);
-        updateGameCommandData.setCommandNumber(game.getNewCommandIndex());
 
+//        add players command to game
         game.addCommand(updatePlayersCommandData);
-        updatePlayersCommandData.setCommandNumber(game.getNewCommandIndex());
 
+//        add turn command to game
         game.addCommand(updateTurnHistoryCommandData);
-        updateTurnHistoryCommandData.setCommandNumber(game.getNewCommandIndex());
+
+//        add state command to game
+        game.addCommand(updateStateCommandData);
 
         int cardsSelected = 3 - returnedCard.size();
         System.out.println("Player " + serverModel.getTempUser().getUsername() +
@@ -372,21 +375,24 @@ public class ServerFacade implements IServer
     {
         Game game = serverModel.getGameList().getGameByUsername(userName);
 
-        game.playerTurn_DrawTrainCards(userName);
+        if(!game.playerTurn_DrawTrainCard(userName, -1))
+        {
+            return new Results(false, null, "Train card draw failed.", null);
+        }
 
+//        UPDATE GAME COMMAND
         CUpdateGameCommandData updateGameCommandData = new CUpdateGameCommandData();
         updateGameCommandData.setType("updategame");
         updateGameCommandData.setStatus(GAME_STATUS.ONGOING);
         updateGameCommandData.setDeckState(game.getDecks());
 
+//        UPDATE PLAYERS COMMAND
         CUpdatePlayersCommandData updatePlayersCommandData = new CUpdatePlayersCommandData();
         updatePlayersCommandData.setType("updateplayers");
         updatePlayersCommandData.setPlayerData(game.getPlayers());
 
         game.addCommand(updateGameCommandData);
-        updateGameCommandData.setCommandNumber(game.getNewCommandIndex());
         game.addCommand(updatePlayersCommandData);
-        updatePlayersCommandData.setCommandNumber(game.getNewCommandIndex());
 
         return new Results(true, "Train cards drawn", null, null);
     }
@@ -394,7 +400,28 @@ public class ServerFacade implements IServer
     @Override
     public Results drawFaceUpTrainCard(String userName, int position)
     {
-        return null;
+        Game game = serverModel.getGameList().getGameByUsername(userName);
+
+        if(!game.playerTurn_DrawTrainCard(userName, position))
+        {
+            return new Results(false, null, "Train card draw failed.", null);
+        }
+
+//        UPDATE GAME COMMAND
+        CUpdateGameCommandData updateGameCommandData = new CUpdateGameCommandData();
+        updateGameCommandData.setType("updategame");
+        updateGameCommandData.setStatus(GAME_STATUS.ONGOING);
+        updateGameCommandData.setDeckState(game.getDecks());
+
+//        UPDATE PLAYERS COMMAND
+        CUpdatePlayersCommandData updatePlayersCommandData = new CUpdatePlayersCommandData();
+        updatePlayersCommandData.setType("updateplayers");
+        updatePlayersCommandData.setPlayerData(game.getPlayers());
+
+        game.addCommand(updateGameCommandData);
+        game.addCommand(updatePlayersCommandData);
+
+        return new Results(true, "Train cards drawn", null, null);
     }
 
     @Override

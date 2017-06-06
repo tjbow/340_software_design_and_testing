@@ -7,6 +7,7 @@ package com.group4.server.ServerModel;
 import com.group4.shared.Model.Game.GAME_STATUS;
 import com.group4.shared.Model.Game.Game;
 import com.group4.shared.Model.Game.GameList;
+import com.group4.shared.Model.Game.MOVE_STATE;
 import com.group4.shared.Model.Player;
 import com.group4.shared.Model.User;
 import java.security.SecureRandom;
@@ -181,18 +182,23 @@ public class ServerModel
             case 0:
                 player.setColor(Player.BLUE);
                 player.setTurn(true);
+                player.setCurrentState(MOVE_STATE.MY_TURN);
                 break;
             case 1:
                 player.setColor(Player.RED);
+                player.setCurrentState(MOVE_STATE.NOT_MY_TURN);
                 break;
             case 2:
                 player.setColor(Player.GREEN);
+                player.setCurrentState(MOVE_STATE.NOT_MY_TURN);
                 break;
             case 3:
                 player.setColor(Player.YELLOW);
+                player.setCurrentState(MOVE_STATE.NOT_MY_TURN);
                 break;
             case 4:
                 player.setColor(Player.BLACK);
+                player.setCurrentState(MOVE_STATE.NOT_MY_TURN);
                 break;
         }
 

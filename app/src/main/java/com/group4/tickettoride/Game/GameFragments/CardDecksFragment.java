@@ -28,7 +28,7 @@ import java.util.List;
  */
 public class CardDecksFragment extends Fragment implements ITrainDeckFragment
 {
-    ITrainDeckPresenter trainPresenter;
+    ITrainDeckPresenter cardDecksPresenter;
     List<ImageView> faceUpImageViewList;
     //ImageView faceUpImageView0;
     //ImageView faceUpImageView1;
@@ -45,7 +45,7 @@ public class CardDecksFragment extends Fragment implements ITrainDeckFragment
     public CardDecksFragment()
     {
         // Required empty public constructor
-        trainPresenter = new CardDecksPresenter(this);
+        cardDecksPresenter = new CardDecksPresenter(this);
         faceUpImageViewList = new ArrayList<>();
     }
 
@@ -87,21 +87,21 @@ public class CardDecksFragment extends Fragment implements ITrainDeckFragment
         destCardsRemainTextView = (TextView) v.findViewById(R.id.dest_deck_remain_text);
 
         // Initialize to proper values
-        setFaceUpCards(trainPresenter.getFaceUpCards());
-        setTrainDeckCardsRemaining(trainPresenter.getTrainDeckCardsRemaining());
-        setDestCardsRemaining(trainPresenter.getDestDeckCardsRemaining());
+        setFaceUpCards(cardDecksPresenter.getFaceUpCards());
+        setTrainDeckCardsRemaining(cardDecksPresenter.getTrainDeckCardsRemaining());
+        setDestCardsRemaining(cardDecksPresenter.getDestDeckCardsRemaining());
 
         trainDeckImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                trainPresenter.drawTrainCard();
+                cardDecksPresenter.drawTrainCard();
             }
         });
 
         destDeckImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                trainPresenter.drawDestCards();
+                cardDecksPresenter.drawDestCards();
             }
         });
 
@@ -153,8 +153,8 @@ public class CardDecksFragment extends Fragment implements ITrainDeckFragment
     }
 
     public void checkFaceUpValid(int position){
-        if(position < trainPresenter.getFaceUpCards().size()){
-            trainPresenter.drawFaceUpCard(position);
+        if(position < cardDecksPresenter.getFaceUpCards().size()){
+            cardDecksPresenter.drawFaceUpCard(position);
         }
     }
 

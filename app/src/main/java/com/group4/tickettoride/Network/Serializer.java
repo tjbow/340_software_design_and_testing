@@ -17,6 +17,7 @@ import com.group4.shared.command.IClientCommand;
 import com.group4.shared.command.Server.LoginCommandData;
 import com.group4.tickettoride.ClientModel.ClientModel;
 import com.group4.tickettoride.Command.CCreateGameCommand;
+import com.group4.tickettoride.Command.CDrawDestCardsCmd;
 import com.group4.tickettoride.Command.CEndGameCommand;
 import com.group4.tickettoride.Command.CGetGameListCommand;
 import com.group4.tickettoride.Command.CJoinGameCommand;
@@ -123,6 +124,10 @@ public class Serializer
                     case "updatestate":
                         ClientCommand updateStateCommand = new Gson().fromJson(next.toString(), CUpdateStateCommand.class);
                         iCommands.add(updateStateCommand);
+                        break;
+                    case "drawdestcards":
+                        ClientCommand drawDestCards = new Gson().fromJson(next.toString(), CDrawDestCardsCmd.class);
+                        iCommands.add(drawDestCards);
                         break;
                     default:
                         System.out.println("no command found (serializer)");

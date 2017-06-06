@@ -1,11 +1,14 @@
 package com.group4.tickettoride.Game.GameFragments;
 
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.Point;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.view.Display;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -17,9 +20,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.group4.shared.Model.Deck.DestinationCard;
+import com.group4.shared.Model.Deck.DestinationCardDeck;
 import com.group4.tickettoride.ClientModel.DestinationCardHelper;
 import com.group4.tickettoride.R;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,6 +38,8 @@ import java.util.List;
  */
 public class DestCardPickerFragment extends DialogFragment implements IDestCardPickerFragment
 {
+    private Dialog mDialog;
+
     private IDestCardPickerPresenter destPresenter;
     private List<ImageView> destCardImageList;
     private Button confirmButton;
@@ -60,7 +67,6 @@ public class DestCardPickerFragment extends DialogFragment implements IDestCardP
      *
      * @return A new instance of fragment DestCardPickerFragment.
      */
-    // TODO: Rename and change types and number of parameters
     public static DestCardPickerFragment newInstance(int inMinNumSelected)
     {
         minNumSelected = inMinNumSelected;
@@ -95,11 +101,11 @@ public class DestCardPickerFragment extends DialogFragment implements IDestCardP
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState)
+    public Dialog onCreateDialog(Bundle savedInstanceState)
     {
         // Inflate the layout for this fragment
-        View v = inflater.inflate(R.layout.fragment_dest_card_picker, container);
+        View v = LayoutInflater.from(getActivity())
+                .inflate(R.layout.fragment_dest_card_picker, null);
         // grab layout items
         destCardImageList.add((ImageView) v.findViewById(R.id.dest_picker0));
         destCardImageList.add((ImageView) v.findViewById(R.id.dest_picker1));
@@ -136,16 +142,11 @@ public class DestCardPickerFragment extends DialogFragment implements IDestCardP
             }
         });
 
-        return v;
-    }
-
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri)
-    {
-        if (mListener != null)
-        {
-            mListener.onFragmentInteraction(uri);
-        }
+        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(getActivity());
+        dialogBuilder.setView(v);
+        mDialog = dialogBuilder.create();
+        mDialog.setCanceledOnTouchOutside(false);
+        return mDialog;
     }
 
     @Override
@@ -185,7 +186,6 @@ public class DestCardPickerFragment extends DialogFragment implements IDestCardP
      */
     public interface OnFragmentInteractionListener
     {
-        // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
 

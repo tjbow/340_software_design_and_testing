@@ -3,6 +3,8 @@ package com.group4.tickettoride.ClientModel;
 import android.util.Log;
 
 import com.group4.shared.Model.ChatHistory;
+import com.group4.shared.Model.Deck.DestinationCard;
+import com.group4.shared.Model.Deck.DestinationCardDeck;
 import com.group4.shared.Model.Game.MOVE_STATE;
 import com.group4.shared.Model.Map.City;
 import com.group4.shared.Model.CommandList;
@@ -220,11 +222,19 @@ public class ClientFacade implements IClient
     }
 
     @Override
+    public Results onDrawDestinationCards(List<DestinationCard> receivedCards)
+    {
+        DestinationCardDeck receivedCardsDeck = new DestinationCardDeck();
+        receivedCardsDeck.setDestDeck(receivedCards);
+        ClientModel.SINGLETON.setDestPickerDeck(receivedCards);
+        ClientModel.SINGLETON.sendToObservers(receivedCardsDeck);
+        return null;
+    }
+
+    @Override
     public Results onUpdateMapData(RouteList routeSegments, List<City> cities)
     {
         ClientModel.SINGLETON.updateMap(routeSegments, cities);
         return null;
     }
-
-    //TODO: TYLER: add onUpdatePlayerHand
 }

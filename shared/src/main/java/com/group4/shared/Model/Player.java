@@ -1,6 +1,7 @@
 package com.group4.shared.Model;
 
 import com.group4.shared.Model.Deck.PlayerHand;
+import com.group4.shared.Model.Game.MOVE_STATE;
 import com.group4.shared.Model.Map.RouteList;
 
 import java.util.UUID;
@@ -30,6 +31,8 @@ public class Player {
     private boolean winning;
     private boolean turn;
     private boolean firstDestCardsSelected;
+
+    private MOVE_STATE currentState;
 
     public Player(User user)
     {
@@ -174,5 +177,15 @@ public class Player {
     public void setFirstDestCardsSelected(boolean firstDestCardsSelected)
     {
         this.firstDestCardsSelected = firstDestCardsSelected;
+    }
+
+    public MOVE_STATE getCurrentState()
+    {
+        return currentState;
+    }
+
+    public void setCurrentState(MOVE_STATE currentState)
+    {
+        this.currentState = currentState;
     }
 }

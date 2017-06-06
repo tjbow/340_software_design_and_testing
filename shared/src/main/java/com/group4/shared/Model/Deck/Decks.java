@@ -49,6 +49,7 @@ public class Decks {
     {
         initializeTrainCardDeck();
         initializeDestCardDeck();
+        discardDeck = new TrainCardDeck();
         initializeFaceUpDeck();
     }
 
@@ -73,6 +74,7 @@ public class Decks {
         }
 
         trainCardDeck.shuffle();
+        trainCardDeck.shuffle();
     }
 
     private void initializeDestCardDeck()
@@ -95,14 +97,35 @@ public class Decks {
             if(count == 0) break;
         }
 
+        checkTooManyRainbows();
+    }
+
+    public void checkTooManyRainbows()
+    {
+        int rainbowCount = 0;
         for(TrainCard card : faceUpDeck.getFaceUpCards())
         {
-            card.setVisible(true);
+            if(card.getColor() == CARD_COLOR.RAINBOW)
+            {
+                rainbowCount++;
+            }
+        }
+
+        if(rainbowCount >= 3)
+        {
+            for (TrainCard card : faceUpDeck.getFaceUpCards())
+            {
+                discardDeck.add(card);
+            }
+            initializeFaceUpDeck();
         }
     }
 
-    public void shuffleDiscard(){
+    public void shuffleInDiscarded(){
         trainCardDeck.getCardDeck().addAll(discardDeck.getCardDeck());
         trainCardDeck.shuffle();
+        trainCardDeck.shuffle();
+        discardDeck = null;
+        discardDeck = new TrainCardDeck();
     }
 }

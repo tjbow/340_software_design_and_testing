@@ -1,6 +1,7 @@
 package com.group4.shared.Model.Game;
 
 import com.group4.shared.Model.ChatHistory;
+import com.group4.shared.Model.Deck.CARD_COLOR;
 import com.group4.shared.Model.Map.City;
 import com.group4.shared.Model.CommandList;
 import com.group4.shared.Model.Deck.Decks;
@@ -10,6 +11,7 @@ import com.group4.shared.Model.Message;
 import com.group4.shared.Model.Player;
 import com.group4.shared.Model.Map.RouteList;
 import com.group4.shared.Model.TurnHistory;
+import com.group4.shared.command.Client.CUpdateStateCommandData;
 import com.group4.shared.command.ClientCommand;
 
 import java.util.ArrayList;
@@ -182,9 +184,10 @@ public class Game
         }
     }
 
-    public void playerTurn_DrawDestinationCards(String userName)
+    public List<DestinationCard> playerTurn_DrawDestinationCards(String userName)
     {
         Player player = getPlayerByUserName(userName);
+        List<DestinationCard> receivedCards = new ArrayList<>();
 
         int count = 3;
         for(Iterator<DestinationCard> iterator = decks.getDestinationCardDeck().getDestDeck().iterator(); iterator.hasNext();)
@@ -192,15 +195,12 @@ public class Game
             DestinationCard current = iterator.next();
             iterator.remove();
             player.getPlayerHand().getDestinationCards().getDestDeck().add(current);
+            receivedCards.add(current);
             count--;
             if(count == 0)break;
         }
 
-        // Alternate implementation with draw method
-//        for(DestinationCard card : decks.getDestinationCardDeck().draw())
-//        {
-//            player.getPlayerHand().getDestinationCards().add(card);
-//        }
+        return receivedCards;
     }
 
     public void playerTurn_ReturnDestinationCards(String userName, List<DestinationCard> returnedCard)
@@ -228,19 +228,147 @@ public class Game
         }
     }
 
-    public void playerTurn_DrawTrainCards(String userName)
+    /**
+     *
+     *
+     * @pre if position == -1, draw face down card. If 0 <= position < 4, draw face up card
+     *
+     * @param userName
+     * @param position
+     */
+    public boolean playerTurn_DrawTrainCard(String userName, int position)
     {
-        //TODO: TYLER: fix in a later phase to choose draw location
         Player player = getPlayerByUserName(userName);
 
-        int count = 2;
-        for(Iterator<TrainCard> iterator = decks.getTrainCardDeck().getCardDeck().iterator(); iterator.hasNext();)
+        boolean drawSuccess;
+        if(position == -1)
+        {
+            //face down
+            drawSuccess = drawFaceDownCard(player);
+        }
+        else
+        {
+            //face up
+            drawSuccess = drawFaceUpCard(player, position);
+        }
+        return drawSuccess;
+    }
+
+    private boolean drawFaceDownCard(Player player)
+    {
+        boolean success;
+        Iterator<TrainCard> iterator = decks.getTrainCardDeck().getCardDeck().iterator();
+        if(iterator.hasNext())
         {
             TrainCard current = iterator.next();
             iterator.remove();
             player.getPlayerHand().getTrainCards().getCardDeck().add(current);
-            count--;
-            if(count == 0)break;
+            addTurn(new Message("Drew a face down train card.", player.getUserName(), player.getColor()));
+            System.out.println(player.getUserName() + " drew a face down train card.");
+
+            updatePlayerState(player);
+
+            success = true;
+        }
+        else
+        {
+            //empty deck? reshuffle?
+            checkToReshuffleDeck();
+            success = false;
+        }
+
+        checkToReshuffleDeck();
+
+        return success;
+    }
+
+    private boolean drawFaceUpCard(Player player, int position)
+    {
+        boolean success = false;
+        int index = 0;
+        for(Iterator<TrainCard> iterator = decks.getFaceUpDeck().getFaceUpCards().iterator(); iterator.hasNext();)
+        {
+            TrainCard current = iterator.next();
+            if(index == position)
+            {
+                //draw the card
+                iterator.remove();
+                player.getPlayerHand().getTrainCards().getCardDeck().add(current);
+                addTurn(new Message("Drew a face up train card.", player.getUserName(), player.getColor()));
+
+                //check if locomotive
+                if(current.getColor() == CARD_COLOR.RAINBOW)
+                {
+                    System.out.println(player.getUserName() + " drew a face up locomotive card.");
+                    player.setCurrentState(MOVE_STATE.DRAWN_FIRST_TRAIN_CARD);
+                    updatePlayerState(player);
+                }
+                else
+                {
+                    System.out.println(player.getUserName() + " drew a face up train card.");
+                    updatePlayerState(player);
+                }
+                success = true;
+            }
+            index++;
+        }
+
+//        replace the taken card in the deck
+        Iterator<TrainCard> iterator = decks.getTrainCardDeck().getCardDeck().iterator();
+        if(iterator.hasNext())
+        {
+            TrainCard current = iterator.next();
+            iterator.remove();
+            decks.getFaceUpDeck().getFaceUpCards().add(position, current);
+        }
+        else
+        {
+            System.out.println("No cards in deck to add to face up");
+        }
+
+//        check for 3+ rainbow cards
+        decks.checkTooManyRainbows();
+
+        checkToReshuffleDeck();
+
+        return success;
+    }
+
+    private void checkToReshuffleDeck()
+    {
+        int deckSize = decks.getTrainCardDeck().getCardDeck().size();
+        int discardSize = decks.getDiscardDeck().getCardDeck().size();
+        if(deckSize <= 1)
+        {
+            if(discardSize == 0)
+            {
+                System.out.println("No discarded cards to shuffle in");
+            }
+            else
+            {
+                System.out.println("Shuffled in discarded cards");
+                decks.shuffleInDiscarded();
+            }
+        }
+    }
+
+    private void updatePlayerState(Player player)
+    {
+        CUpdateStateCommandData updateStateCommandData = new CUpdateStateCommandData();
+        updateStateCommandData.setType("updatestate");
+        updateStateCommandData.setUserName(player.getUserName());
+        if(player.getCurrentState() == MOVE_STATE.DRAWN_FIRST_TRAIN_CARD)
+        {
+            updateStateCommandData.setState(MOVE_STATE.NOT_MY_TURN);
+            player.setCurrentState(MOVE_STATE.NOT_MY_TURN);
+            setTurnToNextPlayer();
+            this.addCommand(updateStateCommandData);
+        }
+        else if(player.getCurrentState() == MOVE_STATE.MY_TURN)
+        {
+            updateStateCommandData.setState(MOVE_STATE.DRAWN_FIRST_TRAIN_CARD);
+            player.setCurrentState(MOVE_STATE.DRAWN_FIRST_TRAIN_CARD);
+            this.addCommand(updateStateCommandData);
         }
     }
 
@@ -262,28 +390,38 @@ public class Game
 
     public void setTurnToNextPlayer()
     {
-        String currentPlayer = gameStats.getPlayerCurrentTurn();
-        List<Player> list = getPlayers();
-        String getNewTurnPlayer = null;
-        for(int i = 0; i < list.size(); i++)
+        String currentPlayerName = null;
+        for(Player player : players)
         {
-            if(list.get(i).getUserName().equals(currentPlayer))
+            if(player.isTurn())
             {
-                if(i == list.size() - 1)
+                currentPlayerName = player.getUserName();
+                player.setTurn(false);
+                player.setCurrentState(MOVE_STATE.NOT_MY_TURN);
+                break;
+            }
+        }
+
+        for(int i = 0; i < players.size(); i++)
+        {
+            if(players.get(i).getUserName().equals(currentPlayerName))
+            {
+                if(i == players.size() - 1)
                 {
-                    getNewTurnPlayer = list.get(0).getUserName();
-                    gameStats.setPlayerCurrentTurn(getNewTurnPlayer);
+                    players.get(0).setTurn(true);
+                    players.get(0).setCurrentState(MOVE_STATE.MY_TURN);
+                    System.out.println("It is now " + players.get(0).getUserName() + "\'s turn.");
                     return;
                 }
                 else
                 {
-                    getNewTurnPlayer = list.get(i + 1).getUserName();
-                    gameStats.setPlayerCurrentTurn(getNewTurnPlayer);
+                    players.get(i + 1).setTurn(true);
+                    players.get(i + 1).setCurrentState(MOVE_STATE.MY_TURN);
+                    System.out.println("It is now " + players.get(i + 1).getUserName() + "\'s turn.");
                     return;
                 }
             }
         }
-        gameStats.setPlayerCurrentTurn(null);
     }
 
 //    CHAT HISTORY
@@ -315,7 +453,9 @@ public class Game
 
     public boolean addCommand(ClientCommand command)
     {
-        return commandList.add(command);
+        boolean added = commandList.add(command);
+        command.setCommandNumber(this.getNewCommandIndex());
+        return added;
     }
 
     public int getNewCommandIndex()
