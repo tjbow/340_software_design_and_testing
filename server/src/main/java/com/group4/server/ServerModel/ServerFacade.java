@@ -22,6 +22,7 @@ import com.group4.shared.command.Client.CStartGameCommandData;
 import com.group4.shared.command.Client.CUpdateChatCommandData;
 import com.group4.shared.command.Client.CUpdateGameCommandData;
 import com.group4.shared.command.Client.CUpdateGameStatsCommandData;
+import com.group4.shared.command.Client.CUpdateMapCommandData;
 import com.group4.shared.command.Client.CUpdatePlayersCommandData;
 import com.group4.shared.command.Client.CUpdateStateCommandData;
 import com.group4.shared.command.Client.CUpdateTurnHistoryCommandData;
@@ -427,6 +428,53 @@ public class ServerFacade implements IServer
     @Override
     public Results claimRoute(String userName, RouteSegment claimedSegment, List<TrainCard> usedCards)
     {
-        return null;
+        Game game = serverModel.getGameList().getGameByUsername(serverModel.getTempUser().getUsername());
+
+        boolean success = game.playerTurn_claimRoute(userName, claimedSegment, usedCards);
+
+        if(!success)
+        {
+            return new Results(false, null, "Claiming route not successful.", null);
+        }
+
+//        UPDATE GAME COMMAND
+        CUpdateGameCommandData updateGameCommandData = new CUpdateGameCommandData();
+        updateGameCommandData.setType("updategame");
+        updateGameCommandData.setStatus(GAME_STATUS.ONGOING); //set game status appropriately!!!
+        updateGameCommandData.setDeckState(game.getDecks());
+
+//        UPDATE PLAYERS COMMAND
+        CUpdatePlayersCommandData updatePlayersCommandData = new CUpdatePlayersCommandData();
+        updatePlayersCommandData.setType("updateplayers");
+        updatePlayersCommandData.setPlayerData(game.getPlayers());
+
+//        UPDATE TURN HISTORY COMMAND
+        CUpdateTurnHistoryCommandData updateTurnHistoryCommandData = new CUpdateTurnHistoryCommandData();
+        updateTurnHistoryCommandData.setType("updateturn");
+        updateTurnHistoryCommandData.setTurnHistory(game.getTurnHistory());
+
+//        UPDATE PLAYER STATE COMMAND
+        CUpdateStateCommandData updateStateCommandData = new CUpdateStateCommandData();
+        updateStateCommandData.setType("updatestate");
+        updateStateCommandData.setUserName(userName);
+        updateStateCommandData.setState(MOVE_STATE.NOT_MY_TURN);
+
+//        UPDATE MAP COMMAND
+        CUpdateMapCommandData updateMapCmd = new CUpdateMapCommandData();
+        updateMapCmd.setType("updatemap");
+        updateMapCmd.setRouteSegments(game.getRoutes());
+
+//        add game command to game
+        game.addCommand(updateGameCommandData);
+//        add players command to game
+        game.addCommand(updatePlayersCommandData);
+//        add turn command to game
+        game.addCommand(updateTurnHistoryCommandData);
+//        add state command to game
+        game.addCommand(updateStateCommandData);
+//        add update map command to game
+        game.addCommand(updateMapCmd);
+
+        return new Results(true, "Route Claimed.", null, null);
     }
 }

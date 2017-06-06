@@ -1,6 +1,7 @@
 package com.group4.server.Network;
 
 import com.google.gson.Gson;
+import com.group4.server.Command.ClaimRouteCommand;
 import com.group4.server.Command.CreateGameCommand;
 import com.group4.server.Command.DrawDestCardsCommand;
 import com.group4.server.Command.DrawFaceDownTrainCardCommand;
@@ -99,6 +100,7 @@ public class ExecCommandHandler
                 }
                 else results = noAuthToken();
                 break;
+            //PHASE 3:
             case "drawdestcards":
                 if(ServerModel.getInstance().getTempUser() != null)
                 {
@@ -128,6 +130,14 @@ public class ExecCommandHandler
                 {
                     DrawFaceUpTrainCardCommand drawFaceUpTrainCardCommand = new Gson().fromJson(requestBody, DrawFaceUpTrainCardCommand.class);
                     results = drawFaceUpTrainCardCommand.execute();
+                }
+                else results = noAuthToken();
+                break;
+            case "claimroute":
+                if(ServerModel.getInstance().getTempUser() != null)
+                {
+                    ClaimRouteCommand claimRouteCommand = new Gson().fromJson(requestBody, ClaimRouteCommand.class);
+                    results = claimRouteCommand.execute();
                 }
                 else results = noAuthToken();
                 break;

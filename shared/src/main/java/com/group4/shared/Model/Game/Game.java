@@ -7,6 +7,7 @@ import com.group4.shared.Model.CommandList;
 import com.group4.shared.Model.Deck.Decks;
 import com.group4.shared.Model.Deck.DestinationCard;
 import com.group4.shared.Model.Deck.TrainCard;
+import com.group4.shared.Model.Map.RouteSegment;
 import com.group4.shared.Model.Message;
 import com.group4.shared.Model.Player;
 import com.group4.shared.Model.Map.RouteList;
@@ -230,7 +231,6 @@ public class Game
 
     /**
      *
-     *
      * @pre if position == -1, draw face down card. If 0 <= position < 4, draw face up card
      *
      * @param userName
@@ -350,6 +350,31 @@ public class Game
                 decks.shuffleInDiscarded();
             }
         }
+    }
+
+    public boolean playerTurn_claimRoute(String userName, RouteSegment claimedSegment, List<TrainCard> usedCards)
+    {
+        //check if route is available. check for double-route rules
+
+        //check if enough train pieces
+
+        // deduct train pieces from player
+
+        //add route to player's routes and mark it?
+
+        //set game routelist
+
+        //deduct cards from player and discard them
+
+        //add points to player
+
+        //calculate longest continuous path
+
+        //check if player has 0-2 remaining train pieces
+
+        //set game status
+
+        return false;
     }
 
     private void updatePlayerState(Player player)

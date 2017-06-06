@@ -9,6 +9,7 @@ import com.group4.shared.Model.Message;
 import com.group4.shared.Model.Results;
 import com.group4.shared.Model.User;
 import com.group4.shared.Proxy.IServer;
+import com.group4.shared.command.Server.ClaimRouteCommandData;
 import com.group4.shared.command.Server.CreateGameCommandData;
 import com.group4.shared.command.Server.DrawDestCardsCommandData;
 import com.group4.shared.command.Server.DrawFaceDownCardCmdData;
@@ -215,6 +216,13 @@ public class ServerProxy implements IServer
     @Override
     public Results claimRoute(String userName, RouteSegment claimedSegment, List<TrainCard> usedCards)
     {
+        ClaimRouteCommandData cmd = new ClaimRouteCommandData();
+        cmd.setType("claimroute");
+        cmd.setUserName(userName);
+        cmd.setClaimedRoute(claimedSegment);
+        cmd.setUsedCards(usedCards);
+        threadIt(cmd);
+        
         return null;
     }
 
