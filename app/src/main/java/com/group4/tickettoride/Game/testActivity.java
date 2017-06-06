@@ -4,6 +4,7 @@ import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.group4.shared.Model.Map.RouteSegment;
 import com.group4.tickettoride.Game.GameFragments.DestCardPickerFragment;
@@ -28,7 +29,7 @@ public class testActivity extends AppCompatActivity implements IMapActivity {
 
     @Override
     public void onClickRoute(RouteSegment r) {
-
+        Toast.makeText(this,r.getRouteId(), Toast.LENGTH_SHORT).show();
 
     }
 }

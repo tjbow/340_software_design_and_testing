@@ -311,7 +311,9 @@ public class GameMapView extends View {
             Pt pt1 = new Pt(r.getX1Constraint()/100 * getWidth(),r.getY1Constraint()/100 *getHeight());
             Pt pt2 = new Pt(r.getX2Constraint()/100 * getWidth(),r.getY2Constraint()/100 *getHeight());
 
-            ((IMapActivity)getContext()).onClickRoute(r);
+            if(isRouteSegment(pt1,pt2,tapPt)) {
+                ((IMapActivity) getContext()).onClickRoute(r);
+            }
 
 //            if (isRouteSegment(pt1, pt2, tapPt)) {
 //                tap = !tap;
