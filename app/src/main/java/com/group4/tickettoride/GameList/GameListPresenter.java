@@ -31,7 +31,6 @@ public class GameListPresenter implements IGameListPresenter, Observer {
 
     }
 
-    //TODO @john: this seems a bit hackish
     public GameListPresenter(ICreateGameFragment fragment)
     {
         this.fragment = fragment;

@@ -55,7 +55,6 @@ public class CardDecksFragment extends Fragment implements ITrainDeckFragment
      *
      * @return A new instance of fragment CardDecksFragment.
      */
-    // TODO: Rename and change types and number of parameters
     public static CardDecksFragment newInstance()
     {
         CardDecksFragment fragment = new CardDecksFragment();
@@ -141,15 +140,6 @@ public class CardDecksFragment extends Fragment implements ITrainDeckFragment
         });
 
         return v;
-    }
-
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri)
-    {
-        if (mListener != null)
-        {
-            mListener.onFragmentInteraction(uri);
-        }
     }
 
     public void checkFaceUpValid(int position){
@@ -249,7 +239,6 @@ public class CardDecksFragment extends Fragment implements ITrainDeckFragment
      */
     public interface OnFragmentInteractionListener
     {
-        // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
 }

@@ -65,7 +65,6 @@ public class PlayerHandFragment extends Fragment implements IPlayerHandFragment
      *
      * @return A new instance of fragment PlayerHandFragment.
      */
-    // TODO: Rename and change types and number of parameters
     public static PlayerHandFragment newInstance()
     {
         PlayerHandFragment fragment = new PlayerHandFragment();
@@ -358,15 +357,6 @@ public class PlayerHandFragment extends Fragment implements IPlayerHandFragment
         destCardImages.add(ContextCompat.getDrawable(this.getContext(), R.drawable.seattle_la));
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri)
-    {
-        if (mListener != null)
-        {
-            mListener.onFragmentInteraction(uri);
-        }
-    }
-
     /**
      * This interface must be implemented by activities that contain this
      * fragment to allow an interaction in this fragment to be communicated
@@ -379,7 +369,6 @@ public class PlayerHandFragment extends Fragment implements IPlayerHandFragment
      */
     public interface OnFragmentInteractionListener
     {
-        // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
 }
