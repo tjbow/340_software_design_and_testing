@@ -8,16 +8,14 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TableRow;
 import android.widget.TextView;
-
-import com.group4.tickettoride.GameList.GameListPresenter;
-import com.group4.tickettoride.GameList.IGameListPresenter;
 import com.group4.tickettoride.R;
 import com.joanzapata.iconify.IconDrawable;
 import com.joanzapata.iconify.Iconify;
@@ -36,6 +34,7 @@ public class EndGameFragment extends DialogFragment{
     private TextView rank1DestinationsNegativePoints;
     private TextView rank1LongestPathPoints;
     private TextView rank1TotalPoints;
+    private TableRow rank1Row;
     private ImageView rank1WinnerIcon;
 
     //rank4 Views
@@ -45,7 +44,7 @@ public class EndGameFragment extends DialogFragment{
     private TextView rank2DestinationsNegativePoints;
     private TextView rank2LongestPathPoints;
     private TextView rank2TotalPoints;
-    private ImageView rank2WinnerIcon;
+    private TableRow rank2Row;
 
     //rank3 Views
     private TextView rank3Username;
@@ -54,7 +53,7 @@ public class EndGameFragment extends DialogFragment{
     private TextView rank3DestinationsNegativePoints;
     private TextView rank3LongestPathPoints;
     private TextView rank3TotalPoints;
-    private ImageView rank3WinnerIcon;
+    private TableRow rank3Row;
 
     //rank4 Views
     private TextView rank4Username;
@@ -63,7 +62,7 @@ public class EndGameFragment extends DialogFragment{
     private TextView rank4DestinationsNegativePoints;
     private TextView rank4LongestPathPoints;
     private TextView rank4TotalPoints;
-    private ImageView rank4WinnerIcon;
+    private TableRow rank4Row;
 
     //rank5 Views
     private TextView rank5Username;
@@ -72,8 +71,7 @@ public class EndGameFragment extends DialogFragment{
     private TextView rank5DestinationsNegativePoints;
     private TextView rank5LongestPathPoints;
     private TextView rank5TotalPoints;
-    private ImageView rank5WinnerIcon;
-
+    private TableRow rank5Row;
 
 
     private Dialog dialog;
@@ -162,6 +160,7 @@ public class EndGameFragment extends DialogFragment{
         rank1DestinationsNegativePoints = (TextView) v.findViewById(R.id.rank1_destNegPts);
         rank1LongestPathPoints = (TextView) v.findViewById(R.id.rank1_longPathPts);
         rank1TotalPoints = (TextView) v.findViewById(R.id.rank1_total);
+        rank1Row = (TableRow) v.findViewById(R.id.endGame_rank1Info);
 
         //rank2 Views
         rank2Username = (TextView) v.findViewById(R.id.rank2_username);
@@ -170,6 +169,7 @@ public class EndGameFragment extends DialogFragment{
         rank2DestinationsNegativePoints = (TextView) v.findViewById(R.id.rank2_destNegPts);
         rank2LongestPathPoints = (TextView) v.findViewById(R.id.rank2_longPathPts);
         rank2TotalPoints = (TextView) v.findViewById(R.id.rank2_total);
+        rank2Row = (TableRow) v.findViewById(R.id.endGame_rank2Info);
 
         //rank3 Views
         rank3Username = (TextView) v.findViewById(R.id.rank3_username);
@@ -178,6 +178,7 @@ public class EndGameFragment extends DialogFragment{
         rank3DestinationsNegativePoints = (TextView) v.findViewById(R.id.rank3_destNegPts);
         rank3LongestPathPoints = (TextView) v.findViewById(R.id.rank3_longPathPts);
         rank3TotalPoints = (TextView) v.findViewById(R.id.rank3_total);
+        rank3Row = (TableRow) v.findViewById(R.id.endGame_rank3Info);
 
         //rank4 Views
         rank4Username = (TextView) v.findViewById(R.id.rank4_username);
@@ -186,6 +187,7 @@ public class EndGameFragment extends DialogFragment{
         rank4DestinationsNegativePoints = (TextView) v.findViewById(R.id.rank4_destNegPts);
         rank4LongestPathPoints = (TextView) v.findViewById(R.id.rank4_longPathPts);
         rank4TotalPoints = (TextView) v.findViewById(R.id.rank4_total);
+        rank4Row = (TableRow) v.findViewById(R.id.endGame_rank4Info);
 
         //rank5 Views
         rank5Username = (TextView) v.findViewById(R.id.rank5_username);
@@ -194,7 +196,7 @@ public class EndGameFragment extends DialogFragment{
         rank5DestinationsNegativePoints = (TextView) v.findViewById(R.id.rank5_destNegPts);
         rank5LongestPathPoints = (TextView) v.findViewById(R.id.rank5_longPathPts);
         rank5TotalPoints = (TextView) v.findViewById(R.id.rank5_total);
-
+        rank5Row = (TableRow) v.findViewById(R.id.endGame_rank5Info);
     }
 
     //Rank 1 -----------------------------------------------------------------------------
@@ -222,6 +224,13 @@ public class EndGameFragment extends DialogFragment{
         this.rank1TotalPoints.setText(rank1TotalPoints);
     }
 
+    public void setRank1Background(int color)
+    {
+        rank1Row.setBackgroundColor(ContextCompat.getColor(getActivity(), color));
+    }
+
+
+
     //Rank 2 -----------------------------------------------------------------------------
     public void setRank2Username(String rank2Username) {
         this.rank2Username.setText(rank2Username);
@@ -245,6 +254,11 @@ public class EndGameFragment extends DialogFragment{
 
     public void setRank2TotalPoints(String rank2TotalPoints) {
         this.rank2TotalPoints.setText(rank2TotalPoints);
+    }
+
+    public void setRank2Background(int color)
+    {
+        rank2Row.setBackgroundColor(ContextCompat.getColor(getActivity(), color));
     }
 
     //Rank 3 -----------------------------------------------------------------------------
@@ -272,6 +286,11 @@ public class EndGameFragment extends DialogFragment{
         this.rank3TotalPoints.setText(rank3TotalPoints);
     }
 
+    public void setRank3Background(int color)
+    {
+        rank3Row.setBackgroundColor(ContextCompat.getColor(getActivity(), color));
+    }
+
     //Rank 4 -----------------------------------------------------------------------------
     public void setRank4Username(String rank4Username) {
         this.rank4Username.setText(rank4Username);
@@ -297,6 +316,11 @@ public class EndGameFragment extends DialogFragment{
         this.rank4TotalPoints.setText(rank4TotalPoints);
     }
 
+    public void setRank4Background(int color)
+    {
+        rank4Row.setBackgroundColor(ContextCompat.getColor(getActivity(), color));
+    }
+
     //Rank 5 -----------------------------------------------------------------------------
     public void setRank5Username(String rank5Username) {
         this.rank5Username.setText(rank5Username);
@@ -320,6 +344,11 @@ public class EndGameFragment extends DialogFragment{
 
     public void setRank5TotalPoints(String rank5TotalPoints) {
         this.rank5TotalPoints.setText(rank5TotalPoints);
+    }
+
+    public void setRank5Background(int color)
+    {
+        rank5Row.setBackgroundColor(ContextCompat.getColor(getActivity(), color));
     }
 
 }
