@@ -6,7 +6,7 @@ dependencies {
     compile 'com.fasterxml.jackson.core:jackson-core:2.9.0.pr3'
     compile 'com.fasterxml.jackson.core:jackson-annotations:2.9.0.pr3'
     testCompile 'junit:junit:4.12'
-    compile files('libs/jgrapht-core-1.0.1.jar')
+    compile 'org.jgrapht:jgrapht-jdk1.5:0.7.3'
 }
 
 sourceCompatibility = "1.7"
