@@ -20,7 +20,10 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.group4.shared.Model.Deck.CARD_COLOR;
 import com.group4.tickettoride.R;
+
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -84,6 +87,7 @@ public class TrainCardPickerFragment extends DialogFragment {
     private static final String ROUTE_ID = "route_ID";
 
     private ITrainCardPickerPresenter presenter;
+    private List<CARD_COLOR> initializedPickers;
     private String routeID;
     private Dialog dialog;
     private View v;
@@ -126,6 +130,43 @@ public class TrainCardPickerFragment extends DialogFragment {
         ((AlertDialog) dialog).getButton(AlertDialog.BUTTON_POSITIVE).setEnabled(enabled);
     }
 
+    public void disableAllCurrentPickers()
+    {
+        for (CARD_COLOR color : initializedPickers)
+        {
+
+                switch(color) {
+                    case PURPLE:
+                        setPurplePickerEnabled(false);
+                        break;
+                    case WHITE:
+                        setWhitePickerEnabled(false);
+                        break;
+                    case BLUE:
+                        setBluePickerEnabled(false);
+                        break;
+                    case RED:
+                        setRedPickerEnabled(false);
+                        break;
+                    case BLACK:
+                        setBlackPickerEnabled(false);
+                        break;
+                    case YELLOW:
+                        setYellowPickerEnabled(false);
+                        break;
+                    case ORANGE:
+                        setOrangePickerEnabled(false);
+                        break;
+                    case GREEN:
+                        setGreenPickerEnabled(false);
+                        break;
+                    default:
+                        break;
+                }
+
+        }
+    }
+
     public void setAllPickersEnabled()
     {
         setPurplePickerEnabled(true);
@@ -160,11 +201,12 @@ public class TrainCardPickerFragment extends DialogFragment {
             }
         });
         purpleCardCount = (TextView) v.findViewById(R.id.purpleCard_count);
+        initializedPickers.add(CARD_COLOR.PURPLE);
     }
 
-    public String getPurpleCardCount()
+    public int getPurpleCardCount()
     {
-        return purpleCardCount.getText().toString();
+        return Integer.parseInt(purpleCardCount.getText().toString());
     }
 
     public void setPurpleCardCount(String count)
@@ -221,11 +263,12 @@ public class TrainCardPickerFragment extends DialogFragment {
             }
         });
         whiteCardCount = (TextView) v.findViewById(R.id.whiteCard_count);
+        initializedPickers.add(CARD_COLOR.WHITE);
     }
 
-    public String getWhiteCardCount()
+    public int getWhiteCardCount()
     {
-        return whiteCardCount.getText().toString();
+        return Integer.parseInt(whiteCardCount.getText().toString());
     }
 
     public void setWhiteCardCount(String count)
@@ -282,11 +325,12 @@ public class TrainCardPickerFragment extends DialogFragment {
             }
         });
         blueCardCount = (TextView) v.findViewById(R.id.blueCard_count);
+        initializedPickers.add(CARD_COLOR.BLUE);
     }
 
-    public String getBlueCardCount()
+    public int getBlueCardCount()
     {
-        return blueCardCount.getText().toString();
+        return Integer.parseInt(blueCardCount.getText().toString());
     }
 
     public void setBlueCardCount(String count)
@@ -343,11 +387,12 @@ public class TrainCardPickerFragment extends DialogFragment {
             }
         });
         yellowCardCount = (TextView) v.findViewById(R.id.yellowCard_count);
+        initializedPickers.add(CARD_COLOR.YELLOW);
     }
 
-    public String getYellowCardCount()
+    public int getYellowCardCount()
     {
-        return yellowCardCount.getText().toString();
+        return Integer.parseInt(yellowCardCount.getText().toString());
     }
 
     public void setYellowCardCount(String count)
@@ -404,11 +449,12 @@ public class TrainCardPickerFragment extends DialogFragment {
             }
         });
         orangeCardCount = (TextView) v.findViewById(R.id.orangeCard_count);
+        initializedPickers.add(CARD_COLOR.ORANGE);
     }
 
-    public String getOrangeCardCount()
+    public int getOrangeCardCount()
     {
-        return orangeCardCount.getText().toString();
+        return Integer.parseInt(orangeCardCount.getText().toString());
     }
 
     public void setOrangeCardCount(String count)
@@ -465,11 +511,12 @@ public class TrainCardPickerFragment extends DialogFragment {
             }
         });
         blackCardCount = (TextView) v.findViewById(R.id.blackCard_count);
+        initializedPickers.add(CARD_COLOR.BLACK);
     }
 
-    public String getBlackCardCount()
+    public int getBlackCardCount()
     {
-        return blackCardCount.getText().toString();
+        return Integer.parseInt(blackCardCount.getText().toString());
     }
 
     public void setBlackCardCount(String count)
@@ -526,11 +573,12 @@ public class TrainCardPickerFragment extends DialogFragment {
             }
         });
         redCardCount = (TextView) v.findViewById(R.id.redCard_count);
+        initializedPickers.add(CARD_COLOR.RED);
     }
 
-    public String getRedCardCount()
+    public int getRedCardCount()
     {
-        return redCardCount.getText().toString();
+        return Integer.parseInt(redCardCount.getText().toString());
     }
 
     public void setRedCardCount(String count)
@@ -587,11 +635,12 @@ public class TrainCardPickerFragment extends DialogFragment {
             }
         });
         greenCardCount = (TextView) v.findViewById(R.id.greenCard_count);
+        initializedPickers.add(CARD_COLOR.GREEN);
     }
 
-    public String getGreenCardCount()
+    public int getGreenCardCount()
     {
-        return greenCardCount.getText().toString();
+        return Integer.parseInt(greenCardCount.getText().toString());
     }
 
     public void setGreenCardCount(String count)
@@ -648,11 +697,12 @@ public class TrainCardPickerFragment extends DialogFragment {
             }
         });
         locomotiveCardCount = (TextView) v.findViewById(R.id.locomotiveCard_count);
+        initializedPickers.add(CARD_COLOR.RAINBOW);
     }
 
-    public String getLocomotiveCardCount()
+    public int getLocomotiveCardCount()
     {
-        return locomotiveCardCount.getText().toString();
+        return Integer.parseInt(locomotiveCardCount.getText().toString());
     }
 
     public void setLocomotiveCardCount(String count)

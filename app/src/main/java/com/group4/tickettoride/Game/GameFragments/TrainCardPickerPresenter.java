@@ -85,6 +85,17 @@ public class TrainCardPickerPresenter implements Observer, ITrainCardPickerPrese
     @Override
     public void onPurpleIncrement() {
 
+        int purpleCount = fragment.getPurpleCardCount();
+        purpleCount++;
+        fragment.setPurpleCardCount(Integer.toString(purpleCount));
+        //if the player has now selected all the cards they have of a color
+        if (purpleCount == cardMap.get(CARD_COLOR.PURPLE))
+        {
+            fragment.setPurpleCardPlusEnabled(false);
+        }
+        fragment.setPurpleCardMinusEnabled(true);
+
+        //tell fragment only purple and locomotive should be enabled
     }
 
     @Override
@@ -171,6 +182,8 @@ public class TrainCardPickerPresenter implements Observer, ITrainCardPickerPrese
     public void onLocomotiveDecrement() {
 
     }
+
+
 
 
 }
