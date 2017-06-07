@@ -3,6 +3,7 @@ package com.group4.shared.Model.Map;
 import com.group4.shared.Model.Player;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by tyler on 5/22/17.
@@ -10,13 +11,14 @@ import java.util.List;
 
 public class RouteList
 {
-    private List<RouteSegment> routeList;
+//    private List<RouteSegment> routeList;
+    private Set<RouteSegment> routeList;
 
-    public List<RouteSegment> getRouteList() {
+    public Set<RouteSegment> getRouteList() {
         return routeList;
     }
 
-    public void setRouteList(List<RouteSegment> routeList) {
+    public void setRouteList(Set<RouteSegment> routeList) {
         this.routeList = routeList;
     }
 
@@ -68,5 +70,16 @@ public class RouteList
         }
 
         return null;
+    }
+
+    public boolean isClaimed(String routeId)
+    {
+        for(RouteSegment routeSegment : routeList){
+            if(routeSegment.getRouteId().equals(routeId))
+            {
+                return routeSegment.isClaimed();
+            }
+        }
+        return false;
     }
 }

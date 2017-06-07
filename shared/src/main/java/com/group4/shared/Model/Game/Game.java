@@ -1,5 +1,7 @@
 package com.group4.shared.Model.Game;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.group4.shared.Model.ChatHistory;
 import com.group4.shared.Model.Deck.CARD_COLOR;
 import com.group4.shared.Model.Map.City;
@@ -15,9 +17,15 @@ import com.group4.shared.Model.TurnHistory;
 import com.group4.shared.command.Client.CUpdateStateCommandData;
 import com.group4.shared.command.ClientCommand;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by Russell Fitzpatrick on 5/13/2017.
@@ -131,6 +139,27 @@ public class Game
 
     public void setRoutes(RouteList routes) {
         this.routes = routes;
+    }
+
+    public void importRoutes()
+    {
+        InputStream is = null;
+        try
+        {
+            is = new FileInputStream(new File("shared/src/main/java/com/group4/shared/Model/Game/routes.json"));
+        } catch (FileNotFoundException e)
+        {
+            e.printStackTrace();
+        }
+
+        ObjectMapper mapper = new ObjectMapper();
+        try {
+            Set<RouteSegment> routeSet = mapper.readValue(is, new TypeReference<Set<RouteSegment>>() { });
+
+            this.routes.setRouteList(routeSet);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public List<City> getCities() {
@@ -358,27 +387,63 @@ public class Game
 
     public boolean playerTurn_claimRoute(String userName, RouteSegment claimedSegment, List<TrainCard> usedCards)
     {
-        //check if route is available. check for double-route rules
+        Player player = this.getPlayerByUserName(userName);
+
+        //check if route is available.
+        if(claimedSegment.isClaimed()) return false;
+
+        //TODO: check for double-route rules (two routes between same two cities)
 
         //check if enough train pieces
+        if(player.getTrainCarsRemaining() < claimedSegment.getLength()) return false;
+
+        //the route can be claimed, continue:
 
         // deduct train pieces from player
+        int newAmount = player.getTrainCarsRemaining() - claimedSegment.getLength();
+        player.setTrainCarsRemaining(newAmount);
 
         //add route to player's routes and mark it?
+        routes.claimRoute(claimedSegment.getRouteId(), player);
+        player.addClaimedRoute(claimedSegment);
 
         //set game routelist
+        // ?? needed?
 
         //deduct cards from player and discard them
+        for(TrainCard usedCard : usedCards)
+        {
+            for(Iterator<TrainCard> iterator = player.getPlayerHand().getTrainCards().getCardDeck().iterator(); iterator.hasNext();)
+            {
+                TrainCard current = iterator.next();
+                if(usedCard.getColor() == current.getColor())
+                {
+                    iterator.remove();
+                    decks.getDiscardDeck().add(current);
+                    break;
+                }
+            }
+        }
 
         //add points to player
+        int addition = claimedSegment.getScore();
+        player.getStats().incrementRouteScore(addition);
 
         //calculate longest continuous path
+        // ??
 
         //check if player has 0-2 remaining train pieces
+        if(player.getTrainCarsRemaining() <= 2)
+        {
+            //TODO: TYLER: set final turn
+        }
 
         //set game status
 
-        return false;
+        //finish turn
+        updatePlayerState(player, false, true);
+
+        return true;
     }
 
     private void updatePlayerState(Player player, boolean drawDestCards, boolean claimRoute)

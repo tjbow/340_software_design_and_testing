@@ -3,6 +3,7 @@ package com.group4.shared.Model;
 import com.group4.shared.Model.Deck.PlayerHand;
 import com.group4.shared.Model.Game.MOVE_STATE;
 import com.group4.shared.Model.Map.RouteList;
+import com.group4.shared.Model.Map.RouteSegment;
 
 import java.util.UUID;
 
@@ -123,6 +124,11 @@ public class Player {
 
     public void setClaimedRouteList(RouteList claimedRouteList) {
         this.claimedRouteList = claimedRouteList;
+    }
+
+    public boolean addClaimedRoute(RouteSegment claimedSegment)
+    {
+        return this.claimedRouteList.getRouteList().add(claimedSegment);
     }
 
     public PlayerStats getStats() {
