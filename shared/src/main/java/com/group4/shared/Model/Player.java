@@ -33,7 +33,7 @@ public class Player {
     private boolean winning;
     private boolean turn;
     private boolean firstDestCardsSelected;
-    private RoutePaths routePaths;
+    //private RoutePaths routePaths;
 
     private MOVE_STATE currentState;
 
@@ -43,7 +43,6 @@ public class Player {
         this.id = user.getId();
         this.turn = false;
         this.firstDestCardsSelected = false;
-        this.routePaths = new RoutePaths();
     }
 
     public void initializeGame()
@@ -126,17 +125,17 @@ public class Player {
     }
 
     public void setClaimedRouteList(RouteList claimedRouteList) {
-        routePaths.clear();
-        for(RouteSegment route : claimedRouteList.getRouteList())
-        {
-            routePaths.add(route);
-        }
+        //routePaths.clear();
+        //for(RouteSegment route : claimedRouteList.getRouteList())
+        //{
+        //    routePaths.add(route);
+        //}
         this.claimedRouteList = claimedRouteList;
     }
 
     public boolean addClaimedRoute(RouteSegment claimedSegment)
     {
-        routePaths.add(claimedSegment);
+        //routePaths.add(claimedSegment);
         return this.claimedRouteList.getRouteList().add(claimedSegment);
     }
 
@@ -210,6 +209,7 @@ public class Player {
      */
     public int getLongestPath()
     {
+        RoutePaths routePaths = buildPlayerRoutePaths();
         return routePaths.longestPath();
     }
 
@@ -221,6 +221,21 @@ public class Player {
      */
     public boolean destinationComplete(String cityA, String cityB)
     {
+        RoutePaths routePaths = buildPlayerRoutePaths();
         return routePaths.destinationComplete(cityA, cityB);
+    }
+
+    /**
+     * Builds a graph of player routes from the route list
+     * @return a graph of player routes
+     */
+    public RoutePaths buildPlayerRoutePaths()
+    {
+        RoutePaths routePaths = new RoutePaths();
+        for(RouteSegment route : claimedRouteList.getRouteList())
+        {
+            routePaths.add(route);
+        }
+        return routePaths;
     }
 }
