@@ -484,6 +484,7 @@ public class ServerFacade implements IServer
         CUpdateMapCommandData updateMapCmd = new CUpdateMapCommandData();
         updateMapCmd.setType("updatemap");
         updateMapCmd.setRouteSegments(game.getRoutes());
+        updateMapCmd.setCities(game.getCities());
 
 //        add game command to game
         game.addCommand(updateGameCommandData);
