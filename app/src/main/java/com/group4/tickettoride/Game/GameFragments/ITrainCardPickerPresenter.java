@@ -14,4 +14,45 @@ public interface ITrainCardPickerPresenter {
 
     void claimRoute();
 
+    /**
+     * this function is called when a user has clicked "claim"
+     */
+    void onClaim();
+
+    void onPurpleIncrement();
+
+    void onPurpleDecrement();
+
+    void onWhiteIncrement();
+
+    void onWhiteDecrement();
+
+    void onBlueIncrement();
+
+    void onBlueDecrement();
+
+    void onYellowIncrement();
+
+    void onYellowDecrement();
+
+    void onOrangeIncrement();
+
+    void onOrangeDecrement();
+
+    void onBlackIncrement();
+
+    void onBlackDecrement();
+
+    void onRedIncrement();
+
+    void onRedDecrement();
+
+    void onGreenIncrement();
+
+    void onGreenDecrement();
+
+    void onLocomotiveIncrement();
+
+    void onLocomotiveDecrement();
+
 }

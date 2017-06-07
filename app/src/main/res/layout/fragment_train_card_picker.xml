@@ -1,0 +1,374 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:tools="http://schemas.android.com/tools"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+              android:orientation="vertical"
+              android:gravity="center_horizontal"
+             tools:context="com.group4.tickettoride.Game.GameFragments.TrainCardPickerFragment">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/routeTitle"
+        android:textColor="@color/colorBlack"
+        android:textSize="30sp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/routeCardRequirements"
+        android:textSize="24sp"
+        android:textColor="@color/colorBlack"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+        <!--Purple Card-->
+        <LinearLayout
+            android:id="@+id/purpleCard_picker"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone"
+            android:gravity="center"
+            >
+
+            <Button
+                android:id="@+id/purpleCard_plus"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:text="@string/plus"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:rotation="90"
+                android:src="@drawable/traincardpurple"/>
+
+            <Button
+                android:id="@+id/purpleCard_minus"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:text="@string/minus"/>
+
+            <TextView
+                android:id="@+id/purpleCard_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/default_count"
+                android:textColor="@color/colorBlack"
+                android:textSize="18sp"/>
+
+        </LinearLayout>
+
+        <!--White Card-->
+        <LinearLayout
+            android:id="@+id/whiteCard_picker"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone"
+            android:gravity="center">
+
+            <Button
+                android:id="@+id/whiteCard_plus"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:text="@string/plus"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:rotation="90"
+                android:src="@drawable/traincardwhite"/>
+
+            <Button
+                android:id="@+id/whiteCard_minus"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:text="@string/minus"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/whiteCard_count"
+                android:text="@string/default_count"
+                android:textColor="@color/colorBlack"
+                android:textSize="18sp"
+                />
+
+        </LinearLayout>
+
+        <!--Blue Card-->
+        <LinearLayout
+            android:id="@+id/blueCard_picker"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone"
+            android:gravity="center">
+
+            <Button
+                android:id="@+id/blueCard_plus"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:text="@string/plus"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:rotation="90"
+                android:src="@drawable/traincardblue"/>
+
+            <Button
+                android:id="@+id/blueCard_minus"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:text="@string/minus"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/blueCard_count"
+                android:text="@string/default_count"
+                android:textColor="@color/colorBlack"
+                android:textSize="18sp"
+                />
+
+        </LinearLayout>
+
+        <!--Yellow Card-->
+        <LinearLayout
+            android:id="@+id/yellowCard_picker"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone"
+            android:gravity="center">
+
+            <Button
+                android:id="@+id/yellowCard_plus"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:text="@string/plus"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:rotation="90"
+                android:src="@drawable/traincardyellow"/>
+
+            <Button
+                android:id="@+id/yellowCard_minus"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:text="@string/minus"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/yellowCard_count"
+                android:text="@string/default_count"
+                android:textColor="@color/colorBlack"
+                android:textSize="18sp"
+                />
+
+        </LinearLayout>
+
+        <!--Orange Card-->
+        <LinearLayout
+            android:id="@+id/orangeCard_picker"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone"
+            android:gravity="center">
+
+            <Button
+                android:id="@+id/orangeCard_plus"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:text="@string/plus"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:rotation="90"
+                android:src="@drawable/traincardorange"/>
+
+            <Button
+                android:id="@+id/orangeCard_minus"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:text="@string/minus"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/orangeCard_count"
+                android:text="@string/default_count"
+                android:textColor="@color/colorBlack"
+                android:textSize="18sp"
+                />
+
+        </LinearLayout>
+
+        <!--Black Card-->
+        <LinearLayout
+            android:id="@+id/blackCard_picker"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone"
+            android:gravity="center">
+
+            <Button
+                android:id="@+id/blackCard_plus"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:text="@string/plus"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:rotation="90"
+                android:src="@drawable/traincardblack"/>
+
+            <Button
+                android:id="@+id/blackCard_minus"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:text="@string/minus"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/blackCard_count"
+                android:text="@string/default_count"
+                android:textColor="@color/colorBlack"
+                android:textSize="18sp"
+                />
+
+        </LinearLayout>
+
+        <!--Red Card-->
+        <LinearLayout
+            android:id="@+id/redCard_picker"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone"
+            android:gravity="center">
+
+            <Button
+                android:id="@+id/redCard_plus"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:text="@string/plus"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:rotation="90"
+                android:src="@drawable/traincardred"/>
+
+            <Button
+                android:id="@+id/redCard_minus"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:text="@string/minus"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/redCard_count"
+                android:text="@string/default_count"
+                android:textColor="@color/colorBlack"
+                android:textSize="18sp"
+                />
+
+        </LinearLayout>
+
+        <!--Green Card-->
+        <LinearLayout
+            android:id="@+id/greenCard_picker"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone"
+            android:gravity="center">
+
+            <Button
+                android:id="@+id/greenCard_plus"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:text="@string/plus"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:rotation="90"
+                android:src="@drawable/traincardgreen"/>
+
+            <Button
+                android:id="@+id/greenCard_minus"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:text="@string/minus"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/greenCard_count"
+                android:text="@string/default_count"
+                android:textColor="@color/colorBlack"
+                android:textSize="18sp"
+                />
+
+        </LinearLayout>
+
+        <!--Locomotive Card-->
+        <LinearLayout
+            android:id="@+id/locomotiveCard_picker"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone"
+            android:gravity="center">
+
+            <Button
+                android:id="@+id/locomotiveCard_plus"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:text="@string/plus"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:rotation="90"
+                android:src="@drawable/traincardlocamotive"/>
+
+            <Button
+                android:id="@+id/locomotiveCard_minus"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:text="@string/minus"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/locomotiveCard_count"
+                android:text="@string/default_count"
+                android:textColor="@color/colorBlack"
+                android:textSize="18sp"
+                />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+</LinearLayout>

@@ -133,6 +133,7 @@ public class GameActivity extends AppCompatActivity implements IGameActivity, IM
 
     @Override
     public void onClickRoute(RouteSegment r) {
+        //build dialog and presenter
         Toast.makeText(this, "Route was clicked yo: " + r.getCityA() + " to " + r.getCityB(), Toast.LENGTH_SHORT).show();
     }
 
