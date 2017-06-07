@@ -11,6 +11,8 @@ import org.jgrapht.graph.DefaultWeightedEdge;
  */
 public class VisitableWeightedEdge extends DefaultWeightedEdge
 {
+    private boolean visited = false;
+
     public boolean isVisited()
     {
         return visited;
@@ -20,8 +22,5 @@ public class VisitableWeightedEdge extends DefaultWeightedEdge
     {
         this.visited = visited;
     }
-
-    private boolean visited = false;
-
 
 }

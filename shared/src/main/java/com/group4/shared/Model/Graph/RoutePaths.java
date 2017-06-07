@@ -44,7 +44,7 @@ public class RoutePaths
      * Returns true if the destination has been completed
      * @param cityA the name of the starting city
      * @param cityB the name of the ending city
-     * @return completion of the desitination
+     * @return completion of the destination
      */
     public boolean destinationComplete(String cityA, String cityB)
     {
