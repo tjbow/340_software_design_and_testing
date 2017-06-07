@@ -91,6 +91,7 @@ public class Decks {
         for(Iterator<TrainCard> iterator = trainCardDeck.getCardDeck().iterator(); iterator.hasNext();)
         {
             TrainCard current = iterator.next();
+            current.setVisible(true);
             iterator.remove();
             faceUpDeck.add(current);
             count--;
@@ -115,6 +116,7 @@ public class Decks {
         {
             for (TrainCard card : faceUpDeck.getFaceUpCards())
             {
+                card.setVisible(false);
                 discardDeck.add(card);
             }
             initializeFaceUpDeck();

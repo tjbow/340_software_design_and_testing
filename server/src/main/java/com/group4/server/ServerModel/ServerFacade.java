@@ -285,6 +285,7 @@ public class ServerFacade implements IServer
     @Override
     public Results drawDestinationCards(String userName)
     {
+        System.out.println("Drawing dest cards...");
         Game game = serverModel.getGameList().getGameByUsername(userName);
 
 //        get the player and add selectedCards to his destination card deck
@@ -308,7 +309,7 @@ public class ServerFacade implements IServer
         CDrawDestCardsCmdData drawDestCardsCmdData = new CDrawDestCardsCmdData();
         drawDestCardsCmdData.setType("drawdestcards");
         drawDestCardsCmdData.setReceivedCards(receivedCards);
-        game.setTurnToNextPlayer();
+//        game.setTurnToNextPlayer();
 
         CommandList cmdList = new CommandList();
         cmdList.add(drawDestCardsCmdData);
@@ -319,6 +320,7 @@ public class ServerFacade implements IServer
     @Override
     public Results returnDestinationCard(List<DestinationCard> returnedCard)
     {
+        System.out.println("Returning dest cards...");
 //        take the card within returnedCard(s) and insert it into the game dest card deck
         Game game = serverModel.getGameList().getGameByUsername(serverModel.getTempUser().getUsername());
         String userName = serverModel.getTempUser().getUsername();
@@ -354,13 +356,10 @@ public class ServerFacade implements IServer
 
 //        add game command to game
         game.addCommand(updateGameCommandData);
-
 //        add players command to game
         game.addCommand(updatePlayersCommandData);
-
 //        add turn command to game
         game.addCommand(updateTurnHistoryCommandData);
-
 //        add state command to game
         game.addCommand(updateStateCommandData);
 

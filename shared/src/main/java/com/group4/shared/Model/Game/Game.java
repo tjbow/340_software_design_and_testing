@@ -201,6 +201,8 @@ public class Game
             if(count == 0)break;
         }
 
+        updatePlayerState(player, true, false);
+
         return receivedCards;
     }
 
@@ -266,7 +268,7 @@ public class Game
             addTurn(new Message("Drew a face down train card.", player.getUserName(), player.getColor()));
             System.out.println(player.getUserName() + " drew a face down train card.");
 
-            updatePlayerState(player);
+            updatePlayerState(player, false, false);
 
             success = true;
         }
@@ -294,6 +296,7 @@ public class Game
                 //draw the card
                 iterator.remove();
                 player.getPlayerHand().getTrainCards().getCardDeck().add(current);
+                current.setVisible(false);
                 addTurn(new Message("Drew a face up train card.", player.getUserName(), player.getColor()));
 
                 //check if locomotive
@@ -301,12 +304,12 @@ public class Game
                 {
                     System.out.println(player.getUserName() + " drew a face up locomotive card.");
                     player.setCurrentState(MOVE_STATE.DRAWN_FIRST_TRAIN_CARD);
-                    updatePlayerState(player);
+                    updatePlayerState(player, false, false);
                 }
                 else
                 {
                     System.out.println(player.getUserName() + " drew a face up train card.");
-                    updatePlayerState(player);
+                    updatePlayerState(player, false, false);
                 }
                 success = true;
             }
@@ -318,6 +321,7 @@ public class Game
         if(iterator.hasNext())
         {
             TrainCard current = iterator.next();
+            current.setVisible(true);
             iterator.remove();
             decks.getFaceUpDeck().getFaceUpCards().add(position, current);
         }
@@ -377,18 +381,21 @@ public class Game
         return false;
     }
 
-    private void updatePlayerState(Player player)
+    private void updatePlayerState(Player player, boolean drawDestCards, boolean claimRoute)
     {
         CUpdateStateCommandData updateStateCommandData = new CUpdateStateCommandData();
         updateStateCommandData.setType("updatestate");
         updateStateCommandData.setUserName(player.getUserName());
-        if(player.getCurrentState() == MOVE_STATE.DRAWN_FIRST_TRAIN_CARD)
+
+        //done with turn (dest card draw or claim route, or can't draw more train cards
+        if(player.getCurrentState() == MOVE_STATE.DRAWN_FIRST_TRAIN_CARD || drawDestCards || claimRoute)
         {
             updateStateCommandData.setState(MOVE_STATE.NOT_MY_TURN);
             player.setCurrentState(MOVE_STATE.NOT_MY_TURN);
             setTurnToNextPlayer();
             this.addCommand(updateStateCommandData);
         }
+        //allows to draw another train card
         else if(player.getCurrentState() == MOVE_STATE.MY_TURN)
         {
             updateStateCommandData.setState(MOVE_STATE.DRAWN_FIRST_TRAIN_CARD);
@@ -486,7 +493,7 @@ public class Game
     public int getNewCommandIndex()
     {
         int index = commandList.size();
-        System.out.println("index is: " + index);
+//        System.out.println("index is: " + index);
         return index;
     }
 }

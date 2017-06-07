@@ -1,5 +1,7 @@
 package com.group4.tickettoride.Game.GameFragments;
 
+import android.graphics.ColorMatrix;
+import android.graphics.ColorMatrixColorFilter;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
@@ -162,13 +164,34 @@ public class CardDecksFragment extends Fragment implements ITrainDeckFragment
         {
             if(cards.size() > i) // card to add to view
             {
-                faceUpImageViewList.get(i).setImageDrawable(getPictureFromColor(cards.get(i).getColor()));
+                if(cards.get(i).isVisible())
+                {
+                    Drawable drawable = getPictureFromColor(cards.get(i).getColor());
+                    faceUpImageViewList.get(i).setImageDrawable(drawable);
+                }
+                else
+                {
+                    Drawable grayscaleDrawable = convertToGrayscale(getPictureFromColor(cards.get(i).getColor()));
+                    faceUpImageViewList.get(i).setImageDrawable(grayscaleDrawable);
+                }
             }
             else // no card to add set transparent
             {
                 faceUpImageViewList.get(i).setImageResource(android.R.color.transparent);
             }
         }
+    }
+
+    private Drawable convertToGrayscale(Drawable drawable)
+    {
+        ColorMatrix matrix = new ColorMatrix();
+        matrix.setSaturation(0);
+
+        ColorMatrixColorFilter filter = new ColorMatrixColorFilter(matrix);
+
+        drawable.setColorFilter(filter);
+
+        return drawable;
     }
 
     @Override
