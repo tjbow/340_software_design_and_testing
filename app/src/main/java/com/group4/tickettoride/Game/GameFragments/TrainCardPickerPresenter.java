@@ -33,7 +33,7 @@ public class TrainCardPickerPresenter implements Observer, ITrainCardPickerPrese
         fillMap(ClientModel.SINGLETON.getPlayer().getPlayerHand().getTrainCards());
     }
 
-    public void fillMap(TrainCardDeck playerCards){
+    private void fillMap(TrainCardDeck playerCards){
         cardMap = new HashMap<>();
         List<TrainCard> playerHand = playerCards.getCardDeck();
         for(int i = 0; i < playerHand.size(); i++){
@@ -52,8 +52,111 @@ public class TrainCardPickerPresenter implements Observer, ITrainCardPickerPrese
         switch (route.getRouteColor())
         {
             case PURPLE:
+                if(cardMap.containsKey(CARD_COLOR.PURPLE)) {
+                    initializeCards(CARD_COLOR.PURPLE);
+                }
+                break;
+            case GREEN:
+                if(cardMap.containsKey(CARD_COLOR.GREEN)) {
+                    initializeCards(CARD_COLOR.GREEN);
+                }
+                break;
+            case BLUE:
+                if(cardMap.containsKey(CARD_COLOR.BLUE)) {
+                    initializeCards(CARD_COLOR.BLUE);
+                }
+                break;
+            case BLACK:
+                if(cardMap.containsKey(CARD_COLOR.BLACK)) {
+                    initializeCards(CARD_COLOR.BLACK);
+                }
+                break;
+            case YELLOW:
+                if(cardMap.containsKey(CARD_COLOR.YELLOW)) {
+                    initializeCards(CARD_COLOR.YELLOW);
+                }
+                break;
+            case WHITE:
+                if(cardMap.containsKey(CARD_COLOR.WHITE)) {
+                    initializeCards(CARD_COLOR.WHITE);
+                }
+                break;
+            case ORANGE:
+                if(cardMap.containsKey(CARD_COLOR.ORANGE)) {
+                    initializeCards(CARD_COLOR.ORANGE);
+                }
+                break;
+            case RED:
+                if(cardMap.containsKey(CARD_COLOR.RED)) {
+                    initializeCards(CARD_COLOR.RED);
+                }
+                break;
+            case GRAY:
+                for(CARD_COLOR color: cardMap.keySet()){
+                    initializeCards(color);
+                }
+                break;
+        }
+        if(cardMap.containsKey(CARD_COLOR.RAINBOW)){
+            fragment.showLocomotiveCardPicker();
+        }
+    }
+    
+    private void initializeCards(CARD_COLOR color){
+        switch (color){
+            case PURPLE:
                 fragment.showPurpleCardPicker();
+                break;
+            case GREEN:
+                fragment.showGreenCardPicker();
+                break;
+            case ORANGE:
+                fragment.showOrangeCardPicker();
+                break;
+            case BLUE:
+                fragment.showBlueCardPicker();
+                break;
+            case BLACK:
+                fragment.showBlackCardPicker();
+                break;
+            case RED:
+                fragment.showRedCardPicker();
+                break;
+            case WHITE:
+                fragment.showWhiteCardPicker();
+                break;
+            case YELLOW:
+                fragment.showYellowCardPicker();
+                break;
+        }
+    }
 
+    private void setCardVisibilty(CARD_COLOR color){
+        switch (color){
+            case PURPLE:
+                fragment.setPurplePickerEnabled(true);
+                break;
+            case GREEN:
+                fragment.setGreenPickerEnabled(true);
+                break;
+            case ORANGE:
+                fragment.setOrangePickerEnabled(true);
+                break;
+            case BLUE:
+                fragment.setBluePickerEnabled(true);
+                break;
+            case BLACK:
+                fragment.setBlackPickerEnabled(true);
+                break;
+            case RED:
+                fragment.setRedPickerEnabled(true);
+                break;
+            case WHITE:
+                fragment.setWhitePickerEnabled(true);
+                break;
+            case YELLOW:
+                fragment.setYellowPickerEnabled(true);
+                break;
         }
     }
 
@@ -87,6 +190,12 @@ public class TrainCardPickerPresenter implements Observer, ITrainCardPickerPrese
 
         int purpleCount = fragment.getPurpleCardCount();
         purpleCount++;
+
+        if(purpleCount == 1){
+            fragment.disableAllCurrentPickers();
+            setCardVisibilty(CARD_COLOR.PURPLE);
+        }
+
         fragment.setPurpleCardCount(Integer.toString(purpleCount));
         //if the player has now selected all the cards they have of a color
         if (purpleCount == cardMap.get(CARD_COLOR.PURPLE))
