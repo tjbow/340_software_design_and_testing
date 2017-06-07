@@ -31,7 +31,7 @@ public class GamePresenter implements IGamePresenter, Observer
     private GameActivity activity;
     private GameMapView gameMapView;
     private Game game;
-    private State state;
+    private State state = State.SINGLETON;
 
     public State getState() {
         return state;
@@ -43,6 +43,7 @@ public class GamePresenter implements IGamePresenter, Observer
 
     public GamePresenter(GameActivity activity)
     {
+        state.setGamePresenter(this);
         this.activity = activity;
         this.gameMapView = (GameMapView) activity.findViewById(R.id.game_map_view);
         ClientModel.SINGLETON.setRouteSegments(gameMapView.getRouteSegments());

@@ -20,7 +20,7 @@ public class CardDecksPresenter implements ITrainDeckPresenter, Observer
 {
     ITrainDeckFragment trainFragment;
 
-    private State state;
+    private State state = State.SINGLETON;
 
     public State getState() {
         return state;
@@ -32,6 +32,7 @@ public class CardDecksPresenter implements ITrainDeckPresenter, Observer
 
     CardDecksPresenter(ITrainDeckFragment inTrainFragment)
     {
+        state.setCardDecksPresenter(this);
         trainFragment = inTrainFragment;
         ClientModel.SINGLETON.addObserver(this);
     }

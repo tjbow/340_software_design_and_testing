@@ -15,10 +15,14 @@ public class State {
     GamePresenter gamePresenter;
     CardDecksPresenter cardDecksPresenter;
 
+    public static State SINGLETON = new State();
+
     public State(GamePresenter gamePresenter, CardDecksPresenter cardDecksPresenter) {
         this.gamePresenter = gamePresenter;
         this.cardDecksPresenter = cardDecksPresenter;
     }
+
+    private State(){}
 
     public void updateState(MOVE_STATE state){
         switch (state){
@@ -35,6 +39,14 @@ public class State {
                 cardDecksPresenter.setState(new NotMyTurnState(gamePresenter, cardDecksPresenter));
                 break;
         }
+    }
+
+    public void setGamePresenter(GamePresenter gamePresenter) {
+        this.gamePresenter = gamePresenter;
+    }
+
+    public void setCardDecksPresenter(CardDecksPresenter cardDecksPresenter) {
+        this.cardDecksPresenter = cardDecksPresenter;
     }
 
     private String error = "Action not Available: Not your turn";
