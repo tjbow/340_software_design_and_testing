@@ -2,6 +2,7 @@ package com.group4.shared.Model;
 
 import com.group4.shared.Model.Deck.PlayerHand;
 import com.group4.shared.Model.Game.MOVE_STATE;
+import com.group4.shared.Model.Graph.RoutePaths;
 import com.group4.shared.Model.Map.RouteList;
 import com.group4.shared.Model.Map.RouteSegment;
 
@@ -32,6 +33,7 @@ public class Player {
     private boolean winning;
     private boolean turn;
     private boolean firstDestCardsSelected;
+    private RoutePaths routePaths;
 
     private MOVE_STATE currentState;
 
@@ -41,6 +43,7 @@ public class Player {
         this.id = user.getId();
         this.turn = false;
         this.firstDestCardsSelected = false;
+        this.routePaths = new RoutePaths();
     }
 
     public void initializeGame()
@@ -123,11 +126,17 @@ public class Player {
     }
 
     public void setClaimedRouteList(RouteList claimedRouteList) {
+        routePaths.clear();
+        for(RouteSegment route : claimedRouteList.getRouteList())
+        {
+            routePaths.add(route);
+        }
         this.claimedRouteList = claimedRouteList;
     }
 
     public boolean addClaimedRoute(RouteSegment claimedSegment)
     {
+        routePaths.add(claimedSegment);
         return this.claimedRouteList.getRouteList().add(claimedSegment);
     }
 
@@ -193,5 +202,25 @@ public class Player {
     public void setCurrentState(MOVE_STATE currentState)
     {
         this.currentState = currentState;
+    }
+
+    /**
+     * Returns the longest path currently held by the player
+     * @return the longest path
+     */
+    public int getLongestPath()
+    {
+        return routePaths.longestPath();
+    }
+
+    /**
+     * Returns whether the destination that goes from cityA to cityB is complete
+     * @param cityA the first city in the destination
+     * @param cityB the second city in the destination
+     * @return whether the destination is complete
+     */
+    public boolean destinationComplete(String cityA, String cityB)
+    {
+        return routePaths.destinationComplete(cityA, cityB);
     }
 }

@@ -6,6 +6,8 @@ package com.group4.shared.Model.Graph;
 
 import com.group4.shared.Model.Map.RouteSegment;
 
+import java.util.Collections;
+
 /**
  * Holds information about the connections formed by player owned
  * routes
@@ -56,5 +58,13 @@ public class RoutePaths
     public int longestPath()
     {
         return playerGraph.getLongestPath();
+    }
+
+    /**
+     * Clears the set of routes
+     */
+    public void clear()
+    {
+        playerGraph.clear();
     }
 }

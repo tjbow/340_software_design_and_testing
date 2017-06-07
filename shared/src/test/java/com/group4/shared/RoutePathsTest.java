@@ -15,6 +15,7 @@ public class RoutePathsTest
     private RoutePaths routes1;
     private RoutePaths routes2;
     private RoutePaths routes3;
+    private RoutePaths routes4;
 
 
     public RoutePathsTest()
@@ -22,6 +23,7 @@ public class RoutePathsTest
         setUpRoutes1();
         setUpRoutes2();
         setUpRoutes3();
+        routes4 = new RoutePaths();
     }
 
     private void setUpRoutes1()
@@ -214,6 +216,13 @@ public class RoutePathsTest
     }
 
     @Test
+    public void testEmpty()
+    {
+        Assert.assertEquals(0, routes4.longestPath());
+        Assert.assertFalse(routes4.destinationComplete("city1", "city2"));
+    }
+
+    @Test
     public void simpleConnection()
     {
         Assert.assertTrue(routes1.destinationComplete("city1", "city2"));
@@ -252,6 +261,14 @@ public class RoutePathsTest
         Assert.assertEquals(80, routes1.longestPath());
         Assert.assertEquals(90, routes2.longestPath());
         Assert.assertEquals(100, routes3.longestPath());
+    }
+
+    @Test
+    public void clearTest()
+    {
+        routes1.clear();
+        Assert.assertEquals(0, routes1.longestPath());
+        Assert.assertFalse(routes1.destinationComplete("city1", "city2"));
     }
 
 }

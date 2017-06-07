@@ -1,12 +1,12 @@
 package com.group4.shared.Model.Graph;
 
-import com.group4.shared.Model.Map.City;
-
 import org.jgrapht.EdgeFactory;
 import org.jgrapht.alg.ConnectivityInspector;
 import org.jgrapht.graph.ClassBasedEdgeFactory;
 import org.jgrapht.graph.SimpleWeightedGraph;
 
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Set;
 
 /*
@@ -101,6 +101,50 @@ public class TicketToRideGraph extends SimpleWeightedGraph<String, VisitableWeig
      */
     public boolean pathExists(String city1, String city2)
     {
-        return inspector.pathExists(city1, city2);
+        if(containsVertex(city1) && containsVertex(city2))
+        {
+            return inspector.pathExists(city1, city2);
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    /**
+     * Clear all vertices and edges
+     */
+    public void clear()
+    {
+        clearEdges();
+        clearVertices();
+    }
+
+    /**
+     * Clear all edges
+     */
+    public void clearEdges()
+    {
+        List<VisitableWeightedEdge> copy = new LinkedList<>();
+        {
+            for(VisitableWeightedEdge edge : edgeSet())
+            {
+                copy.add(edge);
+            }
+            removeAllEdges(copy);
+        }
+    }
+
+    /**
+     * Clear all vertices
+     */
+    public void clearVertices()
+    {
+        List<String> copy = new LinkedList<>();
+        for(String vertex : vertexSet())
+        {
+            copy.add(vertex);
+        }
+        removeAllVertices(copy);
     }
 }
