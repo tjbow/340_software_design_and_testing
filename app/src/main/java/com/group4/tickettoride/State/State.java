@@ -1,6 +1,7 @@
 package com.group4.tickettoride.State;
 
 import com.group4.shared.Model.Deck.TrainCard;
+import com.group4.shared.Model.Game.MOVE_STATE;
 import com.group4.tickettoride.Game.GameFragments.CardDecksPresenter;
 import com.group4.tickettoride.Game.GamePresenter;
 
@@ -17,6 +18,23 @@ public class State {
     public State(GamePresenter gamePresenter, CardDecksPresenter cardDecksPresenter) {
         this.gamePresenter = gamePresenter;
         this.cardDecksPresenter = cardDecksPresenter;
+    }
+
+    public void updateState(MOVE_STATE state){
+        switch (state){
+            case DRAWN_FIRST_TRAIN_CARD:
+                gamePresenter.setState(new DrawnFirstCardState(gamePresenter, cardDecksPresenter));
+                cardDecksPresenter.setState(new NotMyTurnState(gamePresenter, cardDecksPresenter));
+                break;
+            case MY_TURN:
+                gamePresenter.setState(new MyTurnState(gamePresenter, cardDecksPresenter));
+                cardDecksPresenter.setState(new NotMyTurnState(gamePresenter, cardDecksPresenter));
+                break;
+            default:
+                gamePresenter.setState(new NotMyTurnState(gamePresenter, cardDecksPresenter));
+                cardDecksPresenter.setState(new NotMyTurnState(gamePresenter, cardDecksPresenter));
+                break;
+        }
     }
 
     private String error = "Action not Available: Not your turn";

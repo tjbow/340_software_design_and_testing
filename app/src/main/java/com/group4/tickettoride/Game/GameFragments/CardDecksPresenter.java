@@ -3,8 +3,10 @@ package com.group4.tickettoride.Game.GameFragments;
 import com.group4.shared.Model.Deck.DestinationCard;
 import com.group4.shared.Model.Deck.TrainCard;
 import com.group4.shared.Model.Deck.TrainCardDeck;
+import com.group4.shared.Model.Game.MOVE_STATE;
 import com.group4.tickettoride.ClientModel.ClientModel;
 import com.group4.tickettoride.NextLayerFacade.NextLayerFacade;
+import com.group4.tickettoride.State.State;
 
 import java.util.List;
 import java.util.Observable;
@@ -18,6 +20,16 @@ public class CardDecksPresenter implements ITrainDeckPresenter, Observer
 {
     ITrainDeckFragment trainFragment;
 
+    private State state;
+
+    public State getState() {
+        return state;
+    }
+
+    public void setState(State state) {
+        this.state = state;
+    }
+
     CardDecksPresenter(ITrainDeckFragment inTrainFragment)
     {
         trainFragment = inTrainFragment;
@@ -27,40 +39,47 @@ public class CardDecksPresenter implements ITrainDeckPresenter, Observer
     @Override
     public void drawFaceUpCard(int num)
     {
-        if(ClientModel.SINGLETON.getPlayer().isTurn())
-        {
-            NextLayerFacade.SINGLETON.drawFaceUpTrainCard(num);
-        }
-        else
-        {
-            ClientModel.SINGLETON.sendToObservers("It's not your turn!");
-        }
+
+        state.drawFaceUpTrainCard(num);
+
+//        if(ClientModel.SINGLETON.getPlayer().isTurn())
+//        {
+//            NextLayerFacade.SINGLETON.drawFaceUpTrainCard(num);
+//        }
+//        else
+//        {
+//            ClientModel.SINGLETON.sendToObservers("It's not your turn!");
+//        }
     }
 
     @Override
     public void drawTrainCard()
     {
-        if(ClientModel.SINGLETON.getPlayer().isTurn())
-        {
-            NextLayerFacade.SINGLETON.drawFaceDownTrainCard();
-        }
-        else
-        {
-            ClientModel.SINGLETON.sendToObservers("It's not your turn!");
-        }
+        state.drawTrainCard();
+
+//        if(ClientModel.SINGLETON.getPlayer().isTurn())
+//        {
+//            NextLayerFacade.SINGLETON.drawFaceDownTrainCard();
+//        }
+//        else
+//        {
+//            ClientModel.SINGLETON.sendToObservers("It's not your turn!");
+//        }
     }
 
     @Override
     public void drawDestCards()
     {
-        if(ClientModel.SINGLETON.getPlayer().isTurn())
-        {
-            NextLayerFacade.SINGLETON.drawDestinationCards();
-        }
-        else
-        {
-            ClientModel.SINGLETON.sendToObservers("It's not your turn!");
-        }
+        state.drawDestCards();
+
+//        if(ClientModel.SINGLETON.getPlayer().isTurn())
+//        {
+//            NextLayerFacade.SINGLETON.drawDestinationCards();
+//        }
+//        else
+//        {
+//            ClientModel.SINGLETON.sendToObservers("It's not your turn!");
+//        }
     }
 
     @Override
@@ -87,5 +106,11 @@ public class CardDecksPresenter implements ITrainDeckPresenter, Observer
         trainFragment.setFaceUpCards(getFaceUpCards());
         trainFragment.setDestCardsRemaining(getDestDeckCardsRemaining());
         trainFragment.setTrainDeckCardsRemaining(getTrainDeckCardsRemaining());
+
+        if (o.getClass() == MOVE_STATE.class){
+            state.updateState((MOVE_STATE) o);
+        }
     }
+
+
 }

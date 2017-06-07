@@ -2,6 +2,7 @@ package com.group4.tickettoride.ClientModel;
 
 import com.group4.shared.Model.ChatHistory;
 import com.group4.shared.Model.Deck.TrainCard;
+import com.group4.shared.Model.Game.MOVE_STATE;
 import com.group4.shared.Model.Map.City;
 import com.group4.shared.Model.Deck.Decks;
 import com.group4.shared.Model.Deck.DestinationCard;
@@ -211,6 +212,13 @@ public class ClientModel extends Observable {
     public List<DestinationCard> getTempDestPickerDeck()
     {
         return tempDestPickerDeck;
+    }
+
+    public void updateState(String userName, MOVE_STATE state){
+
+        if(userName.equals(getPlayer().getUserName())){
+            sendToObservers(state);
+        }
     }
 
     @Override

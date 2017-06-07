@@ -1,5 +1,6 @@
 package com.group4.tickettoride.State;
 
+import com.group4.shared.Model.Deck.CARD_COLOR;
 import com.group4.shared.Model.Deck.TrainCard;
 import com.group4.tickettoride.Game.GameFragments.CardDecksPresenter;
 import com.group4.tickettoride.Game.GamePresenter;
@@ -26,7 +27,13 @@ public class DrawnFirstCardState extends State{
 
     @Override
     public void drawFaceUpTrainCard(int num){
-        NextLayerFacade.SINGLETON.drawFaceUpTrainCard(num);
+        if(cardDecksPresenter.getFaceUpCards().get(num).getColor() == CARD_COLOR.RAINBOW){
+            String locomotiveError = "You cannot select a Locomotive";
+            gamePresenter.displayError(locomotiveError);
+        }
+        else{
+            NextLayerFacade.SINGLETON.drawFaceUpTrainCard(num);
+        }
     }
 
     @Override

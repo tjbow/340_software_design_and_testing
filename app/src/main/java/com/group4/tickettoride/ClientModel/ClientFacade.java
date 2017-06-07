@@ -171,6 +171,8 @@ public class ClientFacade implements IClient
     @Override
     public Results onUpdateState(String userName, MOVE_STATE state)
     {
+        ClientModel.SINGLETON.updateState(userName, state);
+
         return null;
     }
 

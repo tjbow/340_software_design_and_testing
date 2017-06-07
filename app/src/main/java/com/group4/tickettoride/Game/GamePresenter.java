@@ -7,6 +7,7 @@ import com.group4.shared.Model.Deck.DestinationCard;
 import com.group4.shared.Model.Deck.DestinationCardDeck;
 import com.group4.shared.Model.Game.GAME_STATUS;
 import com.group4.shared.Model.Game.Game;
+import com.group4.shared.Model.Game.MOVE_STATE;
 import com.group4.tickettoride.ClientModel.ClientFacade;
 import com.group4.tickettoride.ClientModel.ClientModel;
 import com.group4.tickettoride.Game.GameFragments.DestCardPickerFragment;
@@ -14,6 +15,7 @@ import com.group4.tickettoride.GameList.GameListActivity;
 import com.group4.tickettoride.Login_Register.Login_RegisterActivity;
 import com.group4.tickettoride.NextLayerFacade.NextLayerFacade;
 import com.group4.tickettoride.R;
+import com.group4.tickettoride.State.State;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +31,15 @@ public class GamePresenter implements IGamePresenter, Observer
     private GameActivity activity;
     private GameMapView gameMapView;
     private Game game;
+    private State state;
+
+    public State getState() {
+        return state;
+    }
+
+    public void setState(State state) {
+        this.state = state;
+    }
 
     public GamePresenter(GameActivity activity)
     {
@@ -109,6 +120,9 @@ public class GamePresenter implements IGamePresenter, Observer
             Log.d("DestCardPickerPresenter", "PICKER CALLED");
             DialogFragment destPickerDialog = DestCardPickerFragment.newInstance(1);
             destPickerDialog.show(activity.getSupportFragmentManager(), "dialog");
+        }
+        else if (arg.getClass() == MOVE_STATE.class){
+            state.updateState((MOVE_STATE) arg);
         }
     }
 
