@@ -219,6 +219,7 @@ public class ServerModel
         //initialize all the game and player decks
         game.dealInitialGameCards();
         game.importRoutes();
+        game.importCities();
 
         System.out.println(gameName + " has been started by " + getTempUser().getUsername());
     }

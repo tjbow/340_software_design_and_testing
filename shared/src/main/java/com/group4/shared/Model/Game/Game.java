@@ -162,6 +162,32 @@ public class Game
         }
     }
 
+    public void importCities()
+    {
+        InputStream is = null;
+        try
+        {
+            is = new FileInputStream(new File("shared/src/main/java/com/group4/shared/Model/Game/cities.json"));
+        } catch (FileNotFoundException e)
+        {
+            e.printStackTrace();
+        }
+
+        List<City> cityList = null;
+        ObjectMapper mapper = new ObjectMapper();
+        try {
+            cityList = mapper.readValue(is, new TypeReference<List<City>>() { });
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        for(City c : cityList)
+        {
+            this.cities.add(c);
+        }
+    }
+
     public List<City> getCities() {
         return cities;
     }
@@ -426,7 +452,31 @@ public class Game
         }
 
         //add points to player
-        int addition = claimedSegment.getScore();
+        int addition = 0;
+        switch (claimedSegment.getLength())
+        {
+            case 1:
+                addition = 1;
+                break;
+            case 2:
+                addition = 2;
+                break;
+            case 3:
+                addition = 4;
+                break;
+            case 4:
+                addition = 7;
+                break;
+            case 5:
+                addition = 10;
+                break;
+            case 6:
+                addition = 15;
+                break;
+            default:
+                System.out.println("Invalid route length");
+                break;
+        }
         player.getStats().incrementRouteScore(addition);
 
         //calculate longest continuous path

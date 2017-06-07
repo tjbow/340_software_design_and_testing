@@ -191,6 +191,12 @@ public class ServerFacade implements IServer
         startGameCommandData.setType("startgame");
         startGameCommandData.setWasSuccessful(true);
 
+        //UPDATE MAP
+        CUpdateMapCommandData updateMapCommandData = new CUpdateMapCommandData();
+        updateMapCommandData.setType("updatemap");
+        updateMapCommandData.setRouteSegments(game.getRoutes());
+        updateMapCommandData.setCities(game.getCities());
+
         //CREATE A GAMESTATS COMMAND TO ADD TO THE GAME BEING PLAYED
         CUpdateGameStatsCommandData updateStatsCommandData = new CUpdateGameStatsCommandData();
         updateStatsCommandData.setType("updatestats");
@@ -204,6 +210,7 @@ public class ServerFacade implements IServer
         //ADD THE ABOVE TO THE GAME FOR RETRIEVAL BY ALL PLAYERS
         game.addCommand(updatePlayersCommandData);
         game.addCommand(startGameCommandData);
+//        game.addCommand(updateMapCommandData);
         game.addCommand(updateStatsCommandData);
         game.addCommand(updateGameCommandData);
 
