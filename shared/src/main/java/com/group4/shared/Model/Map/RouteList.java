@@ -2,6 +2,7 @@ package com.group4.shared.Model.Map;
 
 import com.group4.shared.Model.Player;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -13,6 +14,11 @@ public class RouteList
 {
 //    private List<RouteSegment> routeList;
     private Set<RouteSegment> routeList;
+
+    public RouteList()
+    {
+        this.routeList = new HashSet<>();
+    }
 
     public Set<RouteSegment> getRouteList() {
         return routeList;
