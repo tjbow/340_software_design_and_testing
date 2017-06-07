@@ -33,7 +33,6 @@ public class Player {
     private boolean winning;
     private boolean turn;
     private boolean firstDestCardsSelected;
-    //private RoutePaths routePaths;
 
     private MOVE_STATE currentState;
 
@@ -125,17 +124,11 @@ public class Player {
     }
 
     public void setClaimedRouteList(RouteList claimedRouteList) {
-        //routePaths.clear();
-        //for(RouteSegment route : claimedRouteList.getRouteList())
-        //{
-        //    routePaths.add(route);
-        //}
         this.claimedRouteList = claimedRouteList;
     }
 
     public boolean addClaimedRoute(RouteSegment claimedSegment)
     {
-        //routePaths.add(claimedSegment);
         return this.claimedRouteList.getRouteList().add(claimedSegment);
     }
 
