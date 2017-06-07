@@ -443,6 +443,13 @@ public class Game
                     players.get(0).setTurn(true);
                     players.get(0).setCurrentState(MOVE_STATE.MY_TURN);
                     System.out.println("It is now " + players.get(0).getUserName() + "\'s turn.");
+
+                    CUpdateStateCommandData cmd = new CUpdateStateCommandData();
+                    cmd.setType("updatestate");
+                    cmd.setUserName(players.get(0).getUserName());
+                    cmd.setState(MOVE_STATE.MY_TURN);
+                    this.addCommand(cmd);
+
                     return;
                 }
                 else
@@ -450,6 +457,13 @@ public class Game
                     players.get(i + 1).setTurn(true);
                     players.get(i + 1).setCurrentState(MOVE_STATE.MY_TURN);
                     System.out.println("It is now " + players.get(i + 1).getUserName() + "\'s turn.");
+
+                    CUpdateStateCommandData cmd = new CUpdateStateCommandData();
+                    cmd.setType("updatestate");
+                    cmd.setUserName(players.get(i + 1).getUserName());
+                    cmd.setState(MOVE_STATE.MY_TURN);
+                    this.addCommand(cmd);
+
                     return;
                 }
             }
