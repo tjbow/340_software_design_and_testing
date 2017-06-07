@@ -1,5 +1,7 @@
 package com.group4.tickettoride.Game.GameFragments;
 
+import com.group4.shared.Model.Deck.CARD_COLOR;
+import com.group4.shared.Model.Deck.TrainCard;
 import com.group4.shared.Model.Deck.TrainCardDeck;
 import com.group4.shared.Model.Game.Game;
 import com.group4.shared.Model.Map.ROUTE_COLOR;
@@ -7,6 +9,9 @@ import com.group4.shared.Model.Map.RouteSegment;
 import com.group4.tickettoride.ClientModel.ClientModel;
 import com.group4.tickettoride.Game.GamePresenter;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -19,13 +24,26 @@ public class TrainCardPickerPresenter implements Observer, ITrainCardPickerPrese
     private TrainCardPickerFragment fragment;
     private RouteSegment route;
     private GamePresenter gamePresenter;
-    private TrainCardDeck playerCards;
+    private Map<CARD_COLOR, Integer> cardMap;
 
     public TrainCardPickerPresenter(TrainCardPickerFragment fragment, RouteSegment route, GamePresenter gamePresenter) {
         this.fragment = fragment;
         this.route = route;
         this.gamePresenter = gamePresenter;
-        this.playerCards = ClientModel.SINGLETON.getPlayer().getPlayerHand().getTrainCards();
+        fillMap(ClientModel.SINGLETON.getPlayer().getPlayerHand().getTrainCards());
+    }
+
+    public void fillMap(TrainCardDeck playerCards){
+        cardMap = new HashMap<>();
+        List<TrainCard> playerHand = playerCards.getCardDeck();
+        for(int i = 0; i < playerHand.size(); i++){
+            if(cardMap.containsKey(playerHand.get(i).getColor())){
+                cardMap.put(playerHand.get(i).getColor(), cardMap.get(playerHand.get(i).getColor()) + 1);
+            }
+            else{
+                cardMap.put(playerHand.get(i).getColor(), 1);
+            }
+        }
     }
 
     private void setInitialPickers()
