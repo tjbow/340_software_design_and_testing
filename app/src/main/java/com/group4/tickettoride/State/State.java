@@ -28,11 +28,11 @@ public class State {
         switch (state){
             case DRAWN_FIRST_TRAIN_CARD:
                 gamePresenter.setState(new DrawnFirstCardState(gamePresenter, cardDecksPresenter));
-                cardDecksPresenter.setState(new NotMyTurnState(gamePresenter, cardDecksPresenter));
+                cardDecksPresenter.setState(new DrawnFirstCardState(gamePresenter, cardDecksPresenter));
                 break;
             case MY_TURN:
                 gamePresenter.setState(new MyTurnState(gamePresenter, cardDecksPresenter));
-                cardDecksPresenter.setState(new NotMyTurnState(gamePresenter, cardDecksPresenter));
+                cardDecksPresenter.setState(new MyTurnState(gamePresenter, cardDecksPresenter));
                 break;
             default:
                 gamePresenter.setState(new NotMyTurnState(gamePresenter, cardDecksPresenter));

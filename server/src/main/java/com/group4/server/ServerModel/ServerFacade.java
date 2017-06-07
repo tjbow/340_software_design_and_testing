@@ -327,7 +327,6 @@ public class ServerFacade implements IServer
         game.playerTurn_ReturnDestinationCards(userName, returnedCard);
 
         Player player = game.getPlayerByUserName(userName);
-        player.setFirstDestCardsSelected(true);
 
         Message message = new Message("Drew Destination Cards", player.getUserName(), player.getColor());
         game.addTurn(message);
@@ -352,7 +351,23 @@ public class ServerFacade implements IServer
         CUpdateStateCommandData updateStateCommandData = new CUpdateStateCommandData();
         updateStateCommandData.setType("updatestate");
         updateStateCommandData.setUserName(userName);
-        updateStateCommandData.setState(MOVE_STATE.NOT_MY_TURN);
+        if(!player.isFirstDestCardsSelected())
+        {
+            if(player.isTurn())
+            {
+                updateStateCommandData.setState(MOVE_STATE.MY_TURN);
+            }
+            else
+            {
+                updateStateCommandData.setState(MOVE_STATE.NOT_MY_TURN);
+            }
+
+            player.setFirstDestCardsSelected(true);
+        }
+        else
+        {
+            updateStateCommandData.setState(MOVE_STATE.NOT_MY_TURN);
+        }
 
 //        add game command to game
         game.addCommand(updateGameCommandData);
