@@ -42,6 +42,15 @@ public class RouteList
         for(RouteSegment routeSegment : routeList){
             if(routeSegment.getRouteId().equals(routeId)) {
                 routeSegment.setOwner(owner);
+
+                PLAYER_COLOR color;
+                if(owner.getColor().equals("blue")) color = PLAYER_COLOR.BLUE;
+                else if(owner.getColor().equals("red")) color = PLAYER_COLOR.RED;
+                else if(owner.getColor().equals("green")) color = PLAYER_COLOR.GREEN;
+                else if(owner.getColor().equals("yellow")) color = PLAYER_COLOR.YELLOW;
+                else color = PLAYER_COLOR.BLACK;
+
+                routeSegment.setPlayer_color(color);
                 routeSegment.setClaimed(true);
                 return;
             }
