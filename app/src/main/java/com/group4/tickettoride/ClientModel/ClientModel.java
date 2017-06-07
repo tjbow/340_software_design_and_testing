@@ -167,8 +167,8 @@ public class ClientModel extends Observable {
     public void updateMap(RouteList routeList, List<City> cities){
         game.setRoutes(routeList);
         sendToObservers(routeList);
-        game.setCities(cities);
-        sendToObservers(cities);
+//        game.setCities(cities);
+//        sendToObservers(cities);
     }
 
     public void updateStats(GameStats stats){

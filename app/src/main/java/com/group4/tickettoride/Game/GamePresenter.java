@@ -8,6 +8,7 @@ import com.group4.shared.Model.Deck.DestinationCardDeck;
 import com.group4.shared.Model.Game.GAME_STATUS;
 import com.group4.shared.Model.Game.Game;
 import com.group4.shared.Model.Game.MOVE_STATE;
+import com.group4.shared.Model.Map.RouteList;
 import com.group4.tickettoride.ClientModel.ClientFacade;
 import com.group4.tickettoride.ClientModel.ClientModel;
 import com.group4.tickettoride.Game.GameFragments.DestCardPickerFragment;
@@ -79,8 +80,6 @@ public class GamePresenter implements IGamePresenter, Observer
     @Override
     public void update(Observable o, final Object arg)
     {
-        // temp route segments code
-        gameMapView.setRouteSegments(ClientModel.SINGLETON.getRouteSegments());
         if(arg.getClass() == Boolean.class)
         {
             //do not use (in GamePresenter only)
@@ -110,9 +109,12 @@ public class GamePresenter implements IGamePresenter, Observer
                 activity.startNextActivity(GameListActivity.class);
             }
         }
-        else if(arg.getClass() == ArrayList.class)
+        else if(arg.getClass() == RouteList.class)
         {
-
+//            temp route segments code
+//            gameMapView.setRouteSegments(ClientModel.SINGLETON.getRouteSegments());
+            RouteList newRoutes = (RouteList) arg;
+            gameMapView.setRouteSegments(newRoutes.getRouteList());
         }
         else if (arg.getClass() == DestinationCardDeck.class)
         {

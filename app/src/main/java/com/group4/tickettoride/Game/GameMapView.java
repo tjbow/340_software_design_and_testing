@@ -53,8 +53,6 @@ public class GameMapView extends View {
         getCities();
         getRoutes();
 
-
-
         paint.setFlags(Paint.ANTI_ALIAS_FLAG);
 
         setBackgroundResource(R.drawable.unitedstatesmap_2);  //set map as background

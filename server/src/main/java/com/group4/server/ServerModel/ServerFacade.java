@@ -1,6 +1,7 @@
 package com.group4.server.ServerModel;
 
 import com.group4.shared.Model.CommandList;
+import com.group4.shared.Model.Deck.CARD_COLOR;
 import com.group4.shared.Model.Deck.DestinationCard;
 import com.group4.shared.Model.Deck.TrainCard;
 import com.group4.shared.Model.Game.GAME_STATUS;
@@ -27,6 +28,7 @@ import com.group4.shared.command.Client.CUpdatePlayersCommandData;
 import com.group4.shared.command.Client.CUpdateStateCommandData;
 import com.group4.shared.command.Client.CUpdateTurnHistoryCommandData;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /*
@@ -210,7 +212,7 @@ public class ServerFacade implements IServer
         //ADD THE ABOVE TO THE GAME FOR RETRIEVAL BY ALL PLAYERS
         game.addCommand(updatePlayersCommandData);
         game.addCommand(startGameCommandData);
-//        game.addCommand(updateMapCommandData);
+        game.addCommand(updateMapCommandData);
         game.addCommand(updateStatsCommandData);
         game.addCommand(updateGameCommandData);
 
@@ -389,6 +391,14 @@ public class ServerFacade implements IServer
         System.out.println("Player " + serverModel.getTempUser().getUsername() +
                 " selected " + cardsSelected + " destination cards.");
 
+        List<TrainCard> usedCards = new ArrayList<>();
+        for(int i = 0; i < 4; i++)
+        {
+            usedCards.add(new TrainCard(CARD_COLOR.BLACK, false));
+        }
+        //TODO: Find stack overflow
+        claimRoute("tyler", game.getRoutes().findRoute("MontrealSaultStMarie"), usedCards);
+
         return new Results(true, "Destination cards selected", null, null);
     }
 
@@ -484,7 +494,7 @@ public class ServerFacade implements IServer
         CUpdateMapCommandData updateMapCmd = new CUpdateMapCommandData();
         updateMapCmd.setType("updatemap");
         updateMapCmd.setRouteSegments(game.getRoutes());
-        updateMapCmd.setCities(game.getCities());
+//        updateMapCmd.setCities(game.getCities());
 
 //        add game command to game
         game.addCommand(updateGameCommandData);
