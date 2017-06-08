@@ -2,7 +2,7 @@
   {
     "routeId":"SeattleVancouverRight",
     "claimed":false,
-    "length":1,
+  "length":1,
     "score":0,
     "cityA":"Vancouver",
     "cityB":"Seattle",
@@ -16,7 +16,7 @@
   {
     "routeId":"SeattleVancouverLeft",
     "claimed":false,
-    "length":1,
+  "length":1,
     "score":0,
     "cityA":"Vancouver",
     "cityB":"Seattle",
@@ -30,7 +30,7 @@
   {
     "routeId":"MiamiCharlston",
     "claimed":false,
-    "length":4,
+  "length":4,
     "score":0,
     "cityA":"Miami",
     "cityB":"Charlston",
@@ -44,7 +44,7 @@
   {
     "routeId":"MiamiAtlanta",
     "claimed":false,
-    "length":5,
+  "length":5,
     "score":0,
     "cityA":"Miami",
     "cityB":"Atlanta",
@@ -58,7 +58,7 @@
   {
     "routeId":"MiamiNewOrleans",
     "claimed":false,
-    "length":6,
+  "length":6,
     "score":0,
     "cityA":"Miami",
     "cityB":"New Orleans",
@@ -72,7 +72,7 @@
   {
     "routeId":"CharlestonAtlanta",
     "claimed":false,
-    "length":2,
+  "length":2,
     "score":0,
     "cityA":"Charleston",
     "cityB":"Atlanta",
@@ -85,7 +85,6 @@
   }, {
   "routeId":"CharlestonRaleigh",
   "claimed":false,
-  "owner":null,
   "length":2,
   "score":0,
   "cityA":"Raleigh",
@@ -99,7 +98,6 @@
 }, {
   "routeId":"RaleighNashville",
   "claimed":false,
-  "owner":null,
   "length":3,
   "score":0,
   "cityA":"Raleigh",
@@ -113,7 +111,6 @@
 }, {
   "routeId":"NashvilleAtlanta",
   "claimed":false,
-  "owner":null,
   "length":1,
   "score":0,
   "cityA":"Nashville",
@@ -127,7 +124,6 @@
 }, {
   "routeId":"RaleighPittsburgh",
   "claimed":false,
-  "owner":null,
   "length":2,
   "score":0,
   "cityA":"Raleigh",
@@ -141,7 +137,6 @@
 }, {
   "routeId":"WashingtonRaleighBottom",
   "claimed":false,
-  "owner":null,
   "length":2,
   "score":0,
   "cityA":"Raleigh",
@@ -155,7 +150,6 @@
 }, {
   "routeId":"WashingtonRaleighTop",
   "claimed":false,
-  "owner":null,
   "length":2,
   "score":0,
   "cityA":"Raleigh",
@@ -169,7 +163,6 @@
 }, {
   "routeId":"PittsburghWashinhgton",
   "claimed":false,
-  "owner":null,
   "length":2,
   "score":0,
   "cityA":"Pittsburgh",
@@ -183,7 +176,6 @@
 }, {
   "routeId":"WashinhgtonNewYorkLeft",
   "claimed":false,
-  "owner":null,
   "length":2,
   "score":0,
   "cityA":"NewYork",
@@ -197,7 +189,6 @@
 }, {
   "routeId":"WashinhgtonNewYorkRight",
   "claimed":false,
-  "owner":null,
   "length":2,
   "score":0,
   "cityA":"NewYork",
@@ -211,7 +202,6 @@
 }, {
   "routeId":"PittsburghNewYorkRight",
   "claimed":false,
-  "owner":null,
   "length":2,
   "score":0,
   "cityA":"NewYork",
@@ -225,7 +215,6 @@
 }, {
   "routeId":"PittsburghNewYorkLeft",
   "claimed":false,
-  "owner":null,
   "length":2,
   "score":0,
   "cityA":"NewYork",
@@ -239,7 +228,6 @@
 }, {
   "routeId":"MontrealNewYorkLeft",
   "claimed":false,
-  "owner":null,
   "length":3,
   "score":0,
   "cityA":"NewYork",
@@ -253,7 +241,6 @@
 }, {
   "routeId":"NewYorkBostonTop",
   "claimed":false,
-  "owner":null,
   "length":3,
   "score":0,
   "cityA":"NewYork",
@@ -267,7 +254,6 @@
 }, {
   "routeId":"NewYorkBostonBottom",
   "claimed":false,
-  "owner":null,
   "length":3,
   "score":0,
   "cityA":"NewYork",
@@ -281,7 +267,6 @@
 }, {
   "routeId":"BostonMontrealBottom",
   "claimed":false,
-  "owner":null,
   "length":3,
   "score":0,
   "cityA":"Montreal",
@@ -295,7 +280,6 @@
 }, {
   "routeId":"BostonMontrealTop",
   "claimed":false,
-  "owner":null,
   "length":3,
   "score":0,
   "cityA":"Montreal",
@@ -309,7 +293,6 @@
 }, {
   "routeId":"AtlantaRaleigh",
   "claimed":false,
-  "owner":null,
   "length":3,
   "score":0,
   "cityA":"Atlanta",
@@ -323,7 +306,6 @@
 }, {
   "routeId":"MontrealToronto",
   "claimed":false,
-  "owner":null,
   "length":3,
   "score":0,
   "cityA":"Montreal",
@@ -337,7 +319,6 @@
 }, {
   "routeId":"MontrealSaultStMarie",
   "claimed":false,
-  "owner":null,
   "length":4,
   "score":0,
   "cityA":"Montreal",
@@ -351,7 +332,6 @@
 }, {
   "routeId":"SaultStMarieToronto",
   "claimed":false,
-  "owner":null,
   "length":2,
   "score":0,
   "cityA":"SaulStMarie",
@@ -365,7 +345,6 @@
 }, {
   "routeId":"TorontoPittsburgh",
   "claimed":false,
-  "owner":null,
   "length":2,
   "score":0,
   "cityA":"Pittsburgh",
@@ -379,7 +358,6 @@
 }, {
   "routeId":"NashvillPittsburgh",
   "claimed":false,
-  "owner":null,
   "length":4,
   "score":0,
   "cityA":"Pittsburgh",
@@ -393,7 +371,6 @@
 },{
   "routeId":"ChicagoPistburghTop",
   "claimed":false,
-  "owner":null,
   "length":3,
   "score":0,
   "cityA":"Pittsburgh",
@@ -407,7 +384,6 @@
 },{
   "routeId":"ChicagoPistburghBottom",
   "claimed":false,
-  "owner":null,
   "length":3,
   "score":0,
   "cityA":"Pittsburgh",
@@ -421,7 +397,6 @@
 },{
   "routeId":"ChicagoToronto",
   "claimed":false,
-  "owner":null,
   "length":4,
   "score":0,
   "cityA":"Toronto",
@@ -435,7 +410,6 @@
 },{
   "routeId":"ChicagoDuluth",
   "claimed":false,
-  "owner":null,
   "length":3,
   "score":0,
   "cityA":"Duluth",
@@ -449,7 +423,6 @@
 },{
   "routeId":"TorontoDuluth",
   "claimed":false,
-  "owner":null,
   "length":6,
   "score":0,
   "cityA":"Duluth",
@@ -463,7 +436,6 @@
 },{
   "routeId":"DuluthSaulStMarie",
   "claimed":false,
-  "owner":null,
   "length":3,
   "score":0,
   "cityA":"Duluth",
@@ -477,7 +449,6 @@
 },{
   "routeId":"DuluthWinnipeg",
   "claimed":false,
-  "owner":null,
   "length":4,
   "score":0,
   "cityA":"Duluth",
@@ -491,7 +462,6 @@
 },{
   "routeId":"WinnipegSaulStMarie",
   "claimed":false,
-  "owner":null,
   "length":6,
   "score":0,
   "cityA":"SaulStMarie",
@@ -505,7 +475,6 @@
 },{
   "routeId":"OmahaChicago",
   "claimed":false,
-  "owner":null,
   "length":4,
   "score":0,
   "cityA":"Omaha",
@@ -519,7 +488,6 @@
 },{
   "routeId":"SaintLouisChicagoLeft",
   "claimed":false,
-  "owner":null,
   "length":2,
   "score":0,
   "cityA":"SaintLouis",
@@ -533,7 +501,6 @@
 },{
   "routeId":"SaintLouisChicagoRight",
   "claimed":false,
-  "owner":null,
   "length":2,
   "score":0,
   "cityA":"SaintLouis",
@@ -547,7 +514,6 @@
 },{
   "routeId":"SaintLouisPittsburgh",
   "claimed":false,
-  "owner":null,
   "length":5,
   "score":0,
   "cityA":"SaintLouis",
@@ -561,7 +527,6 @@
 },{
   "routeId":"SaintLouisNashville",
   "claimed":false,
-  "owner":null,
   "length":2,
   "score":0,
   "cityA":"StLouis",
@@ -575,7 +540,6 @@
 },{
   "routeId":"AtlentaNewOrleansLeft",
   "claimed":false,
-  "owner":null,
   "length":4,
   "score":0,
   "cityA":"Atlanta",
@@ -589,7 +553,6 @@
 },{
   "routeId":"AtlentaNewOrleansRight",
   "claimed":false,
-  "owner":null,
   "length":4,
   "score":0,
   "cityA":"Atlanta",
@@ -603,7 +566,6 @@
 },{
   "routeId":"NewOrleansLittleRock",
   "claimed":false,
-  "owner":null,
   "length":3,
   "score":0,
   "cityA":"LittleRock",
@@ -617,7 +579,6 @@
 },{
   "routeId":"NashvilleLittleRock",
   "claimed":false,
-  "owner":null,
   "length":3,
   "score":0,
   "cityA":"LittleRock",
@@ -631,7 +592,6 @@
 },{
   "routeId":"LittleRockSaintLouis",
   "claimed":false,
-  "owner":null,
   "length":2,
   "score":0,
   "cityA":"LittleRock",
@@ -645,7 +605,6 @@
 },{
   "routeId":"StLouisKansasCityTop",
   "claimed":false,
-  "owner":null,
   "length":2,
   "score":0,
   "cityA":"StLouis",
@@ -659,7 +618,6 @@
 },{
   "routeId":"StLouisKansasCityBottom",
   "claimed":false,
-  "owner":null,
   "length":2,
   "score":0,
   "cityA":"StLouis",
@@ -673,7 +631,6 @@
 },{
   "routeId":"OmahaDuluthRight",
   "claimed":false,
-  "owner":null,
   "length":2,
   "score":0,
   "cityA":"Omaha",
@@ -687,7 +644,6 @@
 },{
   "routeId":"OmahaDuluthLeft",
   "claimed":false,
-  "owner":null,
   "length":2,
   "score":0,
   "cityA":"Omaha",
@@ -701,7 +657,6 @@
 },{
   "routeId":"KansasCityOklahomaCityRight",
   "claimed":false,
-  "owner":null,
   "length":1,
   "score":0,
   "cityA":"KansasCity",
@@ -715,7 +670,6 @@
 },{
   "routeId":"KansasCityOklahomaCityLeft",
   "claimed":false,
-  "owner":null,
   "length":1,
   "score":0,
   "cityA":"KansasCity",
@@ -729,7 +683,6 @@
 },{
   "routeId":"NewOrleansHouston",
   "claimed":false,
-  "owner":null,
   "length":2,
   "score":0,
   "cityA":"NewOrleans",
@@ -743,7 +696,6 @@
 },{
   "routeId":"KansasCityOklahomaCityRight",
   "claimed":false,
-  "owner":null,
   "length":2,
   "score":0,
   "cityA":"KansasCity",
@@ -757,7 +709,6 @@
 },{
   "routeId":"KansasCityOklahomaCityLeft",
   "claimed":false,
-  "owner":null,
   "length":2,
   "score":0,
   "cityA":"KansasCity",
@@ -771,7 +722,6 @@
 },{
   "routeId":"OklahomaCityLittleRock",
   "claimed":false,
-  "owner":null,
   "length":2,
   "score":0,
   "cityA":"LittleRock",
@@ -785,7 +735,6 @@
 },{
   "routeId":"OklahomaCityDallasLeft",
   "claimed":false,
-  "owner":null,
   "length":2,
   "score":0,
   "cityA":"LittleRock",
@@ -799,7 +748,6 @@
 },{
   "routeId":"OklahomaCityDallasRight",
   "claimed":false,
-  "owner":null,
   "length":2,
   "score":0,
   "cityA":"Dallas",
@@ -813,7 +761,6 @@
 },{
   "routeId":"DallasLittleRock",
   "claimed":false,
-  "owner":null,
   "length":2,
   "score":0,
   "cityA":"LittleRock",
@@ -827,7 +774,6 @@
 },{
   "routeId":"DallasHouston",
   "claimed":false,
-  "owner":null,
   "length":1,
   "score":0,
   "cityA":"Houston",
@@ -841,7 +787,6 @@
 },{
   "routeId":"DallasLittleRock",
   "claimed":false,
-  "owner":null,
   "length":2,
   "score":0,
   "cityA":"LittleRock",
@@ -855,7 +800,6 @@
 },{
   "routeId":"HoustonElPaso",
   "claimed":false,
-  "owner":null,
   "length":6,
   "score":0,
   "cityA":"Houston",
@@ -869,7 +813,6 @@
 },{
   "routeId":"DallasElPaso",
   "claimed":false,
-  "owner":null,
   "length":4,
   "score":0,
   "cityA":"ElPaso",
@@ -883,7 +826,6 @@
 },{
   "routeId":"WinnipegCalgary",
   "claimed":false,
-  "owner":null,
   "length":6,
   "score":0,
   "cityA":"Winnipeg",
@@ -897,7 +839,6 @@
 },{
   "routeId":"CalgaryHelena",
   "claimed":false,
-  "owner":null,
   "length":4,
   "score":0,
   "cityA":"Helena",
@@ -911,7 +852,6 @@
 },{
   "routeId":"HelenaWinnipeg",
   "claimed":false,
-  "owner":null,
   "length":4,
   "score":0,
   "cityA":"Helena",
@@ -925,7 +865,6 @@
 },{
   "routeId":"HelenaDuluth",
   "claimed":false,
-  "owner":null,
   "length":6,
   "score":0,
   "cityA":"Helena",
@@ -939,7 +878,6 @@
 },{
   "routeId":"HelenaOmaha",
   "claimed":false,
-  "owner":null,
   "length":5,
   "score":0,
   "cityA":"Helena",
@@ -953,7 +891,6 @@
 },{
   "routeId":"VancouverCalgary",
   "claimed":false,
-  "owner":null,
   "length":3,
   "score":0,
   "cityA":"Vancouver",
@@ -967,7 +904,6 @@
 },{
   "routeId":"HelenaSeattle",
   "claimed":false,
-  "owner":null,
   "length":6,
   "score":0,
   "cityA":"Helena",
@@ -981,7 +917,6 @@
 },{
   "routeId":"CalgarySeattle",
   "claimed":false,
-  "owner":null,
   "length":4,
   "score":0,
   "cityA":"Calgary",
@@ -995,7 +930,6 @@
 },{
   "routeId":"SaltLakeCityHelena",
   "claimed":false,
-  "owner":null,
   "length":3,
   "score":0,
   "cityA":"SaltLakeCity",
@@ -1009,7 +943,6 @@
 },{
   "routeId":"SaltLakeCityDenverTop",
   "claimed":false,
-  "owner":null,
   "length":3,
   "score":0,
   "cityA":"SaltLakeCity",
@@ -1023,7 +956,6 @@
 },{
   "routeId":"SaltLakeCityHDenverBottom",
   "claimed":false,
-  "owner":null,
   "length":3,
   "score":0,
   "cityA":"SaltLakeCity",
@@ -1037,7 +969,6 @@
 },{
   "routeId":"DenverHelena",
   "claimed":false,
-  "owner":null,
   "length":4,
   "score":0,
   "cityA":"Helena",
@@ -1051,7 +982,6 @@
 },{
   "routeId":"SaltLakeCityPortland",
   "claimed":false,
-  "owner":null,
   "length":6,
   "score":0,
   "cityA":"SaltLakeCity",
@@ -1065,7 +995,6 @@
 },{
   "routeId":"SeatlePortlandLeft",
   "claimed":false,
-  "owner":null,
   "length":1,
   "score":0,
   "cityA":"Seatle",
@@ -1079,7 +1008,6 @@
 },{
   "routeId":"SeatlePortlandRight",
   "claimed":false,
-  "owner":null,
   "length":1,
   "score":0,
   "cityA":"Seatle",
@@ -1093,7 +1021,6 @@
 },{
   "routeId":"PortlandSanFranciscoLeft",
   "claimed":false,
-  "owner":null,
   "length":5,
   "score":0,
   "cityA":"SanFrancisco",
@@ -1107,7 +1034,6 @@
 },{
   "routeId":"PortlandSanFranciscoRight",
   "claimed":false,
-  "owner":null,
   "length":5,
   "score":0,
   "cityA":"SanFrancisco",
@@ -1121,7 +1047,6 @@
 },{
   "routeId":"SanfranciscoSaltLakeCityTop",
   "claimed":false,
-  "owner":null,
   "length":5,
   "score":0,
   "cityA":"SanFrancisco",
@@ -1135,7 +1060,6 @@
 },{
   "routeId":"SanfranciscoSaltLakeCityBottom",
   "claimed":false,
-  "owner":null,
   "length":5,
   "score":0,
   "cityA":"SanFrancisco",
@@ -1149,7 +1073,6 @@
 },{
   "routeId":"SanfranciscoLosAngelesRight",
   "claimed":false,
-  "owner":null,
   "length":3,
   "score":0,
   "cityA":"SanFrancisco",
@@ -1163,7 +1086,6 @@
 },{
   "routeId":"SanfranciscoLosAngelesLeft",
   "claimed":false,
-  "owner":null,
   "length":3,
   "score":0,
   "cityA":"SanFrancisco",
@@ -1177,7 +1099,6 @@
 },{
   "routeId":"LasVegasAngelesBottom",
   "claimed":false,
-  "owner":null,
   "length":2,
   "score":0,
   "cityA":"LasVegas",
@@ -1191,7 +1112,6 @@
 },{
   "routeId":"LasVegasSaltLakeCity",
   "claimed":false,
-  "owner":null,
   "length":3,
   "score":0,
   "cityA":"LasVegas",
@@ -1205,7 +1125,6 @@
 },{
   "routeId":"LosAngelesPhoenix",
   "claimed":false,
-  "owner":null,
   "length":3,
   "score":0,
   "cityA":"LosAngeles",
@@ -1219,7 +1138,6 @@
 },{
   "routeId":"DenverPhoenix",
   "claimed":false,
-  "owner":null,
   "length":5,
   "score":0,
   "cityA":"Denver",
@@ -1233,7 +1151,6 @@
 },{
   "routeId":"ElPasoPhoenix",
   "claimed":false,
-  "owner":null,
   "length":3,
   "score":0,
   "cityA":"ElPaso",
@@ -1247,7 +1164,6 @@
 },{
   "routeId":"ElPasoLosAngeles",
   "claimed":false,
-  "owner":null,
   "length":6,
   "score":0,
   "cityA":"ElPaso",
@@ -1261,7 +1177,6 @@
 },{
   "routeId":"ElPasoSantaFe",
   "claimed":false,
-  "owner":null,
   "length":3,
   "score":0,
   "cityA":"ElPaso",
@@ -1275,7 +1190,6 @@
 },{
   "routeId":"PhoenixSantaFe",
   "claimed":false,
-  "owner":null,
   "length":3,
   "score":0,
   "cityA":"SantaFe",
@@ -1289,7 +1203,6 @@
 },{
   "routeId":"SantaFeDenver",
   "claimed":false,
-  "owner":null,
   "length":2,
   "score":0,
   "cityA":"SantaFe",
@@ -1303,7 +1216,6 @@
 },{
   "routeId":"SantaFeOklahomaCity",
   "claimed":false,
-  "owner":null,
   "length":3,
   "score":0,
   "cityA":"SantaFe",
@@ -1317,7 +1229,6 @@
 },{
   "routeId":"DenverKansasCityBottom",
   "claimed":false,
-  "owner":null,
   "length":4,
   "score":0,
   "cityA":"KansasCity",
@@ -1331,7 +1242,6 @@
 },{
   "routeId":"DenverKansasCityTop",
   "claimed":false,
-  "owner":null,
   "length":4,
   "score":0,
   "cityA":"KansasCity",
@@ -1345,7 +1255,6 @@
 },{
   "routeId":"DenverOmaha",
   "claimed":false,
-  "owner":null,
   "length":4,
   "score":0,
   "cityA":"Omaha",
