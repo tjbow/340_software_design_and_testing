@@ -25,6 +25,9 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
@@ -615,6 +618,7 @@ public class Game
         {
             this.setStatus(GAME_STATUS.FINISHED);
 
+            setRanks();
             CEndGameCommandData cmd = new CEndGameCommandData();
             cmd.setType("endgame");
             cmd.setWasSuccessful(true);
@@ -623,13 +627,20 @@ public class Game
         }
     }
 
-    public void setRanks()
+    private void setRanks()
     {
         int highScore = 0;
-        Map<Integer, String> ranks = new TreeMap<>();
+        Map<Integer, Player> ranks = new TreeMap<>();
         for(Player player : players)
         {
-            ranks.put(player.getScore(), player.getUserName());
+            ranks.put(player.getScore(), player);
+        }
+
+        int rank = this.getCurrentPlayerSize();
+        for(Map.Entry<Integer, Player> entry : ranks.entrySet())
+        {
+            entry.getValue().getStats().setRank(rank);
+            rank--;
         }
     }
 

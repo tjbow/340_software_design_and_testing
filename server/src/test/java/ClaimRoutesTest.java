@@ -35,21 +35,25 @@ public class ClaimRoutesTest
         User user = new User("tyler", "t");
         User user1 = new User("todd", "t");
         User user2= new User("tiff", "t");
+        User user3 = new User("trent", "t");
 
         Player player = new Player(user);
         Player player1 = new Player(user1);
         Player player2 = new Player(user2);
+        Player player3 = new Player(user3);
 
-        game.addPlayer(new Player(user));
-        game.addPlayer(new Player(user1));
-        game.addPlayer(new Player(user2));
+        game.addPlayer(player);
+        game.addPlayer(player1);
+        game.addPlayer(player2);
+        game.addPlayer(player3);
 
         game.getPlayers().forEach(Player::initializeGame);
         game.dealInitialGameCards();
 
-        player.getStats().setClaimedRouteScore(5);
+        player.getStats().setClaimedRouteScore(15);
         player1.getStats().setClaimedRouteScore(10);
-        player2.getStats().setClaimedRouteScore(15);
+        player2.getStats().setClaimedRouteScore(5);
+        player3.getStats().setClaimedRouteScore(20);
     }
 
     @After
