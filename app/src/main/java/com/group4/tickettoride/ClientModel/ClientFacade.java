@@ -103,7 +103,7 @@ public class ClientFacade implements IClient
             //user is already in a game, send status to LoginPresenter which decides to start
             //either LobbyActivity or GameActivity
             GAME_STATUS status = ClientModel.SINGLETON.getGame().getStatus();
-            if(status == GAME_STATUS.ONGOING)
+            if(status == GAME_STATUS.ONGOING || status == GAME_STATUS.FINISHED || status == GAME_STATUS.FINAL_TURN)
             {
                 poller.setUpdateGameList(false);
             }
