@@ -396,7 +396,7 @@ public class GameMapView extends View {
 
 
         ObjectMapper mapper = new ObjectMapper();
-        mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES,false);
+        //mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES,false);
         try {
             this.routeSegments = mapper.readValue(is, new TypeReference<Set<RouteSegment>>() { });
         } catch (IOException e) {

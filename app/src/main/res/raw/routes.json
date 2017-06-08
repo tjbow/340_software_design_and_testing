@@ -2,7 +2,6 @@
   {
     "routeId":"SeattleVancouverRight",
     "claimed":false,
-    "owner":null,
     "length":1,
     "score":0,
     "cityA":"Vancouver",
@@ -17,7 +16,6 @@
   {
     "routeId":"SeattleVancouverLeft",
     "claimed":false,
-    "owner":null,
     "length":1,
     "score":0,
     "cityA":"Vancouver",
@@ -32,7 +30,6 @@
   {
     "routeId":"MiamiCharlston",
     "claimed":false,
-    "owner":null,
     "length":4,
     "score":0,
     "cityA":"Miami",
@@ -47,7 +44,6 @@
   {
     "routeId":"MiamiAtlanta",
     "claimed":false,
-    "owner":null,
     "length":5,
     "score":0,
     "cityA":"Miami",
@@ -62,7 +58,6 @@
   {
     "routeId":"MiamiNewOrleans",
     "claimed":false,
-    "owner":null,
     "length":6,
     "score":0,
     "cityA":"Miami",
@@ -77,7 +72,6 @@
   {
     "routeId":"CharlestonAtlanta",
     "claimed":false,
-    "owner":null,
     "length":2,
     "score":0,
     "cityA":"Charleston",
