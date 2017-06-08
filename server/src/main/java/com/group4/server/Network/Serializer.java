@@ -1,5 +1,6 @@
 package com.group4.server.Network;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
@@ -28,6 +29,18 @@ public class Serializer
             Results failure = new Results(false, null, "The server serializer broke", null);
             return gson.toJson(failure);
         }
+
+//        ObjectMapper mapper = new ObjectMapper();
+//        String str = null;
+//        try
+//        {
+//            str = mapper.writeValueAsString(r);
+//        } catch (Exception e)
+//        {
+//            e.printStackTrace();
+//        }
+
+
         return str;
     }
 

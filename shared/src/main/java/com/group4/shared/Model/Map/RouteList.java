@@ -41,7 +41,15 @@ public class RouteList
     public void claimRoute(String routeId, Player owner){
         for(RouteSegment routeSegment : routeList){
             if(routeSegment.getRouteId().equals(routeId)) {
-                routeSegment.setOwner(owner);
+                PLAYER_COLOR color;
+                if(owner.getColor().equals("blue")) color = PLAYER_COLOR.BLUE;
+                else if(owner.getColor().equals("red")) color = PLAYER_COLOR.RED;
+                else if(owner.getColor().equals("green")) color = PLAYER_COLOR.GREEN;
+                else if(owner.getColor().equals("yellow")) color = PLAYER_COLOR.YELLOW;
+                else color = PLAYER_COLOR.BLACK;
+
+                routeSegment.setPlayer_color(color);
+                //routeSegment.setOwner(owner);
                 routeSegment.setClaimed(true);
                 return;
             }
@@ -71,7 +79,7 @@ public class RouteList
     public Player getOwner(String routeId){
         for(RouteSegment routeSegment : routeList){
             if(routeSegment.getRouteId().equals(routeId)) {
-                return routeSegment.getOwner();
+                //return routeSegment.getOwner();
             }
         }
 

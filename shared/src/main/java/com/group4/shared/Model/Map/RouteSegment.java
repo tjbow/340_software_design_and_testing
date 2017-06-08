@@ -11,7 +11,7 @@ public class RouteSegment {
     String routeId;
     boolean claimed;
 
-    Player owner;
+    //Player owner;
     int length;
     int score;
     String cityA;
@@ -92,13 +92,13 @@ public class RouteSegment {
         this.claimed = claimed;
     }
 
-    public Player getOwner() {
-        return owner;
-    }
+    //public Player getOwner() {
+    //    return owner;
+    //}
 
-    public void setOwner(Player owner) {
-        this.owner = owner;
-    }
+    //public void setOwner(Player owner) {
+    //    this.owner = owner;
+    //}
 
     public int getLength() {
         return length;
