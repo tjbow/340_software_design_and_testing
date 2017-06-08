@@ -214,7 +214,9 @@ public class GameMapView extends View {
             int color = getColor(r);
 
 
-            drawAngledRectangle(pt2, pt1, angle, r.getLength(), r.isHighlighted(), color, canvas);
+            if(!r.isClaimed()) {
+                drawAngledRectangle(pt2, pt1, angle, r.getLength(), r.isHighlighted(), color, canvas);
+            }
         }
 
         drawRouteSegments(canvas);
