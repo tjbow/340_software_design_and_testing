@@ -9,6 +9,7 @@ import com.group4.shared.Model.CommandList;
 import com.group4.shared.Model.Deck.Decks;
 import com.group4.shared.Model.Deck.DestinationCard;
 import com.group4.shared.Model.Deck.TrainCard;
+import com.group4.shared.Model.Map.PLAYER_COLOR;
 import com.group4.shared.Model.Map.RouteSegment;
 import com.group4.shared.Model.Message;
 import com.group4.shared.Model.Player;
@@ -504,7 +505,10 @@ public class Game
         if(player.getTrainCarsRemaining() <= 2)
         {
             this.setStatus(GAME_STATUS.FINAL_TURN);
+            addTurn(new Message("Final Round!", "GAME", "black"));
         }
+
+        addTurn(new Message("Claimed the " + claimedSegment.getRouteColor() + " route from " + claimedSegment.getCityA() + " to " + claimedSegment.getCityB(), player.getUserName(), player.getColor()));
 
         return true;
     }
