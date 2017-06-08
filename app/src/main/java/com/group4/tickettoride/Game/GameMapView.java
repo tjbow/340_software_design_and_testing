@@ -14,6 +14,7 @@ import android.view.MotionEvent;
 import android.view.View;
 
 import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.group4.shared.Model.Map.City;
 import com.group4.shared.Model.Map.PLAYER_COLOR;
@@ -395,6 +396,7 @@ public class GameMapView extends View {
 
 
         ObjectMapper mapper = new ObjectMapper();
+        mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES,false);
         try {
             this.routeSegments = mapper.readValue(is, new TypeReference<Set<RouteSegment>>() { });
         } catch (IOException e) {
