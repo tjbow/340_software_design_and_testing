@@ -7,6 +7,7 @@ import com.group4.shared.Model.Game.Game;
 import com.group4.shared.Model.Map.ROUTE_COLOR;
 import com.group4.shared.Model.Map.RouteSegment;
 import com.group4.tickettoride.ClientModel.ClientModel;
+import com.group4.tickettoride.Game.GameFragments.TrainCardPickerImages.TrainCardPickerImage;
 import com.group4.tickettoride.Game.GamePresenter;
 
 import java.util.HashMap;
@@ -25,6 +26,7 @@ public class TrainCardPickerPresenter implements Observer, ITrainCardPickerPrese
     private RouteSegment route;
     private GamePresenter gamePresenter;
     private Map<CARD_COLOR, Integer> cardMap;
+    private Map<CARD_COLOR, TrainCardPickerImage> imageMap;
 
     public TrainCardPickerPresenter(TrainCardPickerFragment fragment, RouteSegment route, GamePresenter gamePresenter) {
         this.fragment = fragment;
@@ -101,7 +103,7 @@ public class TrainCardPickerPresenter implements Observer, ITrainCardPickerPrese
             fragment.showLocomotiveCardPicker();
         }
     }
-    
+
     private void initializeCards(CARD_COLOR color){
         switch (color){
             case PURPLE:
@@ -205,6 +207,12 @@ public class TrainCardPickerPresenter implements Observer, ITrainCardPickerPrese
         fragment.setPurpleCardMinusEnabled(true);
 
         //tell fragment only purple and locomotive should be enabled
+    }
+
+    public void onIncrement(CARD_COLOR color){
+        if(cardMap.get(color) == imageMap.get(color).getCount()){
+
+        }
     }
 
     @Override
