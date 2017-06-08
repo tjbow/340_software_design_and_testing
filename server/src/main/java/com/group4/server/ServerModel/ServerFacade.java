@@ -507,6 +507,8 @@ public class ServerFacade implements IServer
 //        add update map command to game
         game.addCommand(updateMapCmd);
 
+        System.out.println(userName + " has claimed the route from " + claimedSegment.getCityA() + " to " + claimedSegment.getCityB() + ".");
+
         return new Results(true, "Route Claimed.", null, null);
     }
 }

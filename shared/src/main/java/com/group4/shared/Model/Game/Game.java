@@ -432,7 +432,7 @@ public class Game
         //add route to player's routes and mark it?
         routes.claimRoute(claimedSegment.getRouteId(), player);
         //TODO: TYLER: Fix?
-//        player.addClaimedRoute(claimedSegment);
+        player.addClaimedRoute(claimedSegment);
 
         //set game routelist
         // ?? needed?
