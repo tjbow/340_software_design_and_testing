@@ -105,14 +105,19 @@ public class GamePresenter implements IGamePresenter, Observer
             GAME_STATUS status = (GAME_STATUS) arg;
             if(status == GAME_STATUS.FINISHED)
             {
-                o.deleteObserver(this);
-                activity.startNextActivity(GameListActivity.class);
+                //start the end game dialog
+                activity.showEndGame();
+
+//                o.deleteObserver(this);
+//                activity.startNextActivity(GameListActivity.class);
+            }
+            else if(status == GAME_STATUS.FINAL_TURN)
+            {
+                displayError("Last moves of the game!");
             }
         }
         else if(arg.getClass() == RouteList.class)
         {
-//            temp route segments code
-//            gameMapView.setRouteSegments(ClientModel.SINGLETON.getRouteSegments());
             RouteList newRoutes = (RouteList) arg;
             gameMapView.setRouteSegments(newRoutes.getRouteList());
         }

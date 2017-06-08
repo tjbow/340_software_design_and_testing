@@ -163,6 +163,8 @@ public class ClientFacade implements IClient
 
         ClientModel.SINGLETON.setGame(game);
 
+        ClientModel.SINGLETON.sendToObservers(status);
+
         ClientModel.SINGLETON.setDecks(deckState);
 
         return null;

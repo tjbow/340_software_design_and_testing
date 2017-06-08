@@ -178,17 +178,6 @@ public class ClientModel extends Observable {
 
     public void updatePlayerInfo(List<Player> players)
     {
-//        Map<String, Player> playerMap = new HashMap<>();
-//        for(Player player : players)
-//        {
-//            playerMap.put(player.getUserName(), player);
-//
-//            //also update the model player
-//            if(user.getUsername().equals(player.getUserName()))
-//            {
-//                this.player = player;
-//            }
-//        }
         game.setPlayers(players);
 
         //also update the model player

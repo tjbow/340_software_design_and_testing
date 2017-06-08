@@ -300,6 +300,8 @@ public class ServerFacade implements IServer
 //        get the player and add selectedCards to his destination card deck
         List<DestinationCard> receivedCards = game.playerTurn_DrawDestinationCards(userName);
 
+        if(receivedCards.size() == 0) return new Results(false, null, "No destination cards to draw!", null);
+
 //        UPDATE PLAYERS COMMAND
         CUpdatePlayersCommandData updatePlayersCommandData = new CUpdatePlayersCommandData();
         updatePlayersCommandData.setType("updateplayers");
@@ -397,7 +399,7 @@ public class ServerFacade implements IServer
             usedCards.add(new TrainCard(CARD_COLOR.BLACK, false));
         }
         //TODO: Find stack overflow
-        claimRoute("tyler", game.getRoutes().findRoute("MontrealSaultStMarie"), usedCards);
+        //claimRoute("tyler", game.getRoutes().findRoute("MontrealSaultStMarie"), usedCards);
 
         return new Results(true, "Destination cards selected", null, null);
     }

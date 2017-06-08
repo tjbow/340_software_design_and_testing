@@ -226,9 +226,12 @@ public class ServerModel
 
     boolean endGame(String gameName)
     {
-        //TODO: TYLER: adjust ServerModel endGame
         Game game = gameList.getGameByName(gameName);
-        return gameList.remove(game);
+        if(game != null)
+            game.setStatus(GAME_STATUS.FINISHED);
+        else
+            return false;
+        return true;
     }
 
     /**

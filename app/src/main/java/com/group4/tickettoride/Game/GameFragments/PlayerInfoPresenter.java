@@ -63,7 +63,6 @@ public class PlayerInfoPresenter implements Observer {
     private void updateFragment(List<Player> players)
     {
         setPlayerInfo(players);
-        //TODO @john: add other updates here
     }
 
     private void setPlayerInfo(List<Player> players)

@@ -11,4 +11,6 @@ public interface IGameActivity
     void setGame(Game game);
 
     void startNextActivity(Class nextClass);
+
+    void showEndGame();
 }

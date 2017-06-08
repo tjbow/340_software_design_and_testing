@@ -13,6 +13,7 @@ import com.group4.shared.Model.Map.RouteSegment;
 import com.group4.tickettoride.ClientModel.ClientModel;
 import com.group4.tickettoride.Game.GameFragments.Chat_GameHistoryFragment;
 import com.group4.tickettoride.Game.GameFragments.DestCardPickerFragment;
+import com.group4.tickettoride.Game.GameFragments.EndGameFragment;
 import com.group4.tickettoride.Game.GameFragments.PlayerHandFragment;
 import com.group4.tickettoride.Game.GameFragments.PlayerInfoFragment;
 import com.group4.tickettoride.Game.GameFragments.CardDecksFragment;
@@ -26,6 +27,8 @@ public class GameActivity extends AppCompatActivity implements IGameActivity, IM
     private PlayerInfoFragment playerInfoFragment;
     private CardDecksFragment mCardDecksFragment;
     private PlayerHandFragment playerHandFragment;
+
+    private static final String END_GAME_DIALOG = "EndGameDialog";
 
     public final String CHAT_GAME_HISTORY_DIALOG = "Chat_GameHistoryDialog";
     private static final String EXTRA_GAME_NAME = "com.group4.tickettoride.Game.game_name";
@@ -124,6 +127,14 @@ public class GameActivity extends AppCompatActivity implements IGameActivity, IM
         Intent i = new Intent(GameActivity.this, nextClass);
         startActivity(i);
         finish();
+    }
+
+    @Override
+    public void showEndGame()
+    {
+        FragmentManager manager = getSupportFragmentManager();
+        EndGameFragment dialog = new EndGameFragment();
+        dialog.show(manager, END_GAME_DIALOG);
     }
 
     @Override

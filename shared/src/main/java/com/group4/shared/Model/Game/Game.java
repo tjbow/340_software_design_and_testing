@@ -14,6 +14,7 @@ import com.group4.shared.Model.Message;
 import com.group4.shared.Model.Player;
 import com.group4.shared.Model.Map.RouteList;
 import com.group4.shared.Model.TurnHistory;
+import com.group4.shared.command.Client.CEndGameCommandData;
 import com.group4.shared.command.Client.CUpdateStateCommandData;
 import com.group4.shared.command.ClientCommand;
 
@@ -23,6 +24,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
@@ -420,6 +422,7 @@ public class Game
 
         //TODO: check for double-route rules (two routes between same two cities)
 
+
         //check if enough train pieces
         if(player.getTrainCarsRemaining() < claimedSegment.getLength()) return false;
 
@@ -431,11 +434,7 @@ public class Game
 
         //add route to player's routes and mark it?
         routes.claimRoute(claimedSegment.getRouteId(), player);
-        //TODO: TYLER: Fix?
         player.addClaimedRoute(claimedSegment);
-
-        //set game routelist
-        // ?? needed?
 
         //deduct cards from player and discard them
         for(TrainCard usedCard : usedCards)
@@ -480,44 +479,16 @@ public class Game
         }
         player.getStats().incrementRouteScore(addition);
 
-        //calculate longest continuous path
-        // ??
+        //finish turn
+        updatePlayerState(player, false, true);
 
         //check if player has 0-2 remaining train pieces
         if(player.getTrainCarsRemaining() <= 2)
         {
-            //TODO: TYLER: set final turn
+            this.setStatus(GAME_STATUS.FINAL_TURN);
         }
-
-        //set game status
-
-        //finish turn
-        updatePlayerState(player, false, true);
 
         return true;
-    }
-
-    private void updatePlayerState(Player player, boolean drawDestCards, boolean claimRoute)
-    {
-        CUpdateStateCommandData updateStateCommandData = new CUpdateStateCommandData();
-        updateStateCommandData.setType("updatestate");
-        updateStateCommandData.setUserName(player.getUserName());
-
-        //done with turn (dest card draw or claim route, or can't draw more train cards
-        if(player.getCurrentState() == MOVE_STATE.DRAWN_FIRST_TRAIN_CARD || drawDestCards || claimRoute)
-        {
-            updateStateCommandData.setState(MOVE_STATE.NOT_MY_TURN);
-            player.setCurrentState(MOVE_STATE.NOT_MY_TURN);
-            setTurnToNextPlayer();
-            this.addCommand(updateStateCommandData);
-        }
-        //allows to draw another train card
-        else if(player.getCurrentState() == MOVE_STATE.MY_TURN)
-        {
-            updateStateCommandData.setState(MOVE_STATE.DRAWN_FIRST_TRAIN_CARD);
-            player.setCurrentState(MOVE_STATE.DRAWN_FIRST_TRAIN_CARD);
-            this.addCommand(updateStateCommandData);
-        }
     }
 
 //    TURN HISTORY
@@ -534,6 +505,31 @@ public class Game
     public void addTurn(Message turn)
     {
         turnHistory.add(turn);
+    }
+
+    private void updatePlayerState(Player player, boolean drawDestCards, boolean claimRoute)
+    {
+        CUpdateStateCommandData updateStateCommandData = new CUpdateStateCommandData();
+        updateStateCommandData.setType("updatestate");
+        updateStateCommandData.setUserName(player.getUserName());
+
+        //done with turn (dest card draw or claim route, or can't draw more train cards)
+        if(player.getCurrentState() == MOVE_STATE.DRAWN_FIRST_TRAIN_CARD || drawDestCards || claimRoute)
+        {
+            if(this.status == GAME_STATUS.FINAL_TURN) useLastTurn(player.getUserName());
+
+            updateStateCommandData.setState(MOVE_STATE.NOT_MY_TURN);
+            player.setCurrentState(MOVE_STATE.NOT_MY_TURN);
+            setTurnToNextPlayer();
+            this.addCommand(updateStateCommandData);
+        }
+        //allows to draw another train card
+        else if(player.getCurrentState() == MOVE_STATE.MY_TURN)
+        {
+            updateStateCommandData.setState(MOVE_STATE.DRAWN_FIRST_TRAIN_CARD);
+            player.setCurrentState(MOVE_STATE.DRAWN_FIRST_TRAIN_CARD);
+            this.addCommand(updateStateCommandData);
+        }
     }
 
     public void setTurnToNextPlayer()
@@ -583,6 +579,23 @@ public class Game
                     return;
                 }
             }
+        }
+    }
+
+    Set<String> finishedPlayers = new HashSet<>();
+    private void useLastTurn(String userName)
+    {
+        finishedPlayers.add(userName);
+
+        if(finishedPlayers.size() == players.size())
+        {
+            this.setStatus(GAME_STATUS.FINISHED);
+
+            CEndGameCommandData cmd = new CEndGameCommandData();
+            cmd.setType("endgame");
+            cmd.setWasSuccessful(true);
+            this.addCommand(cmd);
+            System.out.println("The game " + gameName + " was ended.");
         }
     }
 

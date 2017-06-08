@@ -71,7 +71,7 @@ public class GameListPresenter implements IGameListPresenter, Observer {
 
             for(Game game : gameList.getGameList())
             {
-                if(!game.getStatus().equals(GAME_STATUS.ONGOING))
+                if(!game.getStatus().equals(GAME_STATUS.ONGOING) && !game.getStatus().equals(GAME_STATUS.FINISHED))
                 {
                     displayedGameList.add(game);
                 }
