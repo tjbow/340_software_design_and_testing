@@ -23,6 +23,7 @@ import android.widget.TextView;
 import com.group4.shared.Model.Deck.CARD_COLOR;
 import com.group4.tickettoride.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -84,11 +85,14 @@ public class TrainCardPickerFragment extends DialogFragment {
     private Button locomotiveCardMinus;
     private TextView locomotiveCardCount;
 
+    private TextView routeTitle;
+    private TextView requiredRouteCards;
+
     private static final String ROUTE_ID = "route_ID";
 
     private ITrainCardPickerPresenter presenter;
-    private List<CARD_COLOR> initializedPickers;
-    private String routeID;
+    private List<CARD_COLOR> initializedPickers = new ArrayList<>();
+
     private Dialog dialog;
     private View v;
 
@@ -101,7 +105,9 @@ public class TrainCardPickerFragment extends DialogFragment {
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         v = LayoutInflater.from(getActivity()).inflate(R.layout.fragment_train_card_picker, null);
-        routeID = getArguments().getString(ROUTE_ID);
+
+        routeTitle = (TextView) v.findViewById(R.id.routeTitle);
+        requiredRouteCards = (TextView) v.findViewById(R.id.routeCardRequirements);
 
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(getActivity());
 
@@ -121,6 +127,8 @@ public class TrainCardPickerFragment extends DialogFragment {
                 setClaimButtonEnabled(false);
             }
         });
+
+        presenter.afterFragmentCreation();
 
         return dialog;
     }
@@ -167,14 +175,31 @@ public class TrainCardPickerFragment extends DialogFragment {
         }
     }
 
-    public void setAllPickersEnabled()
+    public void setAllCurrentPickersEnabled()
     {
         setPurplePickerEnabled(true);
-        //TODO @john: put rest of pickers here
+        setWhitePickerEnabled(true);
+        setBluePickerEnabled(true);
+        setYellowPickerEnabled(true);
+        setOrangePickerEnabled(true);
+        setBlackPickerEnabled(true);
+        setRedPickerEnabled(true);
+        setGreenPickerEnabled(true);
+        setLocomotivePickerEnabled(true);
     }
 
     public void setPresenter(ITrainCardPickerPresenter presenter) {
         this.presenter = presenter;
+    }
+
+    public void setRouteTitle(String title)
+    {
+        this.routeTitle.setText(title);
+    }
+
+    public void setRequiredRouteCards(String requirements)
+    {
+        this.requiredRouteCards.setText(requirements);
     }
 
     //---------PURPLE CARD PICKER FUNCTIONS
@@ -226,17 +251,23 @@ public class TrainCardPickerFragment extends DialogFragment {
 
     public void setPurplePickerEnabled(Boolean enabled)
     {
-        if (enabled)
+        if (purpleCardPicker != null)
         {
-            purpleCardPicker.setClickable(true);
-            whiteCardPicker.setForeground(null);
+            if (enabled)
+            {
+                purpleCardPicker.setEnabled(true);
+                purpleCardPicker.setForeground(null);
+                setPurpleCardPlusEnabled(true);
+            }
+            else
+            {
+                purpleCardPicker.setEnabled(false);
+                setPurpleCardPlusEnabled(false);
+                Drawable drawable = new ColorDrawable(ContextCompat.getColor(getActivity(), R.color.colorTransWhite));
+                purpleCardPicker.setForeground(drawable);
+            }
         }
-        else
-        {
-            purpleCardPicker.setClickable(false);
-            Drawable drawable = new ColorDrawable(ContextCompat.getColor(getActivity(), R.color.colorTransWhite));
-            purpleCardPicker.setForeground(drawable);
-        }
+
     }
 
     //---------WHITE CARD PICKER FUNCTIONS
@@ -288,17 +319,24 @@ public class TrainCardPickerFragment extends DialogFragment {
 
     public void setWhitePickerEnabled(Boolean enabled)
     {
-        if (enabled)
+
+        if (whiteCardPicker != null)
         {
-            whiteCardPicker.setClickable(true);
-            whiteCardPicker.setForeground(null);
+            if (enabled)
+            {
+                whiteCardPicker.setClickable(true);
+                setWhiteCardPlusEnabled(true);
+                whiteCardPicker.setForeground(null);
+            }
+            else
+            {
+                whiteCardPicker.setClickable(false);
+                Drawable drawable = new ColorDrawable(ContextCompat.getColor(getActivity(), R.color.colorTransWhite));
+                whiteCardPicker.setForeground(drawable);
+                setWhiteCardPlusEnabled(false);
+            }
         }
-        else
-        {
-            whiteCardPicker.setClickable(false);
-            Drawable drawable = new ColorDrawable(ContextCompat.getColor(getActivity(), R.color.colorTransWhite));
-            whiteCardPicker.setForeground(drawable);
-        }
+
     }
 
     //---------BLUE CARD PICKER FUNCTIONS
@@ -350,17 +388,23 @@ public class TrainCardPickerFragment extends DialogFragment {
 
     public void setBluePickerEnabled(Boolean enabled)
     {
-        if (enabled)
+        if (blueCardPicker != null)
         {
-            blueCardPicker.setClickable(true);
-            blueCardPicker.setForeground(null);
+            if (enabled)
+            {
+                blueCardPicker.setClickable(true);
+                blueCardPicker.setForeground(null);
+                setBlueCardPlusEnabled(true);
+            }
+            else
+            {
+                blueCardPicker.setClickable(false);
+                Drawable drawable = new ColorDrawable(ContextCompat.getColor(getActivity(), R.color.colorTransWhite));
+                blueCardPicker.setForeground(drawable);
+                setBlueCardPlusEnabled(false);
+            }
         }
-        else
-        {
-            blueCardPicker.setClickable(false);
-            Drawable drawable = new ColorDrawable(ContextCompat.getColor(getActivity(), R.color.colorTransWhite));
-            blueCardPicker.setForeground(drawable);
-        }
+
     }
 
     //---------YELLOW CARD PICKER FUNCTIONS
@@ -412,17 +456,23 @@ public class TrainCardPickerFragment extends DialogFragment {
 
     public void setYellowPickerEnabled(Boolean enabled)
     {
-        if (enabled)
+        if (yellowCardPicker != null)
         {
-            yellowCardPicker.setClickable(true);
-            yellowCardPicker.setForeground(null);
+            if (enabled)
+            {
+                yellowCardPicker.setClickable(true);
+                yellowCardPicker.setForeground(null);
+                setYellowCardPlusEnabled(true);
+            }
+            else
+            {
+                yellowCardPicker.setClickable(false);
+                Drawable drawable = new ColorDrawable(ContextCompat.getColor(getActivity(), R.color.colorTransWhite));
+                yellowCardPicker.setForeground(drawable);
+                setYellowCardPlusEnabled(false);
+            }
         }
-        else
-        {
-            yellowCardPicker.setClickable(false);
-            Drawable drawable = new ColorDrawable(ContextCompat.getColor(getActivity(), R.color.colorTransWhite));
-            yellowCardPicker.setForeground(drawable);
-        }
+
     }
 
     //---------ORANGE CARD PICKER FUNCTIONS
@@ -474,17 +524,23 @@ public class TrainCardPickerFragment extends DialogFragment {
 
     public void setOrangePickerEnabled(Boolean enabled)
     {
-        if (enabled)
+        if (orangeCardPicker != null)
         {
-            orangeCardPicker.setClickable(true);
-            orangeCardPicker.setForeground(null);
+            if (enabled)
+            {
+                orangeCardPicker.setClickable(true);
+                orangeCardPicker.setForeground(null);
+                setOrangeCardPlusEnabled(true);
+            }
+            else
+            {
+                orangeCardPicker.setClickable(false);
+                Drawable drawable = new ColorDrawable(ContextCompat.getColor(getActivity(), R.color.colorTransWhite));
+                orangeCardPicker.setForeground(drawable);
+                setOrangeCardPlusEnabled(false);
+            }
         }
-        else
-        {
-            orangeCardPicker.setClickable(false);
-            Drawable drawable = new ColorDrawable(ContextCompat.getColor(getActivity(), R.color.colorTransWhite));
-            orangeCardPicker.setForeground(drawable);
-        }
+
     }
 
     //---------BLACK CARD PICKER FUNCTIONS
@@ -536,17 +592,24 @@ public class TrainCardPickerFragment extends DialogFragment {
 
     public void setBlackPickerEnabled(Boolean enabled)
     {
-        if (enabled)
+
+        if (blackCardPicker != null)
         {
-            blackCardPicker.setClickable(true);
-            blackCardPicker.setForeground(null);
+            if (enabled)
+            {
+                blackCardPicker.setClickable(true);
+                blackCardPicker.setForeground(null);
+                setBlackCardPlusEnabled(true);
+            }
+            else
+            {
+                blackCardPicker.setClickable(false);
+                Drawable drawable = new ColorDrawable(ContextCompat.getColor(getActivity(), R.color.colorTransWhite));
+                blackCardPicker.setForeground(drawable);
+                setBlackCardPlusEnabled(false);
+            }
         }
-        else
-        {
-            blackCardPicker.setClickable(false);
-            Drawable drawable = new ColorDrawable(ContextCompat.getColor(getActivity(), R.color.colorTransWhite));
-            blackCardPicker.setForeground(drawable);
-        }
+
     }
 
     //---------RED CARD PICKER FUNCTIONS
@@ -598,17 +661,23 @@ public class TrainCardPickerFragment extends DialogFragment {
 
     public void setRedPickerEnabled(Boolean enabled)
     {
-        if (enabled)
+        if (redCardPicker != null)
         {
-            redCardPicker.setClickable(true);
-            redCardPicker.setForeground(null);
+            if (enabled)
+            {
+                redCardPicker.setClickable(true);
+                redCardPicker.setForeground(null);
+                setRedCardPlusEnabled(true);
+            }
+            else
+            {
+                redCardPicker.setClickable(false);
+                Drawable drawable = new ColorDrawable(ContextCompat.getColor(getActivity(), R.color.colorTransWhite));
+                redCardPicker.setForeground(drawable);
+                setRedCardPlusEnabled(false);
+            }
         }
-        else
-        {
-            redCardPicker.setClickable(false);
-            Drawable drawable = new ColorDrawable(ContextCompat.getColor(getActivity(), R.color.colorTransWhite));
-            redCardPicker.setForeground(drawable);
-        }
+
     }
 
     //---------GREEN CARD PICKER FUNCTIONS
@@ -660,17 +729,23 @@ public class TrainCardPickerFragment extends DialogFragment {
 
     public void setGreenPickerEnabled(Boolean enabled)
     {
-        if (enabled)
+        if (greenCardPicker != null)
         {
-            greenCardPicker.setClickable(true);
-            greenCardPicker.setForeground(null);
+            if (enabled)
+            {
+                greenCardPicker.setClickable(true);
+                greenCardPicker.setForeground(null);
+                setGreenCardPlusEnabled(true);
+            }
+            else
+            {
+                greenCardPicker.setClickable(false);
+                Drawable drawable = new ColorDrawable(ContextCompat.getColor(getActivity(), R.color.colorTransWhite));
+                greenCardPicker.setForeground(drawable);
+                setGreenCardPlusEnabled(false);
+            }
         }
-        else
-        {
-            greenCardPicker.setClickable(false);
-            Drawable drawable = new ColorDrawable(ContextCompat.getColor(getActivity(), R.color.colorTransWhite));
-            greenCardPicker.setForeground(drawable);
-        }
+
     }
 
     //---------LOCOMOTIVE CARD PICKER FUNCTIONS
@@ -702,7 +777,10 @@ public class TrainCardPickerFragment extends DialogFragment {
 
     public int getLocomotiveCardCount()
     {
-        return Integer.parseInt(locomotiveCardCount.getText().toString());
+        if (locomotiveCardCount != null){
+            return Integer.parseInt(locomotiveCardCount.getText().toString());
+        }
+        else return 0;
     }
 
     public void setLocomotiveCardCount(String count)
@@ -712,7 +790,9 @@ public class TrainCardPickerFragment extends DialogFragment {
 
     public void setLocomotiveCardPlusEnabled(Boolean enabled)
     {
-        locomotiveCardPlus.setEnabled(enabled);
+        if (locomotiveCardPlus != null){
+            locomotiveCardPlus.setEnabled(enabled);
+        }
     }
 
     public void setLocomotiveCardMinusEnabled(Boolean enabled)
@@ -722,17 +802,23 @@ public class TrainCardPickerFragment extends DialogFragment {
 
     public void setLocomotivePickerEnabled(Boolean enabled)
     {
-        if (enabled)
+        if (locomotiveCardPicker != null)
         {
-            locomotiveCardPicker.setClickable(true);
-            locomotiveCardPicker.setForeground(null);
+            if (enabled)
+            {
+                locomotiveCardPicker.setClickable(true);
+                locomotiveCardPicker.setForeground(null);
+                setLocomotiveCardPlusEnabled(true);
+            }
+            else
+            {
+                locomotiveCardPicker.setClickable(false);
+                Drawable drawable = new ColorDrawable(ContextCompat.getColor(getActivity(), R.color.colorTransWhite));
+                locomotiveCardPicker.setForeground(drawable);
+                setLocomotiveCardPlusEnabled(false);
+            }
         }
-        else
-        {
-            locomotiveCardPicker.setClickable(false);
-            Drawable drawable = new ColorDrawable(ContextCompat.getColor(getActivity(), R.color.colorTransWhite));
-            locomotiveCardPicker.setForeground(drawable);
-        }
+
     }
 
 

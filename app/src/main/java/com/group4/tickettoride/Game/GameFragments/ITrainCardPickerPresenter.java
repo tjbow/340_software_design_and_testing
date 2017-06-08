@@ -56,6 +56,8 @@ public interface ITrainCardPickerPresenter {
 
     void onLocomotiveDecrement();
 
+    void afterFragmentCreation();
+
     void onIncrement(CARD_COLOR color);
 
     void onDecrement(CARD_COLOR color);

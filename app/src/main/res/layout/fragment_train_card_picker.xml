@@ -31,7 +31,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:visibility="visible"
+            android:visibility="gone"
             android:gravity="center"
             >
 
@@ -51,7 +51,8 @@
                 android:id="@+id/purpleCard_minus"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:text="@string/minus"/>
+                android:text="@string/minus"
+                android:enabled="false"/>
 
             <TextView
                 android:id="@+id/purpleCard_count"
@@ -88,7 +89,8 @@
                 android:id="@+id/whiteCard_minus"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:text="@string/minus"/>
+                android:text="@string/minus"
+                android:enabled="false"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -126,7 +128,8 @@
                 android:id="@+id/blueCard_minus"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:text="@string/minus"/>
+                android:text="@string/minus"
+                android:enabled="false"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -164,7 +167,8 @@
                 android:id="@+id/yellowCard_minus"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:text="@string/minus"/>
+                android:text="@string/minus"
+                android:enabled="false"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -202,7 +206,8 @@
                 android:id="@+id/orangeCard_minus"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:text="@string/minus"/>
+                android:text="@string/minus"
+                android:enabled="false"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -240,7 +245,8 @@
                 android:id="@+id/blackCard_minus"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:text="@string/minus"/>
+                android:text="@string/minus"
+                android:enabled="false"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -278,7 +284,8 @@
                 android:id="@+id/redCard_minus"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:text="@string/minus"/>
+                android:text="@string/minus"
+                android:enabled="false"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -316,7 +323,8 @@
                 android:id="@+id/greenCard_minus"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:text="@string/minus"/>
+                android:text="@string/minus"
+                android:enabled="false"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -335,7 +343,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:visibility="visible"
+            android:visibility="gone"
             android:gravity="center">
 
             <Button
@@ -354,7 +362,8 @@
                 android:id="@+id/locomotiveCard_minus"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:text="@string/minus"/>
+                android:text="@string/minus"
+                android:enabled="false"/>
 
             <TextView
                 android:layout_width="wrap_content"

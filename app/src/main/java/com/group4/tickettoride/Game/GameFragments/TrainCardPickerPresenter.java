@@ -4,6 +4,7 @@ import com.group4.shared.Model.Deck.CARD_COLOR;
 import com.group4.shared.Model.Deck.TrainCard;
 import com.group4.shared.Model.Deck.TrainCardDeck;
 import com.group4.shared.Model.Game.Game;
+import com.group4.shared.Model.Map.PLAYER_COLOR;
 import com.group4.shared.Model.Map.ROUTE_COLOR;
 import com.group4.shared.Model.Map.RouteSegment;
 import com.group4.tickettoride.ClientModel.ClientModel;
@@ -18,7 +19,10 @@ import com.group4.tickettoride.Game.GameFragments.TrainCardPickerImages.TrainCar
 import com.group4.tickettoride.Game.GameFragments.TrainCardPickerImages.WhiteTrainCardPicker;
 import com.group4.tickettoride.Game.GameFragments.TrainCardPickerImages.YellowTrainCardPicker;
 import com.group4.tickettoride.Game.GamePresenter;
+import com.group4.tickettoride.Game.IGamePresenter;
 
+import java.util.ArrayList;
+import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -35,13 +39,38 @@ public class TrainCardPickerPresenter implements Observer, ITrainCardPickerPrese
     private RouteSegment route;
     private GamePresenter gamePresenter;
     private Map<CARD_COLOR, Integer> cardMap;
+    private Map<CARD_COLOR, Integer> pickedMap;
+    private Map<CARD_COLOR, ArrayList<TrainCard>> playerCards;
     private Map<CARD_COLOR, TrainCardPickerImage> imageMap;
 
     public TrainCardPickerPresenter(TrainCardPickerFragment fragment, RouteSegment route, GamePresenter gamePresenter) {
         this.fragment = fragment;
         this.route = route;
         this.gamePresenter = gamePresenter;
+        createPlayerCardsMap(ClientModel.SINGLETON.getPlayer().getPlayerHand().getTrainCards().getCardDeck());
         fillMap(ClientModel.SINGLETON.getPlayer().getPlayerHand().getTrainCards());
+        initializePickedMap();
+
+    }
+
+    public void afterFragmentCreation()
+    {
+        setRouteInfo();
+        setInitialPickers();
+    }
+
+    private void createPlayerCardsMap(List<TrainCard> cards)
+    {
+        playerCards = new HashMap<>();
+        for (CARD_COLOR color : CARD_COLOR.values())
+        {
+            playerCards.put(color, new ArrayList<TrainCard>());
+        }
+
+        for (TrainCard card : cards)
+        {
+            playerCards.get(card.getColor()).add(card);
+        }
     }
 
     private void fillMap(TrainCardDeck playerCards){
@@ -57,12 +86,53 @@ public class TrainCardPickerPresenter implements Observer, ITrainCardPickerPrese
         }
     }
 
+    private void setRouteInfo()
+    {
+        String routeTitle = route.getCityA() + " - " + route.getCityB();
+        fragment.setRouteTitle(routeTitle);
+
+        String routeRequirements = route.getLength() + " ";
+        String color = "not caught by switch";
+        switch (route.getRouteColor())
+        {
+            case PINK:
+                color = "Purple";
+                break;
+            case WHITE:
+                color = "White";
+                break;
+            case BLUE:
+                color = "Blue";
+                break;
+            case YELLOW:
+                color = "Yellow";
+                break;
+            case ORANGE:
+                color = "Orange";
+                break;
+            case BLACK:
+                color = "Black";
+                break;
+            case RED:
+                color = "Red";
+                break;
+            case GREEN:
+                color = "Green";
+                break;
+            case GRAY:
+                color = "Any color";
+                break;
+        }
+        routeRequirements += color;
+        fragment.setRequiredRouteCards(routeRequirements);
+    }
+
     private void setInitialPickers()
     {
 
         switch (route.getRouteColor())
         {
-            case PURPLE:
+            case PINK:
                 if(cardMap.containsKey(CARD_COLOR.PURPLE)) {
                     initializeCards(CARD_COLOR.PURPLE);
                 }
@@ -183,7 +253,7 @@ public class TrainCardPickerPresenter implements Observer, ITrainCardPickerPrese
 
     @Override
     public void claimRoute() {
-        //gamePresenter.getState().claimRoute(route.getRouteId(), fragment.getSelectedCards());
+        gamePresenter.getState().claimRoute(route.getRouteId(), getPickedCards());
     }
 
     @Override
@@ -193,6 +263,152 @@ public class TrainCardPickerPresenter implements Observer, ITrainCardPickerPrese
 
     @Override
     public void onClaim() {
+        claimRoute();
+    }
+
+    private List<TrainCard> getPickedCards()
+    {
+        List<TrainCard> cardsUsed = new ArrayList<>();
+        //figure out what combination of cards they picked
+        int locomotiveCount = pickedMap.get(CARD_COLOR.RAINBOW);
+        for (int i = 0; i < locomotiveCount; i++)
+        {
+            cardsUsed.add(playerCards.get(CARD_COLOR.RAINBOW).get(i));
+        }
+
+        int regularCardCount = 0;
+        CARD_COLOR cardColor = null;
+        for (CARD_COLOR color : pickedMap.keySet())
+        {
+            if (pickedMap.get(color) > 0)
+            {
+                regularCardCount = pickedMap.get(color);
+                cardColor = color;
+            }
+        }
+
+        for (int i = 0; i < regularCardCount; i++)
+        {
+            cardsUsed.add(playerCards.get(cardColor).get(i));
+        }
+
+        return cardsUsed;
+    }
+
+    private void initializePickedMap()
+    {
+        pickedMap = new HashMap<>();
+        for (CARD_COLOR color : CARD_COLOR.values()){
+            pickedMap.put(color, 0);
+        }
+    }
+
+    /**
+     * this function checks to see if the cards the user's selected could be used to claim the route
+     * in question
+     */
+    private void checkRouteClaimStatus()
+    {
+        int regularCardCount = 0;
+        CARD_COLOR cardColor = null;
+        int locomotiveCardCount = pickedMap.get(CARD_COLOR.RAINBOW);
+        switch (route.getRouteColor())
+        {
+            case GRAY:
+                for (CARD_COLOR color : pickedMap.keySet())
+                {
+                    if (color != CARD_COLOR.RAINBOW && pickedMap.get(color) > 0)
+                    {
+                        regularCardCount = pickedMap.get(color);
+                        cardColor = color;
+                        break;
+                    }
+                }
+
+                break;
+            case PINK:
+                regularCardCount = pickedMap.get(CARD_COLOR.PURPLE);
+                cardColor = CARD_COLOR.PURPLE;
+                break;
+            case WHITE:
+                regularCardCount = pickedMap.get(CARD_COLOR.WHITE);
+                cardColor = CARD_COLOR.WHITE;
+                break;
+            case BLUE:
+                regularCardCount = pickedMap.get(CARD_COLOR.BLUE);
+                cardColor = CARD_COLOR.BLUE;
+                break;
+            case YELLOW:
+                regularCardCount = pickedMap.get(CARD_COLOR.YELLOW);
+                cardColor = CARD_COLOR.YELLOW;
+                break;
+            case ORANGE:
+                regularCardCount = pickedMap.get(CARD_COLOR.ORANGE);
+                cardColor = CARD_COLOR.ORANGE;
+                break;
+            case BLACK:
+                regularCardCount = pickedMap.get(CARD_COLOR.BLACK);
+                cardColor = CARD_COLOR.BLACK;
+                break;
+            case RED:
+                regularCardCount = pickedMap.get(CARD_COLOR.RED);
+                cardColor = CARD_COLOR.RED;
+                break;
+            case GREEN:
+                regularCardCount = pickedMap.get(CARD_COLOR.GREEN);
+                cardColor = CARD_COLOR.GREEN;
+                break;
+        }
+        if (regularCardCount + locomotiveCardCount == route.getLength())
+        {
+            //route could be claimed at this point
+//            if (regularCardCount > 0){
+//                //this.disablePlusButton(cardColor);
+//            }
+//            if (locomotiveCardCount > 0) {
+//                //disablePlusButton(CARD_COLOR.RAINBOW);
+//            }
+            fragment.setClaimButtonEnabled(true);
+        }
+        else
+        {
+            fragment.setClaimButtonEnabled(false);
+        }
+
+    }
+
+    public void disablePlusButton(CARD_COLOR color)
+    {
+
+
+        switch (color){
+                case PURPLE:
+                    fragment.setPurpleCardPlusEnabled(false);
+                    break;
+                case GREEN:
+                    fragment.setGreenCardPlusEnabled(false);
+                    break;
+                case ORANGE:
+                    fragment.setOrangeCardPlusEnabled(false);
+                    break;
+                case BLUE:
+                    fragment.setBlueCardPlusEnabled(false);
+                    break;
+                case BLACK:
+                    fragment.setBlackCardPlusEnabled(false);
+                    break;
+                case RED:
+                    fragment.setRedCardPlusEnabled(false);
+                    break;
+                case WHITE:
+                    fragment.setWhiteCardPlusEnabled(false);
+                    break;
+                case YELLOW:
+                    fragment.setYellowCardPlusEnabled(false);
+                    break;
+                case RAINBOW:
+                    fragment.setLocomotiveCardPlusEnabled(false);
+            }
 
     }
 
@@ -332,101 +548,335 @@ public class TrainCardPickerPresenter implements Observer, ITrainCardPickerPrese
             fragment.disableAllCurrentPickers();
             setCardVisibilty(CARD_COLOR.PURPLE);
         }
-
         fragment.setPurpleCardCount(Integer.toString(purpleCount));
+        pickedMap.put(CARD_COLOR.PURPLE, purpleCount);
+
         //if the player has now selected all the cards they have of a color
         if (purpleCount == cardMap.get(CARD_COLOR.PURPLE))
         {
             fragment.setPurpleCardPlusEnabled(false);
         }
         fragment.setPurpleCardMinusEnabled(true);
+        checkRouteClaimStatus();
 
-        //tell fragment only purple and locomotive should be enabled
     }
 
     @Override
     public void onPurpleDecrement() {
-
+        int purpleCount = fragment.getPurpleCardCount();
+        purpleCount--;
+        if (purpleCount == 0)
+        {
+            fragment.setAllCurrentPickersEnabled();
+            fragment.setPurpleCardMinusEnabled(false);
+        }
+        fragment.setPurpleCardCount(Integer.toString(purpleCount));
+        pickedMap.put(CARD_COLOR.PURPLE, purpleCount);
+        fragment.setPurpleCardPlusEnabled(true);
+        checkRouteClaimStatus();
     }
 
     @Override
     public void onWhiteIncrement() {
 
+        int whiteCount = fragment.getWhiteCardCount();
+        whiteCount++;
+
+        if(whiteCount == 1){
+            fragment.disableAllCurrentPickers();
+            setCardVisibilty(CARD_COLOR.WHITE);
+        }
+        fragment.setWhiteCardCount(Integer.toString(whiteCount));
+        pickedMap.put(CARD_COLOR.WHITE, whiteCount);
+
+        //if the player has now selected all the cards they have of a color
+        if (whiteCount == cardMap.get(CARD_COLOR.WHITE))
+        {
+            fragment.setWhiteCardPlusEnabled(false);
+        }
+        fragment.setWhiteCardMinusEnabled(true);
+        checkRouteClaimStatus();
+
     }
 
     @Override
     public void onWhiteDecrement() {
-
+        int whiteCount = fragment.getWhiteCardCount();
+        whiteCount--;
+        if (whiteCount == 0)
+        {
+            fragment.setAllCurrentPickersEnabled();
+            fragment.setWhiteCardMinusEnabled(false);
+        }
+        fragment.setWhiteCardCount(Integer.toString(whiteCount));
+        pickedMap.put(CARD_COLOR.WHITE, whiteCount);
+        fragment.setWhiteCardPlusEnabled(true);
+        checkRouteClaimStatus();
     }
 
     @Override
     public void onBlueIncrement() {
 
+        int blueCount = fragment.getBlueCardCount();
+        blueCount++;
+
+        if(blueCount == 1){
+            fragment.disableAllCurrentPickers();
+            setCardVisibilty(CARD_COLOR.BLUE);
+        }
+        fragment.setBlueCardCount(Integer.toString(blueCount));
+        pickedMap.put(CARD_COLOR.BLUE, blueCount);
+
+        //if the player has now selected all the cards they have of a color
+        if (blueCount == cardMap.get(CARD_COLOR.BLUE))
+        {
+            fragment.setBlueCardPlusEnabled(false);
+        }
+        fragment.setBlueCardMinusEnabled(true);
+        checkRouteClaimStatus();
+
     }
 
     @Override
     public void onBlueDecrement() {
-
+        int blueCount = fragment.getBlueCardCount();
+        blueCount--;
+        if (blueCount == 0)
+        {
+            fragment.setAllCurrentPickersEnabled();
+            fragment.setBlueCardMinusEnabled(false);
+        }
+        fragment.setBlueCardCount(Integer.toString(blueCount));
+        pickedMap.put(CARD_COLOR.BLUE, blueCount);
+        fragment.setBlueCardPlusEnabled(true);
+        checkRouteClaimStatus();
     }
 
     @Override
     public void onYellowIncrement() {
 
+        int yellowCount = fragment.getYellowCardCount();
+        yellowCount++;
+
+        if(yellowCount == 1){
+            fragment.disableAllCurrentPickers();
+            setCardVisibilty(CARD_COLOR.YELLOW);
+        }
+        fragment.setYellowCardCount(Integer.toString(yellowCount));
+        pickedMap.put(CARD_COLOR.YELLOW, yellowCount);
+
+        //if the player has now selected all the cards they have of a color
+        if (yellowCount == cardMap.get(CARD_COLOR.YELLOW))
+        {
+            fragment.setYellowCardPlusEnabled(false);
+        }
+        fragment.setYellowCardMinusEnabled(true);
+        checkRouteClaimStatus();
+
     }
 
     @Override
     public void onYellowDecrement() {
-
+        int yellowCount = fragment.getYellowCardCount();
+        yellowCount--;
+        if (yellowCount == 0)
+        {
+            fragment.setAllCurrentPickersEnabled();
+            fragment.setYellowCardMinusEnabled(false);
+        }
+        fragment.setYellowCardCount(Integer.toString(yellowCount));
+        pickedMap.put(CARD_COLOR.YELLOW, yellowCount);
+        fragment.setYellowCardPlusEnabled(true);
+        checkRouteClaimStatus();
     }
 
     @Override
     public void onOrangeIncrement() {
 
+        int orangeCount = fragment.getOrangeCardCount();
+        orangeCount++;
+
+        if(orangeCount == 1){
+            fragment.disableAllCurrentPickers();
+            setCardVisibilty(CARD_COLOR.ORANGE);
+        }
+        fragment.setOrangeCardCount(Integer.toString(orangeCount));
+        pickedMap.put(CARD_COLOR.ORANGE, orangeCount);
+
+        //if the player has now selected all the cards they have of a color
+        if (orangeCount == cardMap.get(CARD_COLOR.ORANGE))
+        {
+            fragment.setOrangeCardPlusEnabled(false);
+        }
+        fragment.setOrangeCardMinusEnabled(true);
+        checkRouteClaimStatus();
+
     }
 
     @Override
     public void onOrangeDecrement() {
-
+        int orangeCount = fragment.getOrangeCardCount();
+        orangeCount--;
+        if (orangeCount == 0)
+        {
+            fragment.setAllCurrentPickersEnabled();
+            fragment.setOrangeCardMinusEnabled(false);
+        }
+        fragment.setOrangeCardCount(Integer.toString(orangeCount));
+        pickedMap.put(CARD_COLOR.ORANGE, orangeCount);
+        fragment.setOrangeCardPlusEnabled(true);
+        checkRouteClaimStatus();
     }
 
     @Override
     public void onBlackIncrement() {
 
+        int blackCount = fragment.getBlackCardCount();
+        blackCount++;
+
+        if(blackCount == 1){
+            fragment.disableAllCurrentPickers();
+            setCardVisibilty(CARD_COLOR.BLACK);
+        }
+        fragment.setBlackCardCount(Integer.toString(blackCount));
+        pickedMap.put(CARD_COLOR.BLACK, blackCount);
+
+        //if the player has now selected all the cards they have of a color
+        if (blackCount == cardMap.get(CARD_COLOR.BLACK))
+        {
+            fragment.setBlackCardPlusEnabled(false);
+        }
+        fragment.setBlackCardMinusEnabled(true);
+        checkRouteClaimStatus();
+
     }
 
     @Override
     public void onBlackDecrement() {
-
+        int blackCount = fragment.getBlackCardCount();
+        blackCount--;
+        if (blackCount == 0)
+        {
+            fragment.setAllCurrentPickersEnabled();
+            fragment.setBlackCardMinusEnabled(false);
+        }
+        fragment.setBlackCardCount(Integer.toString(blackCount));
+        pickedMap.put(CARD_COLOR.BLACK, blackCount);
+        fragment.setBlackCardPlusEnabled(true);
+        checkRouteClaimStatus();
     }
 
     @Override
     public void onRedIncrement() {
 
+        int redCount = fragment.getRedCardCount();
+        redCount++;
+
+        if(redCount == 1){
+            fragment.disableAllCurrentPickers();
+            setCardVisibilty(CARD_COLOR.RED);
+        }
+        fragment.setRedCardCount(Integer.toString(redCount));
+        pickedMap.put(CARD_COLOR.RED, redCount);
+
+        //if the player has now selected all the cards they have of a color
+        if (redCount == cardMap.get(CARD_COLOR.RED))
+        {
+            fragment.setRedCardPlusEnabled(false);
+        }
+        fragment.setRedCardMinusEnabled(true);
+        checkRouteClaimStatus();
+
     }
 
     @Override
     public void onRedDecrement() {
-
+        int redCount = fragment.getRedCardCount();
+        redCount--;
+        if (redCount == 0)
+        {
+            fragment.setAllCurrentPickersEnabled();
+            fragment.setRedCardMinusEnabled(false);
+        }
+        fragment.setRedCardCount(Integer.toString(redCount));
+        pickedMap.put(CARD_COLOR.RED, redCount);
+        fragment.setRedCardPlusEnabled(true);
+        checkRouteClaimStatus();
     }
 
     @Override
     public void onGreenIncrement() {
 
+        int greenCount = fragment.getGreenCardCount();
+        greenCount++;
+
+        if(greenCount == 1){
+            fragment.disableAllCurrentPickers();
+            setCardVisibilty(CARD_COLOR.GREEN);
+        }
+        fragment.setGreenCardCount(Integer.toString(greenCount));
+        pickedMap.put(CARD_COLOR.GREEN, greenCount);
+
+        //if the player has now selected all the cards they have of a color
+        if (greenCount == cardMap.get(CARD_COLOR.GREEN))
+        {
+            fragment.setGreenCardPlusEnabled(false);
+        }
+        fragment.setGreenCardMinusEnabled(true);
+        checkRouteClaimStatus();
+
     }
 
     @Override
     public void onGreenDecrement() {
-
+        int greenCount = fragment.getGreenCardCount();
+        greenCount--;
+        if (greenCount == 0)
+        {
+            fragment.setAllCurrentPickersEnabled();
+            fragment.setGreenCardMinusEnabled(false);
+        }
+        fragment.setGreenCardCount(Integer.toString(greenCount));
+        pickedMap.put(CARD_COLOR.GREEN, greenCount);
+        fragment.setGreenCardPlusEnabled(true);
+        checkRouteClaimStatus();
     }
 
     @Override
     public void onLocomotiveIncrement() {
 
+        int locomotiveCount = fragment.getLocomotiveCardCount();
+        locomotiveCount++;
+
+//        if(locomotiveCount == 1){
+//            fragment.disableAllCurrentPickers();
+//            setCardVisibilty(CARD_COLOR.RAINBOW);
+//        }
+        fragment.setLocomotiveCardCount(Integer.toString(locomotiveCount));
+        pickedMap.put(CARD_COLOR.RAINBOW, locomotiveCount);
+
+        //if the player has now selected all the cards they have of a color
+        if (locomotiveCount == cardMap.get(CARD_COLOR.RAINBOW))
+        {
+            fragment.setLocomotiveCardPlusEnabled(false);
+        }
+        fragment.setLocomotiveCardMinusEnabled(true);
+        checkRouteClaimStatus();
+
     }
 
     @Override
     public void onLocomotiveDecrement() {
-
+        int locomotiveCount = fragment.getLocomotiveCardCount();
+        locomotiveCount--;
+        if (locomotiveCount == 0)
+        {
+            fragment.setLocomotiveCardMinusEnabled(false);
+        }
+        fragment.setLocomotiveCardCount(Integer.toString(locomotiveCount));
+        pickedMap.put(CARD_COLOR.RAINBOW, locomotiveCount);
+        fragment.setLocomotiveCardPlusEnabled(true);
+        checkRouteClaimStatus();
     }
 
 

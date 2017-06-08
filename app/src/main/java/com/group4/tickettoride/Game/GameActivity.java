@@ -13,15 +13,18 @@ import com.group4.shared.Model.Map.RouteSegment;
 import com.group4.tickettoride.ClientModel.ClientModel;
 import com.group4.tickettoride.Game.GameFragments.Chat_GameHistoryFragment;
 import com.group4.tickettoride.Game.GameFragments.DestCardPickerFragment;
+import com.group4.tickettoride.Game.GameFragments.ITrainCardPickerPresenter;
 import com.group4.tickettoride.Game.GameFragments.EndGameFragment;
 import com.group4.tickettoride.Game.GameFragments.PlayerHandFragment;
 import com.group4.tickettoride.Game.GameFragments.PlayerInfoFragment;
 import com.group4.tickettoride.Game.GameFragments.CardDecksFragment;
+import com.group4.tickettoride.Game.GameFragments.TrainCardPickerFragment;
+import com.group4.tickettoride.Game.GameFragments.TrainCardPickerPresenter;
 import com.group4.tickettoride.R;
 
 public class GameActivity extends AppCompatActivity implements IGameActivity, IMapActivity {
 
-    private IGamePresenter presenter;
+    private GamePresenter presenter;
     private String gameName;
     private Game game;
     private PlayerInfoFragment playerInfoFragment;
@@ -146,6 +149,13 @@ public class GameActivity extends AppCompatActivity implements IGameActivity, IM
     public void onClickRoute(RouteSegment r) {
         //build dialog and presenter
         Toast.makeText(this, "Route was clicked yo: " + r.getCityA() + " to " + r.getCityB(), Toast.LENGTH_SHORT).show();
+        FragmentManager manager = getSupportFragmentManager();
+        TrainCardPickerFragment dialog = new TrainCardPickerFragment();
+        ITrainCardPickerPresenter presenter = new TrainCardPickerPresenter(dialog, r, this.presenter);
+        dialog.setPresenter(presenter);
+        dialog.show(manager, "TrainCardPickerDialog");
+
+
     }
 
     void showChat_GameHistoryDialog()
