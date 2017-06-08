@@ -410,6 +410,21 @@ public class Game
                 System.out.println("Shuffled in discarded cards");
                 decks.shuffleInDiscarded();
             }
+
+            int faceUpSize = decks.getFaceUpDeck().getFaceUpCards().size();
+            if(faceUpSize < 5)
+            {
+                int numToAdd = 5 - faceUpSize;
+                for(Iterator<TrainCard> iterator = decks.getTrainCardDeck().getCardDeck().iterator(); iterator.hasNext();)
+                {
+                    TrainCard current = iterator.next();
+                    current.setVisible(true);
+                    iterator.remove();
+                    decks.getFaceUpDeck().getFaceUpCards().add(current);
+                    numToAdd--;
+                    if(numToAdd == 0) break;
+                }
+            }
         }
     }
 
@@ -450,6 +465,9 @@ public class Game
                 }
             }
         }
+
+        //if the face down deck is empty, shuffle in the discard deck
+        checkToReshuffleDeck();
 
         //add points to player
         int addition = 0;
