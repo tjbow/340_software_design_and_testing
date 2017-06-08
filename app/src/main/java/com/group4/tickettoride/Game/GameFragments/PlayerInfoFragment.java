@@ -118,7 +118,7 @@ public class PlayerInfoFragment extends Fragment implements IPlayerInfoFragment{
         layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showEndGameDialog();
+                showChatDialog();
             }
         });
 

@@ -57,12 +57,12 @@ class EndGamePresenter implements IEndGamePresenter {
         List<Player> players = game.getPlayers();
         //ONLY FOR TESTING!!
         //TODO @john: remove this abomination
-        int i = 1;
+        //int i = 1;
         for (Player player : players)
         {
-            //switch (player.getStats().getRank())
+            switch (player.getStats().getRank())
             //vvv remove this
-            switch(i)
+            //switch(i)
             {
                 case 1:
                     setRank1Info(player);
@@ -84,7 +84,7 @@ class EndGamePresenter implements IEndGamePresenter {
 
             }
             //vvvv REMOVE THIS
-            i++;
+            //i++;
         }
 
     }

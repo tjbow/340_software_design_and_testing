@@ -113,6 +113,8 @@ public class Chat_GameHistoryFragment extends DialogFragment {
                  {
                      gameHistoryButton.setChecked(false);
                      presenter.chatSelected();
+                     sendButton.setVisibility(View.VISIBLE);
+                     messageToSendText.setVisibility(View.VISIBLE);
                  }
             }
         });
@@ -124,10 +126,12 @@ public class Chat_GameHistoryFragment extends DialogFragment {
                 {
                     chatButton.setChecked(false);
                     presenter.gameHistorySelected();
+                    sendButton.setVisibility(View.INVISIBLE);
+                    messageToSendText.setVisibility(View.INVISIBLE);
                 }
             }
         });
-        gameHistoryButton.setChecked(true);
+        chatButton.setChecked(true);
 
 
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(getActivity());
