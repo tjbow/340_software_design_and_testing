@@ -229,11 +229,21 @@ public class EndGameFragment extends DialogFragment{
         rank1Row.setBackgroundColor(ContextCompat.getColor(getActivity(), color));
     }
 
+    public void setRank1UsernameColor(int color)
+    {
+        this.rank1Username.setTextColor(ContextCompat.getColor(getActivity(), color));
+    }
+
 
 
     //Rank 2 -----------------------------------------------------------------------------
     public void setRank2Username(String rank2Username) {
         this.rank2Username.setText(rank2Username);
+    }
+
+    public void setRank2UsernameColor(int color)
+    {
+        this.rank2Username.setTextColor(ContextCompat.getColor(getActivity(), color));
     }
 
     public void setRank2RoutesClaimedPoints(String rank2RoutesClaimedPoints) {
@@ -266,6 +276,11 @@ public class EndGameFragment extends DialogFragment{
         this.rank3Username.setText(rank3Username);
     }
 
+    public void setRank3UsernameColor(int color)
+    {
+        this.rank3Username.setTextColor(ContextCompat.getColor(getActivity(), color));
+    }
+
     public void setRank3RoutesClaimedPoints(String rank3RoutesClaimedPoints) {
         this.rank3RoutesClaimedPoints.setText(rank3RoutesClaimedPoints);
     }
@@ -296,6 +311,11 @@ public class EndGameFragment extends DialogFragment{
         this.rank4Username.setText(rank4Username);
     }
 
+    public void setRank4UsernameColor(int color)
+    {
+        this.rank4Username.setTextColor(ContextCompat.getColor(getActivity(), color));
+    }
+
     public void setRank4RoutesClaimedPoints(String rank4RoutesClaimedPoints) {
         this.rank4RoutesClaimedPoints.setText(rank4RoutesClaimedPoints);
     }
@@ -324,6 +344,11 @@ public class EndGameFragment extends DialogFragment{
     //Rank 5 -----------------------------------------------------------------------------
     public void setRank5Username(String rank5Username) {
         this.rank5Username.setText(rank5Username);
+    }
+
+    public void setRank5UsernameColor(int color)
+    {
+        this.rank5Username.setTextColor(ContextCompat.getColor(getActivity(), color));
     }
 
     public void setRank5RoutesClaimedPoints(String rank5RoutesClaimedPoints) {

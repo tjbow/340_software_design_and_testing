@@ -98,7 +98,9 @@ class EndGamePresenter implements IEndGamePresenter {
         fragment.setRank1DestinationsNegativePoints(Integer.toString(stats.getIncompleteDestinationCards()));
         fragment.setRank1LongestPathPoints(Integer.toString(stats.getLongestPathScore()));
         fragment.setRank1TotalPoints(Integer.toString(stats.getTotalScore()));
-        fragment.setRank1Background( getColorStringAsInt( playerInfo.getColor() ) );
+        fragment.setRank1UsernameColor( getColorStringAsInt( playerInfo.getColor() ) );
+
+        
     }
 
     private void setRank2Info(Player playerInfo)
@@ -110,7 +112,7 @@ class EndGamePresenter implements IEndGamePresenter {
         fragment.setRank2DestinationsNegativePoints(Integer.toString(stats.getIncompleteDestinationCards()));
         fragment.setRank2LongestPathPoints(Integer.toString(stats.getLongestPathScore()));
         fragment.setRank2TotalPoints(Integer.toString(stats.getTotalScore()));
-        fragment.setRank2Background( getColorStringAsInt( playerInfo.getColor() ) );
+        fragment.setRank2UsernameColor( getColorStringAsInt( playerInfo.getColor() ) );
     }
 
     private void setRank3Info(Player playerInfo)
@@ -122,7 +124,7 @@ class EndGamePresenter implements IEndGamePresenter {
         fragment.setRank3DestinationsNegativePoints(Integer.toString(stats.getIncompleteDestinationCards()));
         fragment.setRank3LongestPathPoints(Integer.toString(stats.getLongestPathScore()));
         fragment.setRank3TotalPoints(Integer.toString(stats.getTotalScore()));
-        fragment.setRank3Background( getColorStringAsInt( playerInfo.getColor() ) );
+        fragment.setRank3UsernameColor( getColorStringAsInt( playerInfo.getColor() ) );
     }
 
     private void setRank4Info(Player playerInfo)
@@ -134,7 +136,7 @@ class EndGamePresenter implements IEndGamePresenter {
         fragment.setRank4DestinationsNegativePoints(Integer.toString(stats.getIncompleteDestinationCards()));
         fragment.setRank4LongestPathPoints(Integer.toString(stats.getLongestPathScore()));
         fragment.setRank4TotalPoints(Integer.toString(stats.getTotalScore()));
-        fragment.setRank4Background( getColorStringAsInt( playerInfo.getColor() ) );
+        fragment.setRank4UsernameColor( getColorStringAsInt( playerInfo.getColor() ) );
     }
 
     private void setRank5Info(Player playerInfo)
@@ -146,7 +148,7 @@ class EndGamePresenter implements IEndGamePresenter {
         fragment.setRank5DestinationsNegativePoints(Integer.toString(stats.getIncompleteDestinationCards()));
         fragment.setRank5LongestPathPoints(Integer.toString(stats.getLongestPathScore()));
         fragment.setRank5TotalPoints(Integer.toString(stats.getTotalScore()));
-        fragment.setRank5Background( getColorStringAsInt( playerInfo.getColor() ) );
+        fragment.setRank5UsernameColor( getColorStringAsInt( playerInfo.getColor() ) );
     }
 
     private int getColorStringAsInt(String color)

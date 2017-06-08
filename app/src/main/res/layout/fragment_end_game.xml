@@ -13,7 +13,7 @@
         <!--Column Names-->
         <TableRow
             android:id="@+id/endGame_columnTitles"
-            android:layout_margin="5dp"
+            android:padding="5dp"
             android:gravity="center"
             >
 
@@ -75,7 +75,7 @@
         <!--Rank 1 Player-->
         <TableRow
             android:id="@+id/endGame_rank1Info"
-            android:layout_margin="5dp"
+            android:padding="5dp"
             android:gravity="center"
             >
 
