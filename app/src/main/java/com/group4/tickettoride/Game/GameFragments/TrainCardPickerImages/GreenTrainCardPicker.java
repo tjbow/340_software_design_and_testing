@@ -5,6 +5,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.group4.tickettoride.Game.GameFragments.TrainCardPickerFragment;
+import com.group4.tickettoride.Game.GameFragments.TrainCardPickerPresenter;
 import com.group4.tickettoride.R;
 
 /**
@@ -14,8 +15,8 @@ import com.group4.tickettoride.R;
 public class GreenTrainCardPicker extends TrainCardPickerImage{
 
 
-    public GreenTrainCardPicker(TrainCardPickerFragment fragment) {
-        super(fragment);
+    public GreenTrainCardPicker(TrainCardPickerFragment fragment, TrainCardPickerPresenter presenter) {
+        super(fragment, presenter);
         setLayout((LinearLayout) fragment.getView().findViewById(R.id.greenCard_picker));
         setPlus((Button) fragment.getView().findViewById(R.id.greenCard_plus));
         setMinus((Button) fragment.getView().findViewById(R.id.greenCard_minus));

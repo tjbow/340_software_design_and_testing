@@ -1,5 +1,6 @@
 package com.group4.tickettoride.Game.GameFragments;
 
+import com.group4.shared.Model.Deck.CARD_COLOR;
 import com.group4.shared.Model.Map.RouteSegment;
 
 /**
@@ -54,5 +55,9 @@ public interface ITrainCardPickerPresenter {
     void onLocomotiveIncrement();
 
     void onLocomotiveDecrement();
+
+    void onIncrement(CARD_COLOR color);
+
+    void onDecrement(CARD_COLOR color);
 
 }

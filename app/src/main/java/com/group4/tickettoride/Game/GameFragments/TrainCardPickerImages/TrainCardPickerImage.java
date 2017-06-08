@@ -9,7 +9,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.group4.shared.Model.Deck.CARD_COLOR;
+import com.group4.tickettoride.Game.GameFragments.ITrainCardPickerPresenter;
 import com.group4.tickettoride.Game.GameFragments.TrainCardPickerFragment;
+import com.group4.tickettoride.Game.GameFragments.TrainCardPickerPresenter;
 import com.group4.tickettoride.R;
 
 /**
@@ -19,6 +21,7 @@ import com.group4.tickettoride.R;
 public class TrainCardPickerImage{
 
     private TrainCardPickerFragment fragment;
+    private ITrainCardPickerPresenter presenter;
 
     private LinearLayout layout;
     private Button plus;
@@ -26,8 +29,9 @@ public class TrainCardPickerImage{
     private TextView count;
     private CARD_COLOR color;
 
-    public TrainCardPickerImage(TrainCardPickerFragment fragment) {
+    public TrainCardPickerImage(TrainCardPickerFragment fragment, TrainCardPickerPresenter presenter) {
         this.fragment = fragment;
+        this.presenter = presenter;
     }
 
     public void setAsEnabled(boolean bool) {
@@ -46,6 +50,23 @@ public class TrainCardPickerImage{
 
     public void showCard() {
         layout.setVisibility(View.VISIBLE);
+
+        plus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setValue(getCount() + 1);
+                presenter.onIncrement(color);
+            }
+        });
+
+        minus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setValue(getCount() - 1);
+                presenter.onDecrement(color);
+            }
+        });
+
     }
 
     public void enablePlus(boolean bool) {
@@ -61,7 +82,7 @@ public class TrainCardPickerImage{
     }
 
     public void setValue(int count){
-        this.count.setText(count);
+        this.count.setText(Integer.toString(count));
     }
 
     public CARD_COLOR getColor(){

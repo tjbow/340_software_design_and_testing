@@ -7,7 +7,16 @@ import com.group4.shared.Model.Game.Game;
 import com.group4.shared.Model.Map.ROUTE_COLOR;
 import com.group4.shared.Model.Map.RouteSegment;
 import com.group4.tickettoride.ClientModel.ClientModel;
+import com.group4.tickettoride.Game.GameFragments.TrainCardPickerImages.BlackTrainCardPicker;
+import com.group4.tickettoride.Game.GameFragments.TrainCardPickerImages.BlueTrainCardPicker;
+import com.group4.tickettoride.Game.GameFragments.TrainCardPickerImages.GreenTrainCardPicker;
+import com.group4.tickettoride.Game.GameFragments.TrainCardPickerImages.LocomotiveTrainCardPicker;
+import com.group4.tickettoride.Game.GameFragments.TrainCardPickerImages.OrangeTrainCardPicker;
+import com.group4.tickettoride.Game.GameFragments.TrainCardPickerImages.PurpleTrainCardPicker;
+import com.group4.tickettoride.Game.GameFragments.TrainCardPickerImages.RedTrainCardPicker;
 import com.group4.tickettoride.Game.GameFragments.TrainCardPickerImages.TrainCardPickerImage;
+import com.group4.tickettoride.Game.GameFragments.TrainCardPickerImages.WhiteTrainCardPicker;
+import com.group4.tickettoride.Game.GameFragments.TrainCardPickerImages.YellowTrainCardPicker;
 import com.group4.tickettoride.Game.GamePresenter;
 
 import java.util.HashMap;
@@ -187,6 +196,132 @@ public class TrainCardPickerPresenter implements Observer, ITrainCardPickerPrese
 
     }
 
+    private void initializePickers(){
+        switch (route.getRouteColor())
+        {
+            case PURPLE:
+                if(cardMap.containsKey(CARD_COLOR.PURPLE)) {
+                    showCards(CARD_COLOR.PURPLE);
+                }
+                break;
+            case GREEN:
+                if(cardMap.containsKey(CARD_COLOR.GREEN)) {
+                    showCards(CARD_COLOR.GREEN);
+                }
+                break;
+            case BLUE:
+                if(cardMap.containsKey(CARD_COLOR.BLUE)) {
+                    showCards(CARD_COLOR.BLUE);
+                }
+                break;
+            case BLACK:
+                if(cardMap.containsKey(CARD_COLOR.BLACK)) {
+                    showCards(CARD_COLOR.BLACK);
+                }
+                break;
+            case YELLOW:
+                if(cardMap.containsKey(CARD_COLOR.YELLOW)) {
+                    showCards(CARD_COLOR.YELLOW);
+                }
+                break;
+            case WHITE:
+                if(cardMap.containsKey(CARD_COLOR.WHITE)) {
+                    showCards(CARD_COLOR.WHITE);
+                }
+                break;
+            case ORANGE:
+                if(cardMap.containsKey(CARD_COLOR.ORANGE)) {
+                    showCards(CARD_COLOR.ORANGE);
+                }
+                break;
+            case RED:
+                if(cardMap.containsKey(CARD_COLOR.RED)) {
+                    showCards(CARD_COLOR.RED);
+                }
+                break;
+            case GRAY:
+                for(CARD_COLOR color: cardMap.keySet()){
+                    showCards(color);
+                }
+                break;
+        }
+
+        if(cardMap.containsKey(CARD_COLOR.RAINBOW)){
+            TrainCardPickerImage image = new LocomotiveTrainCardPicker(fragment, this);
+            imageMap.put(CARD_COLOR.RAINBOW, image);
+        }
+    }
+
+    private void showCards(CARD_COLOR color){
+
+        TrainCardPickerImage image = null;
+
+        switch (color){
+            case PURPLE:
+                image = new PurpleTrainCardPicker(fragment, this);
+                break;
+            case GREEN:
+                image = new GreenTrainCardPicker(fragment, this);
+                break;
+            case ORANGE:
+                image = new OrangeTrainCardPicker(fragment, this);
+                break;
+            case BLUE:
+                image = new BlueTrainCardPicker(fragment, this);
+                break;
+            case BLACK:
+                image = new BlackTrainCardPicker(fragment, this);
+                break;
+            case RED:
+                image = new RedTrainCardPicker(fragment, this);
+                break;
+            case WHITE:
+                image = new WhiteTrainCardPicker(fragment, this);
+                break;
+            case YELLOW:
+                image = new YellowTrainCardPicker(fragment, this);
+                break;
+        }
+
+        imageMap.put(color, image);
+
+    }
+
+    private void disablePickers(CARD_COLOR color, boolean bool){
+        for(CARD_COLOR card_color: imageMap.keySet()){
+            if(card_color != color){
+                imageMap.get(card_color).setAsEnabled(bool);
+            }
+        }
+    }
+
+    @Override
+    public void onIncrement(CARD_COLOR color){
+
+        imageMap.get(color).enableMinus(true);
+
+        disablePickers(color, false);
+
+        if(cardMap.get(color) == imageMap.get(color).getCount() ||
+                (imageMap.get(CARD_COLOR.RAINBOW).getCount() + imageMap.get(color).getCount()) == route.getLength()){
+            imageMap.get(color).enablePlus(false);
+            fragment.setClaimButtonEnabled(true);
+        }
+    }
+
+    @Override
+    public void onDecrement(CARD_COLOR color){
+
+        imageMap.get(color).enablePlus(true);
+        fragment.setClaimButtonEnabled(false);
+
+        if(imageMap.get(color).getCount() == 0){
+            disablePickers(color, true);
+            imageMap.get(color).enableMinus(false);
+        }
+
+    }
+
     @Override
     public void onPurpleIncrement() {
 
@@ -207,12 +342,6 @@ public class TrainCardPickerPresenter implements Observer, ITrainCardPickerPrese
         fragment.setPurpleCardMinusEnabled(true);
 
         //tell fragment only purple and locomotive should be enabled
-    }
-
-    public void onIncrement(CARD_COLOR color){
-        if(cardMap.get(color) == imageMap.get(color).getCount()){
-
-        }
     }
 
     @Override
