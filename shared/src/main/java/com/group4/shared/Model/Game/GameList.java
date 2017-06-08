@@ -1,5 +1,6 @@
 package com.group4.shared.Model.Game;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -59,5 +60,18 @@ public class GameList {
             }
         }
         return null;
+    }
+
+    public void deleteGameByName(String gameName){
+        List newGamelist = new ArrayList();
+        for(Game game : gameList)
+        {
+            if(!game.getGameName().equals(gameName))
+            {
+                newGamelist.add(game);
+            }
+        }
+
+        gameList = newGamelist;
     }
 }

@@ -69,6 +69,13 @@ public class ClientModel extends Observable {
         commandIDIndex = 0;
     }
 
+    public void endGameClear(){
+        gameList = null;
+        game = null;
+        commandIDIndex = 0;
+        player = null;
+    }
+
     public User getUser() {
         return user;
     }

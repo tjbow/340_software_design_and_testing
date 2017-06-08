@@ -37,6 +37,7 @@ class EndGamePresenter implements IEndGamePresenter {
         ClientModel.SINGLETON.deleteObservers();
         ClientFacade.SINGLETON.setUpdateGameInfo(false);
         ClientFacade.SINGLETON.setUpdateGameList(true);
+        ClientModel.SINGLETON.endGameClear();
     }
 
     public void onBackPressed()

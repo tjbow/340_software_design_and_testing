@@ -249,6 +249,8 @@ public class ServerFacade implements IServer
         endGameCommandData.setType("endgame");
         endGameCommandData.setWasSuccessful(true);
 
+        game.setPlayers(new ArrayList<>());
+
         game.addCommand(endGameCommandData);
 
         System.out.println("The game " + gameName + " was ended.");
