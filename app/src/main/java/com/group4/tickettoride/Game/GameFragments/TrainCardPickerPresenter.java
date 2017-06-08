@@ -280,7 +280,7 @@ public class TrainCardPickerPresenter implements Observer, ITrainCardPickerPrese
         CARD_COLOR cardColor = null;
         for (CARD_COLOR color : pickedMap.keySet())
         {
-            if (pickedMap.get(color) > 0)
+            if (pickedMap.get(color) > 0 && color != CARD_COLOR.RAINBOW)
             {
                 regularCardCount = pickedMap.get(color);
                 cardColor = color;
