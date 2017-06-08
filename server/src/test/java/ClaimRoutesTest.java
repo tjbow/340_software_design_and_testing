@@ -33,16 +33,35 @@ public class ClaimRoutesTest
         mRouteList = game.getRoutes();
 
         User user = new User("tyler", "t");
+        User user1 = new User("todd", "t");
+        User user2= new User("tiff", "t");
+
+        Player player = new Player(user);
+        Player player1 = new Player(user1);
+        Player player2 = new Player(user2);
+
         game.addPlayer(new Player(user));
+        game.addPlayer(new Player(user1));
+        game.addPlayer(new Player(user2));
 
         game.getPlayers().forEach(Player::initializeGame);
         game.dealInitialGameCards();
+
+        player.getStats().setClaimedRouteScore(5);
+        player1.getStats().setClaimedRouteScore(10);
+        player2.getStats().setClaimedRouteScore(15);
     }
 
     @After
     public void tearDown()
     {
 
+    }
+
+    @Test
+    public void testRanking()
+    {
+        game.setRanks();
     }
 
     @Test

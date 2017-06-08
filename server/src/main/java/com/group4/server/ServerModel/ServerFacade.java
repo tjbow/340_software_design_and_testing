@@ -212,7 +212,7 @@ public class ServerFacade implements IServer
         //ADD THE ABOVE TO THE GAME FOR RETRIEVAL BY ALL PLAYERS
         game.addCommand(updatePlayersCommandData);
         game.addCommand(startGameCommandData);
-        game.addCommand(updateMapCommandData);
+//        game.addCommand(updateMapCommandData);
         game.addCommand(updateStatsCommandData);
         game.addCommand(updateGameCommandData);
 

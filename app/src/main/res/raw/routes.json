@@ -655,12 +655,12 @@
   "routeColor":"GRAY",
   "highlighted":false
 },{
-  "routeId":"KansasCityOklahomaCityRight",
+  "routeId":"KansasCityOmahaRight",
   "claimed":false,
   "length":1,
   "score":0,
   "cityA":"KansasCity",
-  "cityB":"OklahomaCity",
+  "cityB":"Omaha",
   "x1Constraint":51,
   "y1Constraint":53,
   "x2Constraint":50.9,
@@ -668,12 +668,12 @@
   "routeColor":"GRAY",
   "highlighted":false
 },{
-  "routeId":"KansasCityOklahomaCityLeft",
+  "routeId":"KansasCityOmahaLeft",
   "claimed":false,
   "length":1,
   "score":0,
   "cityA":"KansasCity",
-  "cityB":"OklahomaCity",
+  "cityB":"Omaha",
   "x1Constraint":49,
   "y1Constraint":53,
   "x2Constraint":48.9,

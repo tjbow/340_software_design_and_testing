@@ -28,7 +28,9 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
+import java.util.TreeMap;
 
 /**
  * Created by Russell Fitzpatrick on 5/13/2017.
@@ -618,6 +620,16 @@ public class Game
             cmd.setWasSuccessful(true);
             this.addCommand(cmd);
             System.out.println("The game " + gameName + " was ended.");
+        }
+    }
+
+    public void setRanks()
+    {
+        int highScore = 0;
+        Map<Integer, String> ranks = new TreeMap<>();
+        for(Player player : players)
+        {
+            ranks.put(player.getScore(), player.getUserName());
         }
     }
 
