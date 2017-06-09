@@ -54,7 +54,7 @@ class EndGamePresenter implements IEndGamePresenter {
     {
         game = SINGLETON.getGame();
 
-        fragment.setRanks(game.getPlayerCount());
+        fragment.setRanks(game.getPlayers().size());
         List<Player> players = game.getPlayers();
         //ONLY FOR TESTING!!
         //TODO @john: remove this abomination
