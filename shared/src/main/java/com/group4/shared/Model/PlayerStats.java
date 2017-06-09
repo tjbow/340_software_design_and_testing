@@ -65,7 +65,7 @@ public class PlayerStats {
 
     public int getTotalScore() {
 
-        return claimedRouteScore + completedDestinationCards + longestPathScore - incompleteDestinationCards;
+        return claimedRouteScore + completedDestinationCards + longestPathScore + incompleteDestinationCards;
     }
 
     public void incrementRouteScore(int score){
