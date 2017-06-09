@@ -57,7 +57,11 @@ public class Chat_GameHistoryFragment extends DialogFragment {
         presenter = new Chat_GameHistoryPresenter(this);
 
         messageList = (RecyclerView)v.findViewById(R.id.message_list);
-        messageList.setLayoutManager(new LinearLayoutManager(getActivity()));
+
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
+        linearLayoutManager.setStackFromEnd(true);
+
+        messageList.setLayoutManager(linearLayoutManager);
 
         sendButton = (Button) v.findViewById(R.id.send_button);
         sendButton.setOnClickListener(new View.OnClickListener() {
