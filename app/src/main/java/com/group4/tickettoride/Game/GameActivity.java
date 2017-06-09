@@ -6,6 +6,7 @@ import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Toast;
 
 import com.group4.shared.Model.Game.Game;
@@ -33,6 +34,8 @@ public class GameActivity extends AppCompatActivity implements IGameActivity, IM
     private CardDecksFragment mCardDecksFragment;
     private PlayerHandFragment playerHandFragment;
 
+    View decorView;
+
     private static final String END_GAME_DIALOG = "EndGameDialog";
 
     public final String CHAT_GAME_HISTORY_DIALOG = "Chat_GameHistoryDialog";
@@ -46,9 +49,24 @@ public class GameActivity extends AppCompatActivity implements IGameActivity, IM
     }
 
     @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+        if (hasFocus) {
+            decorView.setSystemUiVisibility(
+                    View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                            | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                            | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                            | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                            | View.SYSTEM_UI_FLAG_FULLSCREEN
+                            | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);}
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
+
+        decorView = getWindow().getDecorView();
 
         if(savedInstanceState == null)
         {
