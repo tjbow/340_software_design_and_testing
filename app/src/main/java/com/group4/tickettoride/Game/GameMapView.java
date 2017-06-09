@@ -397,14 +397,7 @@ public class GameMapView extends View {
     }
 
     private void getRoutes(){
-        InputStream is = null;
-        try
-        {
-            is = new FileInputStream(new File("shared/src/main/java/com/group4/shared/Model/Game/routes.json"));
-        } catch (FileNotFoundException e)
-        {
-            e.printStackTrace();
-        }
+        InputStream is = getResources().openRawResource(R.raw.routes);
 
 
         ObjectMapper mapper = new ObjectMapper();
