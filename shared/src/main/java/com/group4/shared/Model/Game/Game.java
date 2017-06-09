@@ -627,7 +627,7 @@ public class Game
         }
     }
 
-    private void setRanks()
+    public void setRanks()
     {
         int highScore = 0;
         Map<Integer, Player> ranks = new TreeMap<>();
@@ -636,7 +636,7 @@ public class Game
             ranks.put(player.getScore(), player);
         }
 
-        int rank = this.getPlayerCount();
+        int rank = this.players.size();
         for(Map.Entry<Integer, Player> entry : ranks.entrySet())
         {
             entry.getValue().getStats().setRank(rank);
