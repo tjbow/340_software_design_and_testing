@@ -212,7 +212,7 @@ public class ServerFacade implements IServer
         //ADD THE ABOVE TO THE GAME FOR RETRIEVAL BY ALL PLAYERS
         game.addCommand(updatePlayersCommandData);
         game.addCommand(startGameCommandData);
-//        game.addCommand(updateMapCommandData);
+        game.addCommand(updateMapCommandData);
         game.addCommand(updateStatsCommandData);
         game.addCommand(updateGameCommandData);
 
@@ -422,6 +422,11 @@ public class ServerFacade implements IServer
         updateGameCommandData.setStatus(GAME_STATUS.ONGOING);
         updateGameCommandData.setDeckState(game.getDecks());
 
+//        UPDATE TURN HISTORY COMMAND
+        CUpdateTurnHistoryCommandData updateTurnHistoryCommandData = new CUpdateTurnHistoryCommandData();
+        updateTurnHistoryCommandData.setType("updateturn");
+        updateTurnHistoryCommandData.setTurnHistory(game.getTurnHistory());
+
 //        UPDATE PLAYERS COMMAND
         CUpdatePlayersCommandData updatePlayersCommandData = new CUpdatePlayersCommandData();
         updatePlayersCommandData.setType("updateplayers");
@@ -429,6 +434,7 @@ public class ServerFacade implements IServer
 
         game.addCommand(updateGameCommandData);
         game.addCommand(updatePlayersCommandData);
+        game.addCommand(updateTurnHistoryCommandData);
 
         return new Results(true, "Train cards drawn", null, null);
     }
@@ -449,6 +455,11 @@ public class ServerFacade implements IServer
         updateGameCommandData.setStatus(GAME_STATUS.ONGOING);
         updateGameCommandData.setDeckState(game.getDecks());
 
+//        UPDATE TURN HISTORY COMMAND
+        CUpdateTurnHistoryCommandData updateTurnHistoryCommandData = new CUpdateTurnHistoryCommandData();
+        updateTurnHistoryCommandData.setType("updateturn");
+        updateTurnHistoryCommandData.setTurnHistory(game.getTurnHistory());
+
 //        UPDATE PLAYERS COMMAND
         CUpdatePlayersCommandData updatePlayersCommandData = new CUpdatePlayersCommandData();
         updatePlayersCommandData.setType("updateplayers");
@@ -456,6 +467,7 @@ public class ServerFacade implements IServer
 
         game.addCommand(updateGameCommandData);
         game.addCommand(updatePlayersCommandData);
+        game.addCommand(updateTurnHistoryCommandData);
 
         return new Results(true, "Train cards drawn", null, null);
     }
