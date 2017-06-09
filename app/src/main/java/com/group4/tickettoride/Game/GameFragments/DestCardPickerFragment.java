@@ -4,14 +4,18 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.Point;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.view.Display;
 import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -44,6 +48,8 @@ public class DestCardPickerFragment extends DialogFragment implements IDestCardP
     private List<ImageView> destCardImageList;
     private Button confirmButton;
     private List<Integer> selectedImages;
+    private List<TextView> textViewList;
+    private Button showMapButton;
 
     public int getMinNumSelected()
     {
@@ -113,6 +119,7 @@ public class DestCardPickerFragment extends DialogFragment implements IDestCardP
         setImageViews(v);
         confirmButton = (Button)v.findViewById(R.id.desk_picker_button);
         setTextViews(v);
+        showMapButton = (Button) v.findViewById(R.id.showMapButton);
 
         // set on click listeners
         destCardImageList.get(0).setOnClickListener(new View.OnClickListener() {
@@ -142,9 +149,27 @@ public class DestCardPickerFragment extends DialogFragment implements IDestCardP
             }
         });
 
+        showMapButton.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                switch(event.getAction())
+                {
+                    case MotionEvent.ACTION_DOWN:
+                        setDialogVisible(false);
+                        break;
+                    case MotionEvent.ACTION_UP:
+                        setDialogVisible(true);
+                        break;
+                }
+                return true;
+            }
+        });
+
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(getActivity());
         dialogBuilder.setView(v);
         mDialog = dialogBuilder.create();
+
+        //setDialogVisible(false);
         mDialog.setCanceledOnTouchOutside(false);
         return mDialog;
     }
@@ -215,7 +240,7 @@ public class DestCardPickerFragment extends DialogFragment implements IDestCardP
      */
     void setTextViews(View v)
     {
-        List<TextView> textViewList = new ArrayList<>();
+        textViewList = new ArrayList<>();
         textViewList.add((TextView) v.findViewById(R.id.dest_text0));
         textViewList.add((TextView) v.findViewById(R.id.dest_text1));
         textViewList.add((TextView) v.findViewById(R.id.dest_text2));
@@ -338,5 +363,59 @@ public class DestCardPickerFragment extends DialogFragment implements IDestCardP
             confirmButton.setEnabled(false);
         }
 
+    }
+
+    private void setDialogVisible(Boolean visible)
+    {
+        if (visible)
+        {
+            mDialog.getWindow()
+                    .setBackgroundDrawable(new ColorDrawable(ContextCompat.getColor(getActivity(), R.color.colorWhite)));
+            setCardsVisible(true);
+            confirmButton.setVisibility(View.VISIBLE);
+            setCaptionsVisible(true);
+            showMapButton.setBackgroundResource(android.R.drawable.btn_default);
+            showMapButton.setTextColor(ContextCompat.getColor(getActivity(), R.color.colorBlack));
+        }
+        else
+        {
+            mDialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+            setCardsVisible(false);
+            confirmButton.setVisibility(View.INVISIBLE);
+            setCaptionsVisible(false);
+            showMapButton.setBackground(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+            showMapButton.setTextColor(Color.TRANSPARENT);
+        }
+    }
+
+    private void setCardsVisible(Boolean visible)
+    {
+        //set each cards visibility to invisible
+        for (ImageView cardImage : destCardImageList)
+        {
+            if (visible)
+            {
+                cardImage.setVisibility(View.VISIBLE);
+            }
+            else
+            {
+                cardImage.setVisibility(View.INVISIBLE);
+            }
+        }
+    }
+
+    private void setCaptionsVisible(Boolean visible)
+    {
+        for (TextView caption : textViewList)
+        {
+            if (visible)
+            {
+                caption.setVisibility(View.VISIBLE);
+            }
+            else
+            {
+                caption.setVisibility(View.INVISIBLE);
+            }
+        }
     }
 }
