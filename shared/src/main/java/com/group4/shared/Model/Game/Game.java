@@ -25,6 +25,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
@@ -617,7 +618,7 @@ public class Game
         if(finishedPlayers.size() == players.size())
         {
             this.setStatus(GAME_STATUS.FINISHED);
-
+            calculateScores();
             setRanks();
             CEndGameCommandData cmd = new CEndGameCommandData();
             cmd.setType("endgame");
@@ -642,6 +643,52 @@ public class Game
             entry.getValue().getStats().setRank(rank);
             rank--;
         }
+    }
+
+
+    private void calculateScores()
+    {
+
+        for (Player player : players)
+        {
+            //add or subtract destination card points for each player
+            for (DestinationCard destCard : player.getPlayerHand().getDestinationCards().getDestDeck())
+            {
+                if (player.destinationComplete(destCard.getCityA(), destCard.getCityB()))
+                {
+                    player.getStats().incrementDestinationScore(destCard.getPoints());
+                }
+                else
+                {
+                    player.getStats().decrementDestinationScore(destCard.getPoints());
+                }
+            }
+
+            //add longest path
+            if (player.isLongestPath())
+            {
+                player.getStats().setLongestPathScore();
+            }
+
+        }
+
+    }
+
+    private void setLongestPathPlayer()
+    {
+        Player longestPathWinner = players.get(0);
+        int longestPathSize = 0;
+
+        for (Player player : players)
+        {
+            if (player.getLongestPath() > longestPathSize)
+            {
+                longestPathSize = player.getLongestPath();
+                longestPathWinner = player;
+            }
+        }
+
+        longestPathWinner.setLongestPath(true);
     }
 
 //    CHAT HISTORY
