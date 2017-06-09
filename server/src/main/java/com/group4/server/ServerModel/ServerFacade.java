@@ -394,15 +394,7 @@ public class ServerFacade implements IServer
         int cardsSelected = 3 - returnedCard.size();
         System.out.println("Player " + serverModel.getTempUser().getUsername() +
                 " selected " + cardsSelected + " destination cards.");
-
-        List<TrainCard> usedCards = new ArrayList<>();
-        for(int i = 0; i < 4; i++)
-        {
-            usedCards.add(new TrainCard(CARD_COLOR.BLACK, false));
-        }
-        //TODO: Find stack overflow
-        //claimRoute("tyler", game.getRoutes().findRoute("MontrealSaultStMarie"), usedCards);
-
+        
         return new Results(true, "Destination cards selected", null, null);
     }
 

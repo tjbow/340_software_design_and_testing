@@ -636,7 +636,7 @@ public class Game
             ranks.put(player.getScore(), player);
         }
 
-        int rank = this.getCurrentPlayerSize();
+        int rank = this.getPlayerCount();
         for(Map.Entry<Integer, Player> entry : ranks.entrySet())
         {
             entry.getValue().getStats().setRank(rank);
