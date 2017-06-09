@@ -224,7 +224,7 @@ public class Game
         //give four train cards to each player and remove them from the game's tcdeck
         for(Player player : players)
         {
-            int count = 4;
+            int count = 20;
             for(Iterator<TrainCard> iterator = decks.getTrainCardDeck().getCardDeck().iterator(); iterator.hasNext();)
             {
                 TrainCard current = iterator.next();
