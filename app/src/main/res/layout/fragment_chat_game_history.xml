@@ -58,6 +58,7 @@
             android:layout_weight="0.8"
             android:paddingLeft="5dp"
             android:hint="@string/message_hint"
+            android:maxLength="150"
             android:imeOptions="actionSend"/>
 
         <Button
