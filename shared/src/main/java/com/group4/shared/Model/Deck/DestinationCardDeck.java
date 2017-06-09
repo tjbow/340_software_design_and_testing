@@ -30,36 +30,36 @@ public class DestinationCardDeck {
 
     private void initializeGameDestDeck()
     {
-        destDeck.add(new DestinationCard(0, "Los Angeles", "New York", 21));
+        destDeck.add(new DestinationCard(0, "LosAngeles", "NewYork", 21));
         destDeck.add(new DestinationCard(1, "Duluth", "Houston", 8));
-        destDeck.add(new DestinationCard(2, "Sault St. Marie", "Nashville", 8));
-        destDeck.add(new DestinationCard(3, "New York", "Atlanta", 6));
+        destDeck.add(new DestinationCard(2, "SaultStMarie", "Nashville", 8));
+        destDeck.add(new DestinationCard(3, "NewYork", "Atlanta", 6));
         destDeck.add(new DestinationCard(4, "Portland", "Nashville", 17));
         destDeck.add(new DestinationCard(5, "Vancouver", "Montreal", 20));
-        destDeck.add(new DestinationCard(6, "Duluth", "El Paso", 10));
+        destDeck.add(new DestinationCard(6, "Duluth", "ElPaso", 10));
         destDeck.add(new DestinationCard(7, "Toronto", "Miami", 10));
         destDeck.add(new DestinationCard(8, "Portland", "Phoenix", 11));
-        destDeck.add(new DestinationCard(9, "Dallas", "New York", 11));
-        destDeck.add(new DestinationCard(10, "Calgary", "Salt Lake City", 7));
+        destDeck.add(new DestinationCard(9, "Dallas", "NewYork", 11));
+        destDeck.add(new DestinationCard(10, "Calgary", "SaltLakeCity", 7));
         destDeck.add(new DestinationCard(11, "Calgary", "Phoenix", 13));
-        destDeck.add(new DestinationCard(12, "Los Angeles", "Miami", 20));
-        destDeck.add(new DestinationCard(13, "Winnipeg", "Little Rock", 11));
-        destDeck.add(new DestinationCard(14, "San Francisco", "Atlanta", 17));
-        destDeck.add(new DestinationCard(15, "Kansas City", "Houston", 5));
-        destDeck.add(new DestinationCard(16, "Los Angeles", "Chicago", 16));
+        destDeck.add(new DestinationCard(12, "LosAngeles", "Miami", 20));
+        destDeck.add(new DestinationCard(13, "Winnipeg", "LittleRock", 11));
+        destDeck.add(new DestinationCard(14, "SanFrancisco", "Atlanta", 17));
+        destDeck.add(new DestinationCard(15, "KansasCity", "Houston", 5));
+        destDeck.add(new DestinationCard(16, "LosAngeles", "Chicago", 16));
         destDeck.add(new DestinationCard(17, "Denver", "Pittsburgh", 11));
-        destDeck.add(new DestinationCard(18, "Chicago", "Santa Fe", 9));
-        destDeck.add(new DestinationCard(19, "Vancouver", "Santa Fe", 13));
+        destDeck.add(new DestinationCard(18, "Chicago", "SantaFe", 9));
+        destDeck.add(new DestinationCard(19, "Vancouver", "SantaFe", 13));
         destDeck.add(new DestinationCard(20, "Boston", "Miami", 12));
-        destDeck.add(new DestinationCard(21, "Chicago", "New Orleans", 7));
+        destDeck.add(new DestinationCard(21, "Chicago", "NewOrleans", 7));
         destDeck.add(new DestinationCard(22, "Montreal", "Atlanta", 9));
-        destDeck.add(new DestinationCard(23, "Seattle", "New York", 22));
-        destDeck.add(new DestinationCard(24, "Denver", "El Paso", 4));
-        destDeck.add(new DestinationCard(25, "Helena", "Los Angeles", 8));
+        destDeck.add(new DestinationCard(23, "Seattle", "NewYork", 22));
+        destDeck.add(new DestinationCard(24, "Denver", "ElPaso", 4));
+        destDeck.add(new DestinationCard(25, "Helena", "LosAngeles", 8));
         destDeck.add(new DestinationCard(26, "Winnipeg", "Houston", 12));
-        destDeck.add(new DestinationCard(27, "Montreal", "New Orleans", 13));
-        destDeck.add(new DestinationCard(28, "Sault St. Marie", "Oklahoma City", 9));
-        destDeck.add(new DestinationCard(29, "Seattle", "Los Angeles", 9));
+        destDeck.add(new DestinationCard(27, "Montreal", "NewOrleans", 13));
+        destDeck.add(new DestinationCard(28, "SaultStMarie", "OklahomaCity", 9));
+        destDeck.add(new DestinationCard(29, "Seattle", "LosAngeles", 9));
     }
 
     public List<DestinationCard> getDestDeck() {

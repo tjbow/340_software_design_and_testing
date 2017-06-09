@@ -28,12 +28,12 @@
     "highlighted":false
   },
   {
-    "routeId":"MiamiCharlston",
+    "routeId":"MiamiCharleston",
     "claimed":false,
     "length":4,
     "score":0,
     "cityA":"Miami",
-    "cityB":"Charlston",
+    "cityB":"Charleston",
     "x1Constraint":83,
     "y1Constraint":88,
     "x2Constraint":81,
@@ -61,7 +61,7 @@
     "length":6,
     "score":0,
     "cityA":"Miami",
-    "cityB":"New Orleans",
+    "cityB":"NewOrleans",
     "x1Constraint":80,
     "y1Constraint":90,
     "x2Constraint":61.5,
@@ -161,7 +161,7 @@
   "routeColor":"GRAY",
   "highlighted":false
 }, {
-  "routeId":"PittsburghWashinhgton",
+  "routeId":"PittsburghWashington",
   "claimed":false,
   "length":2,
   "score":0,
@@ -174,7 +174,7 @@
   "routeColor":"GRAY",
   "highlighted":false
 }, {
-  "routeId":"WashinhgtonNewYorkLeft",
+  "routeId":"WashingtonNewYorkLeft",
   "claimed":false,
   "length":2,
   "score":0,
@@ -187,7 +187,7 @@
   "routeColor":"ORANGE",
   "highlighted":false
 }, {
-  "routeId":"WashinhgtonNewYorkRight",
+  "routeId":"WashingtonNewYorkRight",
   "claimed":false,
   "length":2,
   "score":0,
@@ -309,7 +309,7 @@
   "length":3,
   "score":0,
   "cityA":"Montreal",
-  "cityB":"Tronto",
+  "cityB":"Toronto",
   "x1Constraint":84,
   "y1Constraint":12,
   "x2Constraint":76,
@@ -334,8 +334,8 @@
   "claimed":false,
   "length":2,
   "score":0,
-  "cityA":"SaulStMarie",
-  "cityB":"Tronto",
+  "cityA":"SaultStMarie",
+  "cityB":"Toronto",
   "x1Constraint":74,
   "y1Constraint":31,
   "x2Constraint":70.5,
@@ -356,7 +356,7 @@
   "routeColor":"GRAY",
   "highlighted":false
 }, {
-  "routeId":"NashvillPittsburgh",
+  "routeId":"NashvillePittsburgh",
   "claimed":false,
   "length":4,
   "score":0,
@@ -369,7 +369,7 @@
   "routeColor":"YELLOW",
   "highlighted":false
 },{
-  "routeId":"ChicagoPistburghTop",
+  "routeId":"ChicagoPittsburghTop",
   "claimed":false,
   "length":3,
   "score":0,
@@ -382,7 +382,7 @@
   "routeColor":"ORANGE",
   "highlighted":false
 },{
-  "routeId":"ChicagoPistburghBottom",
+  "routeId":"ChicagoPittsburghBottom",
   "claimed":false,
   "length":3,
   "score":0,
@@ -434,12 +434,12 @@
   "routeColor":"PINK",
   "highlighted":false
 },{
-  "routeId":"DuluthSaulStMarie",
+  "routeId":"DuluthSaultStMarie",
   "claimed":false,
   "length":3,
   "score":0,
   "cityA":"Duluth",
-  "cityB":"SaulStmarie",
+  "cityB":"SaultStMarie",
   "x1Constraint":69,
   "y1Constraint":20.5,
   "x2Constraint":58,
@@ -460,11 +460,11 @@
   "routeColor":"BLACK",
   "highlighted":false
 },{
-  "routeId":"WinnipegSaulStMarie",
+  "routeId":"WinnipegSaultStMarie",
   "claimed":false,
   "length":6,
   "score":0,
-  "cityA":"SaulStMarie",
+  "cityA":"SaultStMarie",
   "cityB":"Winnipeg",
   "x1Constraint":69,
   "y1Constraint":18,
@@ -529,7 +529,7 @@
   "claimed":false,
   "length":2,
   "score":0,
-  "cityA":"StLouis",
+  "cityA":"SaintLouis",
   "cityB":"Nashville",
   "x1Constraint":69,
   "y1Constraint":62,
@@ -538,7 +538,7 @@
   "routeColor":"GRAY",
   "highlighted":false
 },{
-  "routeId":"AtlentaNewOrleansLeft",
+  "routeId":"AtlantaNewOrleansLeft",
   "claimed":false,
   "length":4,
   "score":0,
@@ -551,7 +551,7 @@
   "routeColor":"YELLOW",
   "highlighted":false
 },{
-  "routeId":"AtlentaNewOrleansRight",
+  "routeId":"AtlantaNewOrleansRight",
   "claimed":false,
   "length":4,
   "score":0,
@@ -603,11 +603,11 @@
   "routeColor":"GRAY",
   "highlighted":false
 },{
-  "routeId":"StLouisKansasCityTop",
+  "routeId":"SaintLouisKansasCityTop",
   "claimed":false,
   "length":2,
   "score":0,
-  "cityA":"StLouis",
+  "cityA":"SaintLouis",
   "cityB":"KansasCity",
   "x1Constraint":61,
   "y1Constraint":54,
@@ -616,11 +616,11 @@
   "routeColor":"BLUE",
   "highlighted":false
 },{
-  "routeId":"StLouisKansasCityBottom",
+  "routeId":"SaintLouisKansasCityBottom",
   "claimed":false,
   "length":2,
   "score":0,
-  "cityA":"StLouis",
+  "cityA":"SaintLouis",
   "cityB":"KansasCity",
   "x1Constraint":61,
   "y1Constraint":57,
@@ -954,7 +954,7 @@
   "routeColor":"RED",
   "highlighted":false
 },{
-  "routeId":"SaltLakeCityHDenverBottom",
+  "routeId":"SaltLakeCityDenverBottom",
   "claimed":false,
   "length":3,
   "score":0,
@@ -1045,7 +1045,7 @@
   "routeColor":"PINK",
   "highlighted":false
 },{
-  "routeId":"SanfranciscoSaltLakeCityTop",
+  "routeId":"SanFranciscoSaltLakeCityTop",
   "claimed":false,
   "length":5,
   "score":0,
@@ -1058,7 +1058,7 @@
   "routeColor":"ORANGE",
   "highlighted":false
 },{
-  "routeId":"SanfranciscoSaltLakeCityBottom",
+  "routeId":"SanFranciscoSaltLakeCityBottom",
   "claimed":false,
   "length":5,
   "score":0,
@@ -1071,7 +1071,7 @@
   "routeColor":"WHITE",
   "highlighted":false
 },{
-  "routeId":"SanfranciscoLosAngelesRight",
+  "routeId":"SanFranciscoLosAngelesRight",
   "claimed":false,
   "length":3,
   "score":0,
@@ -1084,7 +1084,7 @@
   "routeColor":"PINK",
   "highlighted":false
 },{
-  "routeId":"SanfranciscoLosAngelesLeft",
+  "routeId":"SanFranciscoLosAngelesLeft",
   "claimed":false,
   "length":3,
   "score":0,
