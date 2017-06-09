@@ -27,16 +27,26 @@ public class State {
     public void updateState(MOVE_STATE state){
         switch (state){
             case DRAWN_FIRST_TRAIN_CARD:
-                gamePresenter.setState(new DrawnFirstCardState(gamePresenter, cardDecksPresenter));
-                cardDecksPresenter.setState(new DrawnFirstCardState(gamePresenter, cardDecksPresenter));
+                if(gamePresenter.getState().getClass() != DrawnFirstCardState.class) {
+                    gamePresenter.setState(new DrawnFirstCardState(gamePresenter, cardDecksPresenter));
+                    cardDecksPresenter.setState(new DrawnFirstCardState(gamePresenter, cardDecksPresenter));
+                }
                 break;
             case MY_TURN:
-                gamePresenter.setState(new MyTurnState(gamePresenter, cardDecksPresenter));
-                cardDecksPresenter.setState(new MyTurnState(gamePresenter, cardDecksPresenter));
+                if(gamePresenter.getState().getClass() != MyTurnState.class) {
+                    gamePresenter.setState(new MyTurnState(gamePresenter, cardDecksPresenter));
+                    cardDecksPresenter.setState(new MyTurnState(gamePresenter, cardDecksPresenter));
+                }
+                break;
+            case PENDING:
+                gamePresenter.setState(new PendingState(gamePresenter, cardDecksPresenter));
+                cardDecksPresenter.setState(new PendingState(gamePresenter, cardDecksPresenter));
                 break;
             default:
-                gamePresenter.setState(new NotMyTurnState(gamePresenter, cardDecksPresenter));
-                cardDecksPresenter.setState(new NotMyTurnState(gamePresenter, cardDecksPresenter));
+                if(gamePresenter.getState().getClass() != NotMyTurnState.class) {
+                    gamePresenter.setState(new NotMyTurnState(gamePresenter, cardDecksPresenter));
+                    cardDecksPresenter.setState(new NotMyTurnState(gamePresenter, cardDecksPresenter));
+                }
                 break;
         }
     }
@@ -49,7 +59,11 @@ public class State {
         this.cardDecksPresenter = cardDecksPresenter;
     }
 
-    private String error = "Action not Available: Not your turn";
+    public String error = "Action not Available: Not your turn";
+
+    public void setError(String error){
+        this.error = error;
+    }
 
     public void drawTrainCard() {gamePresenter.displayError(error);}
     public void drawFaceUpTrainCard(int num) {gamePresenter.displayError(error);}

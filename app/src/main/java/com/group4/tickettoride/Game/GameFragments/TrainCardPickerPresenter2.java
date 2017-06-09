@@ -3,6 +3,7 @@ package com.group4.tickettoride.Game.GameFragments;
 import com.group4.shared.Model.Deck.CARD_COLOR;
 import com.group4.shared.Model.Deck.TrainCard;
 import com.group4.shared.Model.Deck.TrainCardDeck;
+import com.group4.shared.Model.Game.MOVE_STATE;
 import com.group4.shared.Model.Map.RouteSegment;
 import com.group4.tickettoride.ClientModel.ClientModel;
 import com.group4.tickettoride.Game.GameFragments.TrainCardPickerImages.BlackTrainCardPicker;
@@ -16,6 +17,7 @@ import com.group4.tickettoride.Game.GameFragments.TrainCardPickerImages.TrainCar
 import com.group4.tickettoride.Game.GameFragments.TrainCardPickerImages.WhiteTrainCardPicker;
 import com.group4.tickettoride.Game.GameFragments.TrainCardPickerImages.YellowTrainCardPicker;
 import com.group4.tickettoride.Game.GamePresenter;
+import com.group4.tickettoride.State.PendingState;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -129,6 +131,9 @@ public class TrainCardPickerPresenter2 implements ITrainCardPickerPresenter{
 
     @Override
     public void onClaim() {
+
+        ClientModel.SINGLETON.updateState(ClientModel.SINGLETON.getUser().getUsername(), MOVE_STATE.PENDING);
+
         gamePresenter.getState().claimRoute(route.getRouteId(), claim());
     }
 
