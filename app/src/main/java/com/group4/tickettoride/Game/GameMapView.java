@@ -22,6 +22,9 @@ import com.group4.shared.Model.Map.RouteSegment;
 import com.group4.tickettoride.R;
 
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -394,7 +397,14 @@ public class GameMapView extends View {
     }
 
     private void getRoutes(){
-        InputStream is = getResources().openRawResource(R.raw.routes);
+        InputStream is = null;
+        try
+        {
+            is = new FileInputStream(new File("shared/src/main/java/com/group4/shared/Model/Game/routes.json"));
+        } catch (FileNotFoundException e)
+        {
+            e.printStackTrace();
+        }
 
 
         ObjectMapper mapper = new ObjectMapper();

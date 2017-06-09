@@ -208,13 +208,15 @@ public class ServerFacade implements IServer
         CUpdateGameCommandData updateGameCommandData = new CUpdateGameCommandData();
         updateGameCommandData.setType("updategame");
         updateGameCommandData.setStatus(game.getStatus());
+        updateGameCommandData.setDeckState(game.getDecks());
 
         //ADD THE ABOVE TO THE GAME FOR RETRIEVAL BY ALL PLAYERS
         game.addCommand(updatePlayersCommandData);
+        game.addCommand(updateGameCommandData);
         game.addCommand(startGameCommandData);
         game.addCommand(updateMapCommandData);
         game.addCommand(updateStatsCommandData);
-        game.addCommand(updateGameCommandData);
+//        game.addCommand(updateGameCommandData);
 
         return new Results(true, null, null, null);
     }

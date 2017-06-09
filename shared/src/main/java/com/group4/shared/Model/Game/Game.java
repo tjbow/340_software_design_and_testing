@@ -28,6 +28,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -630,18 +631,31 @@ public class Game
 
     public void setRanks()
     {
-        int highScore = 0;
-        Map<Integer, Player> ranks = new TreeMap<>();
-        for(Player player : players)
+        List<Player> rankedList = new ArrayList<>();
+        rankedList.add(players.get(0));
+        int maxScore = 0;
+        for(int i = 1; i < players.size(); i++)
         {
-            ranks.put(player.getScore(), player);
+            for(int j = 0; j < rankedList.size(); j++)
+            {
+                if(players.get(i).getStats().getTotalScore() > rankedList.get(j).getStats().getTotalScore())
+                {
+                    rankedList.add(j, players.get(i));
+                    break;
+                }
+                else if(j + 1 == rankedList.size())
+                {
+                    rankedList.add(players.get(i));
+                    break;
+                }
+            }
         }
 
-        int rank = this.players.size();
-        for(Map.Entry<Integer, Player> entry : ranks.entrySet())
+        int rank = 1;
+        for(Player player : rankedList)
         {
-            entry.getValue().getStats().setRank(rank);
-            rank--;
+            player.getStats().setRank(rank);
+            rank++;
         }
     }
 

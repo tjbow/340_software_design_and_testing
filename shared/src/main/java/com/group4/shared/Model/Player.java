@@ -6,13 +6,15 @@ import com.group4.shared.Model.Graph.RoutePaths;
 import com.group4.shared.Model.Map.RouteList;
 import com.group4.shared.Model.Map.RouteSegment;
 
+import java.util.Comparator;
 import java.util.UUID;
 
 /**
  * Created by Russell Fitzpatrick on 5/13/2017.
  */
 
-public class Player {
+public class Player
+{
 
     public static final String BLUE = "blue";
     public static final String RED = "red";
