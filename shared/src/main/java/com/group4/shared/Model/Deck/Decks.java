@@ -81,6 +81,7 @@ public class Decks {
     {
         destinationCardDeck = new DestinationCardDeck("newgame");
         destinationCardDeck.shuffle();
+        destinationCardDeck.shuffle();
     }
 
     private void initializeFaceUpDeck()

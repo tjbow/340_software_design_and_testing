@@ -436,6 +436,18 @@ public class Game
         }
     }
 
+    private boolean canClaimDoubleRoute(String nameShort, Player player)
+    {
+        for(RouteSegment routeSegment : player.getClaimedRouteList().getRouteList())
+        {
+            if(routeSegment.getRouteId().contains(nameShort))
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
     public boolean playerTurn_claimRoute(String userName, RouteSegment claimedSegment, List<TrainCard> usedCards)
     {
         Player player = this.getPlayerByUserName(userName);
@@ -444,6 +456,18 @@ public class Game
         if(claimedSegment.isClaimed()) return false;
 
         //TODO: check for double-route rules (two routes between same two cities)
+        String name = claimedSegment.getRouteId();
+        String nameShort = name;
+        if(name.contains("Right"))
+        {
+            nameShort = name.substring(0, name.length() - 6);
+            if(!canClaimDoubleRoute(nameShort, player)) return false;
+        }
+        else if(name.contains("Left"))
+        {
+            nameShort = name.substring(0, name.length() - 5);
+            if(!canClaimDoubleRoute(nameShort, player)) return false;
+        }
 
 
         //check if enough train pieces
