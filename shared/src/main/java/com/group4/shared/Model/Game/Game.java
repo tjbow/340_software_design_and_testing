@@ -686,7 +686,7 @@ public class Game
 
     private void calculateScores()
     {
-
+        setLongestPathPlayer();
         for (Player player : players)
         {
             //add or subtract destination card points for each player
