@@ -44,6 +44,8 @@ public class ServerProxy implements IServer
 
     public static ServerProxy SINGLETON = new ServerProxy();
 
+    private String ipAddress;
+
     /**
      * @pre The user must already be registered with the server
      *
@@ -242,6 +244,16 @@ public class ServerProxy implements IServer
 //        ClientFacade.SINGLETON.processResults(results);
 //    }
 
+    public String getIpAddress()
+    {
+        return ipAddress;
+    }
+
+    public void setIpAddress(String ipAddress)
+    {
+        this.ipAddress = ipAddress;
+    }
+
     public class NetworkTask extends AsyncTask<Object, Void, Void>
     {
         private Results mResults;
@@ -251,7 +263,7 @@ public class ServerProxy implements IServer
         {
             for(Object o : objects)
             {
-                mResults = new ClientCommunicator().send("execcommand", o);
+                mResults = new ClientCommunicator().send("execcommand", o, ipAddress);
             }
             return null;
         }

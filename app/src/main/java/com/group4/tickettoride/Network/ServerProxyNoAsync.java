@@ -141,6 +141,6 @@ public class ServerProxyNoAsync
 
     private void threadIt(Object o)
     {
-        new ClientCommunicator().send("execcommand", o);
+//        new ClientCommunicator().send("execcommand", o);
     }
 }
