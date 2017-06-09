@@ -169,6 +169,7 @@ public class ClientModel extends Observable {
             game.setDecks(decks);
             sendToObservers(decks);
         }
+
     }
 
     public void updateMap(RouteList routeList, List<City> cities){
