@@ -529,7 +529,7 @@
   "claimed":false,
   "length":2,
   "score":0,
-  "cityA":"StLouis",
+  "cityA":"SaintLouis",
   "cityB":"Nashville",
   "x1Constraint":69,
   "y1Constraint":62,
@@ -538,7 +538,7 @@
   "routeColor":"GRAY",
   "highlighted":false
 },{
-  "routeId":"AtlentaNewOrleansLeft",
+  "routeId":"AtlantaNewOrleansLeft",
   "claimed":false,
   "length":4,
   "score":0,
@@ -603,11 +603,11 @@
   "routeColor":"GRAY",
   "highlighted":false
 },{
-  "routeId":"StLouisKansasCityTop",
+  "routeId":"SaintLouisKansasCityTop",
   "claimed":false,
   "length":2,
   "score":0,
-  "cityA":"StLouis",
+  "cityA":"SaintLouis",
   "cityB":"KansasCity",
   "x1Constraint":61,
   "y1Constraint":54,
@@ -616,11 +616,11 @@
   "routeColor":"BLUE",
   "highlighted":false
 },{
-  "routeId":"StLouisKansasCityBottom",
+  "routeId":"SaintLouisKansasCityBottom",
   "claimed":false,
   "length":2,
   "score":0,
-  "cityA":"StLouis",
+  "cityA":"SaintLouis",
   "cityB":"KansasCity",
   "x1Constraint":61,
   "y1Constraint":57,
