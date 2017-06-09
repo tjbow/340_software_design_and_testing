@@ -692,7 +692,8 @@ public class Game
             //add or subtract destination card points for each player
             for (DestinationCard destCard : player.getPlayerHand().getDestinationCards().getDestDeck())
             {
-                if (player.destinationComplete(destCard.getCityA(), destCard.getCityB()))
+                if (player.destinationComplete(destCard.getCityA(), destCard.getCityB()) ||
+                        player.destinationComplete(destCard.getCityB(), destCard.getCityA()))
                 {
                     player.getStats().incrementDestinationScore(destCard.getPoints());
                 }
