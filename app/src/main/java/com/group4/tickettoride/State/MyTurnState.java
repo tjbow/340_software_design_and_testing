@@ -15,6 +15,7 @@ public class MyTurnState extends State{
 
     public MyTurnState(GamePresenter gamePresenter, CardDecksPresenter cardDecksPresenter) {
         super(gamePresenter, cardDecksPresenter);
+        gamePresenter.displayError("It is your Turn");
     }
 
     @Override
