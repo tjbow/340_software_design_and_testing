@@ -130,16 +130,11 @@ public class PlayerInfoFragment extends Fragment implements IPlayerInfoFragment{
     void showChatDialog()
     {
         FragmentManager manager = getFragmentManager();
-        Chat_GameHistoryFragment dialog = new Chat_GameHistoryFragment();
+        Chat_GameHistoryFragment dialog = Chat_GameHistoryFragment
+                .newInstance(Chat_GameHistoryFragment.GAME_HISTORY);
         dialog.show(manager, CHAT_GAME_HISTORY_DIALOG);
     }
 
-    void showEndGameDialog()
-    {
-        FragmentManager manager = getFragmentManager();
-        EndGameFragment dialog = new EndGameFragment();
-        dialog.show(manager, END_GAME_DIALOG);
-    }
 
     public static PlayerInfoFragment newInstance()
     {
