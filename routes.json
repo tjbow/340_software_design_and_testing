@@ -772,19 +772,6 @@
   "routeColor":"GRAY",
   "highlighted":false
 },{
-  "routeId":"DallasLittleRock",
-  "claimed":false,
-  "length":2,
-  "score":0,
-  "cityA":"LittleRock",
-  "cityB":"Dallas",
-  "x1Constraint":52,
-  "y1Constraint":76,
-  "x2Constraint":57,
-  "y2Constraint":69,
-  "routeColor":"GRAY",
-  "highlighted":false
-},{
   "routeId":"HoustonElPaso",
   "claimed":false,
   "length":6,

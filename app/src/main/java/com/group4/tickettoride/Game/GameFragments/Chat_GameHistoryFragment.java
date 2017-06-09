@@ -40,9 +40,23 @@ public class Chat_GameHistoryFragment extends DialogFragment {
     private EditText messageToSendText;
     private Chat_GameHistoryPresenter presenter;
 
+    //this arg is used to set whether the dialog should show the chat or game history first
+    private static final String DEFAULT_VIEW = "defaultView";
+    public static final String GAME_HISTORY = "gameHistory";
+    public static final String CHAT = "chat";
+
 
     public Chat_GameHistoryFragment() {
         // Required empty public constructor
+    }
+
+    public static Chat_GameHistoryFragment newInstance (String defaultView)
+    {
+        Chat_GameHistoryFragment fragment = new Chat_GameHistoryFragment();
+        Bundle args = new Bundle();
+        args.putString(DEFAULT_VIEW, defaultView);
+        fragment.setArguments(args);
+        return fragment;
     }
 
 
@@ -51,8 +65,6 @@ public class Chat_GameHistoryFragment extends DialogFragment {
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         View v = LayoutInflater.from(getActivity())
                 .inflate(R.layout.fragment_chat_game_history, null);
-
-
 
         presenter = new Chat_GameHistoryPresenter(this);
 
@@ -135,8 +147,16 @@ public class Chat_GameHistoryFragment extends DialogFragment {
                 }
             }
         });
-        chatButton.setChecked(true);
 
+        //pick which history to show first
+        if (getArguments() != null && getArguments().getString(DEFAULT_VIEW).equals(GAME_HISTORY))
+        {
+            gameHistoryButton.setChecked(true);
+        }
+        else
+        {
+            chatButton.setChecked(true);
+        }
 
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(getActivity());
         dialogBuilder.setView(v);

@@ -192,7 +192,8 @@ public class GameActivity extends AppCompatActivity implements IGameActivity, IM
     void showChat_GameHistoryDialog()
     {
         FragmentManager manager = getSupportFragmentManager();
-        Chat_GameHistoryFragment dialog = new Chat_GameHistoryFragment();
+        Chat_GameHistoryFragment dialog = Chat_GameHistoryFragment
+                .newInstance(Chat_GameHistoryFragment.CHAT);
         dialog.show(manager, CHAT_GAME_HISTORY_DIALOG);
     }
 }

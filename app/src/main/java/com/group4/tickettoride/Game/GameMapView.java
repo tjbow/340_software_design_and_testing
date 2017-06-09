@@ -230,7 +230,7 @@ public class GameMapView extends View {
         canvas.drawRect(0,0,125,100,paint);
         paint.setColor(Color.BLACK);
         paint.setTextSize(40);
-        canvas.drawText("Chat",25,75,paint);
+        canvas.drawText("Chat",20,64,paint);
 
         drawLabels(canvas);
 
