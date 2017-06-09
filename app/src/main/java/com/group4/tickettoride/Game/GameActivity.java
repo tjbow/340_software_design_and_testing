@@ -20,7 +20,9 @@ import com.group4.tickettoride.Game.GameFragments.PlayerInfoFragment;
 import com.group4.tickettoride.Game.GameFragments.CardDecksFragment;
 import com.group4.tickettoride.Game.GameFragments.TrainCardPickerFragment;
 import com.group4.tickettoride.Game.GameFragments.TrainCardPickerPresenter;
+import com.group4.tickettoride.Game.GameFragments.TrainCardPickerPresenter2;
 import com.group4.tickettoride.R;
+import com.group4.tickettoride.State.NotMyTurnState;
 
 public class GameActivity extends AppCompatActivity implements IGameActivity, IMapActivity {
 
@@ -148,12 +150,23 @@ public class GameActivity extends AppCompatActivity implements IGameActivity, IM
     @Override
     public void onClickRoute(RouteSegment r) {
         //build dialog and presenter
-        Toast.makeText(this, "Route was clicked yo: " + r.getCityA() + " to " + r.getCityB(), Toast.LENGTH_SHORT).show();
-        FragmentManager manager = getSupportFragmentManager();
-        TrainCardPickerFragment dialog = new TrainCardPickerFragment();
-        ITrainCardPickerPresenter presenter = new TrainCardPickerPresenter(dialog, r, this.presenter);
-        dialog.setPresenter(presenter);
-        dialog.show(manager, "TrainCardPickerDialog");
+
+        if(presenter.getState().getClass() == NotMyTurnState.class){
+            presenter.getState().claimRoute(null, null);
+        }
+
+        else {
+
+            Toast.makeText(this, "Route was clicked yo: " + r.getCityA() + " to " + r.getCityB(), Toast.LENGTH_SHORT).show();
+            FragmentManager manager = getSupportFragmentManager();
+            TrainCardPickerFragment dialog = new TrainCardPickerFragment();
+            dialog.show(manager, "TrainCardPickerDialog");
+
+            ITrainCardPickerPresenter presenter = new TrainCardPickerPresenter2(dialog, r, this.presenter);
+
+            dialog.setPresenter(presenter);
+
+        }
 
 
     }

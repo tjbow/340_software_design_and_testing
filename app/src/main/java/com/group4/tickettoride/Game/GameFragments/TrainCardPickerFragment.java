@@ -133,6 +133,10 @@ public class TrainCardPickerFragment extends DialogFragment {
         return dialog;
     }
 
+    public View getView(){
+        return v;
+    }
+
     public void setClaimButtonEnabled(Boolean enabled)
     {
         ((AlertDialog) dialog).getButton(AlertDialog.BUTTON_POSITIVE).setEnabled(enabled);

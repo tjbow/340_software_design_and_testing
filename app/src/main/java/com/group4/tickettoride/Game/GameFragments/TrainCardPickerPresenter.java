@@ -29,6 +29,8 @@ import java.util.Map;
 import java.util.Observable;
 import java.util.Observer;
 
+import static com.group4.shared.Model.Deck.CARD_COLOR.RAINBOW;
+
 /**
  * Created by Russell Fitzpatrick on 6/6/2017.
  */
@@ -178,7 +180,7 @@ public class TrainCardPickerPresenter implements Observer, ITrainCardPickerPrese
                 }
                 break;
         }
-        if(cardMap.containsKey(CARD_COLOR.RAINBOW)){
+        if(cardMap.containsKey(RAINBOW)){
             fragment.showLocomotiveCardPicker();
         }
     }
@@ -270,10 +272,10 @@ public class TrainCardPickerPresenter implements Observer, ITrainCardPickerPrese
     {
         List<TrainCard> cardsUsed = new ArrayList<>();
         //figure out what combination of cards they picked
-        int locomotiveCount = pickedMap.get(CARD_COLOR.RAINBOW);
+        int locomotiveCount = pickedMap.get(RAINBOW);
         for (int i = 0; i < locomotiveCount; i++)
         {
-            cardsUsed.add(playerCards.get(CARD_COLOR.RAINBOW).get(i));
+            cardsUsed.add(playerCards.get(RAINBOW).get(i));
         }
 
         int regularCardCount = 0;
@@ -311,13 +313,13 @@ public class TrainCardPickerPresenter implements Observer, ITrainCardPickerPrese
     {
         int regularCardCount = 0;
         CARD_COLOR cardColor = null;
-        int locomotiveCardCount = pickedMap.get(CARD_COLOR.RAINBOW);
+        int locomotiveCardCount = pickedMap.get(RAINBOW);
         switch (route.getRouteColor())
         {
             case GRAY:
                 for (CARD_COLOR color : pickedMap.keySet())
                 {
-                    if (color != CARD_COLOR.RAINBOW && pickedMap.get(color) > 0)
+                    if (color != RAINBOW && pickedMap.get(color) > 0)
                     {
                         regularCardCount = pickedMap.get(color);
                         cardColor = color;
@@ -412,10 +414,21 @@ public class TrainCardPickerPresenter implements Observer, ITrainCardPickerPrese
 
     }
 
+
+
+
+
+
+
+
+
+
+
+
     private void initializePickers(){
         switch (route.getRouteColor())
         {
-            case PURPLE:
+            case PINK:
                 if(cardMap.containsKey(CARD_COLOR.PURPLE)) {
                     showCards(CARD_COLOR.PURPLE);
                 }
@@ -462,9 +475,9 @@ public class TrainCardPickerPresenter implements Observer, ITrainCardPickerPrese
                 break;
         }
 
-        if(cardMap.containsKey(CARD_COLOR.RAINBOW)){
-            TrainCardPickerImage image = new LocomotiveTrainCardPicker(fragment, this);
-            imageMap.put(CARD_COLOR.RAINBOW, image);
+        if(cardMap.containsKey(RAINBOW)){
+            TrainCardPickerImage image = new LocomotiveTrainCardPicker(fragment, this, RAINBOW);
+            imageMap.put(RAINBOW, image);
         }
     }
 
@@ -474,28 +487,28 @@ public class TrainCardPickerPresenter implements Observer, ITrainCardPickerPrese
 
         switch (color){
             case PURPLE:
-                image = new PurpleTrainCardPicker(fragment, this);
+                image = new PurpleTrainCardPicker(fragment, this, color);
                 break;
             case GREEN:
-                image = new GreenTrainCardPicker(fragment, this);
+                image = new GreenTrainCardPicker(fragment, this, color);
                 break;
             case ORANGE:
-                image = new OrangeTrainCardPicker(fragment, this);
+                image = new OrangeTrainCardPicker(fragment, this, color);
                 break;
             case BLUE:
-                image = new BlueTrainCardPicker(fragment, this);
+                image = new BlueTrainCardPicker(fragment, this, color);
                 break;
             case BLACK:
-                image = new BlackTrainCardPicker(fragment, this);
+                image = new BlackTrainCardPicker(fragment, this, color);
                 break;
             case RED:
-                image = new RedTrainCardPicker(fragment, this);
+                image = new RedTrainCardPicker(fragment, this, color);
                 break;
             case WHITE:
-                image = new WhiteTrainCardPicker(fragment, this);
+                image = new WhiteTrainCardPicker(fragment, this, color);
                 break;
             case YELLOW:
-                image = new YellowTrainCardPicker(fragment, this);
+                image = new YellowTrainCardPicker(fragment, this, color);
                 break;
         }
 
@@ -503,12 +516,52 @@ public class TrainCardPickerPresenter implements Observer, ITrainCardPickerPrese
 
     }
 
-    private void disablePickers(CARD_COLOR color, boolean bool){
+    private void enablePickers(CARD_COLOR color, boolean bool){
         for(CARD_COLOR card_color: imageMap.keySet()){
-            if(card_color != color){
+            if(card_color != color || card_color == RAINBOW){
                 imageMap.get(card_color).setAsEnabled(bool);
             }
         }
+    }
+
+    public List<TrainCard> claim(){
+        List<TrainCard> cardsUsed = new ArrayList<>();
+        for(CARD_COLOR color : imageMap.keySet()){
+            for (int i = 0; i < imageMap.get(color).getCount(); i++)
+            {
+                cardsUsed.add(playerCards.get(color).get(i));
+            }
+        }
+        return cardsUsed;
+    }
+
+    private void checkClaimButton(){
+
+        int numberOfCardsUsed = 0;
+        for(CARD_COLOR image : imageMap.keySet()){
+            if(cardMap.get(image) == imageMap.get(image).getCount()){
+                imageMap.get(image).enablePlus(false);
+            }
+            numberOfCardsUsed += imageMap.get(image).getCount();
+        }
+
+        if(numberOfCardsUsed == route.getLength()) {
+            for(CARD_COLOR image : imageMap.keySet()){
+                imageMap.get(image).enablePlus(false);
+                fragment.setClaimButtonEnabled(true);
+            }
+        }
+
+
+//            if(imageMap.get(color).getCount() == route.getLength()){
+//                imageMap.get(color).enablePlus(false);
+//                fragment.setClaimButtonEnabled(true);
+//            }
+//
+//        else if(imageMap.get(RAINBOW).getCount() + imageMap.get(color).getCount() == route.getLength()){
+//            imageMap.get(color).enablePlus(false);
+//            fragment.setClaimButtonEnabled(true);
+//        }
     }
 
     @Override
@@ -516,13 +569,15 @@ public class TrainCardPickerPresenter implements Observer, ITrainCardPickerPrese
 
         imageMap.get(color).enableMinus(true);
 
-        disablePickers(color, false);
-
-        if(cardMap.get(color) == imageMap.get(color).getCount() ||
-                (imageMap.get(CARD_COLOR.RAINBOW).getCount() + imageMap.get(color).getCount()) == route.getLength()){
-            imageMap.get(color).enablePlus(false);
-            fragment.setClaimButtonEnabled(true);
+        if(imageMap.get(color).getCount() == 1){
+            enablePickers(color, false);
         }
+
+        if(cardMap.get(color) == imageMap.get(color).getCount()){
+            imageMap.get(color).enablePlus(false);
+        }
+
+        checkClaimButton();
     }
 
     @Override
@@ -532,11 +587,19 @@ public class TrainCardPickerPresenter implements Observer, ITrainCardPickerPrese
         fragment.setClaimButtonEnabled(false);
 
         if(imageMap.get(color).getCount() == 0){
-            disablePickers(color, true);
+            enablePickers(color, true);
             imageMap.get(color).enableMinus(false);
         }
 
+        checkClaimButton();
+
     }
+
+
+
+
+
+
 
     @Override
     public void onPurpleIncrement() {
@@ -853,10 +916,10 @@ public class TrainCardPickerPresenter implements Observer, ITrainCardPickerPrese
 //            setCardVisibilty(CARD_COLOR.RAINBOW);
 //        }
         fragment.setLocomotiveCardCount(Integer.toString(locomotiveCount));
-        pickedMap.put(CARD_COLOR.RAINBOW, locomotiveCount);
+        pickedMap.put(RAINBOW, locomotiveCount);
 
         //if the player has now selected all the cards they have of a color
-        if (locomotiveCount == cardMap.get(CARD_COLOR.RAINBOW))
+        if (locomotiveCount == cardMap.get(RAINBOW))
         {
             fragment.setLocomotiveCardPlusEnabled(false);
         }
@@ -874,7 +937,7 @@ public class TrainCardPickerPresenter implements Observer, ITrainCardPickerPrese
             fragment.setLocomotiveCardMinusEnabled(false);
         }
         fragment.setLocomotiveCardCount(Integer.toString(locomotiveCount));
-        pickedMap.put(CARD_COLOR.RAINBOW, locomotiveCount);
+        pickedMap.put(RAINBOW, locomotiveCount);
         fragment.setLocomotiveCardPlusEnabled(true);
         checkRouteClaimStatus();
     }

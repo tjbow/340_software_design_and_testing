@@ -29,9 +29,10 @@ public class TrainCardPickerImage{
     private TextView count;
     private CARD_COLOR color;
 
-    public TrainCardPickerImage(TrainCardPickerFragment fragment, TrainCardPickerPresenter presenter) {
+    public TrainCardPickerImage(TrainCardPickerFragment fragment, ITrainCardPickerPresenter presenter, CARD_COLOR color) {
         this.fragment = fragment;
         this.presenter = presenter;
+        this.color = color;
     }
 
     public void setAsEnabled(boolean bool) {
@@ -39,9 +40,13 @@ public class TrainCardPickerImage{
         {
             layout.setClickable(true);
             layout.setForeground(null);
+            enablePlus(true);
+            enableMinus(false);
         }
         else
         {
+            enablePlus(false);
+            enableMinus(false);
             layout.setClickable(false);
             Drawable drawable = new ColorDrawable(ContextCompat.getColor(fragment.getActivity(), R.color.colorTransWhite));
             layout.setForeground(drawable);
