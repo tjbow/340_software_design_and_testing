@@ -10,5 +10,14 @@ dependencies {
     compile 'junit:junit:4.12'
 }
 
+task createJar(type: Copy) {
+    from('build/intermediates/bundles/release/')
+    into('libs/')
+    include('classes.jar')
+    rename('classes.jar', 'logmanagementlib.jar')
+}
+
+createJar.dependsOn(build)
+
 sourceCompatibility = "1.8"
 targetCompatibility = "1.8"

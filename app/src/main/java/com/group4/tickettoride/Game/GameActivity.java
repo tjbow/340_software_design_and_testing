@@ -175,7 +175,7 @@ public class GameActivity extends AppCompatActivity implements IGameActivity, IM
 
         else {
 
-            Toast.makeText(this, "Route was clicked yo: " + r.getCityA() + " to " + r.getCityB(), Toast.LENGTH_SHORT).show();
+//            Toast.makeText(this, "Route was clicked yo: " + r.getCityA() + " to " + r.getCityB(), Toast.LENGTH_SHORT).show();
             FragmentManager manager = getSupportFragmentManager();
             TrainCardPickerFragment dialog = new TrainCardPickerFragment();
             dialog.show(manager, "TrainCardPickerDialog");

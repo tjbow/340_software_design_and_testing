@@ -156,7 +156,7 @@ public class Game
         InputStream is = null;
         try
         {
-            is = new FileInputStream(new File("shared/src/main/java/com/group4/shared/Model/Game/routes.json"));
+            is = new FileInputStream(new File("routes.json"));
         } catch (FileNotFoundException e)
         {
             e.printStackTrace();
@@ -177,7 +177,7 @@ public class Game
         InputStream is = null;
         try
         {
-            is = new FileInputStream(new File("shared/src/main/java/com/group4/shared/Model/Game/cities.json"));
+            is = new FileInputStream(new File("cities.json"));
         } catch (FileNotFoundException e)
         {
             e.printStackTrace();

@@ -54,7 +54,7 @@
   "yConstraint" : 48.0,
   "labelX" : 81,
   "labelY" : 48,
-  "name" : "Pitsburgh"
+  "name" : "Pittsburgh"
 }
 , {
   "xConstraint" : 75.0,
@@ -170,9 +170,9 @@
   "name" : "Las Vegas"
 }, {
   "xConstraint" : 26,
-  "yConstraint" : 40,
+  "yConstraint" : 44,
   "labelX" : 26,
-  "labelY" : 36,
+  "labelY" : 40,
   "name" : "Salt Lake City"
 }, {
   "xConstraint" : 33,
@@ -182,10 +182,10 @@
   "name" : "Helena"
 }
 , {
-  "xConstraint" : 30,
-  "yConstraint" : 70,
-  "labelX" : 30,
-  "labelY" : 75,
+  "xConstraint" : 28,
+  "yConstraint" : 69,
+  "labelX" : 28,
+  "labelY" : 73,
   "name" : "Phoenix"
   }, {
   "xConstraint" : 37,
@@ -200,8 +200,8 @@
   "labelY" : 70,
   "name" : "Santa Fe"
 } , {
-  "xConstraint" : 38,
-  "yConstraint" : 79,
+  "xConstraint" : 36,
+  "yConstraint" : 80,
   "labelX" : 38,
   "labelY" : 83,
   "name" : "El Paso"
