@@ -345,6 +345,9 @@ public class TrainCardPickerPresenter2 implements ITrainCardPickerPresenter{
             if(cardMap.get(image) == imageMap.get(image).getCount()){
                 imageMap.get(image).enablePlus(false);
             }
+            else if (imageMap.get(image).isVisible() ){
+                imageMap.get(image).enablePlus(true);
+            }
             if(imageMap.get(image).getCount() > 0){
                 imageMap.get(image).enableMinus(true);
             }
@@ -392,7 +395,7 @@ public class TrainCardPickerPresenter2 implements ITrainCardPickerPresenter{
         imageMap.get(color).enablePlus(true);
         fragment.setClaimButtonEnabled(false);
 
-        if(imageMap.get(color).getCount() == 0){
+        if(imageMap.get(color).getCount() == 0 && color != RAINBOW){
             enablePickers(color, true);
             imageMap.get(color).enableMinus(false);
         }

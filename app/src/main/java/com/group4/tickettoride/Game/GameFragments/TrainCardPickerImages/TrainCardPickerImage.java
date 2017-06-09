@@ -109,4 +109,11 @@ public class TrainCardPickerImage{
     public void setCount(TextView count){
         this.count = count;
     }
+
+    public boolean isVisible(){
+        if(layout.getVisibility() == View.VISIBLE){
+            return true;
+        }
+        return false;
+    }
 }
