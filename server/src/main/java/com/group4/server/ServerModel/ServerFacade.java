@@ -475,7 +475,7 @@ public class ServerFacade implements IServer
 
         if(!success)
         {
-            return new Results(false, null, "Claiming route failed. Check train piece count.", null);
+            return new Results(false, null, "Invalid route claim. Claim failed.", null);
         }
 
 //        UPDATE GAME COMMAND

@@ -468,6 +468,16 @@ public class Game
             nameShort = name.substring(0, name.length() - 5);
             if(!canClaimDoubleRoute(nameShort, player)) return false;
         }
+        else if(name.contains("Bottom"))
+        {
+            nameShort = name.substring(0, name.length() - 7);
+            if(!canClaimDoubleRoute(nameShort, player)) return false;
+        }
+        else if(name.contains("Top"))
+        {
+            nameShort = name.substring(0, name.length() - 4);
+            if(!canClaimDoubleRoute(nameShort, player)) return false;
+        }
 
 
         //check if enough train pieces
