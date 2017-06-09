@@ -101,7 +101,6 @@ class EndGamePresenter implements IEndGamePresenter {
         fragment.setRank1TotalPoints(Integer.toString(stats.getTotalScore()));
         fragment.setRank1UsernameColor( getColorStringAsInt( playerInfo.getColor() ) );
 
-        
     }
 
     private void setRank2Info(Player playerInfo)
