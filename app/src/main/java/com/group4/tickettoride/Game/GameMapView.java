@@ -128,6 +128,7 @@ public class GameMapView extends View {
                 float y2 = r.getY2Constraint() / 100 * height;
 
                 paint.setColor(getPlayerColor(r.getPlayer_color()));
+                paint.setStrokeWidth(25f);
 
                 canvas.drawLine(x1, y1, x2, y2, paint);
             }

@@ -14,24 +14,31 @@ import java.util.List;
 
 public class DrawnFirstCardState extends State{
 
-    private String error = "You must draw another Train Card";
-
     public DrawnFirstCardState(GamePresenter gamePresenter, CardDecksPresenter cardDecksPresenter) {
         super(gamePresenter, cardDecksPresenter);
+        setError("You must draw another Train Card");
     }
 
     @Override
     public void drawTrainCard(){
+
+        gamePresenter.setState(new PendingState(gamePresenter, cardDecksPresenter));
+        cardDecksPresenter.setState(new PendingState(gamePresenter, cardDecksPresenter));
+
         NextLayerFacade.SINGLETON.drawFaceDownTrainCard();
     }
 
     @Override
     public void drawFaceUpTrainCard(int num){
         if(cardDecksPresenter.getFaceUpCards().get(num).getColor() == CARD_COLOR.RAINBOW){
-            String locomotiveError = "You cannot select a Locomotive";
-            gamePresenter.displayError(locomotiveError);
+            setError("You cannot select a Locomotive");
+            gamePresenter.displayError(error);
         }
         else{
+
+            gamePresenter.setState(new PendingState(gamePresenter, cardDecksPresenter));
+            cardDecksPresenter.setState(new PendingState(gamePresenter, cardDecksPresenter));
+
             NextLayerFacade.SINGLETON.drawFaceUpTrainCard(num);
         }
     }
