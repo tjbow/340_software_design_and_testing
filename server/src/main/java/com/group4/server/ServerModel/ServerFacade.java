@@ -432,7 +432,12 @@ public class ServerFacade implements IServer
         game.addCommand(updatePlayersCommandData);
         game.addCommand(updateTurnHistoryCommandData);
 
-        return new Results(true, "Train cards drawn", null, null);
+        int size = game.getPlayerByUserName(userName)
+                .getPlayerHand().getTrainCards().getCardDeck().size();
+        CARD_COLOR color = game.getPlayerByUserName(userName)
+                .getPlayerHand().getTrainCards().getCardDeck().get(size - 1).getColor();
+
+        return new Results(false, null, color + " train card drawn", null);
     }
 
     @Override
