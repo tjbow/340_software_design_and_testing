@@ -539,7 +539,7 @@ public class Game
         addTurn(new Message("Claimed the " + claimedSegment.getRouteColor() + " route from " + claimedSegment.getCityA() + " to " + claimedSegment.getCityB(), player.getUserName(), player.getColor()));
 
         setLongestPathPlayer();
-        setRanks();
+        setWinnerDuringGame();
 
         return true;
     }
@@ -714,6 +714,38 @@ public class Game
         }
     }
 
+    public void setWinnerDuringGame()
+    {
+        int maxScore = 0;
+
+        for (Player player : players)
+        {
+            if (player.getStats().getClaimedRouteScore() > maxScore)
+            {
+                //set maxScore to their score
+                maxScore = player.getStats().getClaimedRouteScore();
+            }
+        }
+        //now that we have the maxScore for all players, mark all players with that score as winning
+        //(you can be tied) except for at 0
+        if (maxScore != 0)
+        {
+            for (Player player : players)
+            {
+                if (player.getStats().getClaimedRouteScore() == maxScore)
+                {
+                    player.setWinning(true);
+                }
+                else
+                {
+                    player.setWinning(false);
+                }
+            }
+        }
+
+
+    }
+
 
     private void calculateScores()
     {
@@ -746,20 +778,30 @@ public class Game
 
     private void setLongestPathPlayer()
     {
-        Player longestPathWinner = players.get(0);
         int longestPathSize = 0;
+        Map<Player, Integer> playerLongestPathCount = new HashMap<>();
 
         for (Player player : players)
         {
+            playerLongestPathCount.put(player, player.getLongestPath());
             if (player.getLongestPath() > longestPathSize)
             {
                 longestPathSize = player.getLongestPath();
-                longestPathWinner = player;
             }
-            player.setLongestPath(false);
         }
 
-        longestPathWinner.setLongestPath(true);
+        for (Player player : players)
+        {
+            if (playerLongestPathCount.get(player) == longestPathSize)
+            {
+                player.setLongestPath(true);
+            }
+            else
+            {
+                player.setLongestPath(false);
+            }
+        }
+
     }
 
 //    CHAT HISTORY
