@@ -226,7 +226,7 @@
   "routeColor":"WHITE",
   "highlighted":false
 }, {
-  "routeId":"MontrealNewYorkLeft",
+  "routeId":"MontrealNewYork",
   "claimed":false,
   "length":3,
   "score":0,
@@ -426,7 +426,7 @@
   "length":6,
   "score":0,
   "cityA":"Duluth",
-  "cityB":"Chicago",
+  "cityB":"Toronto",
   "x1Constraint":72,
   "y1Constraint":31,
   "x2Constraint":58,
@@ -737,7 +737,7 @@
   "claimed":false,
   "length":2,
   "score":0,
-  "cityA":"LittleRock",
+  "cityA":"Dallas",
   "cityB":"OklahomaCity",
   "x1Constraint":50,
   "y1Constraint":76,
@@ -1085,7 +1085,8 @@
   "routeColor":"YELLOW",
   "highlighted":false
 },{
-  "routeId":"LasVegasAngelesBottom",
+  "routeId":"LasVegasLosAngeles",
+  "routeId":"LasVegasLosAngeles",
   "claimed":false,
   "length":2,
   "score":0,

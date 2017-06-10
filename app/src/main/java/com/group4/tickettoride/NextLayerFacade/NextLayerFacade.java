@@ -2,6 +2,7 @@ package com.group4.tickettoride.NextLayerFacade;
 
 import com.group4.shared.Model.Deck.DestinationCard;
 import com.group4.shared.Model.Deck.TrainCard;
+import com.group4.shared.Model.Graph.RoutePaths;
 import com.group4.shared.Model.Map.RouteList;
 import com.group4.shared.Model.Map.RouteSegment;
 import com.group4.shared.Model.Message;
@@ -11,6 +12,7 @@ import com.group4.tickettoride.Network.ServerProxy;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 public class NextLayerFacade implements INextLayerFacade {
 
@@ -54,7 +56,25 @@ public class NextLayerFacade implements INextLayerFacade {
 
     @Override
     public void claimRoute(String routeId, List<TrainCard> usedCards) {
-
+//TODO: Remove Debug
+// This is debug code to find issues with the routes and cities
+//        RoutePaths paths = new RoutePaths();
+//
+//        Set<RouteSegment> routes = ClientModel.SINGLETON.getGame().getRoutes().getRouteList();
+//        for(RouteSegment route : routes)
+//        {
+//            paths.add(route);
+//            System.out.println(route.getCityA() + " to " + route.getCityB());
+//        }
+//        for(RouteSegment route : routes)
+//        {
+//            System.out.println(route.getRouteId());
+//        }
+//        for(String city : paths.getPlayerGraph().vertexSet())
+//        {
+//            System.out.println(city);
+//        }
+//        System.out.println("done");
         RouteSegment segment = ClientModel.SINGLETON.getGame().getRoutes().findRoute(routeId);
         String username = ClientModel.SINGLETON.getUser().getUsername();
 

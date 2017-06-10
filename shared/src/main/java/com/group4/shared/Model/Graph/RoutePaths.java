@@ -67,4 +67,13 @@ public class RoutePaths
     {
         playerGraph.clear();
     }
+
+    /**
+     * Getter for the player graph. Mostly for debug purposes
+     * @return the player graph
+     */
+    public TicketToRideGraph getPlayerGraph()
+    {
+        return playerGraph;
+    }
 }
