@@ -477,6 +477,11 @@ public class ServerFacade implements IServer
 
         if(!success)
         {
+            CUpdateStateCommandData stateCommandData = new CUpdateStateCommandData();
+            stateCommandData.setType("updatestate");
+            stateCommandData.setUserName(userName);
+            stateCommandData.setState(MOVE_STATE.MY_TURN);
+            game.addCommand(stateCommandData);
             return new Results(false, null, "Invalid route claim. Claim failed.", null);
         }
 

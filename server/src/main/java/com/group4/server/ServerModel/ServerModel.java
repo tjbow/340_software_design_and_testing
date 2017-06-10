@@ -4,6 +4,7 @@ package com.group4.server.ServerModel;
  * Created by Tom on 5/14/2017.
  */
 
+import com.group4.shared.Model.Deck.Decks;
 import com.group4.shared.Model.Game.GAME_STATUS;
 import com.group4.shared.Model.Game.Game;
 import com.group4.shared.Model.Game.GameList;
@@ -14,6 +15,7 @@ import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 
@@ -228,7 +230,13 @@ public class ServerModel
     {
         Game game = gameList.getGameByName(gameName);
         if(game != null)
+        {
             game.setStatus(GAME_STATUS.FINISHED);
+            game.getCommandList().setCommandList(new ArrayList<>());
+            game.getTurnHistory().setMessageList(new ArrayList<>());
+            game.getRoutes().setRouteList(new HashSet<>());
+            game.setDecks(new Decks());
+        }
         else
             return false;
         return true;
