@@ -14,7 +14,7 @@
         <activity
             android:name=".Login_Register.Login_RegisterActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
-            android:screenOrientation="portrait">
+            android:screenOrientation="landscape">
             <intent-filter>
             <action android:name="android.intent.action.MAIN" />
 
@@ -30,11 +30,11 @@
         <activity
             android:name=".GameList.GameListActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="landscape"/>
         <activity
             android:name=".Lobby.LobbyActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
-            android:screenOrientation="portrait">
+            android:screenOrientation="landscape">
 
             <!-- <intent-filter> -->
             <!-- <action android:name="android.intent.action.MAIN" /> -->
