@@ -539,6 +539,7 @@ public class Game
         addTurn(new Message("Claimed the " + claimedSegment.getRouteColor() + " route from " + claimedSegment.getCityA() + " to " + claimedSegment.getCityB(), player.getUserName(), player.getColor()));
 
         setLongestPathPlayer();
+        setRanks();
 
         return true;
     }
@@ -701,6 +702,14 @@ public class Game
         for(Player player : rankedList)
         {
             player.getStats().setRank(rank);
+            if(rank == 1)
+            {
+                player.setWinning(true);
+            }
+            else
+            {
+                player.setWinning(false);
+            }
             rank++;
         }
     }
@@ -747,6 +756,7 @@ public class Game
                 longestPathSize = player.getLongestPath();
                 longestPathWinner = player;
             }
+            player.setLongestPath(false);
         }
 
         longestPathWinner.setLongestPath(true);

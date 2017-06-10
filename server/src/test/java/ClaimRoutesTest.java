@@ -33,31 +33,31 @@ public class ClaimRoutesTest
         mRouteList = game.getRoutes();
 
         User user = new User("tyler", "t");
-        User user1 = new User("todd", "t");
-        User user2= new User("tiff", "t");
-        User user3 = new User("trent", "t");
-        User user4 = new User("dave", "t");
+        User user1 = new User("katie", "t");
+//        User user2= new User("tiff", "t");
+//        User user3 = new User("trent", "t");
+//        User user4 = new User("dave", "t");
 
         Player player = new Player(user);
         Player player1 = new Player(user1);
-        Player player2 = new Player(user2);
-        Player player3 = new Player(user3);
-        Player player4 = new Player(user4);
+//        Player player2 = new Player(user2);
+//        Player player3 = new Player(user3);
+//        Player player4 = new Player(user4);
 
         game.addPlayer(player);
         game.addPlayer(player1);
-        game.addPlayer(player2);
-        game.addPlayer(player3);
-        game.addPlayer(player4);
+//        game.addPlayer(player2);
+//        game.addPlayer(player3);
+//        game.addPlayer(player4);
 
         game.getPlayers().forEach(Player::initializeGame);
         game.dealInitialGameCards();
 
-        player.getStats().setClaimedRouteScore(15);
-        player1.getStats().setClaimedRouteScore(15);
-        player2.getStats().setClaimedRouteScore(0);
-        player3.getStats().setClaimedRouteScore(0);
-        player4.getStats().setClaimedRouteScore(13);
+        player.getStats().setClaimedRouteScore(6);
+        player1.getStats().setClaimedRouteScore(9);
+//        player2.getStats().setClaimedRouteScore(0);
+//        player3.getStats().setClaimedRouteScore(0);
+//        player4.getStats().setClaimedRouteScore(13);
     }
 
     @After
