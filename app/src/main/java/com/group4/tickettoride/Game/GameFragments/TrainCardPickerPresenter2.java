@@ -131,9 +131,6 @@ public class TrainCardPickerPresenter2 implements ITrainCardPickerPresenter{
 
     @Override
     public void onClaim() {
-
-        ClientModel.SINGLETON.updateState(ClientModel.SINGLETON.getUser().getUsername(), MOVE_STATE.PENDING);
-
         gamePresenter.getState().claimRoute(route.getRouteId(), claim());
     }
 

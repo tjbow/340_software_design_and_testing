@@ -22,10 +22,10 @@ public class DrawnFirstCardState extends State{
     @Override
     public void drawTrainCard(){
 
+        NextLayerFacade.SINGLETON.drawFaceDownTrainCard();
+
         gamePresenter.setState(new PendingState(gamePresenter, cardDecksPresenter));
         cardDecksPresenter.setState(new PendingState(gamePresenter, cardDecksPresenter));
-
-        NextLayerFacade.SINGLETON.drawFaceDownTrainCard();
     }
 
     @Override
@@ -35,11 +35,10 @@ public class DrawnFirstCardState extends State{
             gamePresenter.displayError(error);
         }
         else{
+            NextLayerFacade.SINGLETON.drawFaceUpTrainCard(num);
 
             gamePresenter.setState(new PendingState(gamePresenter, cardDecksPresenter));
             cardDecksPresenter.setState(new PendingState(gamePresenter, cardDecksPresenter));
-
-            NextLayerFacade.SINGLETON.drawFaceUpTrainCard(num);
         }
     }
 

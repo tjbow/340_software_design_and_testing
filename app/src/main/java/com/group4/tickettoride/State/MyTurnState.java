@@ -21,36 +21,36 @@ public class MyTurnState extends State{
     @Override
     public void drawTrainCard(){
 
+        NextLayerFacade.SINGLETON.drawFaceDownTrainCard();
+
         gamePresenter.setState(new PendingState(gamePresenter, cardDecksPresenter));
         cardDecksPresenter.setState(new PendingState(gamePresenter, cardDecksPresenter));
-
-        NextLayerFacade.SINGLETON.drawFaceDownTrainCard();
     }
 
     @Override
     public void drawFaceUpTrainCard(int num){
 
+        NextLayerFacade.SINGLETON.drawFaceUpTrainCard(num);
+
         gamePresenter.setState(new PendingState(gamePresenter, cardDecksPresenter));
         cardDecksPresenter.setState(new PendingState(gamePresenter, cardDecksPresenter));
-
-        NextLayerFacade.SINGLETON.drawFaceUpTrainCard(num);
     }
 
     @Override
     public void drawDestCards(){
 
+        NextLayerFacade.SINGLETON.drawDestinationCards();
+
         gamePresenter.setState(new PendingState(gamePresenter, cardDecksPresenter));
         cardDecksPresenter.setState(new PendingState(gamePresenter, cardDecksPresenter));
-
-        NextLayerFacade.SINGLETON.drawDestinationCards();
     }
 
     @Override
     public void claimRoute(String routeId, List<TrainCard> usedCards){
 
+        NextLayerFacade.SINGLETON.claimRoute(routeId, usedCards);
+
         gamePresenter.setState(new PendingState(gamePresenter, cardDecksPresenter));
         cardDecksPresenter.setState(new PendingState(gamePresenter, cardDecksPresenter));
-
-        NextLayerFacade.SINGLETON.claimRoute(routeId, usedCards);
     }
 }
