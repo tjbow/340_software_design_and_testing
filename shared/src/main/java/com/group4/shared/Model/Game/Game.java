@@ -436,29 +436,6 @@ public class Game
         }
     }
 
-    private boolean canClaimDoubleRoute(String nameShort, Player player)
-    {
-        for(RouteSegment routeSegment : player.getClaimedRouteList().getRouteList())
-        {
-            if(routeSegment.getRouteId().contains(nameShort))
-            {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    private boolean doubleRouteIsValid(String nameShort)
-    {
-        if(players.size() > 3) return true;
-
-        for(RouteSegment segment : getRoutes().getRouteList())
-        {
-            if(segment.getRouteId().contains(nameShort) && segment.isClaimed()) return false;
-        }
-        return true;
-    }
-
     public boolean playerTurn_claimRoute(String userName, RouteSegment claimedSegment, List<TrainCard> usedCards)
     {
         Player player = this.getPlayerByUserName(userName);
@@ -561,6 +538,31 @@ public class Game
 
         addTurn(new Message("Claimed the " + claimedSegment.getRouteColor() + " route from " + claimedSegment.getCityA() + " to " + claimedSegment.getCityB(), player.getUserName(), player.getColor()));
 
+        setLongestPathPlayer();
+
+        return true;
+    }
+
+    private boolean canClaimDoubleRoute(String nameShort, Player player)
+    {
+        for(RouteSegment routeSegment : player.getClaimedRouteList().getRouteList())
+        {
+            if(routeSegment.getRouteId().contains(nameShort))
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private boolean doubleRouteIsValid(String nameShort)
+    {
+        if(players.size() > 3) return true;
+
+        for(RouteSegment segment : getRoutes().getRouteList())
+        {
+            if(segment.getRouteId().contains(nameShort) && segment.isClaimed()) return false;
+        }
         return true;
     }
 
