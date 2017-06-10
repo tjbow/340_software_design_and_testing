@@ -76,7 +76,6 @@ public class Login_RegisterActivity extends AppCompatActivity implements ILogin_
             public void afterTextChanged(Editable s) {
                 if (!s.toString().equals("") && !password.getText().toString().equals(""))
                 {
-                    //TODO @john: fix this code duplication
                     setLoginEnabled(true);
                     setRegisterEnabled(true);
                 }

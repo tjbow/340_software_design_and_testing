@@ -110,6 +110,7 @@
                 android:id="@+id/train_deck_remain_text"
                 android:layout_width="match_parent"
                 android:layout_height="0dip"
+                android:textColor="@color/colorBlack"
                 android:layout_weight="0.11" android:gravity="center"/>
             <Space
                 android:layout_width="match_parent"
@@ -119,6 +120,7 @@
                 android:id="@+id/dest_deck_remain_text"
                 android:layout_width="match_parent"
                 android:layout_height="0dip"
+                android:textColor="@color/colorBlack"
                 android:layout_weight="0.11" android:gravity="center"/>
             <Space
                 android:layout_width="match_parent"
