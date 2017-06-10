@@ -236,12 +236,12 @@
   "y1Constraint":11.5,
   "x2Constraint":86.5,
   "y2Constraint":34,
-  "routeColor":"GRAY",
+  "routeColor":"BLUE",
   "highlighted":false
 }, {
   "routeId":"NewYorkBostonTop",
   "claimed":false,
-  "length":3,
+  "length":2,
   "score":0,
   "cityA":"NewYork",
   "cityB":"Boston",
@@ -254,7 +254,7 @@
 }, {
   "routeId":"NewYorkBostonBottom",
   "claimed":false,
-  "length":3,
+  "length":2,
   "score":0,
   "cityA":"NewYork",
   "cityB":"Boston",
@@ -267,7 +267,7 @@
 }, {
   "routeId":"BostonMontrealBottom",
   "claimed":false,
-  "length":3,
+  "length":2,
   "score":0,
   "cityA":"Montreal",
   "cityB":"Boston",
@@ -280,7 +280,7 @@
 }, {
   "routeId":"BostonMontrealTop",
   "claimed":false,
-  "length":3,
+  "length":2,
   "score":0,
   "cityA":"Montreal",
   "cityB":"Boston",
@@ -293,7 +293,7 @@
 }, {
   "routeId":"AtlantaRaleigh",
   "claimed":false,
-  "length":3,
+  "length":2,
   "score":0,
   "cityA":"Atlanta",
   "cityB":"Raleigh",
@@ -319,7 +319,7 @@
 }, {
   "routeId":"MontrealSaultStMarie",
   "claimed":false,
-  "length":4,
+  "length":5,
   "score":0,
   "cityA":"Montreal",
   "cityB":"SaultStMarie",
@@ -1086,7 +1086,6 @@
   "highlighted":false
 },{
   "routeId":"LasVegasLosAngeles",
-  "routeId":"LasVegasLosAngeles",
   "claimed":false,
   "length":2,
   "score":0,
@@ -1166,7 +1165,7 @@
 },{
   "routeId":"ElPasoSantaFe",
   "claimed":false,
-  "length":3,
+  "length":2,
   "score":0,
   "cityA":"ElPaso",
   "cityB":"SantaFe",
