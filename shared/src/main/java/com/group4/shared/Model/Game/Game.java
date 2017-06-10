@@ -224,7 +224,7 @@ public class Game
         //give four train cards to each player and remove them from the game's tcdeck
         for(Player player : players)
         {
-            int count = 20;
+            int count = 4;
             for(Iterator<TrainCard> iterator = decks.getTrainCardDeck().getCardDeck().iterator(); iterator.hasNext();)
             {
                 TrainCard current = iterator.next();
@@ -448,6 +448,17 @@ public class Game
         return true;
     }
 
+    private boolean doubleRouteIsValid(String nameShort)
+    {
+        if(players.size() > 3) return true;
+
+        for(RouteSegment segment : getRoutes().getRouteList())
+        {
+            if(segment.getRouteId().contains(nameShort) && segment.isClaimed()) return false;
+        }
+        return true;
+    }
+
     public boolean playerTurn_claimRoute(String userName, RouteSegment claimedSegment, List<TrainCard> usedCards)
     {
         Player player = this.getPlayerByUserName(userName);
@@ -455,28 +466,27 @@ public class Game
         //check if route is available.
         if(claimedSegment.isClaimed()) return false;
 
-        //TODO: check for double-route rules (two routes between same two cities)
         String name = claimedSegment.getRouteId();
         String nameShort = name;
         if(name.contains("Right"))
         {
             nameShort = name.substring(0, name.length() - 6);
-            if(!canClaimDoubleRoute(nameShort, player)) return false;
+            if(!canClaimDoubleRoute(nameShort, player) || !doubleRouteIsValid(nameShort)) return false;
         }
         else if(name.contains("Left"))
         {
             nameShort = name.substring(0, name.length() - 5);
-            if(!canClaimDoubleRoute(nameShort, player)) return false;
+            if(!canClaimDoubleRoute(nameShort, player) || !doubleRouteIsValid(nameShort)) return false;
         }
         else if(name.contains("Bottom"))
         {
             nameShort = name.substring(0, name.length() - 7);
-            if(!canClaimDoubleRoute(nameShort, player)) return false;
+            if(!canClaimDoubleRoute(nameShort, player) || !doubleRouteIsValid(nameShort)) return false;
         }
         else if(name.contains("Top"))
         {
             nameShort = name.substring(0, name.length() - 4);
-            if(!canClaimDoubleRoute(nameShort, player)) return false;
+            if(!canClaimDoubleRoute(nameShort, player) || !doubleRouteIsValid(nameShort)) return false;
         }
 
 
