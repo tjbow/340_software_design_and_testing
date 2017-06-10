@@ -13,17 +13,17 @@ import java.util.ArrayList;
  * Created by tyler on 6/9/17.
  */
 
-public class GetSnapShotCommandData extends Command
+public class GetSnapshotCommandData extends Command
 {
-    User user;
+    String userName;
 
-    public User getUser()
+    public String getUserName()
     {
-        return user;
+        return userName;
     }
 
-    public void setUser(User user)
+    public void setUserName(String userName)
     {
-        this.user = user;
+        this.userName = userName;
     }
 }

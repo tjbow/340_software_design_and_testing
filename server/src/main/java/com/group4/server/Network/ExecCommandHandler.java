@@ -10,6 +10,7 @@ import com.group4.server.Command.DrawTrainCardsCommand;
 import com.group4.server.Command.EndGameCommand;
 import com.group4.server.Command.GetGameListCommand;
 import com.group4.server.Command.GetPendingCommands;
+import com.group4.server.Command.GetSnapshotCommand;
 import com.group4.server.Command.JoinGameCommand;
 import com.group4.server.Command.LoginCommand;
 import com.group4.server.Command.RegisterCommand;
@@ -138,6 +139,14 @@ public class ExecCommandHandler
                 {
                     ClaimRouteCommand claimRouteCommand = new Gson().fromJson(requestBody, ClaimRouteCommand.class);
                     results = claimRouteCommand.execute();
+                }
+                else results = noAuthToken();
+                break;
+            case "getsnapshot":
+                if(ServerModel.getInstance().getTempUser() != null)
+                {
+                    GetSnapshotCommand getSnapshotCommand = new Gson().fromJson(requestBody, GetSnapshotCommand.class);
+                    results = getSnapshotCommand.execute();
                 }
                 else results = noAuthToken();
                 break;

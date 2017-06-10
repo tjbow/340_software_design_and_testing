@@ -173,7 +173,10 @@ public class ClientModel extends Observable {
     }
 
     public void updateMap(RouteList routeList, List<City> cities){
-        game.setRoutes(routeList);
+        if(game != null)
+        {
+            game.setRoutes(routeList);
+        }
         sendToObservers(routeList);
 //        game.setCities(cities);
 //        sendToObservers(cities);
@@ -213,7 +216,7 @@ public class ClientModel extends Observable {
 
     public void updateState(String userName, MOVE_STATE state){
 
-        if(userName.equals(getPlayer().getUserName())){
+        if(player != null && userName.equals(getPlayer().getUserName())){
             sendToObservers(state);
         }
     }

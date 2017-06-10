@@ -21,6 +21,7 @@ import com.group4.shared.Model.User;
 import com.group4.shared.Proxy.IClient;
 import com.group4.shared.command.ClientCommand;
 import com.group4.shared.command.IClientCommand;
+import com.group4.tickettoride.Network.ServerProxy;
 
 import java.util.List;
 import java.util.concurrent.ExecutorService;
@@ -95,11 +96,13 @@ public class ClientFacade implements IClient
         ClientModel.SINGLETON.setCommandIDIndex(0);
         ClientModel.SINGLETON.setGameIfUserIsPlaying();
 
-        poller.setUpdateGameList(true);
+//        poller.setUpdateGameList(true);
         poller.setUpdateGameInfo(false);
 
         if (ClientModel.SINGLETON.getGame() != null)
         {
+            ServerProxy.SINGLETON.getSnapshot(username);
+
             //user is already in a game, send status to LoginPresenter which decides to start
             //either LobbyActivity or GameActivity
             GAME_STATUS status = ClientModel.SINGLETON.getGame().getStatus();
@@ -107,13 +110,17 @@ public class ClientFacade implements IClient
             {
                 poller.setUpdateGameList(false);
             }
+            else
+            {
+                poller.setUpdateGameList(true);
+            }
             ClientModel.SINGLETON.sendToObservers(status);
 
-            poller.setUpdateGameInfo(true);
         }
         else
         {
             //user is not part of a game, move to GameListActivity
+            poller.setUpdateGameList(true);
             ClientModel.SINGLETON.sendToObservers(true);
         }
 
@@ -175,6 +182,15 @@ public class ClientFacade implements IClient
     {
         ClientModel.SINGLETON.updateState(userName, state);
 
+        return null;
+    }
+
+    @Override
+    public Results onUpdateIndexState(int currentIndex)
+    {
+        ClientModel.SINGLETON.setCommandIDIndex(currentIndex);
+
+        poller.setUpdateGameInfo(true);
         return null;
     }
 

@@ -25,6 +25,7 @@ import com.group4.tickettoride.Command.CLoginCommand;
 import com.group4.tickettoride.Command.CRegisterCommand;
 import com.group4.tickettoride.Command.CStartGameCommand;
 import com.group4.tickettoride.Command.CUpdateChatCommand;
+import com.group4.tickettoride.Command.CUpdateClientIndexCommand;
 import com.group4.tickettoride.Command.CUpdateGameCommand;
 import com.group4.tickettoride.Command.CUpdateGameStatsCommand;
 import com.group4.tickettoride.Command.CUpdateMapCommand;
@@ -133,6 +134,10 @@ public class Serializer
                     case "updatemap":
                         ClientCommand updateMap = new Gson().fromJson(next.toString(), CUpdateMapCommand.class);
                         iCommands.add(updateMap);
+                        break;
+                    case "updateindex":
+                        ClientCommand updateIndex = new Gson().fromJson(next.toString(), CUpdateClientIndexCommand.class);
+                        iCommands.add(updateIndex);
                         break;
                     default:
                         System.out.println("no command found (serializer)");

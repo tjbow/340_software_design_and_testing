@@ -18,6 +18,7 @@ import com.group4.shared.command.Server.DrawTrainCardsCommandData;
 import com.group4.shared.command.Server.EndGameCommandData;
 import com.group4.shared.command.Server.GetGameListCommandData;
 import com.group4.shared.command.Server.GetPendingCommandsData;
+import com.group4.shared.command.Server.GetSnapshotCommandData;
 import com.group4.shared.command.Server.JoinGameCommandData;
 import com.group4.shared.command.Server.LoginCommandData;
 import com.group4.shared.command.Server.RegisterCommandData;
@@ -225,6 +226,17 @@ public class ServerProxy implements IServer
         cmd.setUsedCards(usedCards);
         threadIt(cmd);
         
+        return null;
+    }
+
+    @Override
+    public Results getSnapshot(String userName)
+    {
+        GetSnapshotCommandData cmd = new GetSnapshotCommandData();
+        cmd.setType("getsnapshot");
+        cmd.setUserName(userName);
+        threadIt(cmd);
+
         return null;
     }
 

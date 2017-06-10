@@ -33,4 +33,5 @@ public interface IServer {
     Results drawFaceUpTrainCard(String userName, int position);
     Results drawFaceDownTrainCard(String userName);
     Results claimRoute(String userName, RouteSegment claimedSegment, List<TrainCard> usedCards);
+    Results getSnapshot(String userName);
 }

@@ -21,6 +21,7 @@ import com.group4.shared.command.Client.CLoginCommandData;
 import com.group4.shared.command.Client.CRegisterCommandData;
 import com.group4.shared.command.Client.CStartGameCommandData;
 import com.group4.shared.command.Client.CUpdateChatCommandData;
+import com.group4.shared.command.Client.CUpdateClientIndexCommandData;
 import com.group4.shared.command.Client.CUpdateGameCommandData;
 import com.group4.shared.command.Client.CUpdateGameStatsCommandData;
 import com.group4.shared.command.Client.CUpdateMapCommandData;
@@ -43,7 +44,7 @@ public class ServerFacade implements IServer
     /**
      * Gets the Singleton instance of the ServerModel to use locally
      */
-    ServerModel serverModel = ServerModel.getInstance();
+    private ServerModel serverModel = ServerModel.getInstance();
 
     @Override
     public Results login(User user)
@@ -288,6 +289,7 @@ public class ServerFacade implements IServer
     {
         //get the game the user is in
         Game game = serverModel.getGameList().getGameByUsername(user.getUsername());
+        Player player = game.getPlayerByUserName(user.getUsername());
 
         //get the commandlist based on the index passed
         CommandList playerCommandList = game.getCommandList().getCommandListAfterIndex(lastCmdExecuted);
@@ -520,5 +522,64 @@ public class ServerFacade implements IServer
         System.out.println(userName + " has claimed the route from " + claimedSegment.getCityA() + " to " + claimedSegment.getCityB() + ".");
 
         return new Results(true, "Route Claimed.", null, null);
+    }
+
+    @Override
+    public Results getSnapshot(String userName)
+    {
+        System.out.println(userName + "\'s game requested a snapshot of the game");
+        Game game = serverModel.getGameList().getGameByUsername(userName);
+
+        CUpdateClientIndexCommandData indexCommandData = new CUpdateClientIndexCommandData();
+        indexCommandData.setType("updateindex");
+        indexCommandData.setCurrentIndex(game.getCommandList().size());
+
+        CUpdateGameCommandData gameCommandData = new CUpdateGameCommandData();
+        gameCommandData.setType("updategame");
+        gameCommandData.setDeckState(game.getDecks());
+        gameCommandData.setStatus(game.getStatus());
+
+        CUpdatePlayersCommandData playersCommandData = new CUpdatePlayersCommandData();
+        playersCommandData.setType("updateplayers");
+        playersCommandData.setPlayerData(game.getPlayers());
+
+        CUpdateStateCommandData stateCommandData = new CUpdateStateCommandData();
+        stateCommandData.setType("updatestate");
+        stateCommandData.setUserName(userName);
+        MOVE_STATE state = MOVE_STATE.NOT_MY_TURN;
+        for(Player player : game.getPlayers())
+        {
+            if(player.getUserName().equals(userName))
+            {
+                state = player.getCurrentState();
+                break;
+            }
+        }
+        stateCommandData.setState(state);
+
+        CUpdateMapCommandData mapCommandData = new CUpdateMapCommandData();
+        mapCommandData.setType("updatemap");
+        mapCommandData.setRouteSegments(game.getRoutes());
+        mapCommandData.setCities(game.getCities());
+
+        CUpdateChatCommandData chatCommandData = new CUpdateChatCommandData();
+        chatCommandData.setType("updatechat");
+        chatCommandData.setChatHistory(game.getChatHistory());
+
+        CUpdateTurnHistoryCommandData turnHistoryCommandData = new CUpdateTurnHistoryCommandData();
+        turnHistoryCommandData.setType("updateturn");
+        turnHistoryCommandData.setTurnHistory(game.getTurnHistory());
+
+        CommandList cmdList = new CommandList();
+        cmdList.add(indexCommandData);
+
+        game.addCommand(gameCommandData);
+        game.addCommand(playersCommandData);
+        game.addCommand(mapCommandData);
+        game.addCommand(chatCommandData);
+        game.addCommand(turnHistoryCommandData);
+        game.addCommand(stateCommandData);
+
+        return new Results(true, "Get Snapshot", null, cmdList);
     }
 }

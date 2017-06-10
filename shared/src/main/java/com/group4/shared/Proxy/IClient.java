@@ -44,4 +44,5 @@ public interface IClient
 
     Results onUpdateState(String userName, MOVE_STATE state);
     Results onDrawDestinationCards(List<DestinationCard> receivedCards);
+    Results onUpdateIndexState(int currentIndex);
 }
