@@ -12,15 +12,15 @@
   "name" : "Charleston"
 }, {
   "xConstraint" : 88.0,
-  "yConstraint" : 53.0,
+  "yConstraint" : 52.0,
   "labelX" : 94.5,
   "labelY" : 53,
   "name" : "Washington"
 }
 , {
-  "xConstraint" : 87.0,
-  "yConstraint" : 35.0,
-  "labelX" : 90,
+  "xConstraint" : 86.0,
+  "yConstraint" : 36.0,
+  "labelX" : 91,
   "labelY" : 37,
   "name" : "New York"
 }
@@ -70,8 +70,8 @@
   "labelY" : 17,
   "name" : "Sault St. Marie"
 }, {
-  "xConstraint" : 63,
-  "yConstraint" : 40,
+  "xConstraint" : 63.4,
+  "yConstraint" : 40.3,
   "labelX" : 63,
   "labelY" : 38,
   "name" : "Chicago"
@@ -103,19 +103,19 @@
   "labelY" : 70,
   "name" : "Little Rock"
 }, {
-  "xConstraint" : 51,
+  "xConstraint" : 50,
   "yConstraint" : 55,
-  "labelX" : 53,
+  "labelX" : 52,
   "labelY" : 61,
   "name" : "Kansas City"
 }, {
   "xConstraint" : 50,
-  "yConstraint" : 44,
+  "yConstraint" : 43,
   "labelX" : 50,
-  "labelY" : 48,
+  "labelY" : 46.5,
   "name" : "Omaha"
 }, {
-  "xConstraint" : 57,
+  "xConstraint" : 56.2,
   "yConstraint" : 29,
   "labelX" : 57,
   "labelY" : 34,
@@ -152,13 +152,13 @@
   "name" : "Portland"
 }, {
   "xConstraint" : 6,
-  "yConstraint" : 46,
+  "yConstraint" : 47,
   "labelX" : 7,
   "labelY" : 50,
   "name" : "San Francisco"
 }, {
   "xConstraint" : 11,
-  "yConstraint" : 64,
+  "yConstraint" : 65,
   "labelX" : 14,
   "labelY" : 67,
   "name" : "Los Angeles"
@@ -169,15 +169,15 @@
   "labelY" : 59,
   "name" : "Las Vegas"
 }, {
-  "xConstraint" : 26,
+  "xConstraint" : 26.5,
   "yConstraint" : 44,
   "labelX" : 26,
   "labelY" : 40,
   "name" : "Salt Lake City"
 }, {
-  "xConstraint" : 33,
+  "xConstraint" : 33.6,
   "yConstraint" : 28,
-  "labelX" : 33,
+  "labelX" : 34,
   "labelY" : 31,
   "name" : "Helena"
 }
@@ -207,9 +207,9 @@
   "name" : "El Paso"
 }, {
   "xConstraint" : 53,
-  "yConstraint" : 82,
+  "yConstraint" : 83,
   "labelX" : 53,
-  "labelY" : 85,
+  "labelY" : 86,
   "name" : "Houston"
 }, {
   "xConstraint" : 50,

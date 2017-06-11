@@ -1,3 +1,4 @@
+
 [
   {
     "routeId":"SeattleVancouverRight",
@@ -291,19 +292,32 @@
   "routeColor":"GRAY",
   "highlighted":false
 }, {
-  "routeId":"AtlantaRaleigh",
+  "routeId":"AtlantaRaleighLeft",
   "claimed":false,
   "length":2,
   "score":0,
   "cityA":"Atlanta",
   "cityB":"Raleigh",
-  "x1Constraint":80,
-  "y1Constraint":60,
+  "x1Constraint":78,
+  "y1Constraint":61,
   "x2Constraint":73,
-  "y2Constraint":68,
+  "y2Constraint":67,
   "routeColor":"GRAY",
   "highlighted":false
 }, {
+  "routeId":"AtlantaRaleighRight",
+  "claimed":false,
+  "length":2,
+  "score":0,
+  "cityA":"Atlanta",
+  "cityB":"Raleigh",
+  "x1Constraint":79.3,
+  "y1Constraint":63,
+  "x2Constraint":74.4,
+  "y2Constraint":69,
+  "routeColor":"GRAY",
+  "highlighted":false
+},{
   "routeId":"MontrealToronto",
   "claimed":false,
   "length":3,
@@ -773,16 +787,29 @@
     "routeColor":"GRAY",
     "highlighted":false
   },{
-  "routeId":"DallasHouston",
+  "routeId":"DallasHoustonLeft",
   "claimed":false,
   "length":1,
   "score":0,
-  "cityA":"Houston",
-  "cityB":"Dallas",
-  "x1Constraint":50,
+  "cityA":"Dallas",
+  "cityB":"Houston",
+  "x1Constraint":49.5,
   "y1Constraint":78,
-  "x2Constraint":52,
-  "y2Constraint":82,
+  "x2Constraint":51.5,
+  "y2Constraint":83,
+  "routeColor":"GRAY",
+  "highlighted":false
+},{
+  "routeId":"DallasHoustonRight",
+  "claimed":false,
+  "length":1,
+  "score":0,
+  "cityA":"Dallas",
+  "cityB":"Houston",
+  "x1Constraint":51,
+  "y1Constraint":76.5,
+  "x2Constraint":53,
+  "y2Constraint":81,
   "routeColor":"GRAY",
   "highlighted":false
 },{
@@ -1253,5 +1280,32 @@
   "y2Constraint":47,
   "routeColor":"PINK",
   "highlighted":false
-}
+},{
+  "routeId":"ElPasoOklahomaCity",
+  "claimed":false,
+  "length":5,
+  "score":0,
+  "cityA":"ElPaso",
+  "cityB":"OklahomaCity",
+  "x1Constraint":38,
+  "y1Constraint":76,
+  "x2Constraint":46,
+  "y2Constraint":69,
+  "routeColor":"YELLOW",
+  "highlighted":false
+},
+  {
+    "routeId":"DenverOklahomaCity",
+    "claimed":false,
+    "length":4,
+    "score":0,
+    "cityA":"Denver",
+    "cityB":"OklahomaCity",
+    "x1Constraint":37.5,
+    "y1Constraint":56,
+    "x2Constraint":47,
+    "y2Constraint":65,
+    "routeColor":"RED",
+    "highlighted":false
+  }
 ]
