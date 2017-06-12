@@ -376,8 +376,6 @@ public class PlayerInfoFragment extends Fragment implements IPlayerInfoFragment{
         player3DestCards = (TextView) v.findViewById(R.id.player3_destCards);
         player3TrainCars = (TextView) v.findViewById(R.id.player3_trainCars);
 
-
-
         //PLAYER 4
 
         player4Username = (TextView) v.findViewById(R.id.player4_username);
@@ -393,16 +391,18 @@ public class PlayerInfoFragment extends Fragment implements IPlayerInfoFragment{
         player4TrainCars = (TextView) v.findViewById(R.id.player4_trainCars);
 
 
-
+        Drawable trophyIconWhite = new IconDrawable(this.getActivity(), FontAwesomeIcons.fa_trophy)
+                .colorRes(R.color.colorWhite).sizeDp(20);
+        Drawable roadIconWhite = new IconDrawable(this.getActivity(), FontAwesomeIcons.fa_road)
+                .colorRes(R.color.colorWhite).sizeDp(20);
         //PLAYER 5
-
 
         player5Username = (TextView) v.findViewById(R.id.player5_username);
         player5WinningIcon = (ImageView) v.findViewById(R.id.player5_winningIcon);
-        player5WinningIcon.setImageDrawable(trophyIcon);
+        player5WinningIcon.setImageDrawable(trophyIconWhite);
         player5WinningIcon.setVisibility(View.INVISIBLE);
         player5LongestPathIcon = (ImageView) v.findViewById(R.id.player5_longestPathIcon);
-        player5LongestPathIcon.setImageDrawable(roadIcon);
+        player5LongestPathIcon.setImageDrawable(roadIconWhite);
         player5LongestPathIcon.setVisibility(View.INVISIBLE);
         player5Points = (TextView) v.findViewById(R.id.player5_points);
         player5TrainCards = (TextView) v.findViewById(R.id.player5_trainCards);
