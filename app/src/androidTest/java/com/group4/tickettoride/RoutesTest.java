@@ -216,4 +216,37 @@ public class RoutesTest
         player.addClaimedRoute(routeList.findRoute("PittsburghNewYorkRight"));
         Assert.assertTrue(player.destinationComplete(destination.getCityA(), destination.getCityB()));
     }
+
+    @Test
+    public void possiblyBroken()
+    {
+        Player player = new Player(new User("player"));
+        player.initializeGame();
+        //19, "Vancouver", "SantaFe", 13
+        DestinationCard VancouverToSantaFe = destDeck.findCard(19);
+        //11, "Calgary", "Phoenix", 13
+        DestinationCard CalgaryToPhoenix = destDeck.findCard(11);
+        player.addClaimedRoute(routeList.findRoute("VancouverCalgary"));
+        player.addClaimedRoute(routeList.findRoute("CalgarySeattle"));
+        //player.addClaimedRoute(routeList.findRoute("SeattlePortlandRight"));
+        player.addClaimedRoute(routeList.findRoute("SeattlePortlandLeft"));
+        player.addClaimedRoute(routeList.findRoute("CalgaryHelena"));
+        player.addClaimedRoute(routeList.findRoute("DenverHelena"));
+        player.addClaimedRoute(routeList.findRoute("SantaFeDenver"));
+        player.addClaimedRoute(routeList.findRoute("ElPasoSantaFe"));
+        player.addClaimedRoute(routeList.findRoute("ElPasoPhoenix"));
+        player.addClaimedRoute(routeList.findRoute("HoustonElPaso"));
+        player.addClaimedRoute(routeList.findRoute("ElPasoOklahomaCity"));
+        //player.addClaimedRoute(routeList.findRoute("OklahomaCityDallasLeft"));
+        player.addClaimedRoute(routeList.findRoute("OklahomaCityDallasRight"));
+        //player.addClaimedRoute(routeList.findRoute("KansasCityOklahomaCityLeft"));
+        player.addClaimedRoute(routeList.findRoute("KansasCityOklahomaCityRight"));
+        //player.addClaimedRoute(routeList.findRoute("KansasCityOmahaLeft"));
+        player.addClaimedRoute(routeList.findRoute("KansasCityOmahaRight"));
+        //player.addClaimedRoute(routeList.findRoute("OmahaDuluthRight"));
+        player.addClaimedRoute(routeList.findRoute("OmahaDuluthLeft"));
+        player.addClaimedRoute(routeList.findRoute("DuluthSaultStMarie"));
+        Assert.assertTrue(player.destinationComplete(VancouverToSantaFe.getCityA(), VancouverToSantaFe.getCityB()));
+        Assert.assertTrue(player.destinationComplete(CalgaryToPhoenix.getCityA(), CalgaryToPhoenix.getCityB()));
+    }
 }
