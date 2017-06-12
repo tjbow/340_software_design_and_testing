@@ -234,13 +234,8 @@ public class ServerModel
             game.setStatus(GAME_STATUS.FINISHED);
             game.getCommandList().setCommandList(new ArrayList<>());
             game.getTurnHistory().setMessageList(new ArrayList<>());
-            game.getChatHistory().setMessageList(new ArrayList<>());
             game.getRoutes().setRouteList(new HashSet<>());
             game.setDecks(new Decks());
-            for(Player player : game.getPlayers())
-            {
-                player.setPlayerHand(null);
-            }
         }
         else
             return false;
@@ -253,15 +248,7 @@ public class ServerModel
      */
     GameList getGameList()
     {
-        GameList gameListMod = new GameList(new ArrayList<>());
-        for(Game game : this.gameList.getGameList())
-        {
-            if(!game.getStatus().equals(GAME_STATUS.FINISHED))
-            {
-                gameListMod.add(game);
-            }
-        }
-        return gameListMod;
+        return gameList;
     }
 
 //    ----END GAME PREP METHODS---------------------------------------------------------
