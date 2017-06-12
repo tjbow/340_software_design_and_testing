@@ -285,7 +285,7 @@ public class Chat_GameHistoryFragment extends DialogFragment {
         {
             return "gameHistory";
         }
-        else return null;
+        else return "chat";
     }
 
 }

@@ -50,7 +50,7 @@ public class Player
     {
         playerHand = new PlayerHand();
         longestPath = false;
-        trainCarsRemaining = 45;
+        trainCarsRemaining = 40;
         claimedRouteList = new RouteList();
         stats = new PlayerStats();
         winning = false;

@@ -35,8 +35,8 @@ class EndGamePresenter implements IEndGamePresenter {
         ClientModel.SINGLETON.deleteObservers();
         fragment.startActivity(new Intent(fragment.getActivity(), GameListActivity.class));
         fragment.getActivity().finish();
-        ClientFacade.SINGLETON.setUpdateGameInfo(false);
-        ClientFacade.SINGLETON.setUpdateGameList(true);
+//        ClientFacade.SINGLETON.setUpdateGameInfo(false);
+//        ClientFacade.SINGLETON.setUpdateGameList(true);
         ClientModel.SINGLETON.endGameClear();
     }
 
