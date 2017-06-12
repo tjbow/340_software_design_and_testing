@@ -266,7 +266,7 @@ public class Game
             if(count == 0)break;
         }
 
-        updatePlayerState(player, true, false);
+//        updatePlayerState(player, true, false);
 
         return receivedCards;
     }
@@ -293,6 +293,11 @@ public class Game
                 iterator.remove();
                 decks.getDestinationCardDeck().add(current);
             }
+        }
+
+        if(player.isFirstDestCardsSelected())
+        {
+            updatePlayerState(player, true, false);
         }
     }
 
@@ -362,7 +367,7 @@ public class Game
                 iterator.remove();
                 player.getPlayerHand().getTrainCards().getCardDeck().add(current);
                 current.setVisible(false);
-                addTurn(new Message("Drew a face up train card.", player.getUserName(), player.getColor()));
+                addTurn(new Message("Drew a " + current.getColor().toString().toLowerCase() + " face up train card.", player.getUserName(), player.getColor()));
 
                 //check if locomotive
                 if(current.getColor() == CARD_COLOR.RAINBOW)

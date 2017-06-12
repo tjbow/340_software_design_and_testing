@@ -437,7 +437,7 @@ public class ServerFacade implements IServer
         CARD_COLOR color = game.getPlayerByUserName(userName)
                 .getPlayerHand().getTrainCards().getCardDeck().get(size - 1).getColor();
 
-        return new Results(false, null, color + " train card drawn", null);
+        return new Results(false, null, color.toString().toLowerCase() + " train card drawn", null);
     }
 
     @Override

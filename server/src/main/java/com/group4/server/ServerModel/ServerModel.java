@@ -248,7 +248,15 @@ public class ServerModel
      */
     GameList getGameList()
     {
-        return gameList;
+        GameList gameListMod = new GameList(new ArrayList<>());
+        for(Game game : this.gameList.getGameList())
+        {
+            if(!game.getStatus().equals(GAME_STATUS.FINISHED))
+            {
+                gameListMod.add(game);
+            }
+        }
+        return gameListMod;
     }
 
 //    ----END GAME PREP METHODS---------------------------------------------------------
