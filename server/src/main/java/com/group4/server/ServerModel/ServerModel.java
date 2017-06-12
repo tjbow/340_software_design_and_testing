@@ -234,8 +234,13 @@ public class ServerModel
             game.setStatus(GAME_STATUS.FINISHED);
             game.getCommandList().setCommandList(new ArrayList<>());
             game.getTurnHistory().setMessageList(new ArrayList<>());
+            game.getChatHistory().setMessageList(new ArrayList<>());
             game.getRoutes().setRouteList(new HashSet<>());
             game.setDecks(new Decks());
+            for(Player player : game.getPlayers())
+            {
+                player.setPlayerHand(null);
+            }
         }
         else
             return false;
