@@ -9,5 +9,9 @@ import java.net.URL;
 public class PluginDescriptor {
     public String pluginName;
     public Class pluginClass;
-    public URL jarPath;
+
+    public PluginDescriptor(String pluginName, Class pluginClass) {
+        this.pluginName = pluginName;
+        this.pluginClass = pluginClass;
+    }
 }

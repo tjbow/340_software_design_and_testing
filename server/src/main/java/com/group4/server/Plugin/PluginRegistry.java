@@ -1,6 +1,7 @@
 package com.group4.server.Plugin;
 
 import com.group4.shared.plugin.IPersistencePlugin;
+import com.group4.shared.plugin.PluginDescriptor;
 
 import java.io.File;
 import java.net.MalformedURLException;
@@ -13,7 +14,7 @@ import java.util.Map;
 
 public class PluginRegistry {
     private static IPersistencePlugin loadedPlugin = null;
-    private Map<String,IPersistencePlugin> availablePlugins = new HashMap<>();
+    private Map<String,PluginDescriptor> availablePlugins = new HashMap<>();
 
     public void scanDirectory(File folder){
         File[] fileList = folder.listFiles();
@@ -29,11 +30,14 @@ public class PluginRegistry {
                 String pluginName = "plugin." + classname;
 
                 Class fileClass  = loader.loadClass(pluginName);
-                IPersistencePlugin plugin = (IPersistencePlugin) fileClass.newInstance();
 
-                availablePlugins.put(classname,plugin);
+                PluginDescriptor descriptor = new PluginDescriptor(classname,fileClass);
 
-            } catch (MalformedURLException | ClassNotFoundException | InstantiationException | IllegalAccessException e) {
+                availablePlugins.put(classname,descriptor);
+
+
+
+            } catch (MalformedURLException | ClassNotFoundException e) {
                 e.printStackTrace();
             }
         }
