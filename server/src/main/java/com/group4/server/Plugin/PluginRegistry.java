@@ -1,6 +1,7 @@
 package com.group4.server.Plugin;
 
 import com.group4.shared.plugin.IPersistencePlugin;
+import com.group4.shared.plugin.InvalidPluginException;
 import com.group4.shared.plugin.PluginDescriptor;
 
 import java.io.File;
@@ -14,9 +15,9 @@ import java.util.Map;
 
 public class PluginRegistry {
     private static IPersistencePlugin loadedPlugin = null;
-    private Map<String,PluginDescriptor> availablePlugins = new HashMap<>();
+    private static Map<String,PluginDescriptor> availablePlugins = new HashMap<>();
 
-    public void scanDirectory(File folder){
+    public static void scanDirectory(File folder){
         File[] fileList = folder.listFiles();
 
         for(File f : fileList){
@@ -44,6 +45,21 @@ public class PluginRegistry {
 
     }
 
+    public static void loadPlugin(String pluginName) throws InvalidPluginException{
+        PluginDescriptor pluginDescriptor = availablePlugins.get(pluginName);
 
+        if(pluginDescriptor == null || pluginDescriptor.pluginClass == null){
+            throw new InvalidPluginException(pluginName + "is not a valid plugin",new Exception());
+        }
 
+        try {
+            loadedPlugin = (IPersistencePlugin)pluginDescriptor.pluginClass.newInstance();
+        } catch (InstantiationException | IllegalAccessException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static IPersistencePlugin getLoadedPlugin(){
+        return loadedPlugin;
+    }
 }
