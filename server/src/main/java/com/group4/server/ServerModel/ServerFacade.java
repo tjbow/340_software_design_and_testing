@@ -600,7 +600,7 @@ public class ServerFacade implements IServer
     public static void loadPersistencePlugin(String pluginName){
         PluginRegistry.scanDirectory(new File("./plugins"));
         try {
-            PluginRegistry.loadPlugin("TestJar");
+            PluginRegistry.loadPlugin(pluginName);
         } catch (InvalidPluginException e) {
             System.out.println(e.getMessage());
             e.printStackTrace();
