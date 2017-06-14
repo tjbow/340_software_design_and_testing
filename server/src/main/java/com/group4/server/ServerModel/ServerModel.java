@@ -11,6 +11,8 @@ import com.group4.shared.Model.Game.GameList;
 import com.group4.shared.Model.Game.MOVE_STATE;
 import com.group4.shared.Model.Player;
 import com.group4.shared.Model.User;
+import com.group4.shared.plugin.IPersistencePlugin;
+
 import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -30,6 +32,16 @@ public class ServerModel
     private User tempUser;
 
     private static ServerModel serverModel = new ServerModel();
+
+    private static IPersistencePlugin persistencePlugin;
+
+    public static IPersistencePlugin getPersistencePlugin() {
+        return persistencePlugin;
+    }
+
+    public static void setPersistencePlugin(IPersistencePlugin persistencePlugin) {
+        ServerModel.persistencePlugin = persistencePlugin;
+    }
 
     private ServerModel()
     {

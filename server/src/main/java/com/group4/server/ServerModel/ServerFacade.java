@@ -1,5 +1,6 @@
 package com.group4.server.ServerModel;
 
+import com.group4.server.Plugin.PluginRegistry;
 import com.group4.shared.Model.CommandList;
 import com.group4.shared.Model.Deck.CARD_COLOR;
 import com.group4.shared.Model.Deck.DestinationCard;
@@ -28,7 +29,10 @@ import com.group4.shared.command.Client.CUpdateMapCommandData;
 import com.group4.shared.command.Client.CUpdatePlayersCommandData;
 import com.group4.shared.command.Client.CUpdateStateCommandData;
 import com.group4.shared.command.Client.CUpdateTurnHistoryCommandData;
+import com.group4.shared.plugin.IPersistencePlugin;
+import com.group4.shared.plugin.InvalidPluginException;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -591,5 +595,17 @@ public class ServerFacade implements IServer
         game.addCommand(stateCommandData);
 
         return new Results(true, "Get Snapshot", null, cmdList);
+    }
+
+    public static void loadPersistencePlugin(String pluginName){
+        PluginRegistry.scanDirectory(new File("./plugins"));
+        try {
+            PluginRegistry.loadPlugin("TestJar");
+        } catch (InvalidPluginException e) {
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+        }
+
+        ServerModel.setPersistencePlugin(PluginRegistry.getLoadedPlugin());
     }
 }
