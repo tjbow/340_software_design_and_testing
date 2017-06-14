@@ -6,8 +6,7 @@ import com.group4.shared.Model.Results;
 import com.group4.shared.Model.User;
 import com.group4.tickettoride.ClientModel.ClientModel;
 import com.group4.tickettoride.Network.ServerProxy;
-import com.group4.tickettoride.Network.ServerProxyNoAsync;
-import com.group4.tickettoride.Network.ServerProxyNoAsync;
+
 
 import org.junit.After;
 import org.junit.Before;

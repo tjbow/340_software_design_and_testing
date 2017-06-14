@@ -1,1 +1,1 @@
-include ':shared', ':server', ':app'
+include ':shared', ':server', ':app', ':testjar'
