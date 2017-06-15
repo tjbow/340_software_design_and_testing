@@ -1,10 +1,12 @@
 package com.group4.shared.Model;
 
+import java.io.Serializable;
+
 /**
  * Created by Russell Fitzpatrick on 6/4/2017.
  */
 
-public class PlayerStats {
+public class PlayerStats implements Serializable{
 
     private int rank;
     private int claimedRouteScore;

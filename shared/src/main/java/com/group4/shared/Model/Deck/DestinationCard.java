@@ -1,13 +1,13 @@
 package com.group4.shared.Model.Deck;
 
 
-
+import java.io.Serializable;
 
 /**
  * Created by tyler on 5/22/17.
  */
 
-public class DestinationCard
+public class DestinationCard implements Serializable
 {
 
     private int id;

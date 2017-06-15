@@ -1,10 +1,12 @@
 package com.group4.shared.Model;
 
+import java.io.Serializable;
+
 /**
  * Created by tyler on 5/22/17.
  */
 
-public class Message
+public class Message implements Serializable
 {
     private String message;
     private String userName;

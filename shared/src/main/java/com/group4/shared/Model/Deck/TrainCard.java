@@ -1,10 +1,12 @@
 package com.group4.shared.Model.Deck;
 
+import java.io.Serializable;
+
 /**
  * Created by Russell Fitzpatrick on 5/23/2017.
  */
 
-public class TrainCard {
+public class TrainCard implements Serializable{
 
     CARD_COLOR color;
     boolean visible;

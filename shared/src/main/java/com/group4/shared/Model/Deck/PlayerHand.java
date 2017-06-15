@@ -3,11 +3,13 @@ package com.group4.shared.Model.Deck;
 import com.group4.shared.Model.Deck.DestinationCardDeck;
 import com.group4.shared.Model.Deck.TrainCardDeck;
 
+import java.io.Serializable;
+
 /**
  * Created by Russell Fitzpatrick on 5/27/2017.
  */
 
-public class PlayerHand {
+public class PlayerHand implements Serializable{
 
     TrainCardDeck trainCards;
     DestinationCardDeck destinationCards;

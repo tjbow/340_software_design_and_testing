@@ -2,11 +2,13 @@ package com.group4.shared.Model.Map;
 
 import com.group4.shared.Model.Player;
 
+import java.io.Serializable;
+
 /**
  * Created by Andrew Gill on 5/21/2017.
  */
 
-public class RouteSegment {
+public class RouteSegment implements Serializable{
 
     String routeId;
     boolean claimed;
