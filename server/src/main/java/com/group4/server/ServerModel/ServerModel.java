@@ -244,10 +244,10 @@ public class ServerModel
         if(game != null)
         {
             game.setStatus(GAME_STATUS.FINISHED);
-            game.getCommandList().setCommandList(new ArrayList<>());
-            game.getTurnHistory().setMessageList(new ArrayList<>());
-            game.getRoutes().setRouteList(new HashSet<>());
-            game.setDecks(new Decks());
+            game.setCommandList(null);
+            game.setTurnHistory(null);
+            game.setRoutes(null);
+            game.setDecks(null);
         }
         else
             return false;

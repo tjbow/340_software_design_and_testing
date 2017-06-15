@@ -48,8 +48,8 @@ public class ClientCommunicator
     {
         //TODO: make sure to replace the IP below with the IP where you are running the server
         //URL_PREFIX = "http://" + "192.168.1.8" + ":" + "8080";
-        URL_PREFIX = "http://" + "10.24.64.153" + ":" + "8080";
-        //URL_PREFIX = "http://" + ipAddress + ":" + "8080";
+//        URL_PREFIX = "http://" + "10.24.64.153" + ":" + "8080";
+        URL_PREFIX = "http://" + ipAddress + ":" + "8080";
 
         HttpURLConnection connection =
                 openConnection("/" + urlPath, HTTP_POST, ClientModel.SINGLETON.getAuthToken(), true);

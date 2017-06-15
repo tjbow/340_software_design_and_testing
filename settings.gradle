@@ -1,1 +1,1 @@
-include ':shared', ':server', ':app', ':testjar'
+include ':shared', ':server', ':app', ':testjar', ':serialpersistence', ':sqlpersistence'

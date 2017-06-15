@@ -213,7 +213,7 @@ public class ClientFacade implements IClient
     @Override
     public Results onEndGame()
     {
-        poller.setUpdateGameList(true);
+//        poller.setUpdateGameList(true);
         poller.setUpdateGameInfo(false);
 
         ClientModel.SINGLETON.sendToObservers(GAME_STATUS.FINISHED);
