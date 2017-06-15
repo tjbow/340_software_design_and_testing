@@ -1,10 +1,13 @@
 package com.group4.shared.Model.Game;
 
+import java.io.Serializable;
+
 /**
  * Created by Russell Fitzpatrick on 5/24/2017.
  */
 
-public class GameStats {
+public class GameStats implements Serializable
+{
 
     private String playerCurrentTurn;
     private String playerLongestPath;

@@ -1,5 +1,6 @@
 package com.group4.shared.plugin;
 
+import com.group4.shared.command.ClientCommand;
 import com.group4.shared.command.Command;
 
 import java.util.List;
@@ -10,8 +11,8 @@ import java.util.List;
 
 public interface ICommandDao {
 
-    public void updateCommands(String gameName, List<Command> commands);
-    public List<Command> getCommands(String gameName);
+    public void updateCommands(String gameName, List<ClientCommand> commands);
+    public List<ClientCommand> getCommands(String gameName);
     public void clear();
     public void create();
 

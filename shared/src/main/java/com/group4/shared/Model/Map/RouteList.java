@@ -2,6 +2,7 @@ package com.group4.shared.Model.Map;
 
 import com.group4.shared.Model.Player;
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -10,7 +11,7 @@ import java.util.Set;
  * Created by tyler on 5/22/17.
  */
 
-public class RouteList
+public class RouteList implements Serializable
 {
 //    private List<RouteSegment> routeList;
     private Set<RouteSegment> routeList;

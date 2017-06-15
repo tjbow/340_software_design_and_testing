@@ -1,12 +1,14 @@
 package com.group4.shared.Model.Deck;
 
+import java.io.Serializable;
 import java.util.Iterator;
 
 /**
  * Created by Russell Fitzpatrick on 5/23/2017.
  */
 
-public class Decks {
+public class Decks implements Serializable
+{
 
     private TrainCardDeck trainCardDeck;
     private DestinationCardDeck destinationCardDeck;

@@ -1,12 +1,13 @@
 package com.group4.shared.Model;
 
+import java.io.Serializable;
 import java.util.UUID;
 
 /**
  * Created by Russell Fitzpatrick on 5/13/2017.
  */
 
-public class User {
+public class User implements Serializable{
 
     private String username;
     private String password;

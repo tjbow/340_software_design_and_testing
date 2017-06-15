@@ -1,10 +1,13 @@
 package com.group4.shared.Model.Map;
 
+import java.io.Serializable;
+
 /**
  * Created by abgill on 5/22/2017.
  */
 
-public class City {
+public class City implements Serializable
+{
     private float xConstraint;
     private float yConstraint;
     private String name;

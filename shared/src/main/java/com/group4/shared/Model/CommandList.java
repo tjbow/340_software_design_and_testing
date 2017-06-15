@@ -4,6 +4,7 @@ import com.group4.shared.command.ClientCommand;
 import com.group4.shared.command.Command;
 import com.group4.shared.command.IClientCommand;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,7 +12,7 @@ import java.util.List;
  * Created by tyler on 5/12/17.
  */
 
-public class CommandList
+public class CommandList implements Serializable
 {
     private List<ClientCommand> commandList;
 

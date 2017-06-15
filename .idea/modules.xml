@@ -9,7 +9,6 @@
       <module fileurl="file://$PROJECT_DIR$/shared/shared.iml" filepath="$PROJECT_DIR$/shared/shared.iml" />
       <module fileurl="file://$PROJECT_DIR$/sqlpersistence/sqlpersistence.iml" filepath="$PROJECT_DIR$/sqlpersistence/sqlpersistence.iml" />
       <module fileurl="file://$PROJECT_DIR$/testjar/testjar.iml" filepath="$PROJECT_DIR$/testjar/testjar.iml" />
-      <module fileurl="file://$PROJECT_DIR$/testjar/testjar.iml" filepath="$PROJECT_DIR$/testjar/testjar.iml" />
     </modules>
   </component>
 </project>
