@@ -13,6 +13,5 @@ public interface IUserDao {
     public void saveUsers(List<User> users);
     public List<User> getUsers();
     public void clear();
-    public void create();
 
 }
