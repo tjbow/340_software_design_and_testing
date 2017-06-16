@@ -41,4 +41,23 @@ public class SerialUtils
 
         return game;
     }
+
+    static Game getGameByName(String gameName)
+    {
+        File dir = new File(SerialUtils.GAMES_DIRECTORY);
+        File[] directoryListing = dir.listFiles();
+        Game game = null;
+        if (directoryListing != null)
+        {
+            for (File gameFile : directoryListing)
+            {
+                if(gameFile.toString().contains(gameName))
+                {
+                    game = SerialUtils.getGameFromFile(gameFile);
+                    break;
+                }
+            }
+        }
+        return game;
+    }
 }

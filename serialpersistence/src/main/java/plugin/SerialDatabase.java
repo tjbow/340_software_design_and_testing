@@ -37,6 +37,12 @@ public class SerialDatabase implements IPersistencePlugin
     }
 
     @Override
+    public void deleteGame(Game game)
+    {
+        new SerialGameDao().deleteGame(game);
+    }
+
+    @Override
     public void updateCommands(String gameName, List<ClientCommand> commands)
     {
         new SerialCommandDao().updateCommands(gameName, commands);
@@ -72,8 +78,7 @@ public class SerialDatabase implements IPersistencePlugin
         }
     }
 
-    @Override
-    public void create()
+    private void create()
     {
         File directory = new File(SerialUtils.GAMES_DIRECTORY);
         if (!directory.exists())

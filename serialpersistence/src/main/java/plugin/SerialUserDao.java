@@ -71,10 +71,4 @@ public class SerialUserDao implements IUserDao
     {
 
     }
-
-    @Override
-    public void create()
-    {
-
-    }
 }

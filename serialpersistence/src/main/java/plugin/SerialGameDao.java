@@ -63,6 +63,22 @@ public class SerialGameDao implements IGameDao
     }
 
     @Override
+    public void deleteGame(Game game)
+    {
+        File dir = new File(SerialUtils.GAMES_DIRECTORY);
+        File[] directoryListing = dir.listFiles();
+
+        for (File gameFile : directoryListing)
+        {
+            if(gameFile.getName().contains(game.getGameName()))
+            {
+                gameFile.delete();
+                break;
+            }
+        }
+    }
+
+    @Override
     public void clear()
     {
         try
@@ -72,11 +88,5 @@ public class SerialGameDao implements IGameDao
         {
             e.printStackTrace();
         }
-    }
-
-    @Override
-    public void create()
-    {
-
     }
 }

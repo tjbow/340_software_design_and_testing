@@ -19,7 +19,7 @@ public class SerialCommandDao implements ICommandDao
     @Override
     public void updateCommands(String gameName, List<ClientCommand> commands)
     {
-        Game game = getGameByName(gameName);
+        Game game = SerialUtils.getGameByName(gameName);
 
         if(game != null)
         {
@@ -34,7 +34,7 @@ public class SerialCommandDao implements ICommandDao
     @Override
     public List<ClientCommand> getCommands(String gameName)
     {
-        Game game = getGameByName(gameName);
+        Game game = SerialUtils.getGameByName(gameName);
         CommandList cmdList = null;
 
         if(game != null)
@@ -45,33 +45,8 @@ public class SerialCommandDao implements ICommandDao
         return cmdList.getCommandList();
     }
 
-    private Game getGameByName(String gameName)
-    {
-        File dir = new File(SerialUtils.GAMES_DIRECTORY);
-        File[] directoryListing = dir.listFiles();
-        Game game = null;
-        if (directoryListing != null)
-        {
-            for (File gameFile : directoryListing)
-            {
-                if(gameFile.toString().contains(gameName))
-                {
-                    game = SerialUtils.getGameFromFile(gameFile);
-                    break;
-                }
-            }
-        }
-        return game;
-    }
-
     @Override
     public void clear()
-    {
-
-    }
-
-    @Override
-    public void create()
     {
 
     }
