@@ -13,5 +13,6 @@ public interface IGameDao {
     public GameList getGames();
     public void clear();
     public void create();
+    public void deleteGame(Game game);
 
 }

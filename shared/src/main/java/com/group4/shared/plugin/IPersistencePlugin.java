@@ -21,6 +21,6 @@ public interface IPersistencePlugin {
     public List<User> getUsers();
     public List<ClientCommand> getCommands(String gameName);
     public void clear();
-    public void create();
+    public void deleteGame(Game game);
 
 }
