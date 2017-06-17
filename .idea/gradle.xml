@@ -12,6 +12,7 @@
             <option value="$PROJECT_DIR$/serialpersistence" />
             <option value="$PROJECT_DIR$/server" />
             <option value="$PROJECT_DIR$/shared" />
+            <option value="$PROJECT_DIR$/sqlite-jdbc-3.8.7" />
             <option value="$PROJECT_DIR$/sqlpersistence" />
             <option value="$PROJECT_DIR$/testjar" />
           </set>

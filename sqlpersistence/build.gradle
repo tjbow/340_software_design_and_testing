@@ -4,6 +4,7 @@ dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile project(':shared')
     compile 'junit:junit:4.12'
+    compile project(':sqlite-jdbc-3.8.7')
 }
 
 sourceCompatibility = "1.7"
