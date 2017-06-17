@@ -49,7 +49,7 @@ public class PluginRegistry {
         PluginDescriptor pluginDescriptor = availablePlugins.get(pluginName);
 
         if(pluginDescriptor == null || pluginDescriptor.pluginClass == null){
-            throw new InvalidPluginException(pluginName + "is not a valid plugin",new Exception());
+            throw new InvalidPluginException(pluginName + " is not a valid plugin",new Exception());
         }
 
         try {

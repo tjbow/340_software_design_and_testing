@@ -35,6 +35,8 @@ public class ServerModel
 
     private static IPersistencePlugin persistencePlugin;
 
+    private int commandsToSave;
+
     public static IPersistencePlugin getPersistencePlugin() {
         return persistencePlugin;
     }
@@ -106,6 +108,7 @@ public class ServerModel
             return null;
         }
         users.add(user);
+        persistencePlugin.saveUsers(users);
         return loginUser(user);
     }
 
@@ -168,7 +171,9 @@ public class ServerModel
         {
             return false;
         }
-        gameList.add(game);
+        gameList.add(game); // save game
+
+        persistencePlugin.saveGame(game);
 
         System.out.println("Game \"" + game.getGameName() + "\" created by " + getTempUser().getUsername() + " with " + game.getPlayerCount() + " players.");
 
@@ -261,6 +266,43 @@ public class ServerModel
     GameList getGameList()
     {
         return gameList;
+    }
+
+    /**
+     * Sets the users
+     * @param users the users
+     */
+    public void setUsers(List<User> users)
+    {
+        this.users = users;
+    }
+
+    /**
+     * Sets the gameList
+     * @param gameList the gameList
+     */
+    public void setGameList(GameList gameList)
+    {
+        this.gameList = gameList;
+    }
+
+
+    /**
+     * Gets the number of commands to save in between gaem updates
+     * @return the number of commands to save
+     */
+    public int getCommandsToSave()
+    {
+        return commandsToSave;
+    }
+
+    /**
+     * Sets the number of commands to save in between gaem updates
+     * @param commandsToSave the number of commands to save
+     */
+    public void setCommandsToSave(int commandsToSave)
+    {
+        this.commandsToSave = commandsToSave;
     }
 
 //    ----END GAME PREP METHODS---------------------------------------------------------

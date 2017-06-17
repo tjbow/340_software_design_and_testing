@@ -7,6 +7,7 @@ import com.group4.shared.Model.Deck.DestinationCard;
 import com.group4.shared.Model.Deck.TrainCard;
 import com.group4.shared.Model.Game.GAME_STATUS;
 import com.group4.shared.Model.Game.Game;
+import com.group4.shared.Model.Game.GameList;
 import com.group4.shared.Model.Game.MOVE_STATE;
 import com.group4.shared.Model.Map.RouteSegment;
 import com.group4.shared.Model.Message;
@@ -29,6 +30,7 @@ import com.group4.shared.command.Client.CUpdateMapCommandData;
 import com.group4.shared.command.Client.CUpdatePlayersCommandData;
 import com.group4.shared.command.Client.CUpdateStateCommandData;
 import com.group4.shared.command.Client.CUpdateTurnHistoryCommandData;
+import com.group4.shared.command.ClientCommand;
 import com.group4.shared.plugin.IPersistencePlugin;
 import com.group4.shared.plugin.InvalidPluginException;
 
@@ -167,8 +169,8 @@ public class ServerFacade implements IServer
         updateGameCommandData.setStatus(game.getStatus());
 
         //ADD THE ABOVE COMMANDS TO THE GAME SO EVERYONE CAN RECEIVE IT
-        game.addCommand(updatePlayersCommandData);
-        game.addCommand(updateGameCommandData);
+        addCommand(game, updatePlayersCommandData);
+        addCommand(game, updateGameCommandData);
 
         //CREATE A JOINGAME COMMAND TO SEND
         CJoinGameCommandData joinGameCommandData = new CJoinGameCommandData();
@@ -216,12 +218,12 @@ public class ServerFacade implements IServer
         updateGameCommandData.setDeckState(game.getDecks());
 
         //ADD THE ABOVE TO THE GAME FOR RETRIEVAL BY ALL PLAYERS
-        game.addCommand(updatePlayersCommandData);
-        game.addCommand(updateGameCommandData);
-        game.addCommand(startGameCommandData);
-        game.addCommand(updateMapCommandData);
-        game.addCommand(updateStatsCommandData);
-//        game.addCommand(updateGameCommandData);
+        addCommand(game, updatePlayersCommandData);
+        addCommand(game, updateGameCommandData);
+        addCommand(game, startGameCommandData);
+        addCommand(game, updateMapCommandData);
+        addCommand(game, updateStatsCommandData);
+//        addCommand(game, updateGameCommandData);
 
         return new Results(true, null, null, null);
     }
@@ -258,7 +260,7 @@ public class ServerFacade implements IServer
 
         game.setPlayers(new ArrayList<>());
 
-        game.addCommand(endGameCommandData);
+        addCommand(game, endGameCommandData);
 
         System.out.println("The game " + gameName + " was ended.");
         return new Results(true, null, null, null);
@@ -279,7 +281,7 @@ public class ServerFacade implements IServer
         updateChatCommandData.setChatHistory(game.getChatHistory());
 
         //ADD THE UPDATECHAT COMMAND SO EVERYONE CAN RECEIVE IT
-        game.addCommand(updateChatCommandData);
+        addCommand(game, updateChatCommandData);
 
         System.out.println("Player " + message.getUserName() +
                 " in game " + game.getGameName() +
@@ -323,8 +325,8 @@ public class ServerFacade implements IServer
         updateGameCommandData.setStatus(GAME_STATUS.ONGOING);
         updateGameCommandData.setDeckState(game.getDecks());
 
-        game.addCommand(updatePlayersCommandData);
-        game.addCommand(updateGameCommandData);
+        addCommand(game, updatePlayersCommandData);
+        addCommand(game, updateGameCommandData);
 
 //        DRAW DESTINATION CARDS COMMAND
         CDrawDestCardsCmdData drawDestCardsCmdData = new CDrawDestCardsCmdData();
@@ -391,13 +393,13 @@ public class ServerFacade implements IServer
         }
 
 //        add game command to game
-        game.addCommand(updateGameCommandData);
+        addCommand(game, updateGameCommandData);
 //        add players command to game
-        game.addCommand(updatePlayersCommandData);
+        addCommand(game, updatePlayersCommandData);
 //        add turn command to game
-        game.addCommand(updateTurnHistoryCommandData);
+        addCommand(game, updateTurnHistoryCommandData);
 //        add state command to game
-        game.addCommand(updateStateCommandData);
+        addCommand(game, updateStateCommandData);
 
         int cardsSelected = 3 - returnedCard.size();
         System.out.println("Player " + serverModel.getTempUser().getUsername() +
@@ -432,9 +434,9 @@ public class ServerFacade implements IServer
         updatePlayersCommandData.setType("updateplayers");
         updatePlayersCommandData.setPlayerData(game.getPlayers());
 
-        game.addCommand(updateGameCommandData);
-        game.addCommand(updatePlayersCommandData);
-        game.addCommand(updateTurnHistoryCommandData);
+        addCommand(game, updateGameCommandData);
+        addCommand(game, updatePlayersCommandData);
+        addCommand(game, updateTurnHistoryCommandData);
 
         int size = game.getPlayerByUserName(userName)
                 .getPlayerHand().getTrainCards().getCardDeck().size();
@@ -470,9 +472,9 @@ public class ServerFacade implements IServer
         updatePlayersCommandData.setType("updateplayers");
         updatePlayersCommandData.setPlayerData(game.getPlayers());
 
-        game.addCommand(updateGameCommandData);
-        game.addCommand(updatePlayersCommandData);
-        game.addCommand(updateTurnHistoryCommandData);
+        addCommand(game, updateGameCommandData);
+        addCommand(game, updatePlayersCommandData);
+        addCommand(game, updateTurnHistoryCommandData);
 
         return new Results(true, "Train cards drawn", null, null);
     }
@@ -490,7 +492,7 @@ public class ServerFacade implements IServer
             stateCommandData.setType("updatestate");
             stateCommandData.setUserName(userName);
             stateCommandData.setState(MOVE_STATE.MY_TURN);
-            game.addCommand(stateCommandData);
+            addCommand(game, stateCommandData);
             return new Results(false, null, "Invalid route claim. Claim failed.", null);
         }
 
@@ -523,15 +525,15 @@ public class ServerFacade implements IServer
         updateMapCmd.setCities(game.getCities());
 
 //        add game command to game
-        game.addCommand(updateGameCommandData);
+        addCommand(game, updateGameCommandData);
 //        add players command to game
-        game.addCommand(updatePlayersCommandData);
+        addCommand(game, updatePlayersCommandData);
 //        add turn command to game
-        game.addCommand(updateTurnHistoryCommandData);
+        addCommand(game, updateTurnHistoryCommandData);
 //        add state command to game
-        game.addCommand(updateStateCommandData);
+        addCommand(game, updateStateCommandData);
 //        add update map command to game
-        game.addCommand(updateMapCmd);
+        addCommand(game, updateMapCmd);
 
         System.out.println(userName + " has claimed the route from " + claimedSegment.getCityA() + " to " + claimedSegment.getCityB() + ".");
 
@@ -587,12 +589,12 @@ public class ServerFacade implements IServer
         CommandList cmdList = new CommandList();
         cmdList.add(indexCommandData);
 
-        game.addCommand(gameCommandData);
-        game.addCommand(playersCommandData);
-        game.addCommand(mapCommandData);
-        game.addCommand(chatCommandData);
-        game.addCommand(turnHistoryCommandData);
-        game.addCommand(stateCommandData);
+        addCommand(game, gameCommandData);
+        addCommand(game, playersCommandData);
+        addCommand(game, mapCommandData);
+        addCommand(game, chatCommandData);
+        addCommand(game, turnHistoryCommandData);
+        addCommand(game, stateCommandData);
 
         return new Results(true, "Get Snapshot", null, cmdList);
     }
@@ -608,4 +610,57 @@ public class ServerFacade implements IServer
 
         ServerModel.setPersistencePlugin(PluginRegistry.getLoadedPlugin());
     }
+
+
+    // Persistence code
+
+    public void loadFromDatabase()
+    {
+        IPersistencePlugin plugin = serverModel.getPersistencePlugin();
+        serverModel.setUsers(plugin.getUsers());
+        serverModel.setGameList(plugin.getGames());
+    }
+
+    /**
+     * Adds the command to the game and the database
+     * @param game the game
+     * @param command the command to be added
+     */
+    public void addCommand(Game game, ClientCommand command)
+    {
+        IPersistencePlugin plugin = serverModel.getPersistencePlugin();
+        game.addCommand(command);
+        if(game.getCommandList().size() % serverModel.getCommandsToSave() == 0) // save game state every X
+        {
+            plugin.saveGame(game);
+        }
+        else
+        {
+            plugin.updateCommands(game.getGameName(), game.getCommandList().getCommandList());
+        }
+    }
+
+    /**
+     * Set the number of commands to save between full game updates
+     * @param commandsToSave number of commands to save
+     */
+    public void setCommandsToSave(int commandsToSave)
+    {
+        serverModel.setCommandsToSave(commandsToSave);
+    }
+
+
+
+
+//    public void saveGame(Game game);
+//    {
+//
+//    }
+//    public void updateCommands(String gameName, List<ClientCommand> commands);
+//    public void saveUsers(List<User> users);
+//    public GameList getGames();
+//    public List<User> getUsers();
+//    public List<ClientCommand> getCommands(String gameName);
+//    public void clear();
+//    public void deleteGame(Game game);
 }

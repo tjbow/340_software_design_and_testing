@@ -1,6 +1,7 @@
 package com.group4.server.Network;
 
 import com.group4.server.ServerModel.ServerFacade;
+import com.group4.server.ServerModel.ServerModel;
 import com.sun.net.httpserver.HttpServer;
 
 import java.io.IOException;
@@ -15,7 +16,7 @@ public class ServerCommunicator
     private static final int MAX_WAITING_CONNECTIONS = 12;
     private HttpServer server;
 
-    private void run(String portNumber, String persistencePluginName)
+    private void run(String portNumber, String persistencePluginName, String commandsToSave)
     {
         System.out.println("Initializing HTTP Server");
 
@@ -29,6 +30,8 @@ public class ServerCommunicator
             return;
         }
 
+
+
         server.setExecutor(null);
 
         System.out.println("Creating contexts");
@@ -40,6 +43,12 @@ public class ServerCommunicator
         System.out.println("Server started");
 
         ServerFacade.loadPersistencePlugin(persistencePluginName);
+
+        ServerFacade serverFacade = new ServerFacade();
+
+        serverFacade.setCommandsToSave(Integer.parseInt(commandsToSave));
+
+        serverFacade.loadFromDatabase();
     }
 
     // args should contain the port number
@@ -47,6 +56,7 @@ public class ServerCommunicator
     {
         String portNumber = args[0];
         String persistencePluginName = args[1];
-        new ServerCommunicator().run(portNumber, persistencePluginName);
+        String commandsToSave = args[2];
+        new ServerCommunicator().run(portNumber, persistencePluginName, commandsToSave);
     }
 }

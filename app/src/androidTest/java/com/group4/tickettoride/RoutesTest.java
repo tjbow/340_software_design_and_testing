@@ -205,7 +205,7 @@ public class RoutesTest
         Assert.assertTrue(player.destinationComplete(destination.getCityA(), destination.getCityB()));
     }
     @Test
-    public void DallasToNewYork()
+    public void DallasToNewYorkTest()
     {
         Player player = new Player(new User("player"));
         DestinationCard destination = destDeck.findCard(9);
@@ -214,6 +214,100 @@ public class RoutesTest
         player.addClaimedRoute(routeList.findRoute("LittleRockSaintLouis"));
         player.addClaimedRoute(routeList.findRoute("SaintLouisPittsburgh"));
         player.addClaimedRoute(routeList.findRoute("PittsburghNewYorkRight"));
+        Assert.assertTrue(player.destinationComplete(destination.getCityA(), destination.getCityB()));
+    }
+
+    @Test
+    public void CalgaryToSaltLakeCityTest()
+    {
+        Player player = new Player(new User("player"));
+        DestinationCard destination = destDeck.findCard(10);
+        player.initializeGame();
+        player.addClaimedRoute(routeList.findRoute("CalgaryHelena"));
+        player.addClaimedRoute(routeList.findRoute("SaltLakeCityHelena"));
+        Assert.assertTrue(player.destinationComplete(destination.getCityA(), destination.getCityB()));
+    }
+
+    @Test
+    public void CalgaryToPhoenixTest()
+    {
+        Player player = new Player(new User("player"));
+        DestinationCard destination = destDeck.findCard(11);
+        player.initializeGame();
+        player.addClaimedRoute(routeList.findRoute("CalgarySeattle"));
+        player.addClaimedRoute(routeList.findRoute("HelenaSeattle"));
+        player.addClaimedRoute(routeList.findRoute("DenverHelena"));
+        player.addClaimedRoute(routeList.findRoute("DenverPhoenix"));
+        Assert.assertTrue(player.destinationComplete(destination.getCityA(), destination.getCityB()));
+    }
+
+    @Test
+    public void LosAngelesToMiami()
+    {
+        Player player = new Player(new User("player"));
+        DestinationCard destination = destDeck.findCard(12);
+        player.initializeGame();
+        player.addClaimedRoute(routeList.findRoute("ElPasoLosAngeles"));
+        player.addClaimedRoute(routeList.findRoute("HoustonElPaso"));
+        player.addClaimedRoute(routeList.findRoute("DenverPhoenix"));
+        player.addClaimedRoute(routeList.findRoute("NewOrleansHouston"));
+        player.addClaimedRoute(routeList.findRoute("MiamiNewOrleans"));
+        Assert.assertTrue(player.destinationComplete(destination.getCityA(), destination.getCityB()));
+    }
+
+    @Test
+    public void WinnipegToLittleRockTest()
+    {
+        Player player = new Player(new User("player"));
+        DestinationCard destination = destDeck.findCard(13);
+        player.initializeGame();
+        player.addClaimedRoute(routeList.findRoute("DuluthWinnipeg"));
+        player.addClaimedRoute(routeList.findRoute("ChicagoDuluth"));
+        player.addClaimedRoute(routeList.findRoute("SaintLouisChicagoLeft"));
+        player.addClaimedRoute(routeList.findRoute("SaintLouisNashville"));
+        player.addClaimedRoute(routeList.findRoute("NashvilleLittleRock"));
+        Assert.assertTrue(player.destinationComplete(destination.getCityA(), destination.getCityB()));
+    }
+
+    public void SanFranciscoToAtlantaTest()
+    {
+        Player player = new Player(new User("player"));
+        DestinationCard destination = destDeck.findCard(14);
+        player.initializeGame();
+        player.addClaimedRoute(routeList.findRoute("SanFranciscoSaltLakeCityTop"));
+        player.addClaimedRoute(routeList.findRoute("SaltLakeCityDenverBottom"));
+        player.addClaimedRoute(routeList.findRoute("DenverKansasCityTop"));
+        player.addClaimedRoute(routeList.findRoute("SaintLouisKansasCityBottom"));
+        player.addClaimedRoute(routeList.findRoute("NashvillePittsburgh"));
+        player.addClaimedRoute(routeList.findRoute("NashvilleAtlanta"));
+        Assert.assertTrue(player.destinationComplete(destination.getCityA(), destination.getCityB()));
+    }
+
+    @Test
+    public void KansasCityToHoustonTest()
+    {
+        Player player = new Player(new User("player"));
+        DestinationCard destination = destDeck.findCard(15);
+        player.initializeGame();
+        player.addClaimedRoute(routeList.findRoute("KansasCityOklahomaCityLeft"));
+        player.addClaimedRoute(routeList.findRoute("OklahomaCityLittleRock"));
+        player.addClaimedRoute(routeList.findRoute("NewOrleansLittleRock"));
+        player.addClaimedRoute(routeList.findRoute("NewOrleansHouston"));
+        Assert.assertTrue(player.destinationComplete(destination.getCityA(), destination.getCityB()));
+    }
+
+    @Test
+    public void LosAngelesToChicago()
+    {
+        Player player = new Player(new User("player"));
+        DestinationCard destination = destDeck.findCard(16);
+        player.initializeGame();
+        player.addClaimedRoute(routeList.findRoute("SanFranciscoLosAngelesRight"));
+        player.addClaimedRoute(routeList.findRoute("SanFranciscoSaltLakeCityBottom"));
+        player.addClaimedRoute(routeList.findRoute("SaltLakeCityDenverTop"));
+        player.addClaimedRoute(routeList.findRoute("DenverKansasCityTop"));
+        player.addClaimedRoute(routeList.findRoute("DenverOmaha"));
+        player.addClaimedRoute(routeList.findRoute("OmahaChicago"));
         Assert.assertTrue(player.destinationComplete(destination.getCityA(), destination.getCityB()));
     }
 
@@ -249,4 +343,6 @@ public class RoutesTest
         Assert.assertTrue(player.destinationComplete(VancouverToSantaFe.getCityA(), VancouverToSantaFe.getCityB()));
         Assert.assertTrue(player.destinationComplete(CalgaryToPhoenix.getCityA(), CalgaryToPhoenix.getCityB()));
     }
+
+
 }
