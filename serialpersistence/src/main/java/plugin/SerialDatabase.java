@@ -80,10 +80,15 @@ public class SerialDatabase implements IPersistencePlugin
 
     private void create()
     {
-        File directory = new File(SerialUtils.GAMES_DIRECTORY);
-        if (!directory.exists())
+        File gamesDir = new File(SerialUtils.GAMES_DIRECTORY);
+        if (!gamesDir.exists())
         {
-            directory.mkdir();
+            gamesDir.mkdirs();
+        }
+        File usersDir = new File(SerialUtils.USERS_DIRECTORY);
+        if(!usersDir.exists())
+        {
+            usersDir.mkdirs();
         }
     }
 }

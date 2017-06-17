@@ -14,13 +14,18 @@ import java.io.ObjectInputStream;
 
 public class SerialUtils
 {
-    protected static final String GAMES_DIRECTORY = "games/";
+    protected static final String GAMES_DIRECTORY = "ttr/games/";
+    protected static final String USERS_DIRECTORY = "ttr/users/";
 
     static Game getGameFromFile(File gameFile)
     {
         Game game = null;
         try
         {
+            if(gameFile.isDirectory())
+            {
+                return null;
+            }
             FileInputStream fis = new FileInputStream(gameFile);
             ObjectInputStream ois = new ObjectInputStream(fis);
             game = (Game) ois.readObject();

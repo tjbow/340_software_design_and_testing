@@ -54,10 +54,6 @@ public class SerialGameDao implements IGameDao
                 gameList.add(SerialUtils.getGameFromFile(gameFile));
             }
         }
-        else
-        {
-            return null;
-        }
 
         return gameList;
     }

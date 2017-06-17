@@ -11,6 +11,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -25,7 +26,7 @@ public class SerialUserDao implements IUserDao
         try
         {
             // write object to file
-            FileOutputStream fos = new FileOutputStream(SerialUtils.GAMES_DIRECTORY + "users" + ".ser");
+            FileOutputStream fos = new FileOutputStream(SerialUtils.USERS_DIRECTORY + "users" + ".ser");
             ObjectOutputStream oos = new ObjectOutputStream(fos);
             oos.writeObject(users);
             oos.close();
@@ -40,7 +41,7 @@ public class SerialUserDao implements IUserDao
     @Override
     public List<User> getUsers()
     {
-        File file = new File(SerialUtils.GAMES_DIRECTORY + "users.ser");
+        File file = new File(SerialUtils.USERS_DIRECTORY + "users.ser");
 
         List<User> users = null;
         try
@@ -61,6 +62,11 @@ public class SerialUserDao implements IUserDao
         catch (ClassNotFoundException e)
         {
             e.printStackTrace();
+        }
+
+        if(users == null)
+        {
+            return new ArrayList<User>();
         }
 
         return users;
