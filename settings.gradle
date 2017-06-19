@@ -1,1 +1,1 @@
-include ':shared', ':server', ':app', ':testjar', ':serialpersistence', ':sqlpersistence', ':sqlite-jdbc-3.8.7'
+include ':shared', ':server', ':app', ':testjar', ':SerialDatabase', ':SQLiteDatabase', ':sqlite-jdbc-3.8.7'
