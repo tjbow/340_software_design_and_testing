@@ -177,13 +177,13 @@ public class ServerModel
         }
         gameList.add(game); // save game
 
-        persistencePlugin.saveGame(game);
-
         System.out.println("Game \"" + game.getGameName() + "\" created by " + getTempUser().getUsername() + " with " + game.getPlayerCount() + " players.");
 
         Player player = new Player(getTempUser());
 
         joinGame(game.getGameName(), player);
+
+        persistencePlugin.saveGame(game);
 
         return true;
     }

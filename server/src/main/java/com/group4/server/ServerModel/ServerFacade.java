@@ -622,6 +622,7 @@ public class ServerFacade implements IServer
         serverModel.setGameList(plugin.getGames());
         for(int i = 0; i < serverModel.getGameList().getGameList().size(); i++){
             String gameName = serverModel.getGameList().getGameList().get(i).getGameName();
+            List<Command> commands = plugin.getCommands(gameName);
             serverModel.setServerCommands(gameName, plugin.getCommands(gameName));
             serverModel.executeCommands(gameName);
         }
