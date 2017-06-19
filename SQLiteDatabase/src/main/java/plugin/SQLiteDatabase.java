@@ -62,10 +62,11 @@ public class SQLiteDatabase implements IPersistencePlugin {
         for (Game game : gameList.getGameList())
         {
             List<ClientCommand> commands = getCommands(game.getGameName());
-            for (ClientCommand command : commands)
-            {
-                game.getCommandList().add(command);
-            }
+            game.getCommandList().setCommandList(commands);
+//            for (ClientCommand command : commands)
+//            {
+//                game.getCommandList().add(command);
+//            }
         }
 
         return gameList;
