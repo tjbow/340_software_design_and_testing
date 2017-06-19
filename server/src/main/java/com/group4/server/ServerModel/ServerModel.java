@@ -11,6 +11,7 @@ import com.group4.shared.Model.Game.GameList;
 import com.group4.shared.Model.Game.MOVE_STATE;
 import com.group4.shared.Model.Player;
 import com.group4.shared.Model.User;
+import com.group4.shared.command.Command;
 import com.group4.shared.plugin.IPersistencePlugin;
 
 import java.security.SecureRandom;
@@ -30,6 +31,7 @@ public class ServerModel
     private GameList gameList;
     private Map<String, User> userAuthTokens;
     private User tempUser;
+    private Map<String, List<Command>> serverCommands;
 
     private static ServerModel serverModel = new ServerModel();
 
@@ -305,7 +307,25 @@ public class ServerModel
         this.commandsToSave = commandsToSave;
     }
 
-//    ----END GAME PREP METHODS---------------------------------------------------------
+    public List<Command> getServerCommands(String gameName) {
+        return serverCommands.get(gameName);
+    }
+
+    public void setServerCommands(Map<String, List<Command>> serverCommands) {
+        this.serverCommands = serverCommands;
+    }
+
+    public void addCommand(String gameName, Command command){
+        List<Command> commandList = serverCommands.get(gameName);
+        commandList.add(command);
+        serverCommands.put(gameName, commandList);
+    }
+
+    public void executeCommands(String gameName){
+
+    }
+
+    //    ----END GAME PREP METHODS---------------------------------------------------------
 
 //    private List<City> getCities()
 //    {
