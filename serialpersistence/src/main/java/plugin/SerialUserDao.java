@@ -53,7 +53,8 @@ public class SerialUserDao implements IUserDao
         }
         catch (FileNotFoundException e)
         {
-            e.printStackTrace();
+//            e.printStackTrace();
+            System.out.println("No users to load.");
         }
         catch (IOException e)
         {
