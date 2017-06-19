@@ -43,13 +43,13 @@ public class SerialDatabase implements IPersistencePlugin
     }
 
     @Override
-    public void updateCommands(String gameName, List<ClientCommand> commands)
+    public void updateCommands(String gameName, List<Command> commands)
     {
         new SerialCommandDao().updateCommands(gameName, commands);
     }
 
     @Override
-    public List<ClientCommand> getCommands(String gameName)
+    public List<Command> getCommands(String gameName)
     {
         return new SerialCommandDao().getCommands(gameName);
     }
@@ -89,6 +89,11 @@ public class SerialDatabase implements IPersistencePlugin
         if(!usersDir.exists())
         {
             usersDir.mkdirs();
+        }
+        File commandsDir = new File(SerialUtils.COMMANDS_DIRECTORY);
+        if(!commandsDir.exists())
+        {
+            commandsDir.mkdirs();
         }
     }
 }

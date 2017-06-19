@@ -1,12 +1,16 @@
 package plugin;
 
-import com.group4.shared.Model.CommandList;
-import com.group4.shared.Model.Game.Game;
-import com.group4.shared.command.ClientCommand;
 import com.group4.shared.command.Command;
 import com.group4.shared.plugin.ICommandDao;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -17,32 +21,70 @@ public class SerialCommandDao implements ICommandDao
 {
 
     @Override
-    public void updateCommands(String gameName, List<ClientCommand> commands)
+    public void updateCommands(String gameName, List<Command> commands)
     {
-        Game game = SerialUtils.getGameByName(gameName);
-
-        if(game != null)
+        try
         {
-            CommandList cmdList = new CommandList();
-            cmdList.setCommandList(commands);
-            game.setCommandList(cmdList);
+            // write object to file
+            FileOutputStream fos = new FileOutputStream(SerialUtils.COMMANDS_DIRECTORY + gameName + "_commands.ser");
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+            oos.writeObject(commands);
+            oos.close();
 
-            new SerialGameDao().saveGame(game);
+        } catch (FileNotFoundException e)
+        {
+            e.printStackTrace();
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
         }
     }
 
     @Override
-    public List<ClientCommand> getCommands(String gameName)
+    public List<Command> getCommands(String gameName)
     {
-        Game game = SerialUtils.getGameByName(gameName);
-        CommandList cmdList = null;
 
-        if(game != null)
+        File dir = new File(SerialUtils.COMMANDS_DIRECTORY);
+        File[] directoryListing = dir.listFiles();
+        List<Command> commands = null;
+
+        if (directoryListing != null)
         {
-            cmdList = game.getCommandList();
+            for (File commandListFile : directoryListing)
+            {
+                if (commandListFile.toString().equals(gameName + "_commands.ser"))
+                {
+                    try
+                    {
+                        FileInputStream fis = new FileInputStream(commandListFile);
+                        ObjectInputStream ois = new ObjectInputStream(fis);
+                        commands = (List<Command>) ois.readObject();
+                        ois.close();
+                    }
+                    catch (FileNotFoundException e)
+                    {
+                        //e.printStackTrace();
+                        System.out.println("No commands to load.");
+                    }
+                    catch (IOException e)
+                    {
+                        e.printStackTrace();
+                    }
+                    catch (ClassNotFoundException e)
+                    {
+                        e.printStackTrace();
+                    }
+                }
+            }
         }
 
-        return cmdList.getCommandList();
+        if(commands == null)
+        {
+            return new ArrayList<Command>();
+        }
+
+        return commands;
     }
 
     @Override

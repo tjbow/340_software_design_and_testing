@@ -1,12 +1,14 @@
 package plugin;
 
 import com.group4.shared.Model.Game.Game;
+import com.group4.shared.command.Command;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.util.List;
 
 /**
  * Created by tyler on 6/15/17.
@@ -16,6 +18,7 @@ public class SerialUtils
 {
     protected static final String GAMES_DIRECTORY = "ttr/games/";
     protected static final String USERS_DIRECTORY = "ttr/users/";
+    protected static final String COMMANDS_DIRECTORY = "ttr/commands/";
 
     static Game getGameFromFile(File gameFile)
     {
