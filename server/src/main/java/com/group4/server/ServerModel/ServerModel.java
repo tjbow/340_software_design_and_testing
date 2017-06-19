@@ -348,6 +348,14 @@ public class ServerModel
         }
     }
 
+    public void addCreateCommand(String gameName, Command command)
+    {
+        IPersistencePlugin plugin = this.getPersistencePlugin();
+        this.addCommand(gameName, command);
+        plugin.updateCommands(gameName, serverModel.getServerCommands(gameName));
+    }
+
+
     //    ----END GAME PREP METHODS---------------------------------------------------------
 
 //    private List<City> getCities()
