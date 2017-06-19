@@ -111,7 +111,7 @@ public class Login_RegisterActivity extends AppCompatActivity implements ILogin_
         });
 
         this.hostname = (EditText) findViewById(R.id.hostname_editHost);
-        hostname.setText("10.24.64.154");
+        hostname.setText("192.168.2.191");
         ipAddress = hostname.getText().toString();
         ServerProxy.SINGLETON.setIpAddress(ipAddress);
         hostname.addTextChangedListener(new TextWatcher()

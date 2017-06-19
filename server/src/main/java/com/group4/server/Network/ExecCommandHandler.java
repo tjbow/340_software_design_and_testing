@@ -53,8 +53,8 @@ public class ExecCommandHandler
                 if (ServerModel.getInstance().getTempUser() != null)
                 {
                     CreateGameCommand createGameCommand = new Gson().fromJson(requestBody, CreateGameCommand.class);
-                    Game game = ServerModel.getInstance().getGameList().getGameByName(createGameCommand.getGameName());
-                    ServerModel.getInstance().addCommand(game, createGameCommand);
+//                    Game game = ServerModel.getInstance().getGameList().getGameByName(createGameCommand.getGameName());
+//                    ServerModel.getInstance().addCommand(game, createGameCommand);
                     results = createGameCommand.execute();
                 }
                 else results = noAuthToken();
