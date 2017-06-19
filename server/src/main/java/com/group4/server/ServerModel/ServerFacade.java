@@ -620,6 +620,11 @@ public class ServerFacade implements IServer
         IPersistencePlugin plugin = serverModel.getPersistencePlugin();
         serverModel.setUsers(plugin.getUsers());
         serverModel.setGameList(plugin.getGames());
+        for(int i = 0; i < serverModel.getGameList().getGameList().size(); i++){
+            String gameName = serverModel.getGameList().getGameList().get(i).getGameName();
+            serverModel.setServerCommands(gameName, plugin.getCommands(gameName));
+            serverModel.executeCommands(gameName);
+        }
     }
 
     /**

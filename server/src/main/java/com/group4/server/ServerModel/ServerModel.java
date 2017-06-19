@@ -12,6 +12,7 @@ import com.group4.shared.Model.Game.MOVE_STATE;
 import com.group4.shared.Model.Player;
 import com.group4.shared.Model.User;
 import com.group4.shared.command.Command;
+import com.group4.shared.command.IServerCommand;
 import com.group4.shared.plugin.IPersistencePlugin;
 
 import java.security.SecureRandom;
@@ -311,8 +312,8 @@ public class ServerModel
         return serverCommands.get(gameName);
     }
 
-    public void setServerCommands(Map<String, List<Command>> serverCommands) {
-        this.serverCommands = serverCommands;
+    public void setServerCommands(String gameName, List<Command> commands) {
+        serverCommands.put(gameName, commands);
     }
 
     public void addCommand(String gameName, Command command){
@@ -322,7 +323,9 @@ public class ServerModel
     }
 
     public void executeCommands(String gameName){
-
+        for(Command command : serverCommands.get(gameName)){
+            ((IServerCommand)command).execute();
+        }
     }
 
     //    ----END GAME PREP METHODS---------------------------------------------------------
