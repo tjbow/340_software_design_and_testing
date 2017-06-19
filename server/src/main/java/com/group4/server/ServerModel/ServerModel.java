@@ -318,7 +318,12 @@ public class ServerModel
     }
 
     public void addCommand(String gameName, Command command){
-        List<Command> commandList = serverCommands.get(gameName);
+        List<Command> commandList = null;
+        if(serverCommands.get(gameName) == null) {
+            commandList = new ArrayList<>();
+        } else{
+            commandList = serverCommands.get(gameName);
+        }
         commandList.add(command);
         serverCommands.put(gameName, commandList);
     }

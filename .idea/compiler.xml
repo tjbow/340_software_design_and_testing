@@ -18,8 +18,5 @@
         <processorPath useClasspath="true" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="shared" target="1.7" />
-    </bytecodeTargetLevel>
   </component>
 </project>

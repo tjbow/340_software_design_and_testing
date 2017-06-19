@@ -14,12 +14,12 @@ import java.net.InetSocketAddress;
 public class ServerCommunicator
 {
     private static final int MAX_WAITING_CONNECTIONS = 12;
-    private HttpServer server;
 
     private void run(String portNumber, String persistencePluginName, String commandsToSave)
     {
         System.out.println("Initializing HTTP Server");
 
+        HttpServer server;
         try
         {
             server = HttpServer.create(new InetSocketAddress(Integer.parseInt(portNumber)), MAX_WAITING_CONNECTIONS);
