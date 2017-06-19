@@ -3,6 +3,7 @@ package plugin;
 
 import com.group4.shared.Model.CommandList;
 import com.group4.shared.Model.Game.Game;
+import com.group4.shared.command.Command;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -29,39 +30,7 @@ public abstract class SQLiteBaseDao {
         this.transaction = transaction;
     }
 
-//    protected boolean update(PreparedStatement stmt)
-//    {
-//        boolean returnValue = true;
-//        try
-//        {
-//            if (stmt.executeUpdate() != 1)
-//            {
-//                transaction.setNoErrors(false);
-//                returnValue = false;
-//            }
-//        }
-//        catch (SQLException e)
-//        {
-//            System.out.println(e.getMessage());
-//            returnValue = false;
-//            transaction.setNoErrors(false);
-//
-//        }
-//        finally
-//        {
-//            try
-//            {
-//                if (stmt != null) stmt.close();
-//            } catch (SQLException e)
-//            {
-//                System.out.println(e.getMessage());
-//                returnValue = false;
-//                transaction.setNoErrors(false);
-//            }
-//        }
-//
-//        return returnValue;
-//    }
+
 
     protected boolean update(String sqlString, List<Object> entries)
     {
@@ -81,9 +50,9 @@ public abstract class SQLiteBaseDao {
                 {
                     stmt.setBytes(entries.indexOf(entry) + 1, convertSerializableToByteArray( (Game) entry ));
                 }
-                else if (entry.getClass() == CommandList.class)
+                else if (entry.getClass() == ArrayList.class)
                 {
-                    stmt.setBytes(entries.indexOf(entry) + 1, convertSerializableToByteArray( (CommandList) entry));
+                    stmt.setBytes(entries.indexOf(entry) + 1, convertSerializableToByteArray( (ArrayList<Command>) entry));
                 }
             }
 

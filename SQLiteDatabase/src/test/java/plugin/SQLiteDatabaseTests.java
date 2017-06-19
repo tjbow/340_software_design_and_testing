@@ -8,6 +8,7 @@ import com.group4.shared.Model.Player;
 import com.group4.shared.Model.User;
 import com.group4.shared.command.Client.CUpdatePlayersCommandData;
 import com.group4.shared.command.ClientCommand;
+import com.group4.shared.command.Command;
 import com.group4.shared.plugin.IGameDao;
 import com.group4.shared.plugin.IPersistencePlugin;
 
@@ -53,7 +54,7 @@ public class SQLiteDatabaseTests {
 
         sqliteDatabase.saveGame(game);
 
-        List<ClientCommand> commands = new ArrayList<>();
+        List<Command> commands = new ArrayList<>();
 
         Player player = new Player(new User("testplayer1", "pwd"));
         Player player1 = new Player(new User("testplayer2", "pwd"));
@@ -87,32 +88,19 @@ public class SQLiteDatabaseTests {
     @Test
     public void getGamesTest()
     {
-        Game game = new Game("game1", 3);
+        Game game1 = new Game("game1", 3);
+        Game game2 = new Game("game2", 5);
 
-        game.setCommandList(new CommandList());
+        game1.setCommandList(new CommandList());
         //game now has an empty command list
-        sqliteDatabase.saveGame(game);
-        //create a command list with 1 in it
-        List<ClientCommand> commands = new ArrayList<>();
+        sqliteDatabase.saveGame(game1);
+        sqliteDatabase.saveGame(game2);
 
-        Player player = new Player(new User("testplayer1", "pwd"));
-        Player player1 = new Player(new User("testplayer2", "pwd"));
-
-        List<Player> players = new ArrayList<>();
-        players.add(player);
-        players.add(player1);
-
-        CUpdatePlayersCommandData data = new CUpdatePlayersCommandData();
-        data.setType("updateplayers");
-        data.setPlayerData(players);
-
-        commands.add(data);
-        sqliteDatabase.updateCommands("game1", commands);
 
         //now query for gameList
         GameList gameList = sqliteDatabase.getGames();
 
-        assertTrue(gameList.getGameByName("game1").getCommandList().size() == 1 );
+        assertTrue(gameList.getGameList().size() == 2);
     }
 
     @Test
@@ -134,7 +122,7 @@ public class SQLiteDatabaseTests {
     public void getCommandsTest()
     {
 
-        List<ClientCommand> commands = new ArrayList<>();
+        List<Command> commands = new ArrayList<>();
 
         Player player = new Player(new User("testplayer1", "pwd"));
         Player player1 = new Player(new User("testplayer2", "pwd"));
@@ -149,7 +137,7 @@ public class SQLiteDatabaseTests {
 
         commands.add(data);
         sqliteDatabase.updateCommands("game1", commands);
-        List<ClientCommand> commandList = sqliteDatabase.getCommands("game1");
+        List<Command> commandList = sqliteDatabase.getCommands("game1");
         assertNotNull(commandList);
     }
 

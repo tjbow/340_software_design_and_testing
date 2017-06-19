@@ -5,6 +5,7 @@ import com.group4.shared.Model.Player;
 import com.group4.shared.Model.User;
 import com.group4.shared.command.Client.CUpdatePlayersCommandData;
 import com.group4.shared.command.ClientCommand;
+import com.group4.shared.command.Command;
 import com.group4.shared.plugin.ICommandDao;
 
 import org.junit.After;
@@ -40,7 +41,7 @@ public class SQLiteCommandDaoTest {
     public void testUpdateCommands()
     {
         commandDao.clear();
-        List<ClientCommand> commands = new ArrayList<>();
+        List<Command> commands = new ArrayList<>();
 
         Player player = new Player(new User("testplayer1", "pwd"));
         Player player1 = new Player(new User("testplayer2", "pwd"));
@@ -64,7 +65,7 @@ public class SQLiteCommandDaoTest {
     public void testGetCommands()
     {
         commandDao.clear();
-        List<ClientCommand> commands = new ArrayList<>();
+        List<Command> commands = new ArrayList<>();
 
         Player player = new Player(new User("testplayer1", "pwd"));
         Player player1 = new Player(new User("testplayer2", "pwd"));
@@ -80,7 +81,7 @@ public class SQLiteCommandDaoTest {
         commands.add(data);
 
         commandDao.updateCommands("testGame", commands);
-        List<ClientCommand> commandList = commandDao.getCommands("testGame");
+        List<Command> commandList = commandDao.getCommands("testGame");
         assertTrue(commandList.size() == 1);
     }
 
@@ -88,7 +89,7 @@ public class SQLiteCommandDaoTest {
     public void testDeleteCommandList()
     {
         commandDao.clear();
-        List<ClientCommand> commands = new ArrayList<>();
+        List<Command> commands = new ArrayList<>();
 
         Player player = new Player(new User("testplayer1", "pwd"));
         Player player1 = new Player(new User("testplayer2", "pwd"));

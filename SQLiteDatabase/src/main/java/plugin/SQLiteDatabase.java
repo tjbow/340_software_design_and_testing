@@ -4,6 +4,7 @@ import com.group4.shared.Model.Game.Game;
 import com.group4.shared.Model.Game.GameList;
 import com.group4.shared.Model.User;
 import com.group4.shared.command.ClientCommand;
+import com.group4.shared.command.Command;
 import com.group4.shared.plugin.IPersistencePlugin;
 
 
@@ -33,7 +34,7 @@ public class SQLiteDatabase implements IPersistencePlugin {
     }
 
     @Override
-    public void updateCommands(String gameName, List<ClientCommand> commands) {
+    public void updateCommands(String gameName, List<Command> commands) {
         SQLiteTransaction transaction = new SQLiteTransaction();
         SQLiteCommandDao commandDao = new SQLiteCommandDao(transaction);
         commandDao.deleteCommandList(gameName);
@@ -59,15 +60,15 @@ public class SQLiteDatabase implements IPersistencePlugin {
         GameList gameList = gameDao.getGames();
         transaction.closeConnection();
         //now add additional commands to each game
-        for (Game game : gameList.getGameList())
-        {
-            List<ClientCommand> commands = getCommands(game.getGameName());
-            game.getCommandList().setCommandList(commands);
-//            for (ClientCommand command : commands)
-//            {
-//                game.getCommandList().add(command);
-//            }
-        }
+//        for (Game game : gameList.getGameList())
+//        {
+//            List<ClientCommand> commands = getCommands(game.getGameName());
+//            game.getCommandList().setCommandList(commands);
+////            for (ClientCommand command : commands)
+////            {
+////                game.getCommandList().add(command);
+////            }
+//        }
 
         return gameList;
     }
@@ -82,10 +83,10 @@ public class SQLiteDatabase implements IPersistencePlugin {
     }
 
     @Override
-    public List<ClientCommand> getCommands(String gameName) {
+    public List<Command> getCommands(String gameName) {
         SQLiteTransaction transaction = new SQLiteTransaction();
         SQLiteCommandDao commandDao = new SQLiteCommandDao(transaction);
-        List<ClientCommand> commands = commandDao.getCommands(gameName);
+        List<Command> commands = commandDao.getCommands(gameName);
 
         transaction.closeConnection();
         return commands;

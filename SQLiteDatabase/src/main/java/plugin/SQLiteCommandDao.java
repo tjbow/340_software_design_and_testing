@@ -2,6 +2,7 @@ package plugin;
 
 import com.group4.shared.Model.CommandList;
 import com.group4.shared.command.ClientCommand;
+import com.group4.shared.command.Command;
 import com.group4.shared.plugin.ICommandDao;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -16,20 +17,20 @@ public class SQLiteCommandDao extends SQLiteBaseDao implements ICommandDao {
     }
 
     @Override
-    public void updateCommands(String gameName, List<ClientCommand> commands) {
+    public void updateCommands(String gameName, List<Command> commands) {
         String sqlString = "INSERT INTO Command " +
                 "(GameName, CommandList) values (?,?)";
         List<Object> entries = new ArrayList<>();
         entries.add(gameName);
-        CommandList commandList = new CommandList();
-        commandList.setCommandList(commands);
-        entries.add(commandList);
+//        CommandList commandList = new CommandList();
+//        commandList.setCommandList(commands);
+        entries.add(commands);
 
         update(sqlString, entries);
     }
 
     @Override
-    public List<ClientCommand> getCommands(String gameName) {
+    public List<Command> getCommands(String gameName) {
         String sqlString = "SELECT CommandList FROM Command WHERE GameName = ?";
         List<Object> fields = new ArrayList<>();
         List<Class> types = new ArrayList<>();
@@ -38,13 +39,14 @@ public class SQLiteCommandDao extends SQLiteBaseDao implements ICommandDao {
 
 
         List<List<Object>> resultList = query(sqlString, fields, types);
-        CommandList commandList = new CommandList();
+        //CommandList commandList = new CommandList();
+        List<Command> commandList = new ArrayList<>();
         if (!resultList.isEmpty() && !resultList.get(0).isEmpty() )
         {
-            commandList = (CommandList) resultList.get(0).get(0);
+            commandList = (ArrayList<Command>) resultList.get(0).get(0);
         }
 
-        return commandList.getCommandList();
+        return commandList;
     }
 
     public void deleteCommandList(String gameName) {
