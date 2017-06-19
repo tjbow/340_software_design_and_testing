@@ -51,7 +51,7 @@ public class Player implements Serializable
     {
         playerHand = new PlayerHand();
         longestPath = false;
-        trainCarsRemaining = 4;
+        trainCarsRemaining = 45;
         claimedRouteList = new RouteList();
         stats = new PlayerStats();
         winning = false;
