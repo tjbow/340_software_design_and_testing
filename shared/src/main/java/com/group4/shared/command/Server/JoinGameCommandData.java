@@ -8,6 +8,7 @@ import com.group4.shared.command.Command;
 
 public class JoinGameCommandData extends Command {
     String gameName;
+    String userName;
 
     public String getGameName()
     {
@@ -17,5 +18,15 @@ public class JoinGameCommandData extends Command {
     public void setGameName(String gameName)
     {
         this.gameName = gameName;
+    }
+
+    public String getUserName()
+    {
+        return userName;
+    }
+
+    public void setUserName(String userName)
+    {
+        this.userName = userName;
     }
 }

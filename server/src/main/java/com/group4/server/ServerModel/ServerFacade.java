@@ -147,9 +147,9 @@ public class ServerFacade implements IServer
     }
 
     @Override
-    public Results joinGame(String gameName)
+    public Results joinGame(String userName, String gameName)
     {
-        Player player = new Player(serverModel.getTempUser());
+        Player player = new Player(new User(userName));
 
         boolean success = serverModel.joinGame(gameName, player);
         if(!success)
@@ -342,12 +342,11 @@ public class ServerFacade implements IServer
     }
 
     @Override
-    public Results returnDestinationCard(List<DestinationCard> returnedCard)
+    public Results returnDestinationCard(String userName, List<DestinationCard> returnedCard)
     {
         System.out.println("Returning dest cards...");
 //        take the card within returnedCard(s) and insert it into the game dest card deck
-        Game game = serverModel.getGameList().getGameByUsername(serverModel.getTempUser().getUsername());
-        String userName = serverModel.getTempUser().getUsername();
+        Game game = serverModel.getGameList().getGameByUsername(userName);
         game.playerTurn_ReturnDestinationCards(userName, returnedCard);
 
         Player player = game.getPlayerByUserName(userName);
@@ -403,8 +402,7 @@ public class ServerFacade implements IServer
         game.addCommand(updateStateCommandData);
 
         int cardsSelected = 3 - returnedCard.size();
-        System.out.println("Player " + serverModel.getTempUser().getUsername() +
-                " selected " + cardsSelected + " destination cards.");
+//        System.out.println("Player " + serverModel.getTempUser().getUsername() + " selected " + cardsSelected + " destination cards.");
         
         return new Results(true, "Destination cards selected", null, null);
     }
@@ -483,7 +481,7 @@ public class ServerFacade implements IServer
     @Override
     public Results claimRoute(String userName, RouteSegment claimedSegment, List<TrainCard> usedCards)
     {
-        Game game = serverModel.getGameList().getGameByUsername(serverModel.getTempUser().getUsername());
+        Game game = serverModel.getGameList().getGameByUsername(userName);
 
         boolean success = game.playerTurn_claimRoute(userName, claimedSegment, usedCards);
 

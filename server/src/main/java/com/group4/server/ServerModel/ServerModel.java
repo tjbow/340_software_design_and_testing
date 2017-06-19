@@ -177,7 +177,7 @@ public class ServerModel
         }
         gameList.add(game); // save game
 
-        System.out.println("Game \"" + game.getGameName() + "\" created by " + getTempUser().getUsername() + " with " + game.getPlayerCount() + " players.");
+//        System.out.println("Game \"" + game.getGameName() + "\" created by " + getTempUser().getUsername() + " with " + game.getPlayerCount() + " players.");
 
         Player player = new Player(getTempUser());
 
@@ -244,7 +244,7 @@ public class ServerModel
         game.importRoutes();
         game.importCities();
 
-        System.out.println(gameName + " has been started by " + getTempUser().getUsername());
+//        System.out.println(gameName + " has been started by " + getTempUser().getUsername());
     }
 
     boolean endGame(String gameName)
@@ -330,7 +330,11 @@ public class ServerModel
 
     public void executeCommands(String gameName){
         for(Command command : serverCommands.get(gameName)){
-            ((IServerCommand)command).execute();
+            if(command.getType().equals("startgame"))
+            {
+
+            }
+            else ((IServerCommand)command).execute();
         }
     }
 
@@ -346,6 +350,7 @@ public class ServerModel
         if(serverModel.getServerCommands(game.getGameName()).size() % serverModel.getCommandsToSave() == 0) // save game state every X
         {
             plugin.saveGame(game);
+            plugin.updateCommands(game.getGameName(), serverModel.getServerCommands(game.getGameName()));
         }
         else
         {
@@ -358,6 +363,12 @@ public class ServerModel
         IPersistencePlugin plugin = this.getPersistencePlugin();
         this.addCommand(gameName, command);
         plugin.updateCommands(gameName, serverModel.getServerCommands(gameName));
+    }
+
+    public void forceSaveGameState(Game game)
+    {
+        IPersistencePlugin plugin = this.getPersistencePlugin();
+        plugin.saveGame(game);
     }
 
 

@@ -18,7 +18,7 @@ public interface IServer {
     Results login(User user);
     Results register(User user);
     Results createGame(String gameName, int numberOfPlayers);
-    Results joinGame(String gameName);
+    Results joinGame(String userName, String gameName);
     Results startGame(String gameName);
     Results getGameList();
     Results endGame(String gameName);
@@ -27,7 +27,7 @@ public interface IServer {
     Results getPendingCommands(User user, int lastCmdExecuted);
     Results sendChat(Message message);
     Results drawDestinationCards(String userName);
-    Results returnDestinationCard(List<DestinationCard> returnedCard);
+    Results returnDestinationCard(String userName, List<DestinationCard> returnedCard);
 
 //    PHASE 3
     Results drawFaceUpTrainCard(String userName, int position);

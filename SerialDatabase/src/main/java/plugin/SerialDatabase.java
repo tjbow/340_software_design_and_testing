@@ -95,5 +95,10 @@ public class SerialDatabase implements IPersistencePlugin
         {
             commandsDir.mkdirs();
         }
+        File playersDir = new File(SerialUtils.PLAYERS_DIRECTORY);
+        if(!playersDir.exists())
+        {
+            playersDir.mkdirs();
+        }
     }
 }

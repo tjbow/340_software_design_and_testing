@@ -12,6 +12,7 @@ import java.util.List;
 public class ReturnDestCardCommandData extends Command
 {
     List<DestinationCard> returnedCard;
+    String userName;
 
     public List<DestinationCard> getReturnedCard()
     {
@@ -21,5 +22,15 @@ public class ReturnDestCardCommandData extends Command
     public void setReturnedCard(List<DestinationCard> returnedCard)
     {
         this.returnedCard = returnedCard;
+    }
+
+    public String getUserName()
+    {
+        return userName;
+    }
+
+    public void setUserName(String userName)
+    {
+        this.userName = userName;
     }
 }

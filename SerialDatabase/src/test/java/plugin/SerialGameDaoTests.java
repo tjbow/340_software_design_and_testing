@@ -2,6 +2,8 @@ package plugin;
 
 import com.group4.shared.Model.Game.Game;
 import com.group4.shared.Model.Game.GameList;
+import com.group4.shared.Model.Player;
+import com.group4.shared.Model.User;
 import com.group4.shared.plugin.IPersistencePlugin;
 
 import org.junit.After;
@@ -38,16 +40,18 @@ public class SerialGameDaoTests
         Game game4 = new Game("testgame4", 5);
         Game game5 = new Game("testgame5", 5);
 
+        game.addPlayer(new Player(new User("testplayer", "pwd")));
+        game.addPlayer(new Player(new User("otherplayer", "pwd")));
 
 
         mDatabase = new SerialDatabase();
 
         mDatabase.saveGame(game);
-        mDatabase.saveGame(game1);
-        mDatabase.saveGame(game2);
-        mDatabase.saveGame(game3);
-        mDatabase.saveGame(game4);
-        mDatabase.saveGame(game5);
+//        mDatabase.saveGame(game1);
+//        mDatabase.saveGame(game2);
+//        mDatabase.saveGame(game3);
+//        mDatabase.saveGame(game4);
+//        mDatabase.saveGame(game5);
     }
 
     @Test
@@ -63,6 +67,14 @@ public class SerialGameDaoTests
         {
             System.out.println(game.getGameName());
         }
+    }
+
+    @Test
+    public void testGetPlayers()
+    {
+        String gameName = "testgame";
+
+        mDatabase.getGames();
     }
 
     @Test

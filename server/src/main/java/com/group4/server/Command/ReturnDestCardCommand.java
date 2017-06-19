@@ -15,7 +15,7 @@ public class ReturnDestCardCommand extends ReturnDestCardCommandData implements 
     private Results returnDestCard()
     {
         IServer serverFacade = new ServerFacade();
-        return serverFacade.returnDestinationCard(super.getReturnedCard());
+        return serverFacade.returnDestinationCard(super.getUserName(), super.getReturnedCard());
     }
 
     @Override

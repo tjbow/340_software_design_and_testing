@@ -304,7 +304,7 @@ public class ClientModel extends Observable {
                 List<DestinationCard> removed = new ArrayList<>();
                 removed.add(hand1.getDestinationCards().getDestDeck().get(0));
                 removed.add(hand1.getDestinationCards().getDestDeck().get(1));
-                ServerProxy.SINGLETON.returnDestinationCard(removed);
+                ServerProxy.SINGLETON.returnDestinationCard(this.getUser().getUsername(), removed);
                 sendToObservers("Remove Destination cards. Next: Add Destination cards for this player.");
                 actionCounter++;
                 break;

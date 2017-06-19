@@ -111,11 +111,12 @@ public class ServerProxy implements IServer
     }
 
     @Override
-    public Results joinGame(String gameName)
+    public Results joinGame(String userName, String gameName)
     {
         JoinGameCommandData cmd = new JoinGameCommandData();
         cmd.setType("joingame");
         cmd.setGameName(gameName);
+        cmd.setUserName(userName);
 
         threadIt(cmd);
 
@@ -186,11 +187,12 @@ public class ServerProxy implements IServer
     }
 
     @Override
-    public Results returnDestinationCard(List<DestinationCard> returnedCard)
+    public Results returnDestinationCard(String userName, List<DestinationCard> returnedCard)
     {
         ReturnDestCardCommandData cmd = new ReturnDestCardCommandData();
         cmd.setType("returndestcard");
         cmd.setReturnedCard(returnedCard);
+        cmd.setUserName(userName);
         threadIt(cmd);
         return null;
     }

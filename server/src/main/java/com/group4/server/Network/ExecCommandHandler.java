@@ -75,6 +75,7 @@ public class ExecCommandHandler
                     Game game = ServerModel.getInstance().getGameList().getGameByName(startGameCommand.getGameName());
                     ServerModel.getInstance().addCommand(game, startGameCommand);
                     results = startGameCommand.execute();
+                    ServerModel.getInstance().forceSaveGameState(game);
                 }
                 else results = noAuthToken();
                 break;

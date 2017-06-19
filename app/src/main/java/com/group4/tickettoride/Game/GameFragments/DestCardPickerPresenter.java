@@ -66,7 +66,7 @@ public class DestCardPickerPresenter implements Observer, IDestCardPickerPresent
                 returnCards.add(cards.get(sel));
             }
         }
-        ServerProxy.SINGLETON.returnDestinationCard(returnCards);
+        ServerProxy.SINGLETON.returnDestinationCard(ClientModel.SINGLETON.getUser().getUsername(), returnCards);
     }
 
     @Override

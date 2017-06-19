@@ -79,7 +79,7 @@ public class ServerProxyTest
         User user = new User("tyler", "pwd");
         Player player = new Player(user);
 
-        ServerProxy.SINGLETON.joinGame(gameName);
+        ServerProxy.SINGLETON.joinGame(user.getUsername(), gameName);
     }
 
     @Test
@@ -121,7 +121,7 @@ public class ServerProxyTest
 
         //john joins game
         Player player = new Player(user1);
-        ServerProxy.SINGLETON.joinGame(gameName);
+        ServerProxy.SINGLETON.joinGame(user1.getUsername(), gameName);
 
         //john starts game
         ServerProxy.SINGLETON.startGame(gameName);

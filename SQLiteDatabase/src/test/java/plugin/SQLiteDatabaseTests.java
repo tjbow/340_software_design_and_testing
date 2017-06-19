@@ -151,4 +151,10 @@ public class SQLiteDatabaseTests {
         sqliteDatabase.deleteGame(game1);
         assertTrue(sqliteDatabase.getGames().getGameList().size() == 1);
     }
+
+    @Test
+    public void testClear()
+    {
+
+    }
 }

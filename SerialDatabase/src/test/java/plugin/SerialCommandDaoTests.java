@@ -52,13 +52,13 @@ public class SerialCommandDaoTests
 
         commands.add(data);
 
-        mDatabase.updateCommands("testgame.ser", commands);
+//        mDatabase.updateCommands("testgame.ser", commands);
     }
 
     @Test
     public void testGetCommands()
     {
-        List<ClientCommand> commands = mDatabase.getCommands("testgame.ser");
-        System.out.println(commands.size());
+//        List<ClientCommand> commands = mDatabase.getCommands("testgame.ser");
+//        System.out.println(commands.size());
     }
 }

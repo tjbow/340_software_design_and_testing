@@ -53,13 +53,13 @@ public class SerialCommandDao implements ICommandDao
         {
             for (File commandListFile : directoryListing)
             {
-                if (commandListFile.toString().equals(gameName + "_commands.ser"))
+                if (commandListFile.toString().contains(gameName + "_commands.ser"))
                 {
                     try
                     {
                         FileInputStream fis = new FileInputStream(commandListFile);
                         ObjectInputStream ois = new ObjectInputStream(fis);
-                        commands = (List<Command>) ois.readObject();
+                        commands = (ArrayList<Command>) ois.readObject();
                         ois.close();
                     }
                     catch (FileNotFoundException e)
