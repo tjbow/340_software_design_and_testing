@@ -8,6 +8,7 @@ dependencies {
     compile 'com.fasterxml.jackson.core:jackson-core:2.9.0.pr3'
     compile 'com.fasterxml.jackson.core:jackson-annotations:2.9.0.pr3'
     compile 'junit:junit:4.12'
+    compile project(':sqlite-jdbc-3.8.7')
 }
 
 task createJar(type: Copy) {
