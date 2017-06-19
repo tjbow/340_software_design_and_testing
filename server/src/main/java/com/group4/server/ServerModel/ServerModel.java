@@ -336,6 +336,8 @@ public class ServerModel
             }
             else ((IServerCommand)command).execute();
         }
+//        List<Command> commands = serverCommands.get(gameName);
+        serverCommands.put(gameName, new ArrayList<Command>());
     }
 
     /**
