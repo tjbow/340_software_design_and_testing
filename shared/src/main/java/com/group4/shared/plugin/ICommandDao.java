@@ -11,8 +11,8 @@ import java.util.List;
 
 public interface ICommandDao {
 
-    public void updateCommands(String gameName, List<Command> commands);
-    public List<Command> getCommands(String gameName);
+    public void updateCommands(List<Command> commands);
+    public List<Command> getCommands();
     public void clear();
 
 }
