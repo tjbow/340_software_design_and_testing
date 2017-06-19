@@ -27,6 +27,10 @@ public class PluginRegistry {
                 });
 
                 String classname = f.getName();
+                if(classname.charAt(classname.length()-1) != 'r'){
+                    continue;
+                }
+
                 classname = classname.substring(0,classname.length()-4);
                 String pluginName = "plugin." + classname;
 
