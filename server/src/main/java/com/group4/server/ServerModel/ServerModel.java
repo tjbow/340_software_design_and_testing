@@ -53,6 +53,7 @@ public class ServerModel
         users = new ArrayList<>();
         userAuthTokens = new HashMap<>();
         gameList = new GameList(new ArrayList<>());
+        serverCommands = new HashMap<>();
     }
 
     /**
