@@ -628,25 +628,6 @@ public class ServerFacade implements IServer
     }
 
     /**
-     * Adds the command to the game and the database
-     * @param game the game
-     * @param command the command to be added
-     */
-    public void addCommand(Game game, Command command)
-    {
-        IPersistencePlugin plugin = serverModel.getPersistencePlugin();
-        serverModel.addCommand(game.getGameName(), command);
-        if(serverModel.getServerCommands(game.getGameName()).size() % serverModel.getCommandsToSave() == 0) // save game state every X
-        {
-            plugin.saveGame(game);
-        }
-        else
-        {
-            plugin.updateCommands(game.getGameName(), serverModel.getServerCommands(game.getGameName()));
-        }
-    }
-
-    /**
      * Set the number of commands to save between full game updates
      * @param commandsToSave number of commands to save
      */

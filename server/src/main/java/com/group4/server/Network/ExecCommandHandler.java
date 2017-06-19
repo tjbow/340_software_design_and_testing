@@ -18,6 +18,7 @@ import com.group4.server.Command.ReturnDestCardCommand;
 import com.group4.server.Command.SendChatCommand;
 import com.group4.server.Command.StartGameCommand;
 import com.group4.server.ServerModel.ServerModel;
+import com.group4.shared.Model.Game.Game;
 import com.group4.shared.Model.Results;
 import com.group4.shared.command.Command;
 import com.group4.shared.command.IClientCommand;
@@ -52,6 +53,8 @@ public class ExecCommandHandler
                 if (ServerModel.getInstance().getTempUser() != null)
                 {
                     CreateGameCommand createGameCommand = new Gson().fromJson(requestBody, CreateGameCommand.class);
+                    Game game = ServerModel.getInstance().getGameList().getGameByName(createGameCommand.getGameName());
+                    ServerModel.getInstance().addCommand(game, createGameCommand);
                     results = createGameCommand.execute();
                 }
                 else results = noAuthToken();
@@ -60,6 +63,8 @@ public class ExecCommandHandler
                 if (ServerModel.getInstance().getTempUser() != null)
                 {
                     JoinGameCommand joinGameCommand = new Gson().fromJson(requestBody, JoinGameCommand.class);
+                    Game game = ServerModel.getInstance().getGameList().getGameByName(joinGameCommand.getGameName());
+                    ServerModel.getInstance().addCommand(game, joinGameCommand);
                     results = joinGameCommand.execute();
                 }
                 else results = noAuthToken();
@@ -68,6 +73,8 @@ public class ExecCommandHandler
                 if (ServerModel.getInstance().getTempUser() != null)
                 {
                     StartGameCommand startGameCommand = new Gson().fromJson(requestBody, StartGameCommand.class);
+                    Game game = ServerModel.getInstance().getGameList().getGameByName(startGameCommand.getGameName());
+                    ServerModel.getInstance().addCommand(game, startGameCommand);
                     results = startGameCommand.execute();
                 }
                 else results = noAuthToken();
@@ -76,6 +83,8 @@ public class ExecCommandHandler
                 if(ServerModel.getInstance().getTempUser() != null)
                 {
                     EndGameCommand endGameCommand = new Gson().fromJson(requestBody, EndGameCommand.class);
+                    Game game = ServerModel.getInstance().getGameList().getGameByName(endGameCommand.getGameName());
+                    ServerModel.getInstance().addCommand(game, endGameCommand);
                     results = endGameCommand.execute();
                 }
                 else results = noAuthToken();
@@ -89,6 +98,8 @@ public class ExecCommandHandler
                 if(ServerModel.getInstance().getTempUser() != null)
                 {
                     SendChatCommand sendChatCommand = new Gson().fromJson(requestBody, SendChatCommand.class);
+                    Game game = ServerModel.getInstance().getGameList().getGameByUsername(sendChatCommand.getMessage().getUserName());
+                    ServerModel.getInstance().addCommand(game, sendChatCommand);
                     results = sendChatCommand.execute();
                 }
                 else results = noAuthToken();
@@ -106,6 +117,8 @@ public class ExecCommandHandler
                 if(ServerModel.getInstance().getTempUser() != null)
                 {
                     DrawDestCardsCommand drawDestCardsCommand = new Gson().fromJson(requestBody, DrawDestCardsCommand.class);
+                    Game game = ServerModel.getInstance().getGameList().getGameByUsername(drawDestCardsCommand.getUserName());
+                    ServerModel.getInstance().addCommand(game, drawDestCardsCommand);
                     results = drawDestCardsCommand.execute();
                 }
                 else results = noAuthToken();
@@ -114,6 +127,8 @@ public class ExecCommandHandler
                 if(ServerModel.getInstance().getTempUser() != null)
                 {
                     ReturnDestCardCommand returnDestCardCommand = new Gson().fromJson(requestBody, ReturnDestCardCommand.class);
+                    Game game = ServerModel.getInstance().getGameList().getGameByUsername(ServerModel.getInstance().getTempUser().getUsername());
+                    ServerModel.getInstance().addCommand(game, returnDestCardCommand);
                     results = returnDestCardCommand.execute();
                 }
                 else results = noAuthToken();
@@ -122,6 +137,8 @@ public class ExecCommandHandler
                 if(ServerModel.getInstance().getTempUser() != null)
                 {
                     DrawFaceDownTrainCardCommand drawFaceDownTrainCardCommand = new Gson().fromJson(requestBody, DrawFaceDownTrainCardCommand.class);
+                    Game game = ServerModel.getInstance().getGameList().getGameByUsername(drawFaceDownTrainCardCommand.getUserName());
+                    ServerModel.getInstance().addCommand(game, drawFaceDownTrainCardCommand);
                     results = drawFaceDownTrainCardCommand.execute();
                 }
                 else results = noAuthToken();
@@ -130,6 +147,8 @@ public class ExecCommandHandler
                 if(ServerModel.getInstance().getTempUser() != null)
                 {
                     DrawFaceUpTrainCardCommand drawFaceUpTrainCardCommand = new Gson().fromJson(requestBody, DrawFaceUpTrainCardCommand.class);
+                    Game game = ServerModel.getInstance().getGameList().getGameByUsername(drawFaceUpTrainCardCommand.getUserName());
+                    ServerModel.getInstance().addCommand(game, drawFaceUpTrainCardCommand);
                     results = drawFaceUpTrainCardCommand.execute();
                 }
                 else results = noAuthToken();
@@ -138,6 +157,8 @@ public class ExecCommandHandler
                 if(ServerModel.getInstance().getTempUser() != null)
                 {
                     ClaimRouteCommand claimRouteCommand = new Gson().fromJson(requestBody, ClaimRouteCommand.class);
+                    Game game = ServerModel.getInstance().getGameList().getGameByUsername(claimRouteCommand.getUserName());
+                    ServerModel.getInstance().addCommand(game, claimRouteCommand);
                     results = claimRouteCommand.execute();
                 }
                 else results = noAuthToken();

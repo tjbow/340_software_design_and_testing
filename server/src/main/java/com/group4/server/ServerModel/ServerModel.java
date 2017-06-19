@@ -266,7 +266,7 @@ public class ServerModel
      * Gets the current list of games on the server
      * @return this.gameList
      */
-    GameList getGameList()
+    public GameList getGameList()
     {
         return gameList;
     }
@@ -325,6 +325,25 @@ public class ServerModel
     public void executeCommands(String gameName){
         for(Command command : serverCommands.get(gameName)){
             ((IServerCommand)command).execute();
+        }
+    }
+
+    /**
+     * Adds the command to the game and the database
+     * @param game the game
+     * @param command the command to be added
+     */
+    public void addCommand(Game game, Command command)
+    {
+        IPersistencePlugin plugin = this.getPersistencePlugin();
+        this.addCommand(game.getGameName(), command);
+        if(serverModel.getServerCommands(game.getGameName()).size() % serverModel.getCommandsToSave() == 0) // save game state every X
+        {
+            plugin.saveGame(game);
+        }
+        else
+        {
+            plugin.updateCommands(game.getGameName(), serverModel.getServerCommands(game.getGameName()));
         }
     }
 
