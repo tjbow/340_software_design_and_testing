@@ -15,11 +15,11 @@ import java.util.List;
 public interface IPersistencePlugin {
 
     public void saveGame(Game game);
-    public void updateCommands(String gameName, List<ClientCommand> commands);
+    public void updateCommands(String gameName, List<Command> commands);
     public void saveUsers(List<User> users);
     public GameList getGames();
     public List<User> getUsers();
-    public List<ClientCommand> getCommands(String gameName);
+    public List<Command> getCommands(String gameName);
     public void clear();
     public void deleteGame(Game game);
 
